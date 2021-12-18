@@ -1,0 +1,40 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#grades {
+    margin: 100px;
+}
+
+.grade-container {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    margin-top: 10px;
+}
+
+.inputGrade {
+    width: 70px;
+    height: 50px;
+    font-size: 30px;
+    outline: none;
+    border: 2px solid gray;
+    color: gray;
+    text-indent: 5px;
+    text-align: center;
+}
+
+.gradeSelected {
+    color: var(--mainColor);
+    border-color: var(--mainColor);
+}
+
+.lblGrade {
+    color: gray;
+    font-size: 30px;
+}

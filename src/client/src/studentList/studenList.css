@@ -1,0 +1,32 @@
+#table-container {
+    position: absolute;
+    left: 50%;
+    top: 150px;
+    overflow-y: auto;
+    border-left: 1px solid var(--mainColor);
+    width: 700px;
+    height: 700px;
+}
+
+thead tr:first-child th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    color: var(--mainColor);
+}
+
+tr {
+    cursor: pointer;
+}
+
+#table {
+    width: 100%;
+}
+
+.td-notas {
+    width: 60px;
+}
+
+.td-cedula {
+    width: 100px;
+}

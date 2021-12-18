@@ -1,0 +1,10 @@
+#grade-container {
+    margin-top: 50px;
+    width: 800px;
+    height: 750px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

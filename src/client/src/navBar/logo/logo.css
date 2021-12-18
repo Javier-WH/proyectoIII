@@ -1,0 +1,26 @@
+  @font-face {
+      font-family: Aclonica;
+      src: url('./Aclonica-Regular.ttf');
+  }
+  
+  #logo {
+      width: 110px;
+      height: 110px;
+  }
+  
+  #logo-container {
+      width: 500px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 20px;
+  }
+  
+  #title {
+      color: white;
+      font-weight: 500;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 18px;
+      font-family: Aclonica;
+  }
