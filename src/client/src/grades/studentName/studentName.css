@@ -1,3 +1,4 @@
+img,
 label {
     user-select: none;
 }
@@ -67,4 +68,13 @@ label {
     border: 1px solid var(--activeColor);
     background-color: var(--activeColor);
     fill: white;
+}
+
+#student-image {
+    width: 100px;
+    height: 130px;
+    border: 1px solid var(--mainColor);
+    padding: 5px;
+    margin-left: 40px;
+    margin-top: -30px;
 }

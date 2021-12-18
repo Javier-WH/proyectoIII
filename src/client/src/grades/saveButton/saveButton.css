@@ -1,0 +1,23 @@
+#btn-save {
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 330px;
+    left: 500px;
+}
+
+#btn-logo {
+    width: 100%;
+    height: 100%;
+    fill: var(--mainColor);
+}
+
+#btn-logo:hover {
+    filter: drop-shadow(0px 0px 3px var(--focusColor));
+}
+
+#btn-logo:active {
+    fill: var(--activeColor);
+}

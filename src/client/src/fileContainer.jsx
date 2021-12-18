@@ -8,6 +8,7 @@ class MainContainer extends Component{
    render(){
        return <div id="mainContainer" >
            <NavBar/>
+    
            <StudentList/>
            <GradeContainer/>
        </div>

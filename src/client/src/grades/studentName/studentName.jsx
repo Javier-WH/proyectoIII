@@ -21,6 +21,7 @@ class StudenName extends Component{
                 <label htmlFor="input-student-ci" id="lbl-student-ci">C.I.</label>
                 <input type="number" id="input-student-ci"/>
             </div>
+            <img src={process.env.PUBLIC_URL + '/IMG/placeholder.svg'}  alt="" id="student-image"/>
         </div>
     }
 }
