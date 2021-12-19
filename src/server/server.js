@@ -14,6 +14,8 @@ const serverIp = os.networkInterfaces().Ethernet[1].address;
 
 //routes
 app.use(require("./routes/routes.get.js"));
+app.use(require("./routes/routes.post.js"));
+
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.listen(process.env.PORT, serverIp, err => {
