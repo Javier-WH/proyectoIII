@@ -11,7 +11,8 @@ User.init({
     CI: DataTypes.INTEGER,
     gender: DataTypes.CHAR,
     subject: DataTypes.JSON,
-    admin: DataTypes.BOOLEAN
+    admin: DataTypes.BOOLEAN,
+    teacherID: DataTypes.INTEGER
 }, {
     sequelize,
     modelName: "user"
@@ -41,6 +42,8 @@ class Tutors extends Model {}
 Tutors.init({
     names: DataTypes.STRING,
     lastName: DataTypes.STRING,
+    nickName: DataTypes.STRING,
+    password: DataTypes.STRING,
     CI: DataTypes.INTEGER,
     gender: DataTypes.CHAR,
     age: DataTypes.INTEGER,
@@ -66,6 +69,8 @@ AuxiliarInfo.init({
     sequelize,
     modelName: "Auxiliar_Information"
 });
+
+/////////////////
 
 
 module.exports = { User, Students, Tutors, AuxiliarInfo };

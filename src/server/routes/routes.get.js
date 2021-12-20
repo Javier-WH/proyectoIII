@@ -17,7 +17,7 @@ const controller = require("../controllers/controllers.js")
 // });
 
 Router.get("/", async(req, res) => {
-    res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../../client/html/app.html"));
 });
 
 

@@ -1,5 +1,6 @@
 const { Students } = require("../database/models.js");
 
+
 async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, subjects }) {
     let ask = await Students.create({
         names,
@@ -40,8 +41,10 @@ async function getStudents({ seccion, year }) {
 /////////////////////////
 
 async function findStudent(filters) {
+
     let ask = await Students.findAll({
         where: filters,
+
         order: [
             ["CI", "asc"]
         ]

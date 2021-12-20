@@ -6,8 +6,8 @@ const studentsController = require("../controllers/studentsController.js")
 
 
 
-Router.post("/", express.json(), async(req, res) => {
-
+Router.post("/getSeccionList", express.json(), async(req, res) => {
+    // console.log(req.body);
     res.json(await studentsController.getStudents(req.body));
 });
 
