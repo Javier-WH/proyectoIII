@@ -5,11 +5,165 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="SVG/icon.svg" />
+    <title>Batalla de la Victoria</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <script src="JS/bootstrap.js" defer></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/navBar.css">
+    <link rel="stylesheet" href="CSS/table.css">
+    <link rel="stylesheet" href="CSS/name.css">
 </head>
 
+
+
 <body>
-    <h1>Hola</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="SVG/icon.svg" alt="" class="navbar-brand" id="navBar-icon">
+            <span id="title"> U.E. Colegio Batalla de la Victoria</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <img src="SVG/saveLogo.svg" alt="" class="svg-icon"> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <img src="SVG/printLogo.svg" alt="" class="svg-icon"></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Secciones
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Ingles 1ro A</a></li>
+                            <li><a class="dropdown-item" href="#">Castellano 5to B</a></li>
+                            <li><a class="dropdown-item" href="#">Informatica 3ro A</a></li>
+                            <li><a class="dropdown-item" href="#">Biologia 4to B</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <div class="d-flex">
+                    <div id="user-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 0 25 25" width="40px" fill="#ffffff" id="user-logo">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                        <div id="user-name">Profesor Charles X Xavier</div>
+                    </div>
+                </div>
+                < </div>
+            </div>
+    </nav>
+
+    <!-- table -->
+
+    <div id="table-container">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Cedula</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">1er Lapso</th>
+                    <th scope="col">2do Lapso</th>
+                    <th scope="col">3er Lapso</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+    <h1 id="seccion-title">Ingles 1A</h1>
+
+
+    <!-- name -->
+    <div id="name-main-container">
+
+
+        <div id="name-container">
+            <label for="input-nombre" id="lbl-input-nombre">Nombre del Estudiante</label>
+
+            <div id="name">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px" fill="#000000" class="arrowName" id="arrowBack">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+
+                <input type="text" id="input-nombre">
+
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px" fill="#000000" class="arrowName" id="arrowForward">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div id="ci-container">
+            <label for="input-ci" id="lbl-input-ci">C.I.</label>
+            <input type="number" id="input-ci">
+        </div>
+
+        <div id="photo-container">
+            <img src="SVG/placeholder.svg" alt="" id="photo">
+        </div>
+        <div id="nota-acumulada-container">
+            <label for="nota-acumulada" id="lbl-acumulado">Acumulado:</label>
+            <span id="nota-acomulada">18</span>
+        </div>
+
+        <!-- Grades -->
+        <div id="grade-container">
+            <label for="lapso1" class="lbl-lapso">Primer Lapso</label>
+            <input type="text" id="lapso1" class="input-lapso">
+            <label for="lapso2" class="lbl-lapso">Segundo Lapso</label>
+            <input type="text" id="lapso2" class="input-lapso">
+            <label for="lapso3" class="lbl-lapso">Tercer Lapso</label>
+            <input type="text" id="lapso3" class="input-lapso">
+        </div>
+    </div>
+
+
+
 </body>
 
 </html>

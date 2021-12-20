@@ -1,0 +1,9 @@
+#table-container {
+    width: 700px;
+    height: 820px;
+    border-left: 1px solid black;
+    overflow-y: auto;
+    position: absolute;
+    left: auto;
+    right: 0px;
+}

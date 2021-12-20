@@ -1,0 +1,37 @@
+#navBar-icon {
+    width: 80px;
+    height: 80px;
+}
+
+#user-container {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#user-logo {
+    float: left;
+}
+
+#user-name {
+    color: white;
+    font-size: 18px;
+}
+
+#title {
+    color: white;
+    font-size: 22px;
+    margin-right: 50px;
+    border-right: 1px solid gray;
+    padding-right: 10px;
+}
+
+
+/********************/
+
+.svg-icon {
+    filter: drop-shadow(0px 0px 3px white)drop-shadow(0px 0px 3px white);
+    width: 40px;
+    margin-right: 10px;
+}
