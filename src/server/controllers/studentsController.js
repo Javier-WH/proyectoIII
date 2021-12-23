@@ -55,4 +55,45 @@ async function findStudent(filters) {
     })
 }
 
-module.exports = { getStudents, registerStudent, findStudent }
+
+
+
+async function updateGrades(list) {
+
+    // console.log(list[0].subjects)
+
+    for (let i = 0; i < list.length; i++) {
+        let id = list[i].id
+        let student = await Students.findAll({
+            where: {
+                id
+            }
+        });
+        let oldSubjects = student[0].subjects;
+        let keys = Object.keys(list[i].subjects);
+
+        for (let j = 0; j < keys.length; j++) {
+
+            oldSubjects[keys[j]] = list[i].subjects[keys[j]];
+        }
+
+        let update = await Students.update({ subjects: oldSubjects }, {
+            where: {
+                id
+            }
+        });
+
+        return new Promise((resolved, rejected) => {
+            resolved("OK");
+            rejected({ "Error": "Ha ocurrido un error al intentar actualizar las notas" });
+        })
+
+
+    }
+}
+
+
+
+
+
+module.exports = { getStudents, registerStudent, findStudent, updateGrades }

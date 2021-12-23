@@ -25,7 +25,19 @@ export function fillStudentData(student, { subject }) {
     document.getElementById("lapso1").value = lapso1;
     document.getElementById("lapso2").value = lapso2;
     document.getElementById("lapso3").value = lapso3;
-    document.getElementById("nota-acomulada").innerHTML = ((parseFloat(lapso1) + parseFloat(lapso2) + parseFloat(lapso3)) / 3).toFixed(1)
+
+
+    let acumulado = ((parseFloat(lapso1) + parseFloat(lapso2) + parseFloat(lapso3)) / 3);
+
+
+    if (Number.isInteger(acumulado)) {
+        document.getElementById("nota-acomulada").innerHTML = acumulado.toFixed(0);
+    } else {
+        document.getElementById("nota-acomulada").innerHTML = acumulado.toFixed(1);
+    }
+
+
+
 }
 
 ////////////////////////

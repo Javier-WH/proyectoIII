@@ -15,22 +15,45 @@ export function loadEvents(StudentList) {
     document.getElementById("seccion-box").addEventListener("click", async e => {
         if (e.target.classList.contains("dropdown-item")) {
 
-            // if (changedList.length > 0) {
-            //     alert("No ha guardado los cambios")
-            // }
+            if (changedList.length > 0) {
+                Swal.fire({
+                    title: '¿Desea guardar los cambios',
+                    text: "Tiene cambios en las notas que no han sido guardados",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar Notas',
+                    denyButtonText: `Descartar Cambios`,
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        saveData();
+                        Swal.fire('Saved!', '', 'success');
+                    } else if (result.isDenied) {
+                        changedList.length = 0;
+                        Swal.fire('Las notas NO se guardaron', '', 'info')
+                    }
+                    changeSeccion();
+                })
+            } else {
+                changeSeccion();
 
+            }
 
-            let data = e.target.innerText.split(" ");
-            let subject = data[0];
-            let year = data[1][0];
-            let seccion = data[1][1];
+            async function changeSeccion() {
+                let data = e.target.innerText.split(" ");
+                let subject = data[0];
+                let year = data[1][0];
+                let seccion = data[1][1];
 
-            let studentList = await fetchStudentList({ seccion, year }); //obtiene la lista de estudiantes
-            fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
-            fillTitleSeccion({ seccion, subject, year }); //llena el titulo
-            fillStudentData(studentList[0], { subject }); //llena los datos el alumno
-            setSelected(`std-${studentList[0].id}`);
-            StudentList = studentList;
+                let studentList = await fetchStudentList({ seccion, year }); //obtiene la lista de estudiantes
+                fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
+                fillTitleSeccion({ seccion, subject, year }); //llena el titulo
+                fillStudentData(studentList[0], { subject }); //llena los datos el alumno
+                setSelected(`std-${studentList[0].id}`);
+                StudentList = studentList;
+            }
+
         }
     });
 
@@ -80,99 +103,84 @@ export function loadEvents(StudentList) {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ////eventos que crean una lista con los cambios a las notas
-    document.getElementById("lapso1").addEventListener("change", () => {
+    document.getElementById("lapso1").addEventListener("change", makeDataToSave);
+
+    document.getElementById("lapso2").addEventListener("change", makeDataToSave);
+
+    document.getElementById("lapso3").addEventListener("change", makeDataToSave);
+
+
+    document.getElementById("btn-save").addEventListener("click", saveData)
+
+
+
+
+    ////esta funcion guarda los datos
+    async function saveData() {
+        let data = await JSON.stringify(changedList);
+        let ask = await fetch("/Estudiante/registro", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: data
+        })
+        let response = await ask.text();
+        if (response == "OK") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Las notas se han guardado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            changedList.length = 0;
+        }
+
+
+    }
+
+
+    ////////////////////////////////////////////////////
+    //genera el objeto con la lista de las notas que deben actualizarce
+    function makeDataToSave() {
+
         let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
         let id = SELECTED.replace("std-", "");
         let index = changedList.findIndex(x => x.id == id)
+        let def = ((Number.parseFloat(document.getElementById("lapso1").value) + Number.parseFloat(document.getElementById("lapso2").value) + Number.parseFloat(document.getElementById("lapso3").value)) / 3);
+
+        if (Number.isInteger(def)) {
+            def = def.toFixed(0)
+        } else {
+            def = def.toFixed(1)
+        }
 
         if (index < 0) {
             changedList.push({
                 id: id,
                 subjects: {
                     [subject]: {
-                        l1: document.getElementById("lapso1").value
+                        l1: document.getElementById("lapso1").value,
+                        l2: document.getElementById("lapso2").value,
+                        l3: document.getElementById("lapso3").value,
+                        def
                     },
                 }
             });
         } else {
             changedList[index].subjects[subject].l1 = document.getElementById("lapso1").value;
-        }
-        document.getElementById("lapso1-" + id).innerText = document.getElementById("lapso1").value
-
-    });
-
-    document.getElementById("lapso2").addEventListener("change", () => {
-        let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
-        let id = SELECTED.replace("std-", "");
-        let index = changedList.findIndex(x => x.id == id)
-
-        if (index < 0) {
-            changedList.push({
-                id: id,
-                subjects: {
-                    [subject]: {
-                        l2: document.getElementById("lapso2").value
-                    },
-                }
-            });
-        } else {
             changedList[index].subjects[subject].l2 = document.getElementById("lapso2").value;
+            changedList[index].subjects[subject].l2 = document.getElementById("lapso3").value;
+            changedList[index].subjects[subject].def = def;
         }
+        document.getElementById("nota-acomulada").innerText = def
+        document.getElementById("lapso1-" + id).innerText = document.getElementById("lapso1").value
         document.getElementById("lapso2-" + id).innerText = document.getElementById("lapso2").value
-    });
-
-    document.getElementById("lapso3").addEventListener("change", () => {
-        let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
-        let id = SELECTED.replace("std-", "");
-        let index = changedList.findIndex(x => x.id == id)
-
-        if (index < 0) {
-            changedList.push({
-                id: id,
-                subjects: {
-                    [subject]: {
-                        l3: document.getElementById("lapso3").value
-                    },
-                }
-            });
-        } else {
-            changedList[index].subjects[subject].l3 = document.getElementById("lapso3").value;
-        }
         document.getElementById("lapso3-" + id).innerText = document.getElementById("lapso3").value
-    });
 
-
-    document.getElementById("btn-save").addEventListener("click", () => {
-
-        console.log(changedList)
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     //////////////proximo estudiante
