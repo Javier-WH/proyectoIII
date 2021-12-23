@@ -7,3 +7,17 @@
     left: auto;
     right: 0px;
 }
+
+tr {
+    cursor: pointer;
+}
+
+.col-notas {
+    width: 50px;
+}
+
+.selected {
+    background-color: rgb(39, 37, 37);
+    color: white;
+    pointer-events: none;
+}

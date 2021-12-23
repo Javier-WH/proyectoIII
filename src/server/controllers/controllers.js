@@ -3,7 +3,7 @@ const { User } = require("../database/models.js");
 
 
 // ingresa un usuaio a la tabla users
-async function insertUser(userName, userLastName, nickName, password, ci, gender, subject, admin) {
+async function insertUser({ userName, userLastName, nickName, password, ci, gender, subject, admin }) {
     let exist = await userExist(ci);
     if (!exist) {
         password = await bcryptjs.hash(password, 8);
@@ -40,20 +40,19 @@ async function userExist(ci) {
     })
 }
 
-//loggin
-async function login(nickName, password) {
+///regresa un usuario
+async function getUser(id) {
     let ask = await User.findAll({
         where: {
-            nickName: nickName,
-            password: password
+            id: id
         }
     });
     return new Promise((resolved, rejected) => {
-        resolved(ask.length > 0);
+        resolved(ask);
         rejected({ "Error": "Ha ocurrido un error al connsultar el login" });
     })
 }
 
 
 
-module.exports = { insertUser, login }
+module.exports = { insertUser, getUser }

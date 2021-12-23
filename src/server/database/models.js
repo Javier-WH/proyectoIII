@@ -11,8 +11,7 @@ User.init({
     CI: DataTypes.INTEGER,
     gender: DataTypes.CHAR,
     subject: DataTypes.JSON,
-    admin: DataTypes.BOOLEAN,
-    teacherID: DataTypes.INTEGER
+    admin: DataTypes.BOOLEAN
 }, {
     sequelize,
     modelName: "user"

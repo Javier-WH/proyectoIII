@@ -17,6 +17,8 @@
 #input-nombre {
     height: 50px;
     width: 390px;
+    text-indent: 10px;
+    font-size: 18px;
 }
 
 .arrowName {
