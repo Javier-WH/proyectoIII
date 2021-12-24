@@ -121,3 +121,15 @@
     text-align: center;
     position: fixed;
 }
+
+.invisible {
+    visibility: hidden;
+}
+
+.progress {
+    background-color: #1e88e5;
+}
+
+.progress .indeterminate {
+    background-color: #5c6bc0;
+}

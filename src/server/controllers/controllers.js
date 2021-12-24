@@ -54,5 +54,26 @@ async function getUser(id) {
 }
 
 
+async function checklogin({ nickName, password }) {
 
-module.exports = { insertUser, getUser }
+    let ask = await User.findAll({
+        where: {
+            nickName
+        }
+    });
+
+    let id = -1;
+
+    if (ask.length > 0) {
+        id = -2;
+        if (bcryptjs.compareSync(password, ask[0].password)) {
+            id = ask[0].id;
+        }
+    }
+    return new Promise((resolved, rejected) => {
+        resolved(id);
+        rejected({ "ERROR": "ocurrio un error en el login" });
+    })
+}
+
+module.exports = { insertUser, getUser, checklogin }

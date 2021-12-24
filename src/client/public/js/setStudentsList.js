@@ -1,11 +1,5 @@
 const table = document.getElementById("studentList");
 export function fillSeccionList({ subject }, seccionList) {
-    table.innerHTML = `<tr>
-    <th scope="row">
-    <div class="spinner-border text-secondary" role="status"></div>
-    </th>
-    </tr>`;
-    document.getElementById("seccion-title").innerHTML = `<div class="spinner-border text-secondary" role="status"></div>`;
 
     let numero = 1;
     let html = "";

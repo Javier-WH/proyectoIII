@@ -28,9 +28,58 @@ window.addEventListener("keyup", () => {
 });
 
 
-document.getElementById("btn-teacher").addEventListener("click", async() => {
+document.getElementById("btn-teacher").addEventListener("click", async(e) => {
 
 
 
+    let nickName = teacherUser.value;
+    let password = teacherPassword.value;
+
+    if (nickName == "" || password == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Debe llenar todos los campos',
+        })
+    } else {
+        document.getElementById("loading-bar").classList.remove("invisible")
+        let data = {
+            nickName,
+            password
+        };
+
+        let ask = await fetch("/autenticateTeacher", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify(data)
+        });
+
+        let response = await ask.text();
+
+
+        if (response > 0) {
+            window.location.replace("/app");
+        } else {
+            let error = "";
+
+            if (response == -2) {
+                error = "La contraseña es incorrecta";
+            } else if (response == -1) {
+                error = "El usuario no está registrado";
+            } else {
+                error = "Ha ocurrido un error";
+            }
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error,
+            })
+
+        }
+        document.getElementById("loading-bar").classList.add("invisible")
+    }
 
 });

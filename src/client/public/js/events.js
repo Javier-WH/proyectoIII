@@ -13,7 +13,7 @@ export function loadEvents(StudentList) {
 
     //cambia la sección cuando se selecciona una nueva en el dropbox
     document.getElementById("seccion-box").addEventListener("click", async e => {
-        if (e.target.classList.contains("dropdown-item")) {
+        if (e.target.classList.contains("dropdown-item") && e.target.id != "logout") {
 
             if (changedList.length > 0) {
                 Swal.fire({
@@ -47,7 +47,7 @@ export function loadEvents(StudentList) {
                 let subject = data[0];
                 let year = data[1][0];
                 let seccion = data[1][1];
-
+                loadingData(); //animacion de relleno antes de cargar los datos
                 let studentList = await fetchStudentList({ seccion, year }); //obtiene la lista de estudiantes
                 fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
                 fillTitleSeccion({ seccion, subject, year }); //llena el titulo
@@ -114,8 +114,11 @@ export function loadEvents(StudentList) {
 
     document.getElementById("btn-save").addEventListener("click", saveData)
 
+    //logout
 
-
+    document.getElementById("logout").addEventListener("click", () => {
+        window.location.replace("/logout")
+    })
 
     ////esta funcion guarda los datos
     async function saveData() {
@@ -265,6 +268,18 @@ export function loadEvents(StudentList) {
 
 
 
+}
+//esta funcion solo reyena los inputs con un placeholder a la espera de cargar los datos
+function loadingData() {
+    document.getElementById("seccion-title").innerHTML = `<div class="spinner-border text-secondary" role="status"></div>`;
+    document.getElementById("studentList").innerHTML = `<div class="spinner-border text-secondary" role="status"></div>`
+
+    document.getElementById("input-nombre").value = "";
+    document.getElementById("input-ci").value = "";
+    document.getElementById("lapso1").value = "";
+    document.getElementById("lapso2").value = "";
+    document.getElementById("lapso3").value = "";
+    document.getElementById("nota-acomulada").innerText = "";
 }
 
 function setSelected(id) {
