@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loggin</title>
+
+    <!-- materialize -->
+    <link rel="stylesheet" href="CSS/materialize.css">
+    <script src="JS/materialize.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="CSS/login.css">
+    <!-- JavaScript -->
+    <script src="JS/login.js" defer></script>
+</head>
+
+<body>
+
+
+    <div id="main-container">
+        <div id="teacher-container" class="login-container">
+            <h2 class="title">Profesores</h2>
+            <div class="input-field col s6 teahcer-input">
+                <input id="teacher-user" type="text" class="validate" autocomplete="off">
+                <label for="teacher-user">Usuario</label>
+            </div>
+
+            <div class="input-field col s12 teahcer-input">
+                <input id="teacher-password" type="password" class="validate">
+                <label for="teacher-password">Contraseña</label>
+            </div>
+            <a class="waves-effect waves-light btn-large  indigo lighten-1">Ingresar</a>
+            <div class="links-container">
+                <a href="">Recuperar contraseña</a>
+                <a href="">Registro</a>
+
+            </div>
+        </div>
+
+
+        <div id="student-container" class="login-container">
+
+            <h2 class="title-student">Estudiantes</h2>
+            <div class="input-field col s6 student-input">
+                <input id="student-user" type="text" class="validate" autocomplete="off">
+                <label for="student-user">Usuario</label>
+            </div>
+
+            <div class="input-field col s12 student-input">
+                <input id="student-password" type="password" class="validate">
+                <label for="student-password">Contraseña</label>
+            </div>
+            <a class="waves-effect waves-light btn-large blue darken-1">Ingresar</a>
+            <div class="links-container">
+                <a href="">Recuperar contraseña</a>
+                <a href="">Registro</a>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>

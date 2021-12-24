@@ -1,0 +1,105 @@
+#main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.login-container {
+    width: 500px;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid transparent;
+}
+
+.teahcer-input input:focus+label {
+    color: #5c6bc0 !important;
+}
+
+.teahcer-input input:focus {
+    border-bottom: 1px solid #5c6bc0 !important;
+    box-shadow: 0 1px 0 0 #5c6bc0 !important
+}
+
+#student-user,
+#student-password,
+#teacher-user,
+#teacher-password {
+    width: 300px;
+}
+
+.title {
+    margin-bottom: 50px;
+    font-size: 26px;
+    color: #5c6bc0;
+}
+
+.btn-large {
+    margin-bottom: 50px;
+}
+
+.links-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+
+/* ********************************/
+
+
+/* #1e88e5 */
+
+.title-student {
+    margin-bottom: 50px;
+    font-size: 26px;
+    color: #1e88e5
+}
+
+.student-input input:focus+label {
+    color: #1e88e5 !important;
+}
+
+.student-input input:focus {
+    border-bottom: 1px solid #1e88e5 !important;
+    box-shadow: 0 1px 0 0 #1e88e5 !important
+}
+
+
+/************************************************************/
+
+#teacher-container:hover {
+    border: 2px solid #5c6bc0;
+}
+
+#student-container:hover {
+    border: 2px solid #1e88e5;
+}
+
+.login-container {
+    filter: grayscale(1);
+}
+
+.login-container:hover {
+    filter: grayscale(0);
+}
+
+.inactive {
+    pointer-events: none;
+}
+
+.teacherBorder {
+    border: 2px solid #5c6bc0;
+    filter: grayscale(0);
+}
+
+.studentBorder {
+    border: 2px solid #1e88e5;
+    filter: grayscale(0);
+}

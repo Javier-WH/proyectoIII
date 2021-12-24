@@ -29,11 +29,13 @@ export function loadEvents(StudentList) {
                     if (result.isConfirmed) {
                         saveData();
                         Swal.fire('Saved!', '', 'success');
+                        changeSeccion();
                     } else if (result.isDenied) {
                         changedList.length = 0;
-                        Swal.fire('Las notas NO se guardaron', '', 'info')
+                        Swal.fire('Las notas NO se guardaron', '', 'info');
+                        changeSeccion();
+
                     }
-                    changeSeccion();
                 })
             } else {
                 changeSeccion();
