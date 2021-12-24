@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>loggin</title>
+    <link rel="shortcut icon" href="SVG/icon.svg" type="image/x-icon">
+    <title>Batalla de la Victoria - Login</title>
+    <!-- SweetAlert2 -->
+    <script src="sweetalert2/dist/sweetalert2.min.js" defer></script>
+    <link rel="stylesheet" href="sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
 
     <!-- materialize -->
     <link rel="stylesheet" href="CSS/materialize.css">
@@ -18,7 +22,9 @@
 </head>
 
 <body>
-
+    <div id="logo">
+        <img src="SVG/BatallaLogo.svg" alt="" id="svg-logo">
+    </div>
 
     <div id="main-container">
         <div id="teacher-container" class="login-container">
@@ -32,7 +38,7 @@
                 <input id="teacher-password" type="password" class="validate">
                 <label for="teacher-password">Contraseña</label>
             </div>
-            <a class="waves-effect waves-light btn-large  indigo lighten-1">Ingresar</a>
+            <a class="waves-effect waves-light btn-large  indigo lighten-1" id="btn-teacher">Ingresar</a>
             <div class="links-container">
                 <a href="">Recuperar contraseña</a>
                 <a href="">Registro</a>

@@ -2,6 +2,8 @@ const teacherUser = document.getElementById("teacher-user");
 const teacherPassword = document.getElementById("teacher-password");
 const studentUser = document.getElementById("student-user");
 const studentPassword = document.getElementById("student-password");
+//////////////
+
 
 
 
@@ -23,4 +25,12 @@ window.addEventListener("keyup", () => {
         document.getElementById("student-container").classList.remove("studentBorder")
         document.getElementById("teacher-container").classList.remove("inactive")
     }
+});
+
+
+document.getElementById("btn-teacher").addEventListener("click", async() => {
+
+
+
+
 });
