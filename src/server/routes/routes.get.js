@@ -15,6 +15,9 @@ Router.get("/app", (req, res, next) => {
 Router.get("/app", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/app.html"));
 });
+Router.get("/config", async(req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/html/config.html"));
+});
 
 
 

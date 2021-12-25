@@ -53,7 +53,7 @@ async function getUser(id) {
     })
 }
 
-
+//autentifica el login de un profesor
 async function checklogin({ nickName, password }) {
 
     let ask = await User.findAll({
@@ -74,6 +74,37 @@ async function checklogin({ nickName, password }) {
         resolved(id);
         rejected({ "ERROR": "ocurrio un error en el login" });
     })
-}
+};
 
-module.exports = { insertUser, getUser, checklogin }
+
+//autentifica el login de un administrador
+async function checkAdmin({ nickName, password }) {
+
+    let ask = await User.findAll({
+        where: {
+            nickName
+        }
+    });
+
+    let id = -1;
+
+    if (ask.length > 0) {
+        id = -2;
+        if (bcryptjs.compareSync(password, ask[0].password)) {
+            id = ask[0].id;
+            if (ask[0].admin == false) {
+                id = -3;
+            }
+        }
+    }
+    return new Promise((resolved, rejected) => {
+        resolved(id);
+        rejected({ "ERROR": "ocurrio un error en el login" });
+    })
+};
+
+
+
+
+
+module.exports = { insertUser, getUser, checklogin, checkAdmin }

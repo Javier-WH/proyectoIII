@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h, initial-scale=1.0">
+    <link rel="icon" href="SVG/icon.svg" />
+    <title>Configuracion - Batalla de la Victoria</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <script src="JS/bootstrap.js" defer></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="CSS/config.css">
+
+
+</head>
+
+<body>
+    <div id="grade-container" class="container">
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="enable-1l">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del primer lapso</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="enable-2l">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del segundo lapso</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="enable-3l">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del tercer lapso</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="enable-edit-grade">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar la edicion de notas</label>
+        </div>
+
+    </div>
+
+
+    <div id="teacher-container" class="container">
+
+        <p>
+            <a class="option" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+               Inscribir profesor
+            </a>
+
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <label for="techer-names">Nombres</label>
+                <input type="text" id="techer-names">
+                <label for="techer-LastNames">Apellidos</label>
+                <input type="text" id="techer-LastNames">
+
+                <div id="add-grade">
+                    <div id="select-teacher-grade-container">
+
+                        <select id="year">
+                            <option value="1">Primer año</option>
+                            <option value="2">Segundo año</option>
+                            <option value="3">Tercer año</option>
+                            <option value="4">Cuarto año</option>
+                            <option value="5">Quinto año</option>
+                        </select>
+
+                        <select id="seccion">
+                            <option value="A">Sección A</option>
+                            <option value="B">Sección B</option>
+                            <option value="C">Sección C</option>
+                            <option value="D">Sección D</option>
+                            <option value="E">Sección E</option>
+                        </select>
+
+                        <select id="grade">
+                            <option value="matematica">Matematica</option>
+                            <option value="fisica">Fisica</option>
+                            <option value="ingles">Ingles</option>
+                            <option value="castellano">Castellano</option>
+                            <option value="quimica">Quimica</option>
+                            <option value="biologia">Biologia</option>
+                            <option value="deporte">Deporte</option>
+                            <option value="informatica">Informática</option>
+                            <option value="geografia">Geografía</option>
+                            <option value="historia">Historia</option>
+                        </select>
+
+                        <button type="button" class="btn btn-success" id="btn-add-grade">
+                           +
+                        </button>
+                    </div>
+                    <div id="teacher-grade-list">
+                        <p id="addgrade-title">Materias Agregadas</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">Matemática 1ro A</li>
+                            <li class="list-group-item">Fisica 2do B</li>
+                            <li class="list-group-item">Informatica 4to A</li>
+                            <li class="list-group-item">Ingles 2do A</li>
+                            <li class="list-group-item">Castellano 5to A</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

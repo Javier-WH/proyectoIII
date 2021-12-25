@@ -6,6 +6,12 @@ const studentPassword = document.getElementById("student-password");
 
 
 
+document.getElementById("svg-logo").addEventListener("dblclick", () => {
+    window.location.replace("/Administracion");
+})
+
+
+
 
 window.addEventListener("keyup", () => {
     if (teacherUser.value != "" || teacherPassword.value != "") {

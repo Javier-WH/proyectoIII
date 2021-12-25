@@ -1,0 +1,91 @@
+    * {
+        color: #5c6bc0;
+    }
+    
+    .container {
+        border: 1px solid #5c6bc0;
+        width: 500px;
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        flex-direction: column;
+        position: relative;
+        margin-top: 50px;
+        margin-left: 20px;
+        padding: 10px;
+        padding-top: 30px;
+        border-radius: 10px;
+        row-gap: 10px;
+    }
+    
+    .option {
+        text-decoration: none;
+        margin-left: 10px;
+        color: #5c6bc0;
+    }
+    
+    .card-body {
+        width: 450px;
+        border-color: #98a0cc;
+    }
+    
+    .container::before {
+        position: absolute;
+        content: "";
+        top: -15px;
+        left: 25px;
+        background-color: white;
+        font-size: 18px;
+    }
+    
+    #grade-container::before {
+        content: "Configuracion de las notas";
+    }
+    
+    #teacher-container::before {
+        content: "Profesores";
+    }
+    /* ////////////////////////////////////////////// */
+    
+    #add-grade {
+        position: relative;
+        border: 1px solid #98a0cc;
+        margin-top: 20px;
+        padding: 10px;
+        padding-top: 25px;
+    }
+    
+    #add-grade::before {
+        position: absolute;
+        content: "Materias";
+        background-color: white;
+        top: -15px;
+    }
+    
+    #btn-add-grade {
+        width: 40px;
+        font-size: 20px;
+        line-height: 20px;
+    }
+    
+    #select-teacher-grade-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    
+    #teacher-grade-list {
+        position: relative;
+        margin-top: 30px;
+        overflow-y: auto;
+        height: 200px;
+    }
+    
+    #addgrade-title {
+        position: sticky !important;
+        top: 0;
+        left: 5px;
+        z-index: 3;
+        background-color: white;
+        border-bottom: 1px solid #98a0cc;
+    }
