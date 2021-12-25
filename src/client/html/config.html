@@ -7,17 +7,52 @@
     <meta name="viewport" content="width=h, initial-scale=1.0">
     <link rel="icon" href="SVG/icon.svg" />
     <title>Configuracion - Batalla de la Victoria</title>
+    <!-- SweetAlert2 -->
+    <script src="sweetalert2/dist/sweetalert2.min.js" defer></script>
+    <link rel="stylesheet" href="sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="CSS/bootstrap.css">
     <script src="JS/bootstrap.js" defer></script>
     <!-- CSS -->
     <link rel="stylesheet" href="CSS/config.css">
+    <link rel="stylesheet" href="CSS/navBar.css">
+
+    <!-- JavaScript -->
+    <script src="JS/config.js" type="module" defer></script>
 
 
 </head>
 
 <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="SVG/icon.svg" alt="" class="navbar-brand" id="navBar-icon">
+            <span id="title"> U.E. Colegio Batalla de la Victoria</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+                <div class="d-flex">
+                    <div id="user-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 0 25 25" width="40px" fill="#ffffff" id="user-logo">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                        <div id="user-name">
+                            <div class="spinner-border text-secondary" role="status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
     <div id="grade-container" class="container">
 
         <div class="form-check form-switch">
@@ -52,9 +87,17 @@
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
                 <label for="techer-names">Nombres</label>
-                <input type="text" id="techer-names">
+                <input type="text" id="teacher-names">
                 <label for="techer-LastNames">Apellidos</label>
-                <input type="text" id="techer-LastNames">
+                <input type="text" id="teacher-LastNames">
+                <label for="techer-ci">Cédula</label>
+                <input type="number" id="teacher-ci">
+
+                <div class="form-check form-switch" id="enable-admin-container">
+                    <input class="form-check-input" type="checkbox" id="isAdmin">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Dar permisos de administrador</label>
+                </div>
+
 
                 <div id="add-grade">
                     <div id="select-teacher-grade-container">
@@ -94,20 +137,40 @@
                     </div>
                     <div id="teacher-grade-list">
                         <p id="addgrade-title">Materias Agregadas</p>
-                        <ul class="list-group">
-                            <li class="list-group-item">Matemática 1ro A</li>
-                            <li class="list-group-item">Fisica 2do B</li>
-                            <li class="list-group-item">Informatica 4to A</li>
-                            <li class="list-group-item">Ingles 2do A</li>
-                            <li class="list-group-item">Castellano 5to A</li>
+                        <ul class="list-group" id="list-group">
                         </ul>
-
                     </div>
+                    <button type="button" class="btn btn-success" id="btn-register-teacher">Inscribir Profesor</button>
+
                 </div>
 
 
             </div>
         </div>
+
+
+
+
+        <p>
+            <a class="option" data-bs-toggle="collapse" href="#fireTeacher" role="button" aria-expanded="false" aria-controls="collapseExample">
+               Despedir profesor
+            </a>
+
+        </p>
+        <div class="collapse" id="fireTeacher">
+            <div class="card card-body">
+
+                <h1>test</h1>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
     </div>
 
 

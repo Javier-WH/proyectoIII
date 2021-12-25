@@ -14,7 +14,11 @@
     float: left;
 }
 
-#user-name {
+li {
+    list-style-type: none;
+}
+
+#navbarDropdown-teacherName {
     color: white;
     font-size: 18px;
 }

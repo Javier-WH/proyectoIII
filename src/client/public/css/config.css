@@ -24,6 +24,10 @@
         color: #5c6bc0;
     }
     
+    .collapsed {
+        font-weight: 500 !important;
+    }
+    
     .card-body {
         width: 450px;
         border-color: #98a0cc;
@@ -68,6 +72,11 @@
         line-height: 20px;
     }
     
+    #btn-register-teacher {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
     #select-teacher-grade-container {
         display: flex;
         justify-content: space-between;
@@ -88,4 +97,8 @@
         z-index: 3;
         background-color: white;
         border-bottom: 1px solid #98a0cc;
+    }
+    
+    #enable-admin-container {
+        margin-top: 10px;
     }

@@ -18,13 +18,13 @@ export function fillSeccionBox(seccionList) {
         html += `<li ><a class="dropdown-item" href="#">${seccion}</a></li>`
     });
 
-    html += `
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li>
-                <a class="dropdown-item" href="#" id = "logout">Logout</a>
-            </li>`
+    // html += `
+    //         <li>
+    //             <hr class="dropdown-divider">
+    //         </li>
+    //         <li>
+    //             <a class="dropdown-item" href="#" id = "logout">Logout</a>
+    //         </li>`
     document.getElementById("seccion-box").innerHTML = html;
 }
 

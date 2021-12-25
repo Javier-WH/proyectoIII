@@ -4,8 +4,11 @@ const { User } = require("../database/models.js");
 
 // ingresa un usuaio a la tabla users
 async function insertUser({ userName, userLastName, nickName, password, ci, gender, subject, admin }) {
+    let error = {};
     let exist = await userExist(ci);
-    if (!exist) {
+    let nickNameExist = await nickExist(nickName);
+
+    if (!exist && !nickNameExist) {
         password = await bcryptjs.hash(password, 8);
         let ask = await User.create({
             name: userName,
@@ -18,12 +21,22 @@ async function insertUser({ userName, userLastName, nickName, password, ci, gend
             admin: admin
         });
 
+
         return new Promise((resolved, rejected) => {
             resolved(ask);
             rejected({ "Error": "Ha ocurrido un error al ingresar el usuario" });
         })
     } else {
-        return { "ERROR": "El Usuario ya está inscrito" };
+        if (exist) {
+            error = {
+                "ERROR": "El Usuario ya está inscrito"
+            }
+        } else {
+            error = {
+                "ERROR": "El nick ya está en uso"
+            }
+        }
+        return error;
     }
 }
 
@@ -31,7 +44,19 @@ async function insertUser({ userName, userLastName, nickName, password, ci, gend
 async function userExist(ci) {
     let ask = await User.findAll({
         where: {
-            ci: ci
+            ci
+        }
+    });
+    return new Promise((resolved, rejected) => {
+        resolved(ask.length > 0);
+        rejected({ "Error": "Ha ocurrido un error al consultar" });
+    })
+}
+//revisa si el usuario ya esta inscrito usando el nickname
+async function nickExist(nickName) {
+    let ask = await User.findAll({
+        where: {
+            nickName
         }
     });
     return new Promise((resolved, rejected) => {

@@ -26,6 +26,7 @@ Router.post("/autenticateAdmin", express.json(), async(req, res) => {
     let response = await controller.checkAdmin(req.body);
     if (response > 0) {
         req.session.adminID = response;
+        req.session.teacherID = response;
     }
     res.send("" + response);
 });
