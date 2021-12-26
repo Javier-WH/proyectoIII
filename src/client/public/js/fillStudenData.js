@@ -29,8 +29,9 @@ export function fillStudentData(student, { subject }) {
 
     let acumulado = ((parseFloat(lapso1) + parseFloat(lapso2) + parseFloat(lapso3)) / 3);
 
-
-    if (Number.isInteger(acumulado)) {
+    if (isNaN(acumulado)) {
+        document.getElementById("nota-acomulada").innerHTML = "N/A";
+    } else if (Number.isInteger(acumulado)) {
         document.getElementById("nota-acomulada").innerHTML = acumulado.toFixed(0);
     } else {
         document.getElementById("nota-acomulada").innerHTML = acumulado.toFixed(1);

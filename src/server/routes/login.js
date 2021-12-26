@@ -12,6 +12,11 @@ Router.get("/Administracion", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/admin.html"));
 });
 
+Router.get("/registro", async(req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/html/registerTeacher.html"));
+});
+
+
 
 Router.post("/autenticateTeacher", express.json(), async(req, res) => {
 

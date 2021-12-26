@@ -11,6 +11,8 @@ User.init({
     CI: DataTypes.INTEGER,
     gender: DataTypes.CHAR,
     subject: DataTypes.JSON,
+    phone: DataTypes.STRING,
+    email: DataTypes.STRING,
     admin: DataTypes.BOOLEAN
 }, {
     sequelize,

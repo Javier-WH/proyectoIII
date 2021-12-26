@@ -3,7 +3,7 @@ const { User } = require("../database/models.js");
 
 
 // ingresa un usuaio a la tabla users
-async function insertUser({ userName, userLastName, nickName, password, ci, gender, subject, admin }) {
+async function insertUser({ userName, userLastName, nickName, password, ci, gender, subject, admin, phone, email }) {
     let error = {};
     let exist = await userExist(ci);
     let nickNameExist = await nickExist(nickName);
@@ -18,7 +18,9 @@ async function insertUser({ userName, userLastName, nickName, password, ci, gend
             CI: ci,
             gender: gender,
             subject: subject,
-            admin: admin
+            admin: admin,
+            phone: phone,
+            email: email
         });
 
 
@@ -78,6 +80,45 @@ async function getUser(id) {
     })
 }
 
+
+//regresa un usuario usando la cedula
+async function getUserByCI({ ci }) {
+    if (ci != "") {
+        let ask = await User.findAll({
+            where: {
+                ci
+            }
+        });
+
+        let data = { "Error": "La cedula no está registrada en el sistema" };
+
+        if (ask.length > 0) {
+            if (!bcryptjs.compareSync("", ask[0].password)) {
+                data = { "Error": "El profesor ya está inscrito" };
+            } else {
+                data = {
+                    "id": ask[0].id,
+                    "name": ask[0].name,
+                    "lastName": ask[0].lastName,
+                    "CI": ask[0].CI,
+                    "gender": ask[0].gender,
+                    "subject": ask[0].subject
+                }
+            }
+        }
+
+        return new Promise((resolved, rejected) => {
+            resolved(data);
+            rejected({ "Error": "Ha ocurrido un error al consultar" });
+        });
+
+
+    } else {
+        return { "Error": "La cedula está vacia" };
+    }
+
+}
+
 //autentifica el login de un profesor
 async function checklogin({ nickName, password }) {
 
@@ -122,6 +163,8 @@ async function checkAdmin({ nickName, password }) {
             }
         }
     }
+
+
     return new Promise((resolved, rejected) => {
         resolved(id);
         rejected({ "ERROR": "ocurrio un error en el login" });
@@ -129,7 +172,27 @@ async function checkAdmin({ nickName, password }) {
 };
 
 
+////////////////
+async function registerTeacher({ name, lastName, nickName, password, CI, gender, phone, email }) {
+    console.log(nickName);
+    password = await bcryptjs.hash(password, 8);
+    let update = await User.update({ name, lastName, nickName, password, CI, gender, phone, email }, {
+        where: {
+            CI
+        }
+    });
+
+    return new Promise((resolved, rejected) => {
+        resolved(update);
+        rejected({ "ERROR": "ocurrio un error al actualizar los datos del profesor" });
+    })
 
 
 
-module.exports = { insertUser, getUser, checklogin, checkAdmin }
+}
+
+
+
+
+
+module.exports = { insertUser, getUser, checklogin, checkAdmin, getUserByCI, registerTeacher }

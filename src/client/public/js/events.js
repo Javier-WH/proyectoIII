@@ -112,6 +112,10 @@ export function loadEvents(StudentList) {
     document.getElementById("lapso3").addEventListener("change", makeDataToSave);
 
 
+
+
+
+
     document.getElementById("btn-save").addEventListener("click", saveData)
 
     //logout
@@ -162,6 +166,10 @@ export function loadEvents(StudentList) {
             def = def.toFixed(1)
         }
 
+        if (isNaN(def)) {
+            def = "N/A";
+        }
+
         if (index < 0) {
             changedList.push({
                 id: id,
@@ -188,60 +196,127 @@ export function loadEvents(StudentList) {
     }
 
 
+
     //////////////proximo estudiante
 
     function nextStudent() {
-        let row = document.getElementById(SELECTED);
-        let nextRow;
+        if (!checkIsSearching()) {
 
-        try {
-            nextRow = row.nextElementSibling.id;
-        } catch (error) {
-            nextRow = "std-" + StudentList[0].id;
-        }
+            document.getElementById("search-Box").innerHTML = "";
+            let row = document.getElementById(SELECTED);
+            let nextRow;
 
-
-        if (nextRow) {
-            setSelected(nextRow);
-
-            nextRow = nextRow.replace("std-", "");
-            let studentRow = StudentList.filter(data => data.id == nextRow);
-            let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+            try {
+                nextRow = row.nextElementSibling.id;
+            } catch (error) {
+                nextRow = "std-" + StudentList[0].id;
+            }
 
 
-            let studenData = {
-                names: studentRow[0].names,
-                lastName: studentRow[0].lastName,
-                CI: studentRow[0].CI,
-                subjects: {
-                    [subject]: {
-                        "l1": document.getElementById("lapso1-" + nextRow).innerText,
-                        "l2": document.getElementById("lapso2-" + nextRow).innerText,
-                        "l3": document.getElementById("lapso3-" + nextRow).innerText
+            if (nextRow) {
+                setSelected(nextRow);
+
+                nextRow = nextRow.replace("std-", "");
+                let studentRow = StudentList.filter(data => data.id == nextRow);
+                let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+
+
+                let studenData = {
+                    names: studentRow[0].names,
+                    lastName: studentRow[0].lastName,
+                    CI: studentRow[0].CI,
+                    subjects: {
+                        [subject]: {
+                            "l1": document.getElementById("lapso1-" + nextRow).innerText,
+                            "l2": document.getElementById("lapso2-" + nextRow).innerText,
+                            "l3": document.getElementById("lapso3-" + nextRow).innerText
+                        }
                     }
-                }
-            };
+                };
 
-            fillStudentData(studenData, { subject });
+                fillStudentData(studenData, { subject });
+            }
         }
+
     }
 
     //////////////estudiante anterior
 
     function previusStudent() {
-        let row = document.getElementById(SELECTED);
-        let previusRow;
-        try {
-            previusRow = row.previousElementSibling.id;
-        } catch (error) {
-            previusRow = "std-" + StudentList[StudentList.length - 1].id;
+        if (!checkIsSearching()) {
+            document.getElementById("search-Box").innerHTML = "";
+            let row = document.getElementById(SELECTED);
+            let previusRow;
+            try {
+                previusRow = row.previousElementSibling.id;
+            } catch (error) {
+                previusRow = "std-" + StudentList[StudentList.length - 1].id;
+            }
+
+            if (previusRow) {
+                setSelected(previusRow);
+
+                previusRow = previusRow.replace("std-", "");
+                let studentRow = StudentList.filter(data => data.id == previusRow);
+                let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+
+
+                let studenData = {
+                    names: studentRow[0].names,
+                    lastName: studentRow[0].lastName,
+                    CI: studentRow[0].CI,
+                    subjects: {
+                        [subject]: {
+                            "l1": document.getElementById("lapso1-" + previusRow).innerText,
+                            "l2": document.getElementById("lapso2-" + previusRow).innerText,
+                            "l3": document.getElementById("lapso3-" + previusRow).innerText
+                        }
+                    }
+                };
+
+                fillStudentData(studenData, { subject });
+            }
         }
+    }
 
-        if (previusRow) {
-            setSelected(previusRow);
 
-            previusRow = previusRow.replace("std-", "");
-            let studentRow = StudentList.filter(data => data.id == previusRow);
+
+    ///evento para buscar estudiante
+
+    document.getElementById("input-nombre").addEventListener("keyup", e => {
+        let searchBox = document.getElementById("search-Box");
+        let askData = e.target.value;
+        let foundList = [];
+        let html = ""
+        if (askData.length > 0) {
+            for (let student of StudentList) {
+                let name = `${student.CI} ${student.names} ${student.lastName}`;
+                if (name.toLowerCase().includes(askData.toLowerCase())) {
+                    html += `<li class="list-group-item" id = "li-${student.id}">${name}</li>`
+                }
+            }
+
+            searchBox.innerHTML = html;
+
+
+        } else {
+            searchBox.innerHTML = "";
+        }
+        document.getElementById("input-ci").value = "";
+        document.getElementById("lapso1").value = "";
+        document.getElementById("lapso2").value = "";
+        document.getElementById("lapso3").value = "";
+        document.getElementById("nota-acomulada").innerText = "";
+        cleanSelection();
+    });
+
+    //al hacer click en un elemento del cuadro de busqueda
+
+    document.getElementById("search-Box").addEventListener("click", e => {
+        if (e.target.classList.contains("list-group-item")) {
+            setSelected(e.target.id.replace("li", "std"))
+            let rowID = e.target.id.replace("li-", "");
+            let studentRow = StudentList.filter(data => data.id == rowID);
             let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
 
 
@@ -251,19 +326,18 @@ export function loadEvents(StudentList) {
                 CI: studentRow[0].CI,
                 subjects: {
                     [subject]: {
-                        "l1": document.getElementById("lapso1-" + previusRow).innerText,
-                        "l2": document.getElementById("lapso2-" + previusRow).innerText,
-                        "l3": document.getElementById("lapso3-" + previusRow).innerText
+                        "l1": document.getElementById("lapso1-" + rowID).innerText,
+                        "l2": document.getElementById("lapso2-" + rowID).innerText,
+                        "l3": document.getElementById("lapso3-" + rowID).innerText
                     }
                 }
             };
 
             fillStudentData(studenData, { subject });
+            document.getElementById("search-Box").innerHTML = "";
+
         }
-
-    }
-
-
+    });
 
 
 
@@ -295,3 +369,8 @@ function cleanSelection() {
         rows[i].classList.remove("selected");
     }
 };
+
+function checkIsSearching() {
+    let input = document.getElementById("input-nombre");
+    return document.activeElement == input;
+}

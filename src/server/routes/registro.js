@@ -15,5 +15,9 @@ Router.post("/profesor/registro", express.json(), async(req, res) => {
     res.json(await controller.insertUser(req.body));
 });
 
+Router.post("/getTeacherByCI", express.json(), async(req, res) => {
+    res.json(await controller.getUserByCI(req.body));
+});
+
 
 module.exports = Router;

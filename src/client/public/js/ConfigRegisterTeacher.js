@@ -40,12 +40,14 @@ export async function registerTeacher() {
     let data = {
         "userName": teacherName,
         "userLastName": teacherLastName,
-        "nickName": "n" + getRandomArbitrary(123, 500),
-        "password": "p" + getRandomArbitrary(287, 600),
+        "nickName": "n" + getRandomArbitrary(123, 5000),
+        "password": "",
         "ci": teacherCI,
         "gender": "",
         "subject": teacherSubjects,
-        "admin": isAdmin.checked
+        "admin": isAdmin.checked,
+        "phone": "",
+        "email": ""
     }
 
     let ask = await fetch("/profesor/registro", {
