@@ -21,6 +21,15 @@ Router.get("/config", (req, res, next) => {
 });
 
 
+Router.get("/teacherPerfil", async(req, res, next) => {
+    if (req.session.teacherID) {
+        next();
+    } else {
+        res.redirect("/");
+    }
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Router.get("/app", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/app.html"));
@@ -33,7 +42,10 @@ Router.get("/teahcerList", express.json(), async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/teacherList.html"));
 });
 
-
+Router.get("/teacherPerfil", async(req, res) => {
+    req.session.perfil = req.query.ci;
+    res.sendFile(path.join(__dirname, "../../client/html/perfilTeacher.html"));
+});
 
 
 module.exports = Router;

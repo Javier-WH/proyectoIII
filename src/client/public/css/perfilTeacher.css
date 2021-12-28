@@ -100,3 +100,10 @@
     margin-left: 20px;
     margin-top: 5px;
 }
+
+#button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-direction: column;
+}

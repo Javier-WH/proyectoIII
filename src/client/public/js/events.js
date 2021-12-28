@@ -1,5 +1,4 @@
 import { fetchStudentList } from './fetch.js';
-import { makeSeccions, fillSeccionBox, getSeccion } from './setSeccions.js';
 import { fillSeccionList } from './setStudentsList.js';
 import { fillStudentData, fillTitleSeccion } from './fillStudenData.js';
 import { getPerfilTeacher } from './setPerfilTeacher.js'
@@ -191,45 +190,76 @@ export function loadEvents(StudentList, teacher) {
     ////////////////////////////////////////////////////
     //genera el objeto con la lista de las notas que deben actualizarce
     function makeDataToSave() {
-
-        let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
         let id = SELECTED.replace("std-", "");
-        let index = changedList.findIndex(x => x.id == id)
-        let def = ((Number.parseFloat(document.getElementById("lapso1").value) + Number.parseFloat(document.getElementById("lapso2").value) + Number.parseFloat(document.getElementById("lapso3").value)) / 3);
+        let error = ""
+        let max = 20;
+        let min = 0;
+        if (document.getElementById("lapso1").value > max || document.getElementById("lapso1").value < min) {
 
-        if (Number.isInteger(def)) {
-            def = def.toFixed(0)
+            error = `La nota introducida en el primer lapso está fuera de los margenes permitidos (${min}-${max})`
+            document.getElementById("lapso1").value = document.getElementById("lapso1-" + id).innerText
+
+        } else if (document.getElementById("lapso2").value > max || document.getElementById("lapso2").value < min) {
+
+            error = `La nota introducida en el segundo lapso está fuera de los margenes permitidos (${min}-${max})`
+            document.getElementById("lapso2").value = document.getElementById("lapso2-" + id).innerText
+
+        } else if (document.getElementById("lapso3").value > max || document.getElementById("lapso3").value < min) {
+
+            error = `La nota introducida en el tercer lapso está fuera de los margenes permitidos (${min}-${max})`
+            document.getElementById("lapso3").value = document.getElementById("lapso3-" + id).innerText
+
         } else {
-            def = def.toFixed(1)
+
+            let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+
+            let index = changedList.findIndex(x => x.id == id)
+            let def = ((Number.parseFloat(document.getElementById("lapso1").value) + Number.parseFloat(document.getElementById("lapso2").value) + Number.parseFloat(document.getElementById("lapso3").value)) / 3);
+
+            if (Number.isInteger(def)) {
+                def = def.toFixed(0)
+            } else {
+                def = def.toFixed(1)
+            }
+
+            if (isNaN(def)) {
+                def = "N/A";
+            }
+
+            if (index < 0) {
+                changedList.push({
+                    id: id,
+                    subjects: {
+                        [subject]: {
+                            l1: document.getElementById("lapso1").value,
+                            l2: document.getElementById("lapso2").value,
+                            l3: document.getElementById("lapso3").value,
+                            def
+                        },
+                    }
+                });
+            } else {
+                changedList[index].subjects[subject].l1 = document.getElementById("lapso1").value;
+                changedList[index].subjects[subject].l2 = document.getElementById("lapso2").value;
+                changedList[index].subjects[subject].l3 = document.getElementById("lapso3").value;
+                changedList[index].subjects[subject].def = def;
+            }
+
+
+            document.getElementById("nota-acomulada").innerText = def
+            document.getElementById("lapso1-" + id).innerText = document.getElementById("lapso1").value;
+            document.getElementById("lapso2-" + id).innerText = document.getElementById("lapso2").value;
+            document.getElementById("lapso3-" + id).innerText = document.getElementById("lapso3").value;
+            document.getElementById("def-" + id).innerText = def;
         }
 
-        if (isNaN(def)) {
-            def = "N/A";
+        if (error.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error,
+            })
         }
-
-        if (index < 0) {
-            changedList.push({
-                id: id,
-                subjects: {
-                    [subject]: {
-                        l1: document.getElementById("lapso1").value,
-                        l2: document.getElementById("lapso2").value,
-                        l3: document.getElementById("lapso3").value,
-                        def
-                    },
-                }
-            });
-        } else {
-            changedList[index].subjects[subject].l1 = document.getElementById("lapso1").value;
-            changedList[index].subjects[subject].l2 = document.getElementById("lapso2").value;
-            changedList[index].subjects[subject].l3 = document.getElementById("lapso3").value;
-            changedList[index].subjects[subject].def = def;
-        }
-        document.getElementById("nota-acomulada").innerText = def
-        document.getElementById("lapso1-" + id).innerText = document.getElementById("lapso1").value;
-        document.getElementById("lapso2-" + id).innerText = document.getElementById("lapso2").value;
-        document.getElementById("lapso3-" + id).innerText = document.getElementById("lapso3").value;
-        document.getElementById("def-" + id).innerText = def;
 
     }
 
@@ -239,7 +269,7 @@ export function loadEvents(StudentList, teacher) {
 
     function nextStudent() {
         if (!checkIsSearching()) {
-
+            blurGrade();
             document.getElementById("search-Box").innerHTML = "";
             let row = document.getElementById(SELECTED);
             let nextRow;
@@ -283,6 +313,7 @@ export function loadEvents(StudentList, teacher) {
 
     function previusStudent() {
         if (!checkIsSearching()) {
+            blurGrade();
             document.getElementById("search-Box").innerHTML = "";
             let row = document.getElementById(SELECTED);
             let previusRow;
@@ -318,7 +349,12 @@ export function loadEvents(StudentList, teacher) {
             }
         }
     }
-
+    /// este evita que la nota en ingresada se borre cuando se cambia de estudiante antes de dar enter o perder el focus
+    function blurGrade() {
+        document.getElementById("lapso1").blur();
+        document.getElementById("lapso2").blur();
+        document.getElementById("lapso3").blur();
+    }
 
 
     ///evento para buscar estudiante
@@ -326,7 +362,6 @@ export function loadEvents(StudentList, teacher) {
     document.getElementById("input-nombre").addEventListener("keyup", e => {
         let searchBox = document.getElementById("search-Box");
         let askData = e.target.value;
-        let foundList = [];
         let html = ""
         if (askData.length > 0) {
             for (let student of StudentList) {
@@ -355,6 +390,7 @@ export function loadEvents(StudentList, teacher) {
     document.getElementById("search-Box").addEventListener("click", e => {
         if (e.target.classList.contains("list-group-item")) {
             setSelected(e.target.id.replace("li", "std"))
+            document.getElementById(e.target.id.replace("li", "std")).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
             let rowID = e.target.id.replace("li-", "");
             let studentRow = StudentList.filter(data => data.id == rowID);
             let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];

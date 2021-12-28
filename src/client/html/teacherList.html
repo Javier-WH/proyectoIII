@@ -30,6 +30,10 @@
             margin-bottom: 40px;
             margin-top: 10px;
         }
+        
+        tr {
+            cursor: pointer;
+        }
     </style>
 
     <div id="logo-container">
@@ -87,12 +91,10 @@
 
             table.innerHTML = html;
 
-            table.addEventListener("click", e => {
+            table.addEventListener("click", async e => {
                 let teacherCI = e.target.parentElement.id.replace("tr-", "");
-                getPerfilTeacher(teacherCI)
-
+                window.location.replace(`/teacherPerfil?ci=${teacherCI}`);
             })
-
         }
         fillTeaacherList();
         ///////////////////////

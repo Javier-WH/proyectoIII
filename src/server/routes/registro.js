@@ -5,9 +5,15 @@ const Router = express.Router();
 const studentsController = require("../controllers/studentsController.js");
 const controller = require("../controllers/controllers.js")
 
+Router.post("/getTeacherInfo", express.json(), async(req, res, next) => {
+    if (req.session.perfil) {
+        next();
+    } else {
+        res.redirect("/");
+    }
+});
 
-
-
+//////////////////////////////////////////////////////////////////////////////////
 Router.post("/Estudiante/registro", express.json(), async(req, res) => {
     res.json(await studentsController.registerStudent(req.body));
 });
@@ -22,7 +28,7 @@ Router.post("/getTeacherByCI", express.json(), async(req, res) => {
 
 
 Router.post("/getTeacherInfo", express.json(), async(req, res) => {
-    res.json(await controller.getTeacherInfo(req.body));
+    res.json(await controller.getTeacherInfo({ ci: req.session.perfil }));
 });
 
 module.exports = Router;

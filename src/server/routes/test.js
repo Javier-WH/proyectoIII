@@ -8,9 +8,7 @@ const studentsController = require("../controllers/studentsController.js")
 //////////////////////////faker////////////////
 
 ///////////////////////////////////////////////
-Router.get("/teacherPerfil", express.json(), async(req, res) => {
-    res.sendFile(path.join(__dirname, "../../client/html/perfilTeacher.html"));
-});
+
 Router.post("/getFake", express.json(), async(req, res) => {
 
     const maleNames = ["Mateo", "Marcos", "Lucas", "Juan", "Pedro", "Santiago", "Matias", "Pablo", "Esteban", "Jesus", "Javier", "Daniel", "Julio", "Joel", "Moises", "Miguel", "Gabriel",

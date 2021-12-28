@@ -24,8 +24,6 @@
 </head>
 
 <body>
-
-
     <nav>
         <div class="nav-wrapper" id="nav-bar">
             <img src="SVG/icon.svg" alt="" id="logo">
@@ -85,10 +83,17 @@
                 <input id="email" type="email" class="validate">
                 <label for="email">E-mail</label>
             </div>
+            <div id="button-container">
 
-            <button class="btn waves-effect waves-light" type="submit" id="btn-send">Enviar
-            <i class="material-icons right">send</i>
-        </button>
+                <button class="btn waves-effect waves-light" type="submit" id="btn-update-password">Modificar Contraseña
+                    <i class="material-icons right">vpn_key</i>
+                </button>
+
+                <button class="btn waves-effect waves-light" type="submit" id="btn-send">Enviar
+                    <i class="material-icons right">send</i>
+                </button>
+
+            </div>
 
         </div>
 
@@ -115,16 +120,13 @@
 
 
     <script>
-        async function fillInputs(ci) {
+        async function fillInputs() {
             let ask = await fetch("/getTeacherInfo", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "*/*"
-                },
-                body: JSON.stringify({
-                    ci
-                })
+                }
             });
 
             let response = await ask.json();
@@ -144,6 +146,7 @@
             document.getElementById("input-nickName").focus();
             document.getElementById("telephone").focus();
             document.getElementById("email").focus();
+            document.getElementById("email").blur();
 
 
             if (teacher.gender == "M") {
@@ -171,7 +174,7 @@
 
         }
 
-        fillInputs("16193765");
+        fillInputs();
     </script>
 
 </body>

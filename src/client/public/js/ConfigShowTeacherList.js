@@ -10,7 +10,7 @@ async function getTeacherList() {
 
 export async function showTeaacherList() {
     let list = await getTeacherList();
-    let teacherListWindow = window.open("window-child.html", "Ratting", "width=500,height=800,left=150,top=200,toolbar=0,status=0,");
+    let teacherListWindow = window.open("window-child.html", "Ratting", "width=900,height=900,left=150,top=200,toolbar=0,status=0,");
     teacherListWindow.document.write(list);
     window.addEventListener("unload", () => {
         teacherListWindow.close();

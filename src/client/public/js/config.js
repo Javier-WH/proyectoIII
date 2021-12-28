@@ -3,6 +3,7 @@ import { fillTeacherName } from './fillTeacherName.js';
 import { fillSubjectList, registerTeacher } from './ConfigRegisterTeacher.js'
 import { fireTeacher } from './ConfigFireTeacher.js'
 import { showTeaacherList } from './ConfigShowTeacherList.js'
+import { getPerfilTeacher } from './setPerfilTeacher.js'
 
 
 
@@ -12,7 +13,11 @@ async function main() {
 
 
 
+    document.getElementById("li-perfil").addEventListener("click", () => {
 
+        getPerfilTeacher(teacher[0].CI);
+
+    })
 
 
     document.getElementById("btn-add-grade").addEventListener("click", fillSubjectList);
