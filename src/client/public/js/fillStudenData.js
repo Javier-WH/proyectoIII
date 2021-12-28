@@ -1,4 +1,7 @@
 export function fillStudentData(student, { subject }) {
+    if (!student) {
+        return;
+    }
 
     let name = student.names;
     let lastName = student.lastName;

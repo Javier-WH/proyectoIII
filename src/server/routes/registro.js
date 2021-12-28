@@ -7,6 +7,7 @@ const controller = require("../controllers/controllers.js")
 
 
 
+
 Router.post("/Estudiante/registro", express.json(), async(req, res) => {
     res.json(await studentsController.registerStudent(req.body));
 });
@@ -19,5 +20,9 @@ Router.post("/getTeacherByCI", express.json(), async(req, res) => {
     res.json(await controller.getUserByCI(req.body));
 });
 
+
+Router.post("/getTeacherInfo", express.json(), async(req, res) => {
+    res.json(await controller.getTeacherInfo(req.body));
+});
 
 module.exports = Router;

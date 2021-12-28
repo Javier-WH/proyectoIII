@@ -1,3 +1,5 @@
+const colors = require('colors')
+
 const { Students } = require("../database/models.js");
 
 
@@ -60,8 +62,6 @@ async function findStudent(filters) {
 
 async function updateGrades(list) {
 
-    // console.log(list[0].subjects)
-
     for (let i = 0; i < list.length; i++) {
         let id = list[i].id
         let student = await Students.findAll({
@@ -69,12 +69,21 @@ async function updateGrades(list) {
                 id
             }
         });
+
         let oldSubjects = student[0].subjects;
-        let keys = Object.keys(list[i].subjects);
 
-        for (let j = 0; j < keys.length; j++) {
 
-            oldSubjects[keys[j]] = list[i].subjects[keys[j]];
+        if (oldSubjects == null) {
+            oldSubjects = list[i].subjects;
+
+        } else {
+
+            let keys = Object.keys(list[i].subjects);
+
+            for (let j = 0; j < keys.length; j++) {
+
+                oldSubjects[keys[j]] = list[i].subjects[keys[j]];
+            }
         }
 
         let update = await Students.update({ subjects: oldSubjects }, {
@@ -82,14 +91,11 @@ async function updateGrades(list) {
                 id
             }
         });
-
-        return new Promise((resolved, rejected) => {
-            resolved("OK");
-            rejected({ "Error": "Ha ocurrido un error al intentar actualizar las notas" });
-        })
-
-
     }
+    return new Promise((resolved, rejected) => {
+        resolved("OK");
+        rejected({ "Error": "Ha ocurrido un error al intentar actualizar las notas" });
+    })
 }
 
 

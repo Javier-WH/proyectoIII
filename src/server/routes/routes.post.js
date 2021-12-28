@@ -19,7 +19,9 @@ Router.post("/profesor", express.json(), async(req, res) => {
     res.json(await controller.getUser(req.session.teacherID));
 });
 
-
+Router.post("/profesor/all", express.json(), async(req, res) => {
+    res.json(await controller.getAllUsers());
+});
 
 
 module.exports = Router;

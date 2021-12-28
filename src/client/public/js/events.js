@@ -2,13 +2,14 @@ import { fetchStudentList } from './fetch.js';
 import { makeSeccions, fillSeccionBox, getSeccion } from './setSeccions.js';
 import { fillSeccionList } from './setStudentsList.js';
 import { fillStudentData, fillTitleSeccion } from './fillStudenData.js';
+import { getPerfilTeacher } from './setPerfilTeacher.js'
 
 
 let SELECTED = ''
 let changedList = [];
 
 
-export function loadEvents(StudentList) {
+export function loadEvents(StudentList, teacher) {
     setSelected(`std-${StudentList[0].id}`);
 
     //cambia la sección cuando se selecciona una nueva en el dropbox
@@ -111,42 +112,78 @@ export function loadEvents(StudentList) {
 
     document.getElementById("lapso3").addEventListener("change", makeDataToSave);
 
-
-
-
-
-
+    //enventos botones
+    //evento click boton guardar
     document.getElementById("btn-save").addEventListener("click", saveData)
+
+    //click en boton imprimir
+
+    document.getElementById("btn-print").addEventListener("click", print)
 
     //logout
 
     document.getElementById("logout").addEventListener("click", () => {
         window.location.replace("/logout")
-    })
+    });
+
+    //esta funcion imprime la lista de los estudiantes
+    async function print() {
+        let printTable = document.getElementById("printList-table");
+        let table = document.getElementById("studentList");
+        let elementToPrint = document.getElementById("printList");
+        let array = document.getElementById('seccion-title').innerText.split(" ")
+        let teacher = document.getElementById("navbarDropdown-teacherName").innerText;
+        let subject = array[0];
+        let seccion = array[1];
+
+        document.getElementById("print-subjet-title").innerText = `Asignatura: ${subject}`;
+        document.getElementById("print-seccion-title").innerText = `Sección: ${seccion}`
+        document.getElementById("print-teacher-title").innerText = `Profesor: ${teacher}`;
+
+
+        printTable.innerHTML = table.innerHTML;
+        let ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(`<link rel="stylesheet" href="CSS/bootstrap.css"><script src="JS/bootstrap.js" defer></script>`)
+        ventimp.document.write(elementToPrint.innerHTML);
+        ventimp.document.close();
+        setTimeout(() => {
+            ventimp.print();
+            ventimp.close();
+        }, 100);
+
+    }
+
+
+
 
     ////esta funcion guarda los datos
     async function saveData() {
-        let data = await JSON.stringify(changedList);
-        let ask = await fetch("/Estudiante/registro", {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "*/*"
-            },
-            body: data
-        })
-        let response = await ask.text();
-        if (response == "OK") {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Las notas se han guardado correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            changedList.length = 0;
-        }
 
+        if (changedList.length > 0) {
+
+
+            let data = await JSON.stringify(changedList);
+            let ask = await fetch("/Estudiante/registro", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "*/*"
+                },
+                body: data
+            })
+            let response = await ask.text();
+            if (response == "OK") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Las notas se han guardado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                changedList.length = 0;
+            }
+
+        }
 
     }
 
@@ -185,13 +222,14 @@ export function loadEvents(StudentList) {
         } else {
             changedList[index].subjects[subject].l1 = document.getElementById("lapso1").value;
             changedList[index].subjects[subject].l2 = document.getElementById("lapso2").value;
-            changedList[index].subjects[subject].l2 = document.getElementById("lapso3").value;
+            changedList[index].subjects[subject].l3 = document.getElementById("lapso3").value;
             changedList[index].subjects[subject].def = def;
         }
         document.getElementById("nota-acomulada").innerText = def
-        document.getElementById("lapso1-" + id).innerText = document.getElementById("lapso1").value
-        document.getElementById("lapso2-" + id).innerText = document.getElementById("lapso2").value
-        document.getElementById("lapso3-" + id).innerText = document.getElementById("lapso3").value
+        document.getElementById("lapso1-" + id).innerText = document.getElementById("lapso1").value;
+        document.getElementById("lapso2-" + id).innerText = document.getElementById("lapso2").value;
+        document.getElementById("lapso3-" + id).innerText = document.getElementById("lapso3").value;
+        document.getElementById("def-" + id).innerText = def;
 
     }
 
@@ -215,6 +253,7 @@ export function loadEvents(StudentList) {
 
             if (nextRow) {
                 setSelected(nextRow);
+                document.getElementById(nextRow).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
                 nextRow = nextRow.replace("std-", "");
                 let studentRow = StudentList.filter(data => data.id == nextRow);
@@ -255,6 +294,7 @@ export function loadEvents(StudentList) {
 
             if (previusRow) {
                 setSelected(previusRow);
+                document.getElementById(previusRow).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
                 previusRow = previusRow.replace("std-", "");
                 let studentRow = StudentList.filter(data => data.id == previusRow);
@@ -340,9 +380,19 @@ export function loadEvents(StudentList) {
     });
 
 
+    document.getElementById("li-perfil").addEventListener("click", () => {
+
+        getPerfilTeacher(teacher.CI);
+
+    })
+
+
+
 
 
 }
+
+
 //esta funcion solo reyena los inputs con un placeholder a la espera de cargar los datos
 function loadingData() {
     document.getElementById("seccion-title").innerHTML = `<div class="spinner-border text-secondary" role="status"></div>`;

@@ -18,10 +18,11 @@ async function main() {
     fillStudentData(studentList[0], getSeccion(seccions, 0)); //llena los datos el alumno
     /////////////////////////////////////
 
+    loadEvents(studentList, teacher[0]);
 
-
-    loadEvents(studentList);
-
+    window.addEventListener("unload", () => {
+        window.location.replace("/logout");
+    })
 
 
 

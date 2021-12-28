@@ -1,13 +1,14 @@
 import { getTeacher } from './fetch.js';
 import { fillTeacherName } from './fillTeacherName.js';
 import { fillSubjectList, registerTeacher } from './ConfigRegisterTeacher.js'
+import { fireTeacher } from './ConfigFireTeacher.js'
+import { showTeaacherList } from './ConfigShowTeacherList.js'
 
 
 
 async function main() {
     let teacher = await getTeacher();
     fillTeacherName(teacher[0]);
-
 
 
 
@@ -28,7 +29,9 @@ async function main() {
 
     document.getElementById("btn-register-teacher").addEventListener("click", registerTeacher);
 
+    document.getElementById("opt-fireTeacher").addEventListener("click", fireTeacher);
 
+    document.getElementById("opt-show-teacher-list").addEventListener("click", showTeaacherList);
 }
 
 main();

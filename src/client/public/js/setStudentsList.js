@@ -9,6 +9,7 @@ export function fillSeccionList({ subject }, seccionList) {
         let lapso1 = "";
         let lapso2 = "";
         let lapso3 = "";
+        let def = "";
 
         try {
             lapso1 = student.subjects[subject]["l1"];
@@ -25,6 +26,11 @@ export function fillSeccionList({ subject }, seccionList) {
         } catch (error) {
             lapso3 = "0";
         }
+        try {
+            def = student.subjects[subject]["def"];
+        } catch (error) {
+            def = "0";
+        }
 
         html += `
             <tr id = "std-${student.id}">
@@ -34,7 +40,8 @@ export function fillSeccionList({ subject }, seccionList) {
                 <td>${student.lastName}</td>
                 <td id="lapso1-${student.id}">${lapso1}</td>
                 <td id="lapso2-${student.id}">${lapso2}</td>
-                <td id="lapso3-${student.id}">${lapso3}</td>
+                <td id="lapso3-${student.id}">${lapso3}</td> 
+                <td id="def-${student.id}">${def}</td>
                 
             </tr>
         `

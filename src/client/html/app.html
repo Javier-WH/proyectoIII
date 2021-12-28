@@ -41,7 +41,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">
-                            <img src="SVG/printLogo.svg" alt="" class="svg-icon"></a>
+                            <img src="SVG/printLogo.svg" alt="" class="svg-icon" id="btn-print"></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -82,6 +82,7 @@
                     <th scope="col" class="col-notas">1er Lapso</th>
                     <th scope="col" class="col-notas">2do Lapso</th>
                     <th scope="col" class="col-notas">3er Lapso</th>
+                    <th scope="col" class="col-notas">Def</th>
 
                 </tr>
             </thead>
@@ -154,10 +155,77 @@
     </div>
 
 
-
     <ul class="list-group" id="search-Box">
 
     </ul>
+
+
+
+    <div id="printList" class="invisible">
+        <style>
+            #prinTable {
+                width: 90%;
+                margin-left: 10px;
+                font-size: 12px;
+            }
+            
+            #printLogo {
+                width: 100px;
+                border: 1px solid #1e88e5;
+                border-radius: 50%;
+                margin-right: 20px;
+            }
+            
+            #print-logo-container {
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                margin-bottom: 40px;
+                margin-left: 10px;
+                margin-top: 10px;
+            }
+            
+            #print-title-container {
+                display: flex;
+                justify-content: center;
+                align-items: left;
+                flex-direction: column;
+            }
+            
+            #print-title {
+                text-align: center;
+            }
+        </style>
+        <div id="print-logo-container">
+            <img src="SVG/BatallaLogo.svg" alt="" id="printLogo">
+            <div id="print-title-container">
+                <span>U.E.C. Batalla de la Victoria</span>
+                <span id="print-subjet-title">Asignatura: Fisica</span>
+                <span id="print-seccion-title">Sección: Cuarto año B</span>
+                <span id="print-teacher-title">Profesor: Simon Jose Antonio Bolivar y Blanco</span>
+            </div>
+        </div>
+
+        <h6 id="print-title">Lista de Notas</h6>
+        <table class="table table-bordered" id="prinTable">
+            <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Cedula</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col" class="col-notas">1er Lapso</th>
+                    <th scope="col" class="col-notas">2do Lapso</th>
+                    <th scope="col" class="col-notas">3er Lapso</th>
+                    <th scope="col" class="col-notas">Def</th>
+                </tr>
+            </thead>
+            <tbody id="printList-table">
+
+            </tbody>
+        </table>
+
+    </div>
 
 </body>
 

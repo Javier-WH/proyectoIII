@@ -6,11 +6,8 @@ export function fillTeacherName(teacher) {
                             ${teacher.lastName} ${teacher.name}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="seccion-box-teacherName">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Administrar</a></li>
-                            <li><a class="dropdown-item" href="#">Notas</a></li>
-
-
+                            <li><a class="dropdown-item" href="#" id="li-perfil">Perfil</a></li>
+                         
                              <li>
                                 <hr class="dropdown-divider">
                             </li>

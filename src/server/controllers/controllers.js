@@ -116,7 +116,6 @@ async function getUserByCI({ ci }) {
     } else {
         return { "Error": "La cedula está vacia" };
     }
-
 }
 
 //autentifica el login de un profesor
@@ -172,7 +171,7 @@ async function checkAdmin({ nickName, password }) {
 };
 
 
-////////////////
+////////////////Registra un profesor
 async function registerTeacher({ name, lastName, nickName, password, CI, gender, phone, email }) {
     console.log(nickName);
     password = await bcryptjs.hash(password, 8);
@@ -191,8 +190,57 @@ async function registerTeacher({ name, lastName, nickName, password, CI, gender,
 
 }
 
+///////////////////elimina un registro de la tabla
+
+async function fireTeacher({ ci }) {
+
+    let ask = await User.destroy({
+        where: {
+            CI: ci
+        }
+    });
+
+    return new Promise((resolved, rejected) => {
+        resolved(ask);
+        rejected({ "ERROR": "ocurrio un error al eliminar el registro" });
+    })
 
 
+}
+////// regresa la lista de todos los usuarios
+
+async function getAllUsers() {
+    let ask = await User.findAll();
+
+    return new Promise((resolved, rejected) => {
+        resolved(ask);
+        rejected({ "Error": "Ha ocurrido un error al intentar obtener la lista de los usuarios" });
+    })
+}
+
+/////////////////
+
+async function getTeacherInfo({ ci }) {
+    if (ci != "") {
+        let ask = await User.findAll({
+            where: {
+                ci
+            }
+        });
+
+        let data = ask.length > 0 ? ask : { "Error": "La cedula no está registrada en el sistema" };
 
 
-module.exports = { insertUser, getUser, checklogin, checkAdmin, getUserByCI, registerTeacher }
+        return new Promise((resolved, rejected) => {
+            resolved(data);
+            rejected({ "Error": "Ha ocurrido un error al consultar" });
+        });
+
+
+    } else {
+        return { "Error": "La cedula está vacia" };
+    }
+}
+
+
+module.exports = { insertUser, getUser, checklogin, checkAdmin, getUserByCI, registerTeacher, fireTeacher, getAllUsers, getTeacherInfo }

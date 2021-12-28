@@ -29,6 +29,10 @@ Router.get("/config", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/config.html"));
 });
 
+Router.get("/teahcerList", express.json(), async(req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/html/teacherList.html"));
+});
+
 
 
 
