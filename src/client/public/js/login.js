@@ -36,8 +36,6 @@ window.addEventListener("keyup", () => {
 
 document.getElementById("btn-teacher").addEventListener("click", async(e) => {
 
-
-
     let nickName = teacherUser.value;
     let password = teacherPassword.value;
 
@@ -88,4 +86,53 @@ document.getElementById("btn-teacher").addEventListener("click", async(e) => {
         document.getElementById("loading-bar").classList.add("invisible")
     }
 
+
+    ////////////////////////////////////////////////////////////////////////
+
 });
+
+
+
+
+document.getElementById("btn-student").addEventListener("click", async() => {
+    let nickName = studentUser.value;
+    let password = studentPassword.value;
+
+    if (nickName == "" || password == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Debe llenar todos los campos',
+        })
+    } else {
+        document.getElementById("loading-bar").classList.remove("invisible")
+        let data = {
+            nickName,
+            password
+        };
+
+        let ask = await fetch("/tutor/validate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify(data)
+        });
+
+        let response = await ask.json();
+
+        if (response.ERROR) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: response.ERROR,
+
+            })
+        } else {
+
+            window.location.replace(`/controlPannel?id=${response.id}&CI=${response.CI}`);
+        }
+    }
+    document.getElementById("loading-bar").classList.add("invisible")
+})

@@ -1,6 +1,6 @@
 export function fireTeacher() {
     Swal.fire({
-        title: 'Submit your Github username',
+        title: 'Escribe la cedula del profesor que desea despedir',
         input: 'text',
         inputAttributes: {
             autocapitalize: 'off'
@@ -10,7 +10,7 @@ export function fireTeacher() {
         cancelButtonText: 'Cancelar',
         showLoaderOnConfirm: true,
         preConfirm: async(ci) => {
-            let ask = await fetch(`http://192.168.1.103:3000/fireTecher?ci=${ci}`, {
+            let ask = await fetch(`/fireTecher?ci=${ci}`, {
                 method: "DELETE",
                 headers: {
                     "Accept": "*/*"

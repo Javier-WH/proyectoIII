@@ -7,9 +7,19 @@ const controller = require("../controllers/controllers.js")
 
 
 
+Router.delete("/fireTecher", async(req, res, next) => {
+    if (req.session.adminID) {
+        next();
+    } else {
+        res.redirect("/logout");
+    }
+});
+
+
+
 Router.delete("/fireTecher", async(req, res) => {
     res.json(await controller.fireTeacher(req.query))
-})
+});
 
 
 

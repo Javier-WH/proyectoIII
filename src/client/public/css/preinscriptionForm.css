@@ -1,0 +1,93 @@
+#navBar-icon {
+    width: 90px;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    column-gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#logo-svg {
+    border: 1px solid white;
+}
+
+#title {
+    color: white;
+    font-size: 20px;
+}
+
+#btn-regresar {
+    color: white;
+    width: 20px;
+    text-decoration: none;
+}
+
+#main-container {
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 95vw;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+#title-preinscripciones {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+#ci-container {
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    column-gap: 20px;
+}
+
+#btn-ci-next {
+    width: 200px;
+}
+
+#ciContainer {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+}
+
+
+/* /////////////////////////////////// */
+
+#data-container {
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+
+/***************************************/
+
+.disabled input,
+.disabled select,
+.disabled {
+    filter: grayscale(1);
+    pointer-events: none;
+    background-color: rgb(226, 221, 221);
+}
+
+.disabled input {
+    filter: grayscale(1);
+    pointer-events: none;
+    background-color: rgb(226, 221, 221);
+}
+
+.invisible {
+    visibility: hidden;
+}

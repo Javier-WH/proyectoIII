@@ -3,7 +3,8 @@ const colors = require('colors');
 const express = require('express');
 const Router = express.Router();
 const studentsController = require("../controllers/studentsController.js");
-const controller = require("../controllers/controllers.js")
+const controller = require("../controllers/controllers.js");
+const tutorController = require("../controllers/tutorsController.js")
 
 
 
@@ -23,5 +24,12 @@ Router.post("/profesor/all", express.json(), async(req, res) => {
     res.json(await controller.getAllUsers());
 });
 
+Router.post("/tutor", express.json(), async(req, res) => {
+    res.json(await tutorController.getTutorByCI(req.body));
+});
+
+Router.post("/tutor/validate", express.json(), async(req, res) => {
+    res.json(await tutorController.validateTutor(req.body));
+});
 
 module.exports = Router;

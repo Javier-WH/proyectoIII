@@ -8,6 +8,11 @@ import { getPerfilTeacher } from './setPerfilTeacher.js'
 
 
 async function main() {
+
+    window.addEventListener("beforeunload", () => {
+        fetch("/logout")
+    });
+
     let teacher = await getTeacher();
     fillTeacherName(teacher[0]);
 

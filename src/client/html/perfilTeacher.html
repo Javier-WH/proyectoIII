@@ -23,6 +23,13 @@
 
 </head>
 
+<style>
+    #input-id,
+    #input-nickName {
+        pointer-events: none;
+    }
+</style>
+
 <body>
     <nav>
         <div class="nav-wrapper" id="nav-bar">
@@ -172,7 +179,47 @@
 
             document.getElementById("subjectList").innerHTML = html;
 
+            ///////////////////////////////////////////////////////
+
+            document.getElementById("btn-send").addEventListener("click", async() => {
+
+                let teacherData = {
+                    data: {
+                        name: document.getElementById("input-names").value,
+                        lastName: document.getElementById("input-lastNames").value,
+                        gender: document.getElementById("genderM").checked == true ? "M" : "F",
+                        phone: document.getElementById("telephone").value,
+                        email: document.getElementById("email").value
+                    },
+                    id: teacher.id
+                }
+
+                let ask = await fetch("/Profesor/update", {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "*/*"
+                    },
+                    body: JSON.stringify(teacherData)
+                });
+                let response = await ask.json();
+
+                Swal.fire(
+                    'Los cambios se han realizado con exito',
+                    'Los cambios se veran la proxima vez que inicie sessión',
+                    'success'
+                );
+
+
+
+
+            });
+
+
+
         }
+
+
 
         fillInputs();
     </script>

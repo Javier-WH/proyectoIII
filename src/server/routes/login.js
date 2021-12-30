@@ -17,6 +17,10 @@ Router.get("/registro", async(req, res) => {
 });
 
 
+Router.get("/preinscripcionForm", async(req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/html/preInsciptionForm.html"));
+});
+
 
 Router.post("/autenticateTeacher", express.json(), async(req, res) => {
 

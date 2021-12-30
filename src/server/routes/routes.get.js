@@ -46,6 +46,11 @@ Router.get("/teacherPerfil", async(req, res) => {
     req.session.perfil = req.query.ci;
     res.sendFile(path.join(__dirname, "../../client/html/perfilTeacher.html"));
 });
+Router.get("/controlPannel", async(req, res) => {
+    req.session.tutorCI = req.query.CI;
+    req.session.tutorID = req.query.id;
+    res.sendFile(path.join(__dirname, "../../client/html/tutorControlPannel.html"));
+});
 
 
 module.exports = Router;

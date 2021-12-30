@@ -173,7 +173,6 @@ async function checkAdmin({ nickName, password }) {
 
 ////////////////Registra un profesor
 async function registerTeacher({ name, lastName, nickName, password, CI, gender, phone, email }) {
-    console.log(nickName);
     password = await bcryptjs.hash(password, 8);
     let update = await User.update({ name, lastName, nickName, password, CI, gender, phone, email }, {
         where: {
@@ -242,5 +241,34 @@ async function getTeacherInfo({ ci }) {
     }
 }
 
+////////////////////////////
+//actualiza los datos del profesor
 
-module.exports = { insertUser, getUser, checklogin, checkAdmin, getUserByCI, registerTeacher, fireTeacher, getAllUsers, getTeacherInfo }
+async function updateTeacherData({ data, id }) {
+    let update = await User.update(data, {
+        where: {
+            id
+        }
+    });
+
+    return new Promise((resolved, rejected) => {
+        resolved(update);
+        rejected({ "ERROR": "ocurrio un error al actualizar los datos del profesor" });
+    })
+
+
+
+}
+
+module.exports = {
+    insertUser,
+    getUser,
+    checklogin,
+    checkAdmin,
+    getUserByCI,
+    registerTeacher,
+    fireTeacher,
+    getAllUsers,
+    getTeacherInfo,
+    updateTeacherData
+}

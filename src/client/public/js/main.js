@@ -20,9 +20,9 @@ async function main() {
 
     loadEvents(studentList, teacher[0]);
 
-    window.addEventListener("unload", () => {
-        window.location.replace("/logout");
-    })
+    // window.addEventListener("beforeunload", () => {
+    //     fetch("/logout")
+    // });
 
 
 
