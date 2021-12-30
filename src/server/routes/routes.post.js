@@ -25,7 +25,11 @@ Router.post("/profesor/all", express.json(), async(req, res) => {
 });
 
 Router.post("/tutor", express.json(), async(req, res) => {
-    res.json(await tutorController.getTutorByCI(req.body));
+    if (req.session.tutorCI) {
+        res.json(await tutorController.getTutorByCI({ CI: req.session.tutorCI }));
+    } else {
+        res.json(await tutorController.getTutorByCI(req.body));
+    }
 });
 
 Router.post("/tutor/validate", express.json(), async(req, res) => {

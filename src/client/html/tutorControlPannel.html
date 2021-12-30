@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="CSS/tutorControlpannel.css">
+    <link rel="stylesheet" href="CSS/notasTab.css">
     <!-- JavaScript -->
     <script src="JS/tutorControlPannel.js" defer></script>
 </head>
@@ -50,10 +51,10 @@
 
     <ul class="nav nav-tabs" id="nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#" id="tab-grades">Notas</a>
+            <a class="nav-link active" aria-current="page" href="#" id="tab-grades">Notas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#" id="tab-inscription">Inscripción</a>
+            <a class="nav-link " href="#" id="tab-inscription">Pre-inscripción</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#" id="tab-options">Opciones</a>
@@ -61,7 +62,59 @@
     </ul>
 
     <div id="grades-pannel" class="pannel invisible">
-        <h1>Notas</h1>
+        <div id="students-box">
+            <label for="cars">Estudiantes registrados en esta cuenta</label>
+            <select name="cars" id="students-dropbox">
+                <option value="volvo">Juan Manuel Olivares Camacho</option>
+                <option value="saab">Maria Estela Masmud Ruiz</option>
+                <option value="mercedes">Emilio Alejando Del Toro</option>
+                <option value="audi">Julian Esteban Mujica del Campo</option>
+            </select>
+        </div>
+
+        <div id="subject-box">
+            <table class="table table-info table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Matéria</th>
+                        <th scope="col" class="th-grades">Primer Lapso</th>
+                        <th scope="col" class="th-grades">Segundo Lapso</th>
+                        <th scope="col" class="th-grades">Tercer Lapso</th>
+                        <th scope="col" class="th-grades">Acumulado / Definitiva</th>
+                    </tr>
+                </thead>
+                <tbody id="table">
+                    <tr>
+                        <th scope="row">Matemática</th>
+                        <td>12</td>
+                        <td>16</td>
+                        <td>18</td>
+                        <td>15.3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ingles</th>
+                        <td>12</td>
+                        <td>16</td>
+                        <td>18</td>
+                        <td>15.3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Historia</th>
+                        <td>12</td>
+                        <td>16</td>
+                        <td>18</td>
+                        <td>15.3</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+
+
     </div>
     <div id="inscription-pannel" class="pannel invisible">
         <h3 id="title-inscription" class="text-primary">Formulario de pre-inscripcion de los estudiantes</h3>
@@ -90,11 +143,11 @@
             <div class="col-sm-10">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="genderM" value="M" checked>
-                    <label class="form-check-label" for="inlineRadio1">Masculino</label>
+                    <label class="form-check-label" for="genderM">Masculino</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="genderF" value="F">
-                    <label class="form-check-label" for="inlineRadio2">Femenino</label>
+                    <label class="form-check-label" for="genderF">Femenino</label>
                 </div>
             </div>
         </div>
@@ -119,7 +172,7 @@
 
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Pre-inscribir</button>
+                <button type="submit" class="btn btn-primary" id="btn-preinscribir">Pre-inscribir</button>
             </div>
         </div>
 

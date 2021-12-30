@@ -141,8 +141,12 @@ document.getElementById("btn-next").addEventListener("click", async e => {
             text: error,
         })
     } else {
-        console.log({ TUTOR_ID })
-        console.log({ TUTOR_CI })
+        // console.log({ TUTOR_ID })
+        // console.log({ TUTOR_CI })
+
+        window.location.replace(`/controlPannel?id=${TUTOR_ID}&CI=${TUTOR_CI}`);
+
+
     }
 
 

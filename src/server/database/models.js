@@ -36,6 +36,20 @@ Students.init({
     sequelize,
     modelName: "Students"
 });
+///modelo de preinscripcion
+class PreIscription extends Model {}
+PreIscription.init({
+    names: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    CI: DataTypes.INTEGER,
+    gender: DataTypes.CHAR,
+    year: DataTypes.INTEGER,
+    age: DataTypes.INTEGER,
+    parentID: DataTypes.INTEGER
+}, {
+    sequelize,
+    modelName: "PreIscription"
+});
 
 ////////////modelo de los tutores
 
@@ -76,4 +90,4 @@ AuxiliarInfo.init({
 /////////////////
 
 
-module.exports = { User, Students, Tutors, AuxiliarInfo };
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo };

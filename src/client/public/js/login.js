@@ -5,12 +5,13 @@ const studentPassword = document.getElementById("student-password");
 //////////////
 
 
+window.addEventListener("load", () => {
+    fetch("logout");
+});
 
 document.getElementById("svg-logo").addEventListener("dblclick", () => {
     window.location.replace("/Administracion");
-})
-
-
+});
 
 
 window.addEventListener("keyup", () => {
@@ -87,7 +88,6 @@ document.getElementById("btn-teacher").addEventListener("click", async(e) => {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////
 
 });
 
