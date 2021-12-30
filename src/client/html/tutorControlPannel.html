@@ -20,6 +20,34 @@
 </head>
 
 <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="SVG/icon.svg" alt="" class="navbar-brand" id="navBar-icon">
+            <span id="title"> U.E. Colegio Batalla de la Victoria</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+                <div class="d-flex">
+                    <div id="user-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 0 25 25" width="40px" fill="#ffffff" id="user-logo">
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                        <div id="user-name">
+                            <div class="spinner-border text-secondary" role="status"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
     <ul class="nav nav-tabs" id="nav-tabs">
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="#" id="tab-grades">Notas</a>
@@ -36,7 +64,65 @@
         <h1>Notas</h1>
     </div>
     <div id="inscription-pannel" class="pannel invisible">
-        <h1>Inscripción</h1>
+        <h3 id="title-inscription" class="text-primary">Formulario de pre-inscripcion de los estudiantes</h3>
+
+        <div class="form-group row">
+            <label for="student-name" class="col-sm-2 col-form-label">Nombres:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="student-name" placeholder="Nombres del Estudiante">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="student-lastName" class="col-sm-2 col-form-label">Apellidos:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="student-lastName" placeholder="Aoellidos del Estudiante">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="student-ci" class="col-sm-2 col-form-label">Cédula:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="student-ci" placeholder="Cédula del Estudiante">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Género:</label>
+            <div class="col-sm-10">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="genderM" value="M" checked>
+                    <label class="form-check-label" for="inlineRadio1">Masculino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="genderF" value="F">
+                    <label class="form-check-label" for="inlineRadio2">Femenino</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="student-ci" class="col-sm-2 col-form-label">Año:</label>
+            <div class="col-sm-10">
+                <label for="year" class="form-label" id="lbl-year">Primer año</label>
+                <input type="range" class="form-range" min="1" max="5" id="year" value="1">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="student-age" class="col-sm-2 col-form-label">Edad:</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="student-age" placeholder="Edad del Estudiante">
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Pre-inscribir</button>
+            </div>
+        </div>
+
     </div>
     <div id="option-pannel" class="pannel invisible">
         <h1>Opciones</h1>

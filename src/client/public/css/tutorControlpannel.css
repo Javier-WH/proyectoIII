@@ -1,3 +1,43 @@
+#navBar-icon {
+    width: 100px;
+}
+
+#title {
+    color: white;
+    font-size: 18px;
+}
+
+#user-name {
+    color: white;
+}
+
+#user-container {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .invisible {
     display: none;
+}
+
+#inscription-pannel {
+    width: 80vw;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+#student-age,
+#year {
+    width: 500px;
+    display: block;
+}
+
+#title-inscription {
+    margin-bottom: 40px;
 }

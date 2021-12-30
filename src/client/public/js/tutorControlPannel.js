@@ -1,12 +1,39 @@
 const tabs = document.getElementsByClassName("nav-link");
 renderSelectedTab();
 
+document.getElementById("year").addEventListener("change", e => {
+    let label = document.getElementById("lbl-year");
+    let value = e.target.value;
+    let year = "";
+    switch (value) {
+        case "1":
+            year = "Primer año";
+            break;
+        case "2":
+            year = "Segundo año";
+            break;
+        case "3":
+            year = "Tercer año";
+            break;
+        case "4":
+            year = "Cuarto año";
+            break;
+        case "5":
+            year = "Quinto año";
+            break;
+        default:
+            break;
+    }
+    label.innerText = year;
+
+})
+
+
 function cleanSelectedTabs() {
     for (let tab of tabs) {
         tab.classList.remove("active");
     }
 }
-
 
 document.getElementById("nav-tabs").addEventListener("click", e => {
     if (e.target.classList.contains("nav-link")) {
