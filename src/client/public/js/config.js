@@ -4,14 +4,15 @@ import { fillSubjectList, registerTeacher } from './ConfigRegisterTeacher.js'
 import { fireTeacher } from './ConfigFireTeacher.js'
 import { showTeaacherList } from './ConfigShowTeacherList.js'
 import { getPerfilTeacher } from './setPerfilTeacher.js'
+import { findStudentList } from './configFindStudent.js'
 
 
 
 async function main() {
 
-    window.addEventListener("beforeunload", () => {
-        fetch("/logout")
-    });
+    // window.addEventListener("beforeunload", () => {
+    //     fetch("/logout")
+    // });
 
     let teacher = await getTeacher();
     fillTeacherName(teacher[0]);
@@ -42,6 +43,8 @@ async function main() {
     document.getElementById("opt-fireTeacher").addEventListener("click", fireTeacher);
 
     document.getElementById("opt-show-teacher-list").addEventListener("click", showTeaacherList);
+
+    document.getElementById("opt-student-list").addEventListener("click", findStudentList)
 }
 
 main();

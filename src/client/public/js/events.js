@@ -16,6 +16,7 @@ export function loadEvents(StudentList, teacher) {
 
         //cambia la sección cuando se selecciona una nueva en el dropbox
         document.getElementById("seccion-box").addEventListener("click", async e => {
+            document.getElementById("search-Box").innerHTML = "";
             if (e.target.classList.contains("dropdown-item") && e.target.id != "logout") {
 
                 if (changedList.length > 0) {

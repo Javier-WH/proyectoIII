@@ -1,5 +1,5 @@
 const colors = require('colors')
-
+const { Op } = require("sequelize");
 const { Students } = require("../database/models.js");
 
 
@@ -43,10 +43,8 @@ async function getStudents({ seccion, year }) {
 /////////////////////////
 
 async function findStudent(filters) {
-
     let ask = await Students.findAll({
         where: filters,
-
         order: [
             ["CI", "asc"]
         ]

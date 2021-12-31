@@ -49,6 +49,10 @@
     #teacher-container::before {
         content: "Profesores";
     }
+    
+    #students-container::before {
+        content: "Alumnos";
+    }
     /* ////////////////////////////////////////////// */
     
     #add-grade {

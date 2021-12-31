@@ -108,6 +108,8 @@ async function fillTutorName() {
                     </li>
 
     `;
+
+    fillStudentDropBox();
 }
 
 function cleanStudentData() {
@@ -159,8 +161,105 @@ document.getElementById("btn-preinscribir").addEventListener("click", async e =>
         })
     }
 
+});
 
-})
+
+async function fillStudentDropBox() {
+    let ask = await fetch("/Estudiante", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        },
+        body: JSON.stringify({ parentID: tutorID })
+    });
+
+    let response = await ask.json();
+
+    if (response.length > 0) {
+        let html = "";
+
+        for (let student of response) {
+
+            html += `
+                 <option value="${student.id}" >${student.lastName} ${student.names}</option>
+            `
+        }
+        document.getElementById("students-dropbox").innerHTML = html;
+    } else {
+        document.getElementById("students-dropbox").innerHTML = "No existen estudiantes inscritos en esta cuenta"
+    }
+    fillStudentGrades(document.getElementById("students-dropbox").value);
+};
+
+
+document.getElementById("students-dropbox").addEventListener("change", async e => {
+    await fillStudentGrades(e.target.value)
+});
+
+
+async function getStudentData(id) {
+
+    let ask = await fetch("/Estudiante", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        },
+        body: JSON.stringify({ id })
+    });
+
+    let response = await ask.json();
+
+    return new Promise((res, rej) => {
+        res(response[0]);
+        rej({ ERROR: "Ha ocurrido un error al intentar acceder al estudiante" })
+    })
+};
+
+async function fillStudentGrades(id) {
+    let ask = await getStudentData(id);
+    let subjects = ask.subjects;
+    let html = "";
+    if (subjects == null) {
+        html += `<tr>`;
+        html += `<th scope="row" colspan="5">Aún no se han subido notas para este estudiante</th>`;
+        html += `</tr>`;
+
+    } else {
+
+        let keys = Object.keys(subjects)
+
+        for (let i = 0; i < keys.length; i++) {
+            html += `<tr>`;
+            html += `<th scope="row">${keys[i]}</th>`;
+            if (subjects[keys[i]].l1) {
+                html += `<td>${subjects[keys[i]].l1}</td>`;
+            } else {
+                html += `<td>n/a</td>`;
+            }
+            if (subjects[keys[i]].l2) {
+                html += `<td>${subjects[keys[i]].l2}</td>`;
+            } else {
+                html += `<td>n/a</td>`;
+            }
+            if (subjects[keys[i]].l3) {
+                html += `<td>${subjects[keys[i]].l3}</td>`;
+            } else {
+                html += `<td>n/a</td>`;
+            }
+            if (subjects[keys[i]].def) {
+                html += `<td>${subjects[keys[i]].def}</td>`;
+            } else {
+                html += `<td>n/a</td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+    document.getElementById("table").innerHTML = html;
+    document.getElementById("student-name").innerText = `Alumno: ${ask.names} ${ask.lastName}   C.I: ${ask.CI}`
+};
+
 
 
 fillTutorName();

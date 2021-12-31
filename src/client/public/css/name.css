@@ -132,3 +132,12 @@
     top: 395px;
     left: 275px;
 }
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    color: white;
+    background-color: black;
+}
