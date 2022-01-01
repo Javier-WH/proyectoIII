@@ -17,6 +17,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="CSS/config.css">
     <link rel="stylesheet" href="CSS/navBar.css">
+    <link rel="stylesheet" href="CSS/configStudentList.css">
 
     <!-- JavaScript -->
     <script src="JS/config.js" type="module" defer></script>
@@ -196,10 +197,79 @@
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-student-list">
-               Lista de estudiantes
+               Lista de estudiantes inscritos
+            </a>
+        </p>
+
+        <p>
+            <a class="option" href="#" role="button" aria-expanded="false" id="opt-preinscription-list">
+               Lista de estudiantes pre-inscritos
             </a>
         </p>
     </div>
+
+
+
+
+
+    <!-- /////////////////modals/////////////////////// -->
+
+
+    <div id="studenList-modal" class="invisible">
+        <button id="btn-close-modal">X</button>
+
+        <h4 id="studentList-modal-title">Lista de estudiantes inscritos</h4>
+        <div id="fintros-modal-container">
+            <div class="form-group">
+                <label for="filter-modal-ci">Cédula</label>
+                <input type="text" class="form-control" id="filter-modal-ci" placeholder="filtrar por el numero de cedula">
+            </div>
+            <div class="form-group">
+                <label for="filter-modal-lastName">Apellidos</label>
+                <input type="text" class="form-control" id="filter-modal-lastName" placeholder="Filtrar por el apellido">
+            </div>
+            <div class="form-group">
+                <label for="filter-modal-name">Nombres</label>
+                <input type="text" class="form-control" id="filter-modal-name" placeholder="Filtrar por el nombre">
+            </div>
+            <div class="form-group">
+                <label for="filter-modal-year">Año</label>
+                <input type="text" class="form-control" id="filter-modal-year" placeholder="Filtrar por el año">
+            </div>
+            <div class="form-group">
+                <label for="filter-modal-seccion">Sección</label>
+                <input type="text" class="form-control" id="filter-modal-seccion" placeholder="Filtrar por la Sección">
+            </div>
+
+        </div>
+
+        <div id="table-container">
+
+            <table class="table table-hover">
+                <thead id="table-header-student-list">
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Cédula</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Sección</th>
+                    </tr>
+                </thead>
+                <tbody id="student-table">
+                    <tr>
+                        <td class="spinner-border text-secondary" role="status" colspan="5">
+                            <span class="visually-hidden">Loading...</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
 
 </body>
 

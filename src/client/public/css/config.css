@@ -106,3 +106,7 @@
     #enable-admin-container {
         margin-top: 10px;
     }
+    
+    .invisible {
+        display: none;
+    }

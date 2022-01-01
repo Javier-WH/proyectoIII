@@ -219,45 +219,72 @@ async function getStudentData(id) {
 
 async function fillStudentGrades(id) {
     let ask = await getStudentData(id);
-    let subjects = ask.subjects;
-    let html = "";
-    if (subjects == null) {
-        html += `<tr>`;
-        html += `<th scope="row" colspan="5">Aún no se han subido notas para este estudiante</th>`;
-        html += `</tr>`;
+    if (ask) {
+
+        let subjects = ask.subjects;
+        let html = "";
+        if (subjects == null) {
+            html += `<tr>`;
+            html += `<th scope="row" colspan="5">Aún no se han subido notas para este estudiante</th>`;
+            html += `</tr>`;
+
+        } else {
+
+            let keys = Object.keys(subjects)
+
+            for (let i = 0; i < keys.length; i++) {
+                html += `<tr>`;
+                html += `<th scope="row">${keys[i]}</th>`;
+                if (subjects[keys[i]].l1) {
+                    html += `<td>${subjects[keys[i]].l1}</td>`;
+                } else {
+                    html += `<td>n/a</td>`;
+                }
+                if (subjects[keys[i]].l2) {
+                    html += `<td>${subjects[keys[i]].l2}</td>`;
+                } else {
+                    html += `<td>n/a</td>`;
+                }
+                if (subjects[keys[i]].l3) {
+                    html += `<td>${subjects[keys[i]].l3}</td>`;
+                } else {
+                    html += `<td>n/a</td>`;
+                }
+                if (subjects[keys[i]].def) {
+                    html += `<td>${subjects[keys[i]].def}</td>`;
+                } else {
+                    html += `<td>n/a</td>`;
+                }
+                html += `</tr>`;
+            }
+        }
+        document.getElementById("table").innerHTML = html;
+        document.getElementById("title-student-name").innerHTML = `
+                                <span>Nombre: ${ask.lastName} ${ask.names}</span>
+                                <span>C.I.: ${ask.CI}</span>
+                                <span>Seccion: ${ask.year}${ask.seccion}</span>`;
 
     } else {
+        document.getElementById("title-student-name").innerHTML = `
+                                <span>No se ha encontrado ningun estudiante inscrito en esta cuenta</span>
+                                <span></span>
+                                <span></span>`;
 
-        let keys = Object.keys(subjects)
-
-        for (let i = 0; i < keys.length; i++) {
-            html += `<tr>`;
-            html += `<th scope="row">${keys[i]}</th>`;
-            if (subjects[keys[i]].l1) {
-                html += `<td>${subjects[keys[i]].l1}</td>`;
-            } else {
-                html += `<td>n/a</td>`;
+        Swal.fire({
+            title: "No se ha encontrado ningun estudiante inscrito en esta cuenta",
+            text: "¿Desea pre-inscribir un estudiante",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("tab-inscription").click();
             }
-            if (subjects[keys[i]].l2) {
-                html += `<td>${subjects[keys[i]].l2}</td>`;
-            } else {
-                html += `<td>n/a</td>`;
-            }
-            if (subjects[keys[i]].l3) {
-                html += `<td>${subjects[keys[i]].l3}</td>`;
-            } else {
-                html += `<td>n/a</td>`;
-            }
-            if (subjects[keys[i]].def) {
-                html += `<td>${subjects[keys[i]].def}</td>`;
-            } else {
-                html += `<td>n/a</td>`;
-            }
-            html += `</tr>`;
-        }
+        })
     }
-    document.getElementById("table").innerHTML = html;
-    document.getElementById("student-name").innerText = `Alumno: ${ask.names} ${ask.lastName}   C.I: ${ask.CI}`
 };
 
 

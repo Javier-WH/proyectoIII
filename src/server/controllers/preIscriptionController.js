@@ -1,11 +1,13 @@
 const { PreIscription } = require("../database/models.js");
+const studentsController = require("../controllers/studentsController.js");
 
 
 async function registerStudent({ names, lastName, ci, gender, year, age, parentID }) {
     let data = ""
     let checkExist = await findStudent({ CI: ci });
+    let isIncripted = await studentsController.findStudent({ CI: ci });
 
-    if (checkExist.length > 0) {
+    if (checkExist.length > 0 || isIncripted.length > 0) {
         data = { "ERROR": "La cédula suministrada ya esta inscrita en el sistema" }
     } else {
         let ask = await PreIscription.create({
@@ -48,7 +50,19 @@ async function findStudent(filters) {
     })
 }
 
+/////////////////////////////
+
+async function deleteStudent({ id }) {
+    let ask = await PreIscription.destroy({
+        where: {
+            id
+        }
+    });
+    return new Promise((resolved, rejected) => {
+        resolved(ask);
+        rejected({ "Error": "Ha ocurrido un erroral intentar borrar al estudiante" });
+    })
+}
 
 
-
-module.exports = { registerStudent, findStudent }
+module.exports = { registerStudent, findStudent, deleteStudent }

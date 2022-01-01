@@ -4,7 +4,9 @@ import { fillSubjectList, registerTeacher } from './ConfigRegisterTeacher.js'
 import { fireTeacher } from './ConfigFireTeacher.js'
 import { showTeaacherList } from './ConfigShowTeacherList.js'
 import { getPerfilTeacher } from './setPerfilTeacher.js'
-import { findStudentList } from './configFindStudent.js'
+import { findStudentList, filterList } from './configFindStudent.js'
+import { findStudentList_pre, loadStudentListEvents } from "./configPre_FindStudent.js";
+
 
 
 
@@ -44,7 +46,22 @@ async function main() {
 
     document.getElementById("opt-show-teacher-list").addEventListener("click", showTeaacherList);
 
-    document.getElementById("opt-student-list").addEventListener("click", findStudentList)
+    document.getElementById("opt-student-list").addEventListener("click", findStudentList);
+
+    document.getElementById("opt-preinscription-list").addEventListener("click", findStudentList_pre)
+
+    //////////////////////////////modal student list
+
+    document.getElementById("btn-close-modal").addEventListener("click", () => {
+        document.getElementById("studenList-modal").classList.add("invisible");
+    });
+    document.getElementById("filter-modal-name").addEventListener("keyup", filterList);
+    document.getElementById("filter-modal-ci").addEventListener("keyup", filterList);
+    document.getElementById("filter-modal-lastName").addEventListener("keyup", filterList);
+    document.getElementById("filter-modal-name").addEventListener("keyup", filterList);
+    document.getElementById("filter-modal-seccion").addEventListener("keyup", filterList);
+    document.getElementById("filter-modal-year").addEventListener("keyup", filterList);
+    loadStudentListEvents();
 }
 
 main();

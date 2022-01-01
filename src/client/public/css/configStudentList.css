@@ -1,0 +1,48 @@
+#studenList-modal {
+    position: fixed;
+    width: 800px;
+    height: 600px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0px;
+    margin-top: 150px;
+    background-color: white;
+    border: 3px solid #5c6bc0;
+    padding: 10px;
+    box-shadow: 2px 2px 4px black;
+}
+
+#btn-close-modal {
+    margin-left: 97%;
+    border: none;
+    color: #5c6bc0;
+    background-color: transparent;
+    font-weight: 700;
+}
+
+#fintros-modal-container {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3fr 5fr 5fr 1fr 1fr;
+    column-gap: 5px;
+    margin-bottom: 30px;
+}
+
+#table-container {
+    height: 430px;
+    overflow-y: auto;
+    position: relative;
+}
+
+#table-header-student-list {
+    position: sticky;
+    top: 0;
+    background-color: #5c6bc0;
+}
+
+#table-header-student-list tr th {
+    color: white;
+}

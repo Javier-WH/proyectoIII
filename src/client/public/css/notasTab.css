@@ -29,3 +29,17 @@
 table {
     font-size: 22px;
 }
+
+#title-student-name {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+#title-student-name span {
+    font-weight: 700;
+    color: #1e88e5;
+    font-size: 22px;
+    padding: 5px;
+}

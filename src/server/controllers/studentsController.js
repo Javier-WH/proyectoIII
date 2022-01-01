@@ -4,20 +4,31 @@ const { Students } = require("../database/models.js");
 
 
 async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, subjects }) {
-    let ask = await Students.create({
-        names,
-        lastName,
-        CI: ci,
-        gender,
-        seccion,
-        year,
-        age,
-        parentID,
-        subjects
-    });
+    let message = ""
+    let checkCI = await findStudent({ CI: ci })
+
+    if (checkCI.length > 0) {
+        message = { ERROR: "El estudiante ya está inscrito" };
+    } else {
+
+
+        let ask = await Students.create({
+            names,
+            lastName,
+            CI: ci,
+            gender,
+            seccion,
+            year,
+            age,
+            parentID,
+            subjects
+        });
+
+        message = ask;
+    }
     return new Promise((resolved, rejected) => {
-        resolved(ask);
-        rejected({ "Error": "Ha ocurrido un error al inscribir el estudiante" });
+        resolved(message);
+        rejected({ "ERROR": "Ha ocurrido un error al inscribir el estudiante" });
     })
 
 }

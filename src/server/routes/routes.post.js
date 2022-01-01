@@ -3,6 +3,7 @@ const colors = require('colors');
 const express = require('express');
 const Router = express.Router();
 const studentsController = require("../controllers/studentsController.js");
+const preIscriptionController = require("../controllers/preIscriptionController.js");
 const controller = require("../controllers/controllers.js");
 const tutorController = require("../controllers/tutorsController.js")
 
@@ -14,6 +15,9 @@ Router.post("/getSeccionList", express.json(), async(req, res) => {
 
 Router.post("/Estudiante", express.json(), async(req, res) => {
     res.json(await studentsController.findStudent(req.body));
+});
+Router.post("/pre", express.json(), async(req, res) => {
+    res.json(await preIscriptionController.findStudent(req.body));
 });
 
 Router.post("/profesor", express.json(), async(req, res) => {
