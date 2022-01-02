@@ -87,7 +87,20 @@ AuxiliarInfo.init({
     modelName: "Auxiliar_Information"
 });
 
+
 /////////////////
 
+//config
 
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo };
+class Config extends Model {};
+Config.init({
+    l1: DataTypes.BOOLEAN,
+    l2: DataTypes.BOOLEAN,
+    l3: DataTypes.BOOLEAN,
+    edit: DataTypes.BOOLEAN
+}, {
+    sequelize,
+    modelName: "Config"
+})
+
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config };

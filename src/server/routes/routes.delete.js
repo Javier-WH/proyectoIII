@@ -2,7 +2,7 @@ const path = require('path');
 const colors = require('colors');
 const express = require('express');
 const Router = express.Router();
-// const studentsController = require("../controllers/studentsController.js");
+const studentsController = require("../controllers/studentsController.js");
 const controller = require("../controllers/controllers.js")
 const preIscriptionController = require("../controllers/preIscriptionController.js")
 
@@ -26,6 +26,9 @@ Router.delete("/delete/pre", express.json(), async(req, res) => {
     res.json(await preIscriptionController.deleteStudent(req.body));
 });
 
+Router.delete("/delete/student", express.json(), async(req, res) => {
+    res.json(await studentsController.deleteStudent(req.body));
+})
 
 
 

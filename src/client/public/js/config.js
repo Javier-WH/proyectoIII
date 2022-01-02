@@ -6,15 +6,15 @@ import { showTeaacherList } from './ConfigShowTeacherList.js'
 import { getPerfilTeacher } from './setPerfilTeacher.js'
 import { findStudentList, filterList } from './configFindStudent.js'
 import { findStudentList_pre, loadStudentListEvents } from "./configPre_FindStudent.js";
+import { registerStudent } from "./configRegisterStudent.js";
+import { applyConfig } from "./getConfigData.js"
 
 
 
 
 async function main() {
 
-    // window.addEventListener("beforeunload", () => {
-    //     fetch("/logout")
-    // });
+    applyConfig();
 
     let teacher = await getTeacher();
     fillTeacherName(teacher[0]);
@@ -61,6 +61,8 @@ async function main() {
     document.getElementById("filter-modal-name").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-seccion").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-year").addEventListener("keyup", filterList);
+
+    document.getElementById("opt-register-student").addEventListener("click", registerStudent);
     loadStudentListEvents();
 }
 

@@ -5,7 +5,8 @@ const Router = express.Router();
 const studentsController = require("../controllers/studentsController.js");
 const preIscriptionController = require("../controllers/preIscriptionController.js");
 const controller = require("../controllers/controllers.js");
-const tutorController = require("../controllers/tutorsController.js")
+const tutorController = require("../controllers/tutorsController.js");
+const configController = require("../controllers/configControler.js");
 
 
 
@@ -29,15 +30,19 @@ Router.post("/profesor/all", express.json(), async(req, res) => {
 });
 
 Router.post("/tutor", express.json(), async(req, res) => {
-    if (req.session.tutorCI) {
-        res.json(await tutorController.getTutorByCI({ CI: req.session.tutorCI }));
-    } else {
+    if (req.body.CI) {
         res.json(await tutorController.getTutorByCI(req.body));
+    } else {
+        res.json(await tutorController.getTutorByCI({ CI: req.session.tutorCI }));
     }
 });
 
 Router.post("/tutor/validate", express.json(), async(req, res) => {
     res.json(await tutorController.validateTutor(req.body));
 });
+
+Router.post("/getConfig", express.json(), async(req, res) => {
+    res.json(await configController.getConfig());
+})
 
 module.exports = Router;

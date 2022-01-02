@@ -67,7 +67,7 @@ async function findStudent(filters) {
 }
 
 
-
+//////////////////////////////////////
 
 async function updateGrades(list) {
 
@@ -108,7 +108,28 @@ async function updateGrades(list) {
 }
 
 
+//////////////////////////////////////
+
+async function deleteStudent({ id }) {
+
+    let ask = await Students.destroy({
+        where: {
+            id
+        }
+    });
+
+    return new Promise((resolved, rejected) => {
+        resolved(ask);
+        rejected({ ERRPR: "Ha ocurrido un error al intentar expulsar al estudiante" })
+    })
+
+}
 
 
-
-module.exports = { getStudents, registerStudent, findStudent, updateGrades }
+module.exports = {
+    getStudents,
+    registerStudent,
+    findStudent,
+    updateGrades,
+    deleteStudent
+}

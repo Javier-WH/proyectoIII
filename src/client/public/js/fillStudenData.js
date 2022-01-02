@@ -1,3 +1,5 @@
+import { getConfig } from "./getConfigData.js"
+
 export function fillStudentData(student, { subject }) {
     if (!student) {
         return;
@@ -40,9 +42,9 @@ export function fillStudentData(student, { subject }) {
         document.getElementById("nota-acomulada").innerHTML = acumulado.toFixed(1);
     }
 
-
-
 }
+
+
 
 ////////////////////////
 

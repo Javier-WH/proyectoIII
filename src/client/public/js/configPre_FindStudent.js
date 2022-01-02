@@ -114,15 +114,79 @@ export function loadStudentListEvents() {
             let id = e.target.parentElement.id.replace("teach-", "");
             let teacher = getSudentList().filter(std => std.id == id)[0];
 
-
-            // console.log(teacher)
             getPerfilTeacher(teacher.CI)
         }
 
 
 
+        /////////////////////////////////
+
+
+
+
+
+
     });
 
+    document.getElementById("student-table").addEventListener("contextmenu", e => {
+        e.preventDefault();
 
+        if (e.target.parentElement.id.includes("std-")) {
+
+            let menu = document.getElementById("std-menu");
+
+            menu.style.left = e.clientX + "px";
+            menu.style.top = e.clientY + "px";
+            menu.classList.remove("invisible");
+
+
+            let studentID = e.target.parentElement.id.replace("std-", "");
+
+
+            document.getElementById("std-menu-delete").addEventListener("click", async() => {
+
+                Swal.fire({
+                    title: '¿Desea expulsar a este estudiante?',
+                    text: "ESTO NO SE PUEDE REVERTIR",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#b90606',
+                    cancelButtonColor: '#9b9292',
+                    confirmButtonText: 'SI, expulsa al estudiante',
+                    cancelButtonText: 'NO expulses al estudiante'
+                }).then(async(result) => {
+                    if (result.isConfirmed) {
+                        let deleteSTD = await fetch("/delete/student", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "*/*"
+                            },
+                            body: JSON.stringify({ id: studentID })
+                        });
+                        document.getElementById("opt-student-list").click();
+                        Swal.fire(
+                            'Expulsado',
+                            'El estudiante se ha eliminado del sistema',
+                            'success'
+                        )
+
+                    }
+                })
+
+
+
+            });
+
+        }
+
+    });
+
+    window.addEventListener("click", e => {
+        if (!e.target.parentElement.id.includes("std-")) {
+            document.getElementById("std-menu").classList.add("invisible")
+        }
+
+    })
 
 }
