@@ -1,3 +1,4 @@
+import { getPerfilTeacher } from './setPerfilTeacher.js'
 const table = document.getElementById("student-table");
 import { getSudentList, setStudentList, fillTable, cleanInputs } from "./configFindStudent.js"
 setStudentList([]);
@@ -7,6 +8,7 @@ setStudentList([]);
 export async function findStudentList_pre() {
     document.getElementById("studentList-modal-title").innerText = "Lista de Estudiantes Pre-inscritos"
     document.getElementById("studentList-modal-title").classList.add("pre");
+    document.getElementById("studentList-modal-title").classList.remove("teach");
     cleanInputs();
     document.getElementById("filter-modal-seccion").disabled = true
     table.innerHTML = `<tr><td class="spinner-border text-secondary" role="status" colspan="5"><span class="visually-hidden">Loading...</span></td></tr>`
@@ -34,7 +36,6 @@ export function loadStudentListEvents() {
             let student = getSudentList().filter(std => std.id == id)[0];
 
             swal.fire({
-
                 title: `${student.lastName} ${student.names} - C.I:${student.CI}`,
                 text: "Seleccione la seccion donde desea inscribir al alumno",
                 input: 'select',
@@ -98,26 +99,30 @@ export function loadStudentListEvents() {
                         }
 
 
-
-
                     }
 
                 }
             })
 
-
-
-
-
-
-
-
-
-
-
-
-
         }
-    })
+        ///////////////////////////
+
+
+
+
+        if (e.target.parentElement.id.includes("teach-")) {
+            let id = e.target.parentElement.id.replace("teach-", "");
+            let teacher = getSudentList().filter(std => std.id == id)[0];
+
+
+            // console.log(teacher)
+            getPerfilTeacher(teacher.CI)
+        }
+
+
+
+    });
+
+
 
 }

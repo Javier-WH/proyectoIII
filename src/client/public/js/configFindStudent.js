@@ -16,8 +16,10 @@ export function cleanInputs() {
 }
 
 export async function findStudentList() {
+
     document.getElementById("studentList-modal-title").innerText = "Lista de Estudiantes Inscritos"
     document.getElementById("studentList-modal-title").classList.remove("pre");
+    document.getElementById("studentList-modal-title").classList.remove("teach");
     cleanInputs();
     document.getElementById("filter-modal-seccion").disabled = false
     table.innerHTML = `<tr><td class="spinner-border text-secondary" role="status" colspan="5"><span class="visually-hidden">Loading...</span></td></tr>`
@@ -51,12 +53,26 @@ export function fillTable(list, id = "std-") {
                 <td>${student.CI}</td>
                 <td>${student.lastName}</td>
                 <td>${student.names}</td>
-                <td>${student.year}</td>
-                <td>${student.seccion? student.seccion : "N/A"}</td>
+                <td class="year">${student.year}</td>
+                <td class="seccion">${student.seccion? student.seccion : "N/A"}</td>
             </tr>
         `
     })
     table.innerHTML = html
+
+    if (document.getElementById("studentList-modal-title").classList.contains("teach")) {
+        hideSeccion(true);
+        hideYear(true)
+    } else if (document.getElementById("studentList-modal-title").classList.contains("pre")) {
+        hideSeccion(true);
+    } else {
+        hideSeccion(false);
+        hideYear(false)
+    }
+
+
+
+
 }
 //establece los criterios de busqueda
 function getFilterCriteria() {
@@ -123,9 +139,10 @@ function filterStudentList() {
 
     if (ci != "" || name != "" || lastName != "" || seccion != "" || year != "") {
         if (filteredList.length > 0) {
-            if (document.getElementById("studentList-modal-title").classList.contains("pre")) {
+            if (document.getElementById("studentList-modal-title").classList.contains("pre-")) {
                 fillTable(filteredList, "pre-");
-
+            } else if (document.getElementById("studentList-modal-title").classList.contains("teach-")) {
+                fillTable(filteredList, "teach-");
             } else {
                 fillTable(filteredList);
             }
@@ -142,8 +159,42 @@ function filterStudentList() {
         if (document.getElementById("studentList-modal-title").classList.contains("pre")) {
             fillTable(StudentList, "pre-");
 
+        } else if (document.getElementById("studentList-modal-title").classList.contains("teach-")) {
+            fillTable(StudentList, "teach-");
         } else {
             fillTable(StudentList);
         }
     }
+}
+
+
+
+export function hideSeccion(bool) {
+    let seccion = document.getElementsByClassName("seccion");
+
+    if (bool) {
+        for (let sec of seccion) {
+            sec.style.display = "none"
+        }
+    } else {
+        for (let sec of seccion) {
+            sec.style.display = "table-cell"
+        }
+    }
+
+}
+
+export function hideYear(bool) {
+    let year = document.getElementsByClassName("year");
+
+    if (bool) {
+        for (let anno of year) {
+            anno.style.display = "none"
+        }
+    } else {
+        for (let anno of year) {
+            anno.style.display = "table-cell"
+        }
+    }
+
 }

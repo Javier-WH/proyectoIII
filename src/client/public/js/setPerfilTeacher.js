@@ -4,6 +4,4 @@ export async function getPerfilTeacher(ci) {
     window.addEventListener("unload", () => {
         teacherPerfilPage.close();
     })
-
-
 }

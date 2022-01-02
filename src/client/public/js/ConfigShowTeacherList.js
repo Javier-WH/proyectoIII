@@ -1,19 +1,41 @@
-async function getTeacherList() {
-    let ask = await fetch("/teahcerList");
-    let response = await ask.text();
+const table = document.getElementById("student-table");
+import { getSudentList, setStudentList, fillTable, cleanInputs } from "./configFindStudent.js"
+setStudentList([]);
 
-    return new Promise((res, rej) => {
-        res(response);
-        rej({ "ERROR": "Ocurrió un error al intentar obtener la lista de los profesores" })
-    })
-}
+
+
+
+
 
 export async function showTeaacherList() {
-    let list = await getTeacherList();
-    let teacherListWindow = window.open("window-child.html", "Ratting", "width=900,height=900,left=150,top=200,toolbar=0,status=0,");
-    teacherListWindow.document.write(list);
-    window.addEventListener("unload", () => {
-        teacherListWindow.close();
-    })
+    document.getElementById("studentList-modal-title").innerText = "Lista de Profesores"
+    document.getElementById("studentList-modal-title").classList.remove("pre");
+    document.getElementById("studentList-modal-title").classList.add("teach");
+    cleanInputs();
+    document.getElementById("filter-modal-seccion").disabled = true
+    table.innerHTML = `<tr><td class="spinner-border text-secondary" role="status" colspan="5"><span class="visually-hidden">Loading...</span></td></tr>`
+    document.getElementById("studenList-modal").classList.remove("invisible");
+    let ask = await fetch("/profesor/all", {
+        method: "POST"
+    });
+    let response = await ask.json();
+    let data = [];
+    response.map(teacher => {
+        data.push({
+            names: teacher.name,
+            lastName: teacher.lastName,
+            CI: teacher.CI,
+            id: teacher.id,
+            seccion: "n/a",
+            year: "n/a"
+        })
+    });
+
+    setStudentList(data)
+    fillTable(getSudentList(), "teach-");
+
+
+
+
 
 }
