@@ -42,9 +42,15 @@ export function fillStudentData(student, { subject }) {
         document.getElementById("nota-acomulada").innerHTML = acumulado.toFixed(1);
     }
 
+    checkPermision();
 }
 
-
+async function checkPermision() {
+    let config = await getConfig()
+    document.getElementById("lapso1").disabled = !config.l1;
+    document.getElementById("lapso2").disabled = !config.l2;
+    document.getElementById("lapso3").disabled = !config.l3;
+}
 
 ////////////////////////
 

@@ -4,6 +4,7 @@ import { fillStudentData, fillTitleSeccion } from './fillStudenData.js';
 import { getPerfilTeacher } from './setPerfilTeacher.js'
 
 
+
 let SELECTED = ''
 let changedList = [];
 
@@ -167,8 +168,6 @@ export function loadEvents(StudentList, teacher) {
         async function saveData() {
 
             if (changedList.length > 0) {
-
-
                 let data = await JSON.stringify(changedList);
                 let ask = await fetch("/Estudiante/registro", {
                     method: "PATCH",
@@ -179,6 +178,7 @@ export function loadEvents(StudentList, teacher) {
                     body: data
                 })
                 let response = await ask.text();
+
                 if (response == "OK") {
                     Swal.fire({
                         position: 'top-end',
@@ -188,6 +188,12 @@ export function loadEvents(StudentList, teacher) {
                         timer: 1500
                     });
                     changedList.length = 0;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'DENEGADO',
+                        text: response
+                    });
                 }
 
             }

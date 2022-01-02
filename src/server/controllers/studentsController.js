@@ -1,6 +1,7 @@
 const colors = require('colors')
 const { Op } = require("sequelize");
 const { Students } = require("../database/models.js");
+const configController = require("../controllers/configControler.js");
 
 
 async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, subjects }) {
@@ -71,6 +72,24 @@ async function findStudent(filters) {
 
 async function updateGrades(list) {
 
+    //revisa que se tenga los permisos para subir las notas del laps
+    let config = await configController.getConfig();
+
+    if (!config[0].l1 && list[0].subjects[Object.keys(list[0].subjects)[0]].l1) { //primer lapso
+
+        return "No está habilitado el ingreso de notas del primer lapso";
+    }
+
+    if (!config[0].l2 && list[0].subjects[Object.keys(list[0].subjects)[0]].l2) { //segundo lapso
+
+        return "No está habilitado el ingreso de notas del segundo lapso";
+    }
+    if (!config[0].l3 && list[0].subjects[Object.keys(list[0].subjects)[0]].l3) { //tercer lapso
+
+        return "No está habilitado el ingreso de notas del tercer lapso";
+    }
+
+    /////////////////////////////////////////////////////////
     for (let i = 0; i < list.length; i++) {
         let id = list[i].id
         let student = await Students.findAll({
@@ -87,12 +106,15 @@ async function updateGrades(list) {
 
         } else {
 
-            let keys = Object.keys(list[i].subjects);
-
-            for (let j = 0; j < keys.length; j++) {
-
-                oldSubjects[keys[j]] = list[i].subjects[keys[j]];
+            if (!config[0].edit) {
+                return "La edición de notas no está permitida en este momento";
+            } else {
+                let keys = Object.keys(list[i].subjects);
+                for (let j = 0; j < keys.length; j++) {
+                    oldSubjects[keys[j]] = list[i].subjects[keys[j]];
+                }
             }
+
         }
 
         let update = await Students.update({ subjects: oldSubjects }, {

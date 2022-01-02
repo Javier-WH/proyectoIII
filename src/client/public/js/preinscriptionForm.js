@@ -151,3 +151,8 @@ document.getElementById("btn-next").addEventListener("click", async e => {
 
 
 });
+
+document.getElementById("d-flex").addEventListener("click", e => {
+    e.preventDefault()
+    window.history.back();
+})
