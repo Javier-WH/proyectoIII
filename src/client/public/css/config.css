@@ -53,6 +53,10 @@
     #students-container::before {
         content: "Alumnos";
     }
+    
+    #configuration-container::before {
+        content: "Configuración";
+    }
     /* ////////////////////////////////////////////// */
     
     #add-grade {

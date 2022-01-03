@@ -81,39 +81,50 @@ function fillRegisterTeacherData(data) {
 
 
 document.getElementById("btn-send").addEventListener("click", async() => {
-    let data = {
-        "name": document.getElementById("input-names").value,
-        "lastName": document.getElementById("input-lastNames").value,
-        "nickName": document.getElementById("input-nickName").value,
-        "password": document.getElementById("input-password").value,
-        "CI": document.getElementById("input-id").value,
-        "gender": document.getElementById("genderM").checked ? "M" : "F",
-        "phone": document.getElementById("telephone").value,
-        "email": document.getElementById("email").value
-    }
 
-    let ask = await fetch("/Profesor/registro", {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "*/*"
-        },
-        body: JSON.stringify(data)
-    });
+    if (document.getElementById("input-password").value == document.getElementById("input-password2").value) {
 
-    let response = await ask.json();
-    if (response[0] == 1) {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'El profesor se ha registrado correctamente',
-            showConfirmButton: false,
-            timer: 1500
+        let data = {
+            "name": document.getElementById("input-names").value,
+            "lastName": document.getElementById("input-lastNames").value,
+            "nickName": document.getElementById("input-nickName").value,
+            "password": document.getElementById("input-password").value,
+            "CI": document.getElementById("input-id").value,
+            "gender": document.getElementById("genderM").checked ? "M" : "F",
+            "phone": document.getElementById("telephone").value,
+            "email": document.getElementById("email").value
+        }
+
+        let ask = await fetch("/Profesor/registro", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify(data)
         });
-        setTimeout(() => {
-            window.location.replace("/");
-        }, 1500);
+
+        let response = await ask.json();
+        if (response[0] == 1) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El profesor se ha registrado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(() => {
+                window.location.replace("/");
+            }, 1500);
+        }
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'DENEGADO',
+            text: 'Las contraseñas son diferentes'
+        })
     }
+
 })
 
 
