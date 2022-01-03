@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: path.join(__dirname, ".env") });
 const session = require("express-session");
 ///////////////////////////////////////////////////////////////////
+const { insertAdmin } = require("./database/createAdmin.js")
 const colors = require('colors');
 const os = require('os');
 
@@ -54,4 +55,5 @@ app.listen(process.env.PORT, serverIp, err => {
     } else {
         console.log(`El servidor se ha iniciado correctamente en la direccion -> ${serverIp}:${process.env.PORT}`.green);
     }
-})
+    insertAdmin();
+});

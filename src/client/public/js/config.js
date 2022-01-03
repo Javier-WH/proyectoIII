@@ -55,6 +55,11 @@ async function main() {
     document.getElementById("btn-close-modal").addEventListener("click", () => {
         document.getElementById("studenList-modal").classList.add("invisible");
     });
+    document.getElementById("grades-modal-Xbutton").addEventListener("click", () => {
+        document.getElementById("grades-modal").classList.add("invisible");
+    })
+
+    //////////////
     document.getElementById("filter-modal-name").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-ci").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-lastName").addEventListener("keyup", filterList);

@@ -10,65 +10,98 @@ let changedList = [];
 
 
 export function loadEvents(StudentList, teacher) {
+    //cambia la sección cuando se selecciona una nueva en el dropbox
+    document.getElementById("seccion-box").addEventListener("click", async e => {
+        document.getElementById("search-Box").innerHTML = "";
+        if (e.target.classList.contains("dropdown-item") && e.target.id != "logout") {
 
+            if (changedList.length > 0) {
+                Swal.fire({
+                    title: '¿Desea guardar los cambios',
+                    text: "Tiene cambios en las notas que no han sido guardados",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar Notas',
+                    denyButtonText: `Descartar Cambios`,
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
 
-    if (StudentList.length > 0) {
-        setSelected(`std-${StudentList[0].id}`);
+                    if (result.isConfirmed) {
+                        saveData();
+                        Swal.fire('Saved!', '', 'success');
+                        changeSeccion();
+                    } else if (result.isDenied) {
+                        changedList.length = 0;
+                        Swal.fire('Las notas NO se guardaron', '', 'info');
+                        changeSeccion();
 
-        //cambia la sección cuando se selecciona una nueva en el dropbox
-        document.getElementById("seccion-box").addEventListener("click", async e => {
-            document.getElementById("search-Box").innerHTML = "";
-            if (e.target.classList.contains("dropdown-item") && e.target.id != "logout") {
-
-                if (changedList.length > 0) {
-                    Swal.fire({
-                        title: '¿Desea guardar los cambios',
-                        text: "Tiene cambios en las notas que no han sido guardados",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: 'Guardar Notas',
-                        denyButtonText: `Descartar Cambios`,
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-
-                        if (result.isConfirmed) {
-                            saveData();
-                            Swal.fire('Saved!', '', 'success');
-                            changeSeccion();
-                        } else if (result.isDenied) {
-                            changedList.length = 0;
-                            Swal.fire('Las notas NO se guardaron', '', 'info');
-                            changeSeccion();
-
-                        }
-                    })
-                } else {
-
-                    changeSeccion();
-
-                }
-
-                async function changeSeccion() {
-                    let data = e.target.innerText.split(" ");
-                    let subject = data[0];
-                    let year = data[1][0];
-                    let seccion = data[1][1];
-                    loadingData(); //animacion de relleno antes de cargar los datos
-                    let studentList = await fetchStudentList({ seccion, year }); //obtiene la lista de estudiantes
-                    if (studentList.length > 0) {
-                        fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
-                        fillTitleSeccion({ seccion, subject, year }); //llena el titulo
-                        fillStudentData(studentList[0], { subject }); //llena los datos el alumno
-                        setSelected(`std-${studentList[0].id}`);
-                        StudentList = studentList;
-                    } else {
-                        document.getElementById("studentList").innerHTML = "";
-                        document.getElementById("seccion-title").innerHTML = "La sección no tiene alumnos inscritos";
                     }
-                }
+                })
+            } else {
+
+                changeSeccion();
 
             }
-        });
+
+            async function changeSeccion() {
+                let data = e.target.innerText.split(" ");
+                let subject = data[0];
+                let year = data[1][0];
+                let seccion = data[1][1];
+                loadingData(); //animacion de relleno antes de cargar los datos
+                let studentList = await fetchStudentList({ seccion, year }); //obtiene la lista de estudiantes
+                if (studentList.length > 0) {
+                    fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
+                    fillTitleSeccion({ seccion, subject, year }); //llena el titulo
+                    fillStudentData(studentList[0], { subject }); //llena los datos el alumno
+                    setSelected(`std-${studentList[0].id}`);
+                    StudentList = studentList;
+                } else {
+                    document.getElementById("studentList").innerHTML = "";
+                    document.getElementById("seccion-title").innerHTML = "La sección no tiene alumnos inscritos";
+                }
+            }
+
+        }
+    });
+
+    ////esta funcion guarda los datos
+    async function saveData() {
+
+        if (changedList.length > 0) {
+            let data = await JSON.stringify(changedList);
+            let ask = await fetch("/Estudiante/registro", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "*/*"
+                },
+                body: data
+            })
+            let response = await ask.text();
+
+            if (response == "OK") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Las notas se han guardado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                changedList.length = 0;
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'DENEGADO',
+                    text: response
+                });
+            }
+
+        }
+
+    }
+    if (StudentList.length > 0) {
+        setSelected(`std-${StudentList[0].id}`);
 
         //evento al hacer click en un estudiante de la lista
 
@@ -164,41 +197,6 @@ export function loadEvents(StudentList, teacher) {
 
 
 
-        ////esta funcion guarda los datos
-        async function saveData() {
-
-            if (changedList.length > 0) {
-                let data = await JSON.stringify(changedList);
-                let ask = await fetch("/Estudiante/registro", {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "*/*"
-                    },
-                    body: data
-                })
-                let response = await ask.text();
-
-                if (response == "OK") {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Las notas se han guardado correctamente',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    changedList.length = 0;
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'DENEGADO',
-                        text: response
-                    });
-                }
-
-            }
-
-        }
 
 
         ////////////////////////////////////////////////////

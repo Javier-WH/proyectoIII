@@ -23,7 +23,7 @@ Router.post("/getFake", express.json(), async(req, res) => {
         "Sucre", "Sanchez", "Ochoa", "Ascanio", "Ytriago"
     ];
 
-    const seccions = ["a", "b", "c"];
+    const seccions = ["a", "b"];
 
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -33,15 +33,15 @@ Router.post("/getFake", express.json(), async(req, res) => {
 
 
 
-    function getStuden() {
+    function getStuden(cant) {
 
         let genderRand = getRandomInt(0, 1);
         let gender = genderRand == 1 ? "M" : "F";
         let CI = getRandomInt(15000000, 30000000);
-        let seccion = seccions[getRandomInt(0, 2)];
+        let seccion = seccions[getRandomInt(0, 1)];
         let year = getRandomInt(1, 5);
         let age = getRandomInt(11, 16);
-        let parentID = getRandomInt(0, 500);
+        let parentID = getRandomInt(0, (cant / 4));
         let name;
 
         if (gender == "M") {
@@ -54,49 +54,81 @@ Router.post("/getFake", express.json(), async(req, res) => {
         let lastName = lastNames[getRandomInt(0, lastNames.length - 1)];
         lastName += " " + lastNames[getRandomInt(0, lastNames.length - 1)];
 
-        let subjectList = [{
-                "ingles": {
-                    "l1": "15",
-                    "l2": "16",
-                    "l3": "15",
-                    "def": "14.5"
-                },
-                "matematica": {
-                    "l1": "10",
-                    "l2": "12",
-                    "l3": "12",
-                    "def": "11"
-                },
-                "Quimica": {
-                    "l1": "10",
-                    "l2": "14",
-                    "l3": "18",
-                    "def": "14"
-                }
+        let subjectListA = {
+            "ingles": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
             },
-            {
-                "informatica": {
-                    "l1": "15",
-                    "l2": "16",
-                    "l3": "15",
-                    "def": "14.5"
-                },
-                "fisica": {
-                    "l1": "10",
-                    "l2": "12",
-                    "l3": "12",
-                    "def": "11"
-                },
-                "biologia": {
-                    "l1": "10",
-                    "l2": "14",
-                    "l3": "18",
-                    "def": "14"
-                }
+            "matematica": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "historia": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "deporte": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "geogrfia": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
             }
-        ]
+        };
 
-        let subjects = subjectList[getRandomInt(0, 1)];
+        let subjectListB = {
+            "informatica": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "fisica": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "biologia": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "historia": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "deporte": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            },
+            "geogrfia": {
+                "l1": getRandomInt(0, 20),
+                "l2": getRandomInt(0, 20),
+                "l3": getRandomInt(0, 20),
+                "def": "0"
+            }
+
+        }
+
+
+        let subjects = seccion == "a" ? subjectListA : subjectListB;
 
         return {
             "names": name,
@@ -107,14 +139,14 @@ Router.post("/getFake", express.json(), async(req, res) => {
             "year": year,
             "age": age,
             "parentID": parentID,
-            // "subjects": subjects
+            "subjects": subjects
         }
     }
 
     function registerStudenList(cant) {
 
         for (let i = 0; i < cant; i++) {
-            studentsController.registerStudent(getStuden());
+            studentsController.registerStudent(getStuden(cant));
         }
     }
 

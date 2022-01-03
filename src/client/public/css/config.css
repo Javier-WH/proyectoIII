@@ -135,3 +135,31 @@
     #std-menu span:hover {
         border: 2px solid white;
     }
+    
+    #grades-modal {
+        border: 2px solid #5c6bc0;
+        width: 500px;
+        height: 600px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 0;
+        margin-top: 200px;
+        background-color: white;
+        padding: 10px;
+    }
+    
+    #grades-modal-name {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    
+    #grades-modal-Xbutton {
+        background-color: transparent;
+        border: none;
+        margin-left: 95%;
+    }

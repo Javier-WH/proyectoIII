@@ -130,6 +130,7 @@ export function loadStudentListEvents() {
 
     document.getElementById("student-table").addEventListener("contextmenu", e => {
         e.preventDefault();
+        let id = e.target.parentElement.id.replace("std-", "");
 
         if (e.target.parentElement.id.includes("std-")) {
 
@@ -174,13 +175,78 @@ export function loadStudentListEvents() {
                     }
                 })
 
+            });
+
+
+            //
+
+            document.getElementById("std-menu-grades").addEventListener("click", async e => {
+                document.getElementById("grades-modal").classList.remove("invisible");
+                let ask = await getStudentData(id);
+                if (ask) {
+                    let subjects = ask.subjects;
+                    let html = "";
+                    if (subjects == null) {
+                        html += `<tr>`;
+                        html += `<th scope="row" colspan="5">Aún no se han subido notas para este estudiante</th>`;
+                        html += `</tr>`;
+
+                    } else {
+
+                        let keys = Object.keys(subjects)
+
+                        for (let i = 0; i < keys.length; i++) {
+                            html += `<tr>`;
+                            html += `<th scope="row">${keys[i]}</th>`;
+                            if (subjects[keys[i]].l1) {
+                                html += `<td>${subjects[keys[i]].l1}</td>`;
+                            } else {
+                                html += `<td>n/a</td>`;
+                            }
+                            if (subjects[keys[i]].l2) {
+                                html += `<td>${subjects[keys[i]].l2}</td>`;
+                            } else {
+                                html += `<td>n/a</td>`;
+                            }
+                            if (subjects[keys[i]].l3) {
+                                html += `<td>${subjects[keys[i]].l3}</td>`;
+                            } else {
+                                html += `<td>n/a</td>`;
+                            }
+                            if (subjects[keys[i]].def) {
+                                html += `<td>${subjects[keys[i]].def}</td>`;
+                            } else {
+                                html += `<td>n/a</td>`;
+                            }
+                            html += `</tr>`;
+                        }
+                    }
+                    document.getElementById("grades-modal-table").innerHTML = html;
+                    document.getElementById("grades-modal-name").innerHTML = `
+                                <span>Nombre: ${ask.lastName} ${ask.names}</span>
+                                <span>C.I.: ${ask.CI}</span>
+                                <span>Seccion: ${ask.year}${ask.seccion}</span>`;
+
+                } else {
+                    document.getElementById("grades-modal-name").innerHTML = `
+                                <span>No se ha encontrado ningun estudiante inscrito en esta cuenta</span>
+                                <span></span>
+                                <span></span>`;
+
+
+                }
+
 
 
             });
 
+
+
         }
 
     });
+
+
 
     window.addEventListener("click", e => {
         if (!e.target.parentElement.id.includes("std-")) {
@@ -191,5 +257,27 @@ export function loadStudentListEvents() {
         }
 
     })
+
+    async function getStudentData(id) {
+
+        let ask = await fetch("/Estudiante", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify({ id })
+        });
+
+        let response = await ask.json();
+
+        return new Promise((res, rej) => {
+            res(response[0]);
+            rej({ ERROR: "Ha ocurrido un error al intentar acceder al estudiante" })
+        })
+    };
+
+
+
 
 }
