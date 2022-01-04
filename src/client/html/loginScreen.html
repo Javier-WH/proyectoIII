@@ -17,8 +17,10 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="CSS/media_querys/loginScreen.css">
     <!-- JavaScript -->
     <script src="JS/login.js" defer></script>
+    <script src="JS/media_querys/loginScreen.js" defer></script>
 </head>
 
 <body>
@@ -27,7 +29,13 @@
     </div>
     <div id="logo">
         <img src="SVG/BatallaLogo.svg" alt="" id="svg-logo">
+        <div id="media-selector">
+            <a class="waves-effect waves-light btn-large" id="btn-select-teachers">Profesores</a>
+            <a class="waves-effect waves-light btn-large" id="btn-select-students">Estudiantes</a>
+        </div>
     </div>
+
+
 
     <div id="main-container">
         <div id="teacher-container" class="login-container">
@@ -45,8 +53,8 @@
             <div class="links-container">
                 <a href="">Recuperar contraseña</a>
                 <a href="/registro">Registro</a>
-
             </div>
+            <a class="waves-effect waves-light btn-small  indigo lighten-1" href="/">regresar</a>
         </div>
 
 
@@ -68,7 +76,7 @@
                 <a href="/preinscripcionForm">Pre-inscripción</a>
 
             </div>
-
+            <a class="waves-effect waves-light btn-small  blue darken-1" href="/">regresar</a>
 
 
         </div>

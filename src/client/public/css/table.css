@@ -21,3 +21,7 @@ tr {
     color: white;
     pointer-events: none;
 }
+
+#showList {
+    display: none;
+}

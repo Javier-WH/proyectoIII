@@ -1,0 +1,55 @@
+    @media only screen and (max-width: 1079px) {
+        #main-container {
+            flex-direction: column;
+            height: 80vh;
+        }
+        .login-container {
+            display: none;
+            border: none !important;
+        }
+        #svg-logo {
+            width: 60vw;
+        }
+        #logo {
+            width: 80VW;
+        }
+        .links-container {
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            row-gap: 10px;
+            width: 200%;
+            margin-bottom: 10px;
+        }
+        .btn-small {
+            display: block !important;
+        }
+        /* ///////////////////////////////////////////////// */
+        #media-selector {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .btn-large {
+            width: 300px;
+        }
+        #btn-select-teachers {
+            background-color: #5c6bc0;
+        }
+        #btn-select-students {
+            background-color: #1e88e5;
+        }
+    }
+    
+    @media only screen and (min-width: 1080px) {
+        #media-selector {
+            display: none;
+        }
+        #logo {
+            display: block !important;
+        }
+        .btn-small {
+            display: none !important;
+        }
+    }

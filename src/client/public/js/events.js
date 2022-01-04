@@ -295,7 +295,9 @@ export function loadEvents(StudentList, teacher) {
 
                 if (nextRow) {
                     setSelected(nextRow);
-                    document.getElementById(nextRow).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+                    if (window.outerWidth < 1380) {
+                        document.getElementById(nextRow).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+                    }
 
                     nextRow = nextRow.replace("std-", "");
                     let studentRow = StudentList.filter(data => data.id == nextRow);
@@ -337,7 +339,9 @@ export function loadEvents(StudentList, teacher) {
 
                 if (previusRow) {
                     setSelected(previusRow);
-                    document.getElementById(previusRow).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                    if (window.outerWidth < 1380) {
+                        document.getElementById(previusRow).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                    }
 
                     previusRow = previusRow.replace("std-", "");
                     let studentRow = StudentList.filter(data => data.id == previusRow);

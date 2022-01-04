@@ -1,0 +1,80 @@
+@media only screen and (max-width: 1379px) {
+    body {
+        overflow: hidden;
+    }
+    .navbar {
+        z-index: 100000;
+        width: 100vw;
+    }
+    #title {
+        font-size: 18px;
+        border: none;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .col-numero {
+        display: none;
+    }
+    #table-container {
+        top: 90px;
+        left: 0px;
+        width: 99vw;
+        border-right: 2px solid black;
+        margin-left: -99vw;
+        height: 90vh;
+        overflow-block: none;
+        background-color: white;
+        z-index: 100000;
+        transition: all 1s ease;
+    }
+    .col-notas {
+        width: 9%;
+    }
+    #table-container * {
+        font-size: 9px;
+    }
+    #name-main-container {
+        position: fixed;
+        margin-top: -190px;
+        width: 100vw !important;
+    }
+    #seccion-title {
+        width: 100vw;
+        z-index: -1;
+    }
+    #navBar-icon {
+        display: none;
+    }
+    #name {
+        width: 90vw;
+    }
+    #grade-container {
+        margin-top: 20px;
+        width: 90vw;
+    }
+    #search-Box {
+        font-size: 10px;
+        overflow: hidden;
+        height: 100px;
+        top: 70px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* //////////// */
+    #showList {
+        display: block;
+        z-index: 90000000000000000000;
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        font-weight: 600;
+        border: 1px solid lightblue;
+        border-radius: 10px;
+        padding: 0 10px;
+        color: lightblue;
+    }
+}
+
+@media only screen and (min-width: 1080px) {}

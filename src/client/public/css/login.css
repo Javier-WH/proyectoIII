@@ -8,7 +8,8 @@
 }
 
 .login-container {
-    width: 500px;
+    width: 35vw;
+    max-width: 500px;
     height: 600px;
     display: flex;
     justify-content: space-around;
@@ -136,4 +137,9 @@
 
 .progress .indeterminate {
     background-color: #5c6bc0;
+}
+
+.btn-small {
+    display: none;
+    margin-top: 15px;
 }

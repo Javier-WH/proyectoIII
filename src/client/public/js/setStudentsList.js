@@ -34,7 +34,7 @@ export function fillSeccionList({ subject }, seccionList) {
 
         html += `
             <tr id = "std-${student.id}">
-                <th scope="row">${numero++}</th>
+                <th scope="row" class="col-numero">${numero++}</th>
                 <td>${student.CI}</td>
                 <td>${student.names}</td>
                 <td>${student.lastName}</td>

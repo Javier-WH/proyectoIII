@@ -18,8 +18,10 @@
     <link rel="stylesheet" href="CSS/navBar.css">
     <link rel="stylesheet" href="CSS/table.css">
     <link rel="stylesheet" href="CSS/name.css">
+    <link rel="stylesheet" href="CSS/media_querys/app.css">
     <!-- JavaScript -->
     <script src="JS/main.js" type="module" defer></script>
+    <script src="JS/media_querys/app.js" defer></script>
 </head>
 
 
@@ -69,13 +71,12 @@
     </nav>
 
     <!-- table -->
-
+    <button id="showList">Mostrar Lista</button>
     <div id="table-container">
-
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">N°</th>
+                    <th scope="col" class="col-numero">N°</th>
                     <th scope="col">Cedula</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
@@ -227,6 +228,7 @@
 
     </div>
 
+    <div id="list-tab"></div>
 </body>
 
 </html>
