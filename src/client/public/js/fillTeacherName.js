@@ -1,7 +1,7 @@
 export function fillTeacherName(teacher) {
     // document.getElementById('user-name').innerText = `${teacher.lastName} ${teacher.name}`;
     document.getElementById('user-name').innerHTML = `
-                    <li class="nav-item dropdown" id="">
+                    <li class="nav-item dropdown" id="user-name-list">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-teacherName" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             ${teacher.lastName} ${teacher.name}
                         </a>

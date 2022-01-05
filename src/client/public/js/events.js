@@ -295,7 +295,7 @@ export function loadEvents(StudentList, teacher) {
 
                 if (nextRow) {
                     setSelected(nextRow);
-                    if (window.outerWidth < 1380) {
+                    if (window.outerWidth > 1380) {
                         document.getElementById(nextRow).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
                     }
 
@@ -339,7 +339,7 @@ export function loadEvents(StudentList, teacher) {
 
                 if (previusRow) {
                     setSelected(previusRow);
-                    if (window.outerWidth < 1380) {
+                    if (window.outerWidth > 1380) {
                         document.getElementById(previusRow).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
                     }
 

@@ -1,3 +1,7 @@
+#nav-tabs {
+    max-width: 99vw;
+}
+
 #navBar-icon {
     width: 100px;
 }

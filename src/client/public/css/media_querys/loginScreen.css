@@ -40,6 +40,9 @@
         #btn-select-students {
             background-color: #1e88e5;
         }
+        .dropdown {
+            z-index: 50000000000000;
+        }
     }
     
     @media only screen and (min-width: 1080px) {

@@ -1,0 +1,34 @@
+@media only screen and (max-width: 1379px) {
+    #nav-tabs {
+        max-width: 95vw;
+    }
+    .pannel {
+        max-width: 95vw;
+    }
+    #students-dropbox {
+        max-width: 90vw;
+        font-size: 16px !important;
+    }
+    label {
+        font-size: 12px;
+    }
+    #title-student-name * {
+        max-width: 90vw;
+        font-size: 16px !important;
+    }
+    #subject-box {
+        margin-top: 10px !important;
+    }
+    table {
+        max-width: 90vw;
+    }
+    table * {
+        font-size: 12px !important;
+    }
+    #student-age,
+    #year {
+        max-width: 90vw;
+    }
+}
+
+@media only screen and (min-width: 1080px) {}
