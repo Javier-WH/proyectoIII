@@ -1,6 +1,7 @@
-@media only screen and (max-width: 1379px) {
+@media only screen and (max-width: 1000px) {
     body {
         overflow: hidden;
+        position: fixed;
     }
     .navbar {
         z-index: 10000000000;
@@ -18,7 +19,7 @@
     #table-container {
         top: 90px;
         left: 0px;
-        width: 95vw;
+        width: 99vw;
         border-right: 2px solid black;
         margin-left: -99vw;
         height: 90vh;
@@ -35,7 +36,7 @@
     }
     #name-main-container {
         position: fixed;
-        margin-top: -190px;
+        margin-top: 1px;
         width: 100vw !important;
     }
     #seccion-title {

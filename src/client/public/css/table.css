@@ -1,6 +1,6 @@
 #table-container {
-    width: 700px;
-    height: 820px;
+    width: 50vw;
+    height: 80vh;
     border-left: 1px solid black;
     overflow-y: auto;
     position: absolute;
@@ -13,7 +13,8 @@ tr {
 }
 
 .col-notas {
-    width: 50px;
+    max-width: 50px;
+    width: 10%;
 }
 
 .selected {
