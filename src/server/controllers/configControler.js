@@ -9,11 +9,19 @@ async function getConfig() {
 };
 
 async function setConfig(data) {
-    let config = Config.update(data, {
-        where: {
-            id: 1
-        }
-    });
+
+    let isConfig = await getConfig();
+    let config;
+
+    if (isConfig.length > 0) {
+        config = await Config.update(data, {
+            where: {
+                id: 1
+            }
+        });
+    } else {
+        config = await Config.create(data);
+    }
     return new Promise((resolved, rejected) => {
         resolved(config);
         rejected({ ERROR: "Ha ocurrido un error al intentar actualizar el archivo de configuración" })

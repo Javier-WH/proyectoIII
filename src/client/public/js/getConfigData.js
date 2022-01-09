@@ -1,17 +1,21 @@
 // "/getConfig"
 
 export async function applyConfig() {
-    let l1 = document.getElementById("enable-1l")
-    let l2 = document.getElementById("enable-2l")
-    let l3 = document.getElementById("enable-3l")
-    let editGrade = document.getElementById("enable-edit-grade")
-    let config = await getConfig();
+    try {
 
-    l1.checked = config.l1;
-    l2.checked = config.l2;
-    l3.checked = config.l3;
-    editGrade.checked = config.edit;
+        let l1 = document.getElementById("enable-1l")
+        let l2 = document.getElementById("enable-2l")
+        let l3 = document.getElementById("enable-3l")
+        let editGrade = document.getElementById("enable-edit-grade")
+        let config = await getConfig();
 
+        l1.checked = config.l1;
+        l2.checked = config.l2;
+        l3.checked = config.l3;
+        editGrade.checked = config.edit;
+    } catch (error) {
+
+    }
     gradeTabEvents();
 };
 
@@ -20,6 +24,7 @@ export async function getConfig() {
         method: "POST"
     });
     let response = await data.json();
+
     return new Promise((res, rej) => {
         res(response[0]);
         rej({ ERROR: "ocurrió un error inesperado al intentar obtener los datos de configuracion" })
