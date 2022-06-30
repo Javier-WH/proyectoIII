@@ -1,41 +1,15 @@
 const path = require('path');
-const dotenv = require('dotenv');
-dotenv.config({ path: path.join(__dirname, ".env") });
-const session = require("express-session");
-///////////////////////////////////////////////////////////////////
+const session = require(path.join(__dirname, "sessionStore.js"));
 const { insertAdmin } = require("./database/createAdmin.js");
-
-const colors = require('colors');
-const os = require('os');
-
+const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
 const express = require('express');
 const app = express();
 
-
 //settings
-const serverIp = os.networkInterfaces().Ethernet[1].address;
-
+const serverIp = getIp();
 
 //session MYSQL
-const mysqlSession = require("express-mysql-session");
-const optSession = {
-    hots: process.env.DB_ADDRESS,
-    port: process.env.BD_SESSION_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.BD_SESSION
-}
-const sessionStore = new mysqlSession(optSession);
-app.use(session({
-    key: "user_cookie",
-    secret: "Batalla",
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    endConnectionOnClose: true
-}))
-
-
+app.use(session);
 
 //routes
 app.use(require("./routes/login.js"));
