@@ -96,7 +96,8 @@ Config.init({
     l1: DataTypes.BOOLEAN,
     l2: DataTypes.BOOLEAN,
     l3: DataTypes.BOOLEAN,
-    edit: DataTypes.BOOLEAN
+    edit: DataTypes.BOOLEAN,
+    schoolYear: DataTypes.STRING
 }, {
     sequelize,
     modelName: "Config"

@@ -3,18 +3,26 @@
 export async function applyConfig() {
     try {
 
-        let l1 = document.getElementById("enable-1l")
-        let l2 = document.getElementById("enable-2l")
-        let l3 = document.getElementById("enable-3l")
-        let editGrade = document.getElementById("enable-edit-grade")
+
+        let l1 = document.getElementById("enable-1l");
+        let l2 = document.getElementById("enable-2l");
+        let l3 = document.getElementById("enable-3l");
+        let editGrade = document.getElementById("enable-edit-grade");
+        let scoolYear = document.getElementById("schoolYear");
         let config = await getConfig();
 
         l1.checked = config.l1;
         l2.checked = config.l2;
         l3.checked = config.l3;
         editGrade.checked = config.edit;
-    } catch (error) {
+        //////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<continuar desde aqui
+        let schoolYearText = "Año Escolar " + config.schoolYear + " - " + (Number.parseInt(config.schoolYear) + 1);
 
+        scoolYear.innerText = schoolYearText;
+
+
+    } catch (error) {
+        alert(error.ERROR);
     }
     gradeTabEvents();
 };
