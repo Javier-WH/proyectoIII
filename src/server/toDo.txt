@@ -1,0 +1,9 @@
+Se necesita renovar el año escolar.
+
+1. crear un campo en la tabla estudiantes donde se identifique el periodo escolar del registro
+2. modificar las consultas para incluir el filtro del año escolar
+3. crear una interface que permita modificar el año escolar
+4. modificar la inscripcion de estudiantes para que incluyan el año escolar.
+
+
+07-26-2022

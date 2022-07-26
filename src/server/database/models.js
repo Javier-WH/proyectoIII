@@ -65,8 +65,7 @@ Tutors.init({
     address: DataTypes.TEXT,
     work: DataTypes.STRING,
     email: DataTypes.STRING,
-    instruction: DataTypes.STRING,
-    studentsID: DataTypes.JSON
+    instruction: DataTypes.STRING
 }, {
     sequelize,
     modelName: "Tutors"
