@@ -4,7 +4,7 @@ const { Students } = require("../database/models.js");
 const configController = require("../controllers/configControler.js");
 
 
-async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, subjects }) {
+async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, subjects, schoolYear }) {
     let message = ""
     let checkCI = await findStudent({ CI: ci })
 
@@ -22,7 +22,8 @@ async function registerStudent({ names, lastName, ci, gender, seccion, year, age
             year,
             age,
             parentID,
-            subjects
+            subjects,
+            schoolYear
         });
 
         message = ask;
@@ -36,11 +37,12 @@ async function registerStudent({ names, lastName, ci, gender, seccion, year, age
 
 
 ////////////////////////////////////////////////////////
-async function getStudents({ seccion, year }) {
+async function getStudents({ seccion, year, schoolYear }) {
     let ask = await Students.findAll({
         where: {
             seccion,
-            year
+            year,
+            schoolYear
         },
         order: [
             ["CI", "asc"]

@@ -8,19 +8,18 @@ export async function applyConfig() {
         let l2 = document.getElementById("enable-2l");
         let l3 = document.getElementById("enable-3l");
         let editGrade = document.getElementById("enable-edit-grade");
-        let scoolYear = document.getElementById("schoolYear");
+
+        let btnSchoolarYear = document.getElementById("btn-school-year");
+
         let config = await getConfig();
 
         l1.checked = config.l1;
         l2.checked = config.l2;
         l3.checked = config.l3;
         editGrade.checked = config.edit;
-        //////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<continuar desde aqui
-        let schoolYearText = "Año Escolar " + config.schoolYear + " - " + (Number.parseInt(config.schoolYear) + 1);
+        btnSchoolarYear.value = `${config.schoolYear}`;
 
-        scoolYear.innerText = schoolYearText;
-
-
+        btnSchoolarYearFucntions(config.schoolYear);
     } catch (error) {
         alert(error.ERROR);
     }
@@ -44,7 +43,8 @@ function buildConfigData() {
         l1: document.getElementById("enable-1l").checked,
         l2: document.getElementById("enable-2l").checked,
         l3: document.getElementById("enable-3l").checked,
-        edit: document.getElementById("enable-edit-grade").checked
+        edit: document.getElementById("enable-edit-grade").checked,
+        schoolYear: document.getElementById("btn-school-year").value.substring(0, 4)
     }
 }
 
@@ -65,4 +65,52 @@ function gradeTabEvents() {
     document.getElementById("enable-2l").addEventListener("click", sendConfig);
     document.getElementById("enable-3l").addEventListener("click", sendConfig);
     document.getElementById("enable-edit-grade").addEventListener("click", sendConfig);
+}
+
+
+
+
+function btnSchoolarYearFucntions(currentYear) {
+    const btnSchoolarYear = document.getElementById("btn-school-year");
+
+    btnSchoolarYear.addEventListener("change", e => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Esta apunto de cambiar el periodo escolar',
+            text: "¿Está Seguro que desea cambiar el periodo escolar?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, cambiar de periodo',
+            cancelButtonText: 'No, calcelar esta operación',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                sendConfig();
+                swalWithBootstrapButtons.fire(
+                    'Hecho!',
+                    'El periodo escolar se ha modificado.',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+
+                btnSchoolarYear.value = currentYear;
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'No se han realizado cambios',
+                    'error'
+                )
+            }
+        })
+    })
+
 }

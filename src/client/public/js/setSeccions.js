@@ -28,16 +28,21 @@ export function fillSeccionBox(seccionList) {
     document.getElementById("seccion-box").innerHTML = html;
 }
 
-export function getSeccion(seccionList, index) {
+export function getSeccion(seccionList, index, config) {
     let array = seccionList[index].split(" ");
     let subject = array[0];
     let year = array[1][0];
     let seccion = array[1][1];
+    let schoolYear = 0;
+    if (typeof config != "undefined") {
+        schoolYear = config.schoolYear;
+    }
 
     return {
         subject,
         year,
-        seccion
+        seccion,
+        schoolYear
     }
 
 }

@@ -7,7 +7,9 @@ import { getPerfilTeacher } from './setPerfilTeacher.js'
 import { findStudentList, filterList } from './configFindStudent.js'
 import { findStudentList_pre, loadStudentListEvents } from "./configPre_FindStudent.js";
 import { registerStudent } from "./configRegisterStudent.js";
-import { applyConfig } from "./getConfigData.js"
+import { applyConfig } from "./getConfigData.js";
+
+
 
 
 
@@ -69,6 +71,8 @@ async function main() {
 
     document.getElementById("opt-register-student").addEventListener("click", registerStudent);
     loadStudentListEvents();
+
+
 }
 
 main();

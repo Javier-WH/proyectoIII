@@ -54,7 +54,16 @@ async function checkPermision() {
 
 ////////////////////////
 
-export function fillTitleSeccion({ seccion, subject, year }) {
+export async function fillTitleSeccion({ seccion, subject, year }) {
+    ////obtiene el año desde la configuracion
+    let config = await getConfig();
+    /////////////////
+    let title = document.getElementById("seccion-title");
     subject = subject.charAt(0).toUpperCase() + subject.slice(1);
-    document.getElementById("seccion-title").innerHTML = `${subject}  ${year}-${seccion}`
+    title.innerHTML = `<div> ${subject}  ${year}-${seccion} </div>`;
+    title.innerHTML += `<div class = "periodoText">Periodo escolar ${config.schoolYear} - ${Number.parseInt(config.schoolYear) + 1} </div>`
+
+
+
+
 }

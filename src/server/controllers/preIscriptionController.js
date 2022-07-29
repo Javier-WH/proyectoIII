@@ -2,7 +2,7 @@ const { PreIscription } = require("../database/models.js");
 const studentsController = require("../controllers/studentsController.js");
 
 
-async function registerStudent({ names, lastName, ci, gender, year, age, parentID }) {
+async function registerStudent({ names, lastName, ci, gender, year, age, parentID, schoolYear }) {
     let data = ""
     let checkExist = await findStudent({ CI: ci });
     let isIncripted = await studentsController.findStudent({ CI: ci });
@@ -17,7 +17,8 @@ async function registerStudent({ names, lastName, ci, gender, year, age, parentI
             gender,
             year,
             age,
-            parentID
+            parentID,
+            schoolYear
         });
         data = ask
     }

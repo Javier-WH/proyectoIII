@@ -139,7 +139,8 @@ Router.post("/getFake", express.json(), async(req, res) => {
             "year": year,
             "age": age,
             "parentID": parentID,
-            "subjects": subjects
+            "subjects": subjects,
+            "schoolYear": "2021"
         }
     }
 

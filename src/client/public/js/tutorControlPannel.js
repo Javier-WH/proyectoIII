@@ -130,7 +130,8 @@ document.getElementById("btn-preinscribir").addEventListener("click", async e =>
         gender: document.getElementById("genderM").checked ? "M" : "F",
         year: document.getElementById("year").value,
         age: document.getElementById("student-age").value,
-        parentID: tutorID
+        parentID: tutorID,
+        schoolYear: "2022"
     }
 
     let ask = await fetch("/Estudiante/pre", {

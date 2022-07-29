@@ -9,7 +9,7 @@ let SELECTED = ''
 let changedList = [];
 
 
-export function loadEvents(StudentList, teacher) {
+export function loadEvents(StudentList, teacher, config) {
     //cambia la sección cuando se selecciona una nueva en el dropbox
     document.getElementById("seccion-box").addEventListener("click", async e => {
         document.getElementById("search-Box").innerHTML = "";
@@ -48,8 +48,9 @@ export function loadEvents(StudentList, teacher) {
                 let subject = data[0];
                 let year = data[1][0];
                 let seccion = data[1][1];
+                let schoolYear = config.schoolYear;
                 loadingData(); //animacion de relleno antes de cargar los datos
-                let studentList = await fetchStudentList({ seccion, year }); //obtiene la lista de estudiantes
+                let studentList = await fetchStudentList({ seccion, year, schoolYear }); //obtiene la lista de estudiantes
                 if (studentList.length > 0) {
                     fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
                     fillTitleSeccion({ seccion, subject, year }); //llena el titulo

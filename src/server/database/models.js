@@ -31,7 +31,8 @@ Students.init({
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
     parentID: DataTypes.INTEGER,
-    subjects: DataTypes.JSON
+    subjects: DataTypes.JSON,
+    schoolYear: DataTypes.STRING
 }, {
     sequelize,
     modelName: "Students"
@@ -45,7 +46,8 @@ PreIscription.init({
     gender: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
-    parentID: DataTypes.INTEGER
+    parentID: DataTypes.INTEGER,
+    schoolYear: DataTypes.STRING
 }, {
     sequelize,
     modelName: "PreIscription"
