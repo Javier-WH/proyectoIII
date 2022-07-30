@@ -239,9 +239,6 @@ export function loadStudentListEvents() {
 
 
             });
-
-
-
         }
 
     });
@@ -249,11 +246,16 @@ export function loadStudentListEvents() {
 
 
     window.addEventListener("click", e => {
-        if (!e.target.parentElement.id.includes("std-")) {
-            document.getElementById("std-menu").classList.add("invisible")
-        }
-        if (!e.target.parentElement.classList.contains("opt-std-menu")) {
-            document.getElementById("std-menu").classList.add("invisible");
+        try {
+            if (!e.target.parentElement.id.includes("std-")) {
+                document.getElementById("std-menu").classList.add("invisible")
+            }
+            if (!e.target.parentElement.classList.contains("opt-std-menu")) {
+                document.getElementById("std-menu").classList.add("invisible");
+            }
+
+        } catch (error) {
+
         }
 
     })

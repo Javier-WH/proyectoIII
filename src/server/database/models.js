@@ -103,6 +103,18 @@ Config.init({
 }, {
     sequelize,
     modelName: "Config"
-})
+});
 
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config };
+////////////////////
+//Subjects list
+
+class Subjects extends Model {};
+Subjects.init({
+    grade: DataTypes.INTEGER,
+    subjectsList: DataTypes.JSON
+}, {
+    sequelize,
+    modelName: "Subjects"
+});
+
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects };

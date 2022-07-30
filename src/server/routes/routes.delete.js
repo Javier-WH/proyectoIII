@@ -3,8 +3,9 @@ const colors = require('colors');
 const express = require('express');
 const Router = express.Router();
 const studentsController = require("../controllers/studentsController.js");
-const controller = require("../controllers/controllers.js")
-const preIscriptionController = require("../controllers/preIscriptionController.js")
+const controller = require("../controllers/controllers.js");
+const preIscriptionController = require("../controllers/preIscriptionController.js");
+const { destroyGrade } = require("../controllers/subjectsController.js")
 
 
 
@@ -30,6 +31,9 @@ Router.delete("/delete/student", express.json(), async(req, res) => {
     res.json(await studentsController.deleteStudent(req.body));
 })
 
+Router.delete("/deleteGrade", express.json(), async(req, res) => {
+    res.json(await destroyGrade(req.body));
+})
 
 
 module.exports = Router;

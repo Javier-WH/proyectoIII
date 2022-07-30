@@ -7,6 +7,7 @@ const preIscriptionController = require("../controllers/preIscriptionController.
 const controller = require("../controllers/controllers.js");
 const tutorController = require("../controllers/tutorsController.js");
 const configController = require("../controllers/configControler.js");
+const { getGradesList, getSubjects } = require("../controllers/subjectsController.js")
 
 
 
@@ -43,6 +44,14 @@ Router.post("/tutor/validate", express.json(), async(req, res) => {
 
 Router.post("/getConfig", express.json(), async(req, res) => {
     res.json(await configController.getConfig());
+})
+
+Router.post("/getGradesList", express.json(), async(req, res) => {
+    res.json(await getGradesList());
+});
+
+Router.post("/getSubjects", express.json(), async(req, res) => {
+    res.json(await getSubjects());
 })
 
 module.exports = Router;

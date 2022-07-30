@@ -6,7 +6,7 @@ const studentsController = require("../controllers/studentsController.js");
 const controller = require("../controllers/controllers.js");
 const tutorsControlers = require('../controllers/tutorsController.js');
 const configController = require("../controllers/configControler.js");
-
+const { setSubjects } = require("../controllers/subjectsController.js");
 
 
 
@@ -26,6 +26,10 @@ Router.patch("/Tutor/update", express.json(), async(req, res) => {
 Router.patch("/setConfig", express.json(), async(req, res) => {
     res.json(await configController.setConfig(req.body));
 });
+
+Router.patch("/setSubject", express.json(), async(req, res) => {
+    res.send(await setSubjects(req.body));
+})
 
 
 module.exports = Router;
