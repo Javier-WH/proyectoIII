@@ -11,6 +11,7 @@ let changedList = [];
 
 export function loadEvents(StudentList, teacher, config) {
     //cambia la sección cuando se selecciona una nueva en el dropbox
+
     document.getElementById("seccion-box").addEventListener("click", async e => {
         document.getElementById("search-Box").innerHTML = "";
         if (e.target.classList.contains("dropdown-item") && e.target.id != "logout") {
@@ -61,6 +62,7 @@ export function loadEvents(StudentList, teacher, config) {
                     document.getElementById("studentList").innerHTML = "";
                     document.getElementById("seccion-title").innerHTML = "La sección no tiene alumnos inscritos";
                 }
+
             }
 
         }
@@ -101,6 +103,7 @@ export function loadEvents(StudentList, teacher, config) {
         }
 
     }
+    ////////////////////////////////////////////////////////////////BUG, no cargan los eventos si la primera sección no tiene estudiantes
     if (StudentList.length > 0) {
         setSelected(`std-${StudentList[0].id}`);
 
