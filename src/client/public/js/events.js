@@ -54,14 +54,14 @@ export function loadEvents(StudentList, teacher, config) {
                 let studentList = await fetchStudentList({ seccion, year, schoolYear }); //obtiene la lista de estudiantes
                 if (studentList.length > 0) {
                     fillSeccionList({ subject }, studentList); //llena la lista de los estudiantes
-                    fillTitleSeccion({ seccion, subject, year }); //llena el titulo
                     fillStudentData(studentList[0], { subject }); //llena los datos el alumno
                     setSelected(`std-${studentList[0].id}`);
                     StudentList = studentList;
+                    events();
                 } else {
                     document.getElementById("studentList").innerHTML = "";
-                    document.getElementById("seccion-title").innerHTML = "La sección no tiene alumnos inscritos";
                 }
+                fillTitleSeccion({ seccion, subject, year }, studentList); //llena el titulo
 
             }
 
@@ -103,8 +103,8 @@ export function loadEvents(StudentList, teacher, config) {
         }
 
     }
-    ////////////////////////////////////////////////////////////////BUG, no cargan los eventos si la primera sección no tiene estudiantes
-    if (StudentList.length > 0) {
+
+    function events() {
         setSelected(`std-${StudentList[0].id}`);
 
         //evento al hacer click en un estudiante de la lista
@@ -435,12 +435,10 @@ export function loadEvents(StudentList, teacher, config) {
             }
         });
 
+    }
 
-
-
-    } else {
-        document.getElementById("studentList").innerHTML = "";
-        document.getElementById("seccion-title").innerHTML = "La sección no tiene alumnos inscritos";
+    if (StudentList.length > 0) {
+        events();
     }
 
     document.getElementById("logout").addEventListener("click", () => {

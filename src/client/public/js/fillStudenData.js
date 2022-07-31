@@ -54,7 +54,7 @@ async function checkPermision() {
 
 ////////////////////////
 
-export async function fillTitleSeccion({ seccion, subject, year }) {
+export async function fillTitleSeccion({ seccion, subject, year }, studentList) {
     ////obtiene el año desde la configuracion
     let config = await getConfig();
     /////////////////
@@ -64,6 +64,8 @@ export async function fillTitleSeccion({ seccion, subject, year }) {
     title.innerHTML += `<div class = "periodoText">Periodo escolar ${config.schoolYear} - ${Number.parseInt(config.schoolYear) + 1} </div>`
 
 
-
+    if (studentList.length <= 0) {
+        title.innerHTML = `La sección no tiene alumnos inscritos`;
+    }
 
 }

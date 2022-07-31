@@ -16,7 +16,7 @@ async function main() {
     fillSeccionBox(seccions); //llena el dropbox de las materias
     let studentList = await fetchStudentList(getSeccion(seccions, 0, config)); //obtiene la lista de estudiantes
     fillSeccionList({ subject: seccions[0].split(" ")[0] }, studentList); //llena la lista de los estudiantes                           
-    fillTitleSeccion(getSeccion(seccions, 0)); //llena el titulo
+    fillTitleSeccion(getSeccion(seccions, 0), studentList); //llena el titulo
     fillStudentData(studentList[0], getSeccion(seccions, 0)); //llena los datos el alumno
     /////////////////////////////////////
 
