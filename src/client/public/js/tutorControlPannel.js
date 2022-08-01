@@ -1,5 +1,6 @@
 const tabs = document.getElementsByClassName("nav-link");
 
+
 let tutorID = "";
 let tutorCI = "";
 renderSelectedTab();
@@ -120,6 +121,15 @@ function cleanStudentData() {
     document.getElementById("year").value = "";
     document.getElementById("student-age").value = "";
 }
+async function getSchoolYear() {
+    let data = await fetch("/getConfig", {
+        method: "POST"
+    });
+    let response = await data.json();
+
+    return response[0].schoolYear;
+
+}
 
 document.getElementById("btn-preinscribir").addEventListener("click", async e => {
     e.preventDefault();
@@ -131,7 +141,7 @@ document.getElementById("btn-preinscribir").addEventListener("click", async e =>
         year: document.getElementById("year").value,
         age: document.getElementById("student-age").value,
         parentID: tutorID,
-        schoolYear: "2022"
+        schoolYear: await getSchoolYear() ///////////////////////////////////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
 
     let ask = await fetch("/Estudiante/pre", {
