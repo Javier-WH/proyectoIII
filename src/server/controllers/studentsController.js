@@ -57,6 +57,7 @@ async function getStudents({ seccion, year, schoolYear }) {
 /////////////////////////
 
 async function findStudent(filters) {
+    console.log(filters)
     let ask = await Students.findAll({
         where: filters,
         order: [

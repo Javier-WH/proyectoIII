@@ -9,6 +9,7 @@ import { findStudentList_pre, loadStudentListEvents } from "./configPre_FindStud
 import { registerStudent } from "./configRegisterStudent.js";
 import { applyConfig } from "./getConfigData.js";
 import { fillSubjects } from "./newScripts/fillSubjects.js";
+import { dragStudentsModal } from "./newScripts/dragStudentListModal.js";
 
 
 
@@ -69,11 +70,13 @@ async function main() {
     document.getElementById("filter-modal-name").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-seccion").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-year").addEventListener("keyup", filterList);
+    document.getElementById("filter-modal-schoolYear").addEventListener("keyup", filterList);
 
     document.getElementById("opt-register-student").addEventListener("click", registerStudent);
     loadStudentListEvents();
 
     fillSubjects();
+    dragStudentsModal();
 }
 
 main();

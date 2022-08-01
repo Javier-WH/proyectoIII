@@ -14,9 +14,17 @@ export function cleanInputs() {
     document.getElementById("filter-modal-seccion").value = "";
     document.getElementById("filter-modal-year").value = "";;
 }
+//llena el periodo escolar al iniciar la ventana
+function fillSchollYear() {
+    let schoolYearFilter = document.getElementById("filter-modal-schoolYear");
+    let schoolYear = document.getElementById("btn-school-year");
+
+    schoolYearFilter.value = schoolYear.value;
+
+}
 
 export async function findStudentList() {
-
+    fillSchollYear();
     document.getElementById("studentList-modal-title").innerText = "Lista de Estudiantes Inscritos"
     document.getElementById("studentList-modal-title").classList.remove("pre");
     document.getElementById("studentList-modal-title").classList.remove("teach");
@@ -119,9 +127,19 @@ function getFilterCriteria() {
             criteria += `("" + student.CI).includes(ci)`
         }
     }
+    //
+    if (document.getElementById("filter-modal-schoolYear").value.length > 0) {
+        if (criteria.length > 0) {
+            criteria += ` && ("" + student.schoolYear).includes(schoolYear)`
+
+        } else {
+            criteria += `("" + student.schoolYear).includes(schoolYear)`
+        }
+    }
 
     return criteria
 }
+///////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<add feature
 //aplica los filtros
 function filterStudentList() {
     let ci = document.getElementById("filter-modal-ci").value;
@@ -129,6 +147,7 @@ function filterStudentList() {
     let lastName = document.getElementById("filter-modal-lastName").value.toLowerCase();
     let seccion = document.getElementById("filter-modal-seccion").value.toLowerCase();
     let year = document.getElementById("filter-modal-year").value;
+    let schoolYear = document.getElementById("filter-modal-schoolYear").value;
 
 
     let filteredList = StudentList.filter(student => {
@@ -137,7 +156,7 @@ function filterStudentList() {
         }
     });
 
-    if (ci != "" || name != "" || lastName != "" || seccion != "" || year != "") {
+    if (ci != "" || name != "" || lastName != "" || seccion != "" || year != "" || schoolYear != "") {
         if (filteredList.length > 0) {
             if (document.getElementById("studentList-modal-title").classList.contains("pre-")) {
                 fillTable(filteredList, "pre-");

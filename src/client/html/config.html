@@ -244,10 +244,16 @@
 
     <!-- /////////////////modals/////////////////////// -->
 
-    <div id="studenList-modal" class="invisible">
+    <div id="studenList-modal" class="invisible" draggable="true">
         <button id="btn-close-modal">X</button>
+        <div id="filtos-modal-title">
+            <h4 id="studentList-modal-title">Lista de estudiantes inscritos</h4>
+            <div class="form-group seccion">
+                <label for="filter-modal-schoolYear">Periodo Escolar</label>
+                <input type="text" class="form-control" id="filter-modal-schoolYear" placeholder="Filtrar por periodo escolar">
+            </div>
+        </div>
 
-        <h4 id="studentList-modal-title">Lista de estudiantes inscritos</h4>
         <div id="fintros-modal-container">
             <div class="form-group">
                 <label for="filter-modal-ci">Cédula</label>
@@ -269,6 +275,7 @@
                 <label for="filter-modal-seccion">Sección</label>
                 <input type="text" class="form-control" id="filter-modal-seccion" placeholder="Filtrar por la Sección">
             </div>
+
 
         </div>
 
