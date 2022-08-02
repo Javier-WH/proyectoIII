@@ -5,6 +5,7 @@ export async function fillSubjects() {
 
     fillYearBox();
     fillGradesList();
+    fillGradesListEvent();
 
 }
 ///////////
@@ -84,7 +85,7 @@ async function getGrades(year) {
 
 }
 
-function fillGradesList() {
+function fillGradesListEvent() {
 
     yearBox.addEventListener("change", async e => {
         gradeBox.innerHTML = "";
@@ -97,5 +98,22 @@ function fillGradesList() {
         })
 
     })
+
+}
+
+async function fillGradesList() {
+
+
+    gradeBox.innerHTML = "";
+
+    let data = await getGrades(1);
+
+    let subjects = await data[0].subjectsList;
+
+    subjects.map(subject => {
+        gradeBox.innerHTML += ` <option value="${subject}">${subject}</option>`;
+    })
+
+
 
 }

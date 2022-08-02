@@ -167,3 +167,9 @@
         border: none;
         margin-left: 95%;
     }
+    /* ////////////////////////////////////// */
+    
+    #grade {
+        max-width: 140px;
+        min-width: 140px;
+    }

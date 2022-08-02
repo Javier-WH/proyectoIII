@@ -1,5 +1,7 @@
 const { Subjects } = require("../database/models.js");
 
+
+///inserta o actualiza las materias
 async function setSubjects(subjects) {
 
     let years = Object.keys(subjects);

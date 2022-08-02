@@ -1,6 +1,7 @@
 const path = require('path');
 const session = require(path.join(__dirname, "sessionStore.js"));
 const { insertAdmin } = require("./database/createAdmin.js");
+const { createSubjects } = require("./database/CreateSubjects.js")
 const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
 const express = require('express');
 const app = express();
@@ -31,5 +32,6 @@ app.listen(process.env.PORT, serverIp, err => {
         console.log(`El servidor se ha iniciado correctamente en la direccion -> ${serverIp}:${process.env.PORT}`.green);
     }
     insertAdmin();
+    createSubjects();
 
 });
