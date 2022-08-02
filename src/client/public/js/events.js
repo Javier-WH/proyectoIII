@@ -114,7 +114,7 @@ export function loadEvents(StudentList, teacher, config) {
             setSelected(rowID)
             rowID = rowID.replace("std-", "");
             let studentRow = StudentList.filter(data => data.id == rowID);
-            let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+            let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
 
 
             let studenData = {
@@ -226,8 +226,8 @@ export function loadEvents(StudentList, teacher, config) {
                 document.getElementById("lapso3").value = document.getElementById("lapso3-" + id).innerText
 
             } else {
-
-                let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+                /////////////
+                let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
 
                 let index = changedList.findIndex(x => x.id == id)
                 let def = ((Number.parseFloat(document.getElementById("lapso1").value) + Number.parseFloat(document.getElementById("lapso2").value) + Number.parseFloat(document.getElementById("lapso3").value)) / 3);
@@ -305,7 +305,7 @@ export function loadEvents(StudentList, teacher, config) {
 
                     nextRow = nextRow.replace("std-", "");
                     let studentRow = StudentList.filter(data => data.id == nextRow);
-                    let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+                    let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
 
 
                     let studenData = {
@@ -349,7 +349,7 @@ export function loadEvents(StudentList, teacher, config) {
 
                     previusRow = previusRow.replace("std-", "");
                     let studentRow = StudentList.filter(data => data.id == previusRow);
-                    let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+                    let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
 
 
                     let studenData = {
@@ -413,7 +413,7 @@ export function loadEvents(StudentList, teacher, config) {
                 document.getElementById(e.target.id.replace("li", "std")).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
                 let rowID = e.target.id.replace("li-", "");
                 let studentRow = StudentList.filter(data => data.id == rowID);
-                let subject = document.getElementById('seccion-title').innerText.toLowerCase().split(" ")[0];
+                let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
 
 
                 let studenData = {

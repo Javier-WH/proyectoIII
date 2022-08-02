@@ -167,9 +167,27 @@
         border: none;
         margin-left: 95%;
     }
+    
+    #grades-modal-table-container {
+        overflow-y: visible;
+        height: 500px;
+        border: 1px solid black;
+    }
     /* ////////////////////////////////////// */
     
     #grade {
         max-width: 140px;
         min-width: 140px;
+        width: 100%;
+        height: 400px;
+    }
+    
+    #grades-modal-thead,
+    #grades-modal-table {
+        display: block;
+    }
+    
+    #grades-modal-table {
+        max-height: 400px;
+        overflow-y: auto;
     }

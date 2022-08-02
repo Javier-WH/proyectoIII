@@ -85,6 +85,7 @@ async function findStudent(filters) {
 
 async function updateGrades(list) {
 
+
     //revisa que se tenga los permisos para subir las notas del laps
     let config = await configController.getConfig();
 
@@ -110,6 +111,7 @@ async function updateGrades(list) {
                 id
             }
         });
+
 
         let oldSubjects = student[0].subjects;
 

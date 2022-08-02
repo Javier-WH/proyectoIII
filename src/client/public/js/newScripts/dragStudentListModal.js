@@ -6,7 +6,7 @@ var isDown = false;
 export function dragStudentsModal() {
 
     studentsModal.addEventListener('mousedown', function(e) {
-        console.log(studentsModal.style.marginLeft)
+
         isDown = true;
         offset = [
             studentsModal.offsetLeft - e.clientX - 100,

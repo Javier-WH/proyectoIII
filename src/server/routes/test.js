@@ -33,7 +33,7 @@ Router.post("/getFake", express.json(), async(req, res) => {
 
 
 
-    function getStuden(cant) {
+    function getStuden(cant, schoolYear) {
 
         let genderRand = getRandomInt(0, 1);
         let gender = genderRand == 1 ? "M" : "F";
@@ -140,19 +140,19 @@ Router.post("/getFake", express.json(), async(req, res) => {
             "age": age,
             "parentID": parentID,
             "subjects": subjects,
-            "schoolYear": "2021"
+            "schoolYear": schoolYear
         }
     }
 
-    function registerStudenList(cant) {
+    function registerStudenList(cant, schoolYear) {
 
         for (let i = 0; i < cant; i++) {
-            studentsController.registerStudent(getStuden(cant));
+            studentsController.registerStudent(getStuden(cant, schoolYear));
         }
     }
 
 
-    registerStudenList(req.body.cant);
+    registerStudenList(req.body.cant, req.body.schoolYear);
 
     res.send("OK")
 

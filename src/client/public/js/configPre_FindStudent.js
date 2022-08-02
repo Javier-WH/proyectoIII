@@ -194,29 +194,29 @@ export function loadStudentListEvents() {
                     } else {
 
                         let keys = Object.keys(subjects)
-
+                        let mensage = "Esperando Notas";
                         for (let i = 0; i < keys.length; i++) {
                             html += `<tr>`;
                             html += `<th scope="row">${keys[i]}</th>`;
                             if (subjects[keys[i]].l1) {
                                 html += `<td>${subjects[keys[i]].l1}</td>`;
                             } else {
-                                html += `<td>n/a</td>`;
+                                html += `<td>${mensage}</td>`;
                             }
                             if (subjects[keys[i]].l2) {
                                 html += `<td>${subjects[keys[i]].l2}</td>`;
                             } else {
-                                html += `<td>n/a</td>`;
+                                html += `<td>${mensage}</td>`;
                             }
                             if (subjects[keys[i]].l3) {
                                 html += `<td>${subjects[keys[i]].l3}</td>`;
                             } else {
-                                html += `<td>n/a</td>`;
+                                html += `<td>${mensage}</td>`;
                             }
                             if (subjects[keys[i]].def) {
                                 html += `<td>${subjects[keys[i]].def}</td>`;
                             } else {
-                                html += `<td>n/a</td>`;
+                                html += `<td>${mensage}</td>`;
                             }
                             html += `</tr>`;
                         }
