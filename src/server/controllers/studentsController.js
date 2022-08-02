@@ -2,9 +2,9 @@ const colors = require('colors')
 const { Op } = require("sequelize");
 const { Students } = require("../database/models.js");
 const configController = require("../controllers/configControler.js");
+const { getSubjects } = require("../controllers/subjectsController.js");
 
-
-async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, subjects, schoolYear }) {
+async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, schoolYear }) {
     let message = ""
     let checkCI = await findStudent({ CI: ci })
 
@@ -12,6 +12,16 @@ async function registerStudent({ names, lastName, ci, gender, seccion, year, age
         message = { ERROR: "El estudiante ya está inscrito" };
     } else {
 
+        let askSubj = await getSubjects();
+        let filteredSubject = askSubj.filter(subj => subj.grade == year)[0].subjectsList;
+
+
+        let subjects = {}
+
+        filteredSubject.map(e => {
+                subjects[e] = { "l1": 0, "l2": 0, "l3": 0, "def": 0 }
+            })
+            //console.log(subjects)
 
         let ask = await Students.create({
             names,
@@ -57,7 +67,7 @@ async function getStudents({ seccion, year, schoolYear }) {
 /////////////////////////
 
 async function findStudent(filters) {
-    console.log(filters)
+
     let ask = await Students.findAll({
         where: filters,
         order: [
