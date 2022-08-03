@@ -5,6 +5,7 @@ import { fillStudentData, fillTitleSeccion } from './fillStudenData.js';
 import { fillTeacherName } from './fillTeacherName.js';
 import { loadEvents } from './events.js';
 import { getConfig } from "./getConfigData.js";
+import { fixSeachBoxLocation } from "./media_querys/fixSearchBox.js"
 
 
 
@@ -21,8 +22,8 @@ async function main() {
     /////////////////////////////////////
 
     loadEvents(studentList, teacher[0], config);
-
-
+    fixSeachBoxLocation();
+    window.addEventListener('resize', fixSeachBoxLocation);
 }
 
 

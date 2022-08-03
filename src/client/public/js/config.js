@@ -10,6 +10,7 @@ import { registerStudent } from "./configRegisterStudent.js";
 import { applyConfig } from "./getConfigData.js";
 import { fillSubjects } from "./newScripts/fillSubjects.js";
 import { dragStudentsModal } from "./newScripts/dragStudentListModal.js";
+import { dragGradesModal } from "./newScripts/dragGradesModal.js";
 
 
 
@@ -77,6 +78,7 @@ async function main() {
 
     fillSubjects();
     dragStudentsModal();
+    dragGradesModal();
 }
 
 main();
