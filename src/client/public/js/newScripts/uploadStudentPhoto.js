@@ -51,20 +51,21 @@ function ekUpload() {
         // console.log(fileType);
         let imageName = file.name;
 
-        let isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+        let isGood = (/\.(?=jpg)/gi).test(imageName);
         if (isGood) {
             document.getElementById('start').classList.add("hidden");
-
-            document.getElementById('notimage').classList.add("hidden");
             // Thumbnail Preview
             document.getElementById('file-image').classList.remove("hidden");
             document.getElementById('file-image').src = URL.createObjectURL(file);
         } else {
             document.getElementById('file-image').classList.add("hidden");
-            document.getElementById('notimage').classList.remove("hidden");
             document.getElementById('start').classList.remove("hidden");
-
             document.getElementById("file-upload-form").reset();
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'Solo se admiten imagenes .JPG'
+            })
         }
     }
 
@@ -81,23 +82,31 @@ ekUpload();
 
 
 export async function upload(id) {
-    let data = new FormData();
-    data.append("file", fileSelect.files[0]);
-    data.append("name", fileSelect.files[0].name);
-    data.append("id", id);
-    data.append("ext", fileSelect.files[0].name.split('.').pop());
+    if (fileSelect.files.length > 0) {
+        let data = new FormData();
+        data.append("file", fileSelect.files[0]);
+        data.append("name", fileSelect.files[0].name);
+        data.append("id", id);
+        data.append("ext", fileSelect.files[0].name.split('.').pop());
 
-    let rs = await fetch("/uploadPhoto", {
-        method: "POST",
-        body: data,
-        headers: {
-            'Accept': 'multipart/form-data'
-        },
-    })
+        let rs = await fetch("/uploadPhoto", {
+            method: "POST",
+            body: data,
+            headers: {
+                'Accept': 'multipart/form-data'
+            },
+        })
 
-    let response = await rs.text();
+        let response = await rs.text();
 
-    if (response == "OK") {
-        console.log("foto actualizada");
+        if (response == "OK") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'La foto ha sido actualizada',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     }
 }

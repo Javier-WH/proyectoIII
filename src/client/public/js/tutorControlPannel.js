@@ -211,16 +211,25 @@ async function fillStudentDropBox() {
 
 document.getElementById("students-dropbox").addEventListener("change", async e => {
     await fillStudentGrades(e.target.value)
-
+    loadPhoto();
 });
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<CONTINUAR DESDE AQUI
 async function loadPhoto() {
+
     let photo = document.getElementById("file-image");
     let id = document.getElementById("students-dropbox").value
     let blobData = await getStudentPhoto(id);
-    let imgData = URL.createObjectURL(blobData);
-    photo.classList.remove("hidden");
-    photo.src = imgData;
+
+    if (blobData.type == "text/html") {
+        photo.classList.add("hidden");
+        document.getElementById('start').classList.remove("hidden");
+        photo.src = "";
+    } else {
+        let imgData = URL.createObjectURL(blobData);
+        photo.classList.remove("hidden");
+        document.getElementById('start').classList.add("hidden");
+        photo.src = imgData;
+    }
 }
 
 

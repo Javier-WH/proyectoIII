@@ -9,8 +9,8 @@ export async function getStudentPhoto(id) {
         body: await JSON.stringify(data)
     })
 
-    let foto = await ask.blob();
 
+    let foto = await ask.blob();
     return foto;
 
 }
