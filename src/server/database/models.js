@@ -32,7 +32,8 @@ Students.init({
     age: DataTypes.INTEGER,
     parentID: DataTypes.INTEGER,
     subjects: DataTypes.JSON,
-    schoolYear: DataTypes.STRING
+    schoolYear: DataTypes.STRING,
+    photo: DataTypes.STRING
 }, {
     sequelize,
     modelName: "Students"

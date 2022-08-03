@@ -46,6 +46,14 @@
     margin-bottom: 40px;
 }
 
+#customFile {
+    width: 500px;
+}
+
+#btn-preinscribir {
+    margin-top: 40px;
+}
+
 li {
     list-style-type: none;
 }

@@ -130,6 +130,7 @@ Router.post("/getFake", express.json(), async(req, res) => {
 
         let subjects = seccion == "a" ? subjectListA : subjectListB;
 
+
         return {
             "names": name,
             "lastName": lastName,
