@@ -21,7 +21,7 @@ app.use(require("./routes/routes.post.js"));
 app.use(require("./routes/routes.patch.js"));
 app.use(require("./routes/routes.delete.js"));
 app.use(require("./routes/uploadFile.js"));
-
+app.use(require("./routes/downloadFile.js"));
 app.use(require("./routes/test.js")); ////////////////////////////////////////////////Estas son rutas de pruebas, deben eliminarse en la version final
 
 app.use(express.static(path.join(__dirname, "../client/public")));

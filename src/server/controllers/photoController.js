@@ -12,4 +12,13 @@ function renameFile({ name, id, ext }) {
     });
 }
 
-module.exports = { renameFile }
+///////////////////////////////////
+
+function getFile({ id }) {
+    //console.log(id)
+    return "301.jpeg";
+
+}
+
+
+module.exports = { renameFile, getFile }

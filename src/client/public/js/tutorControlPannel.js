@@ -1,4 +1,5 @@
 import { upload } from "./newScripts/uploadStudentPhoto.js";
+import { getStudentPhoto } from "./newScripts/downloadStudentPhoto.js"
 
 const tabs = document.getElementsByClassName("nav-link");
 
@@ -6,6 +7,7 @@ const tabs = document.getElementsByClassName("nav-link");
 let tutorID = "";
 let tutorCI = "";
 renderSelectedTab();
+
 // window.addEventListener("beforeunload", () => {
 //     fetch("/logout")
 
@@ -203,12 +205,24 @@ async function fillStudentDropBox() {
         document.getElementById("students-dropbox").innerHTML = "No existen estudiantes inscritos en esta cuenta"
     }
     fillStudentGrades(document.getElementById("students-dropbox").value);
+    loadPhoto();
 };
 
 
 document.getElementById("students-dropbox").addEventListener("change", async e => {
     await fillStudentGrades(e.target.value)
+
 });
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<CONTINUAR DESDE AQUI
+async function loadPhoto() {
+    let photo = document.getElementById("file-image");
+    let id = document.getElementById("students-dropbox").value
+    let blobData = await getStudentPhoto(id);
+    let imgData = URL.createObjectURL(blobData);
+    photo.classList.remove("hidden");
+    photo.src = imgData;
+}
+
 
 
 async function getStudentData(id) {
