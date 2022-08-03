@@ -76,27 +76,28 @@ function ekUpload() {
         document.getElementById('file-drag').style.display = 'none';
     }
 }
+ekUpload();
 
 
-async function upload(id) {
+
+export async function upload(id) {
     let data = new FormData();
     data.append("file", fileSelect.files[0]);
-    data.append("id", id)
+    data.append("name", fileSelect.files[0].name);
+    data.append("id", id);
+    data.append("ext", fileSelect.files[0].name.split('.').pop());
 
     let rs = await fetch("/uploadPhoto", {
         method: "POST",
-        body: data
+        body: data,
+        headers: {
+            'Accept': 'multipart/form-data'
+        },
     })
 
     let response = await rs.text();
 
     if (response == "OK") {
-        console.log("foto actualizada")
+        console.log("foto actualizada");
     }
 }
-
-
-
-
-
-ekUpload();

@@ -1,3 +1,5 @@
+import { upload } from "./newScripts/uploadStudentPhoto.js";
+
 const tabs = document.getElementsByClassName("nav-link");
 
 
@@ -301,3 +303,8 @@ async function fillStudentGrades(id) {
 
 
 fillTutorName();
+
+document.getElementById("btn-upload-photo").addEventListener("click", () => {
+    let id = document.getElementById("students-dropbox").value;
+    upload(id);
+})

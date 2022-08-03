@@ -33,7 +33,8 @@ async function registerStudent({ names, lastName, ci, gender, seccion, year, age
             age,
             parentID,
             subjects,
-            schoolYear
+            schoolYear,
+            photo: "default"
         });
 
         message = ask;
@@ -143,7 +144,16 @@ async function updateGrades(list) {
         rejected({ "Error": "Ha ocurrido un error al intentar actualizar las notas" });
     })
 }
+//////////////
 
+async function updatePhoto(id, photo) {
+    await Students.update({ photo }, {
+        where: {
+            id
+        }
+    });
+
+}
 
 //////////////////////////////////////
 
@@ -163,10 +173,13 @@ async function deleteStudent({ id }) {
 }
 
 
+
+
 module.exports = {
     getStudents,
     registerStudent,
     findStudent,
     updateGrades,
-    deleteStudent
+    deleteStudent,
+    updatePhoto
 }
