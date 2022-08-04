@@ -1,5 +1,5 @@
 #table-container {
-    width: 50vw;
+    width: 55vw;
     height: 80vh;
     border-left: 1px solid black;
     overflow-y: auto;
@@ -12,11 +12,6 @@ tr {
     cursor: pointer;
 }
 
-.col-notas {
-    max-width: 50px;
-    width: 10%;
-}
-
 .selected {
     background-color: rgb(39, 37, 37);
     color: white;
@@ -26,3 +21,40 @@ tr {
 #showList {
     display: none;
 }
+
+
+/* 
+#table-notas-thead,
+#studentList {
+    display: block;
+    width: 100%;
+}
+
+#studentList {
+    overflow-y: auto;
+    height: 75vh;
+}
+.col-num {
+    max-width: 50px;
+    width: 3%;
+}
+
+
+.col-ci {
+    max-width: 100px;
+    width: 13%;
+}
+
+.col-lastName,
+.col-name {
+    max-width: 100px;
+    width: 20%;
+} 
+
+.col-notas {
+    max-width: 50px;
+    width: 11%;
+}
+
+
+*/

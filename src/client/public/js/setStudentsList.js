@@ -35,12 +35,12 @@ export function fillSeccionList({ subject }, seccionList) {
         html += `
             <tr id = "std-${student.id}">
                 <th scope="row" class="col-numero">${numero++}</th>
-                <td>${student.CI}</td>
-                <td>${student.names}</td>
-                <td>${student.lastName}</td>
-                <td id="lapso1-${student.id}">${lapso1}</td>
-                <td id="lapso2-${student.id}">${lapso2}</td>
-                <td id="lapso3-${student.id}">${lapso3}</td> 
+                <td class="col-ci">${student.CI}</td>
+                <td class="col-name">${student.names}</td>
+                <td class="col-lastName">${student.lastName}</td>
+                <td id="lapso1-${student.id}" class="col-notas">${lapso1}</td>
+                <td id="lapso2-${student.id}" class="col-notas">${lapso2}</td>
+                <td id="lapso3-${student.id}" class="col-notas">${lapso3}</td> 
                 <td id="def-${student.id}">${def}</td>
                 
             </tr>

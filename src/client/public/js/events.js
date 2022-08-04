@@ -186,12 +186,15 @@ export function loadEvents(StudentList, teacher, config) {
             let array = document.getElementById('seccion-title').innerText.split(" ")
             let teacher = document.getElementById("navbarDropdown-teacherName").innerText;
             let subject = array[0];
-            let seccion = array[1];
+            let seccion = array[1].replace("Periodo", "");
+
+            let periodo = document.getElementsByClassName("periodoText")[0].innerText;
 
             document.getElementById("print-subjet-title").innerText = `Asignatura: ${subject}`;
             document.getElementById("print-seccion-title").innerText = `Sección: ${seccion}`
             document.getElementById("print-teacher-title").innerText = `Profesor: ${teacher}`;
 
+            document.getElementById("print-periodo-title").innerText = periodo;
 
             printTable.innerHTML = table.innerHTML;
             let ventimp = window.open(' ', 'popimpr');
