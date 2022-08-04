@@ -11,6 +11,8 @@ import { applyConfig } from "./getConfigData.js";
 import { fillSubjects } from "./newScripts/fillSubjects.js";
 import { dragStudentsModal } from "./newScripts/dragStudentListModal.js";
 import { dragGradesModal } from "./newScripts/dragGradesModal.js";
+import { showSubjectsList } from "./newScripts/showSubjects.js"
+import { dragSubjectModal } from "./newScripts/dragShowSubjects.js"
 
 
 
@@ -55,6 +57,8 @@ async function main() {
 
     document.getElementById("opt-preinscription-list").addEventListener("click", findStudentList_pre)
 
+    document.getElementById("opt-subjects-list").addEventListener("click", showSubjectsList)
+
     //////////////////////////////modal student list
 
     document.getElementById("btn-close-modal").addEventListener("click", () => {
@@ -73,12 +77,14 @@ async function main() {
     document.getElementById("filter-modal-year").addEventListener("keyup", filterList);
     document.getElementById("filter-modal-schoolYear").addEventListener("keyup", filterList);
 
+
     document.getElementById("opt-register-student").addEventListener("click", registerStudent);
     loadStudentListEvents();
 
     fillSubjects();
     dragStudentsModal();
     dragGradesModal();
+    dragSubjectModal();
 }
 
 main();

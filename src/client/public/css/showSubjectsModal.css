@@ -1,0 +1,44 @@
+#show-subjects-modal {
+    border: 2px solid #5c6bc0;
+    width: 500px;
+    height: 660px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+}
+
+#show-subjects-close-x {
+    width: 20px;
+    margin-left: auto;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+#show-subjects-title {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+}
+
+#show-subjects-pensum {
+    border: 1px solid #5c6bc0;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.show-subjects-minor-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.lbl-pensum-subject {
+    display: block;
+    border: 1px solid #8891c0;
+    font-size: 18px;
+    padding: 8px 0;
+}

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="CSS/config.css">
     <link rel="stylesheet" href="CSS/navBar.css">
     <link rel="stylesheet" href="CSS/configStudentList.css">
+    <link rel="stylesheet" href="CSS/showSubjectsModal.css">
 
     <!-- JavaScript -->
     <script src="JS/config.js" type="module" defer></script>
@@ -345,6 +346,28 @@
     </div>
 
 
+    <div id="show-subjects-modal" class="invisible">
+        <div id="show-subjects-close-x">X</div>
+        <label for="" id="show-subjects-title">Pensum Escolar por año</label>
+        <div id="show-subjects-main-container">
+            <div id="show-subjects-year-container" class="show-subjects-minor-container">
+                <label for="show-subjects-year">Año</label>
+                <select id="show-subjects-year">
+                    <option value="1 ">Primer año</option>
+                    <option value="2 ">Segundo año</option>
+                    <option value="3 ">Tercer año</option>
+                    <option value="4 ">Cuarto año</option>
+                    <option value="5 ">Quinto año</option>
+                </select>
+            </div>
+            <div id="show-subjects-pensum-container" class="show-subjects-minor-container">
+                <label for="show-subjects-pensum">Materias</label>
+                <div id="show-subjects-pensum"></div>
+            </div>
+        </div>
+        <input type="text" name="" id="show-subjects-addSubjectInput">
+        <button id="show-subject-addSubjectButton">Agregar</button>
+    </div>
 
 
 </body>
