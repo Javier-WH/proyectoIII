@@ -1,10 +1,11 @@
-import { getConfig } from "./getConfigData.js"
+import { getConfig } from "./getConfigData.js";
+import { getStudentPhoto } from "./newScripts/downloadStudentPhoto.js";
 
 export function fillStudentData(student, { subject }) {
     if (!student) {
         return;
     }
-
+    //console.log(student)
     let name = student.names;
     let lastName = student.lastName;
     let ci = student.CI;
@@ -43,6 +44,7 @@ export function fillStudentData(student, { subject }) {
     }
 
     checkPermision();
+    loadPhoto(student.id);
 }
 
 async function checkPermision() {
@@ -68,4 +70,19 @@ export async function fillTitleSeccion({ seccion, subject, year }, studentList) 
         title.innerHTML = `La sección no tiene alumnos inscritos`;
     }
 
+}
+
+////////////////////
+
+async function loadPhoto(id) {
+
+    let photo = document.getElementById("photo");
+    let blobData = await getStudentPhoto(id);
+
+    if (blobData.type == "text/html") {
+        photo.src = "SVG/placeholder.svg";
+    } else {
+        let imgData = URL.createObjectURL(blobData);
+        photo.src = imgData;
+    }
 }

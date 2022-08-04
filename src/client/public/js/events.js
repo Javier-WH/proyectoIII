@@ -7,7 +7,7 @@ import { getPerfilTeacher } from './setPerfilTeacher.js'
 
 let SELECTED = ''
 let changedList = [];
-
+let evenMissing = false;
 
 export function loadEvents(StudentList, teacher, config) {
     //cambia la sección cuando se selecciona una nueva en el dropbox
@@ -57,7 +57,10 @@ export function loadEvents(StudentList, teacher, config) {
                     fillStudentData(studentList[0], { subject }); //llena los datos el alumno
                     setSelected(`std-${studentList[0].id}`);
                     StudentList = studentList;
-                    events();
+                    if (evenMissing) {
+                        events();
+                        evenMissing = false;
+                    }
                 } else {
                     document.getElementById("studentList").innerHTML = "";
                 }
@@ -104,7 +107,10 @@ export function loadEvents(StudentList, teacher, config) {
 
     }
 
+
     function events() {
+
+
         setSelected(`std-${StudentList[0].id}`);
 
         //evento al hacer click en un estudiante de la lista
@@ -127,7 +133,8 @@ export function loadEvents(StudentList, teacher, config) {
                         "l2": document.getElementById("lapso2-" + rowID).innerText,
                         "l3": document.getElementById("lapso3-" + rowID).innerText
                     }
-                }
+                },
+                id: studentRow[0].id
             };
 
             fillStudentData(studenData, { subject });
@@ -292,6 +299,7 @@ export function loadEvents(StudentList, teacher, config) {
 
                 try {
                     nextRow = row.nextElementSibling.id;
+
                 } catch (error) {
                     nextRow = "std-" + StudentList[0].id;
                 }
@@ -318,7 +326,8 @@ export function loadEvents(StudentList, teacher, config) {
                                 "l2": document.getElementById("lapso2-" + nextRow).innerText,
                                 "l3": document.getElementById("lapso3-" + nextRow).innerText
                             }
-                        }
+                        },
+                        id: studentRow[0].id
                     };
 
                     fillStudentData(studenData, { subject });
@@ -337,6 +346,7 @@ export function loadEvents(StudentList, teacher, config) {
                 let previusRow;
                 try {
                     previusRow = row.previousElementSibling.id;
+
                 } catch (error) {
                     previusRow = "std-" + StudentList[StudentList.length - 1].id;
                 }
@@ -362,7 +372,8 @@ export function loadEvents(StudentList, teacher, config) {
                                 "l2": document.getElementById("lapso2-" + previusRow).innerText,
                                 "l3": document.getElementById("lapso3-" + previusRow).innerText
                             }
-                        }
+                        },
+                        id: studentRow[0].id
                     };
 
                     fillStudentData(studenData, { subject });
@@ -426,7 +437,8 @@ export function loadEvents(StudentList, teacher, config) {
                             "l2": document.getElementById("lapso2-" + rowID).innerText,
                             "l3": document.getElementById("lapso3-" + rowID).innerText
                         }
-                    }
+                    },
+                    id: studentRow[0].id
                 };
 
                 fillStudentData(studenData, { subject });
@@ -439,6 +451,8 @@ export function loadEvents(StudentList, teacher, config) {
 
     if (StudentList.length > 0) {
         events();
+    } else {
+        evenMissing = true;
     }
 
     document.getElementById("logout").addEventListener("click", () => {
