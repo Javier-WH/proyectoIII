@@ -1,16 +1,19 @@
-const optSubjects = document.getElementById("opt-subjects-list");
+//const optSubjects = document.getElementById("opt-subjects-list");
 const modal = document.getElementById("show-subjects-modal");
 const pensumBox = document.getElementById("show-subjects-pensum");
 const year = document.getElementById("show-subjects-year");
+const btnAdd = document.getElementById("show-subject-addSubjectButton");
+const input = document.getElementById("show-subjects-addSubjectInput");
 
 export async function showSubjectsList() {
     modal.classList.remove("invisible");
 
     document.getElementById("show-subjects-close-x").addEventListener("click", () => { modal.classList.add("invisible") });
-
     year.addEventListener("change", async() => { fillPensum(await getSubjects()) });
+    btnAdd.addEventListener("click", btnADD);
 
     fillPensum(await getSubjects());
+    removeSubject();
 }
 //////
 
@@ -25,8 +28,9 @@ async function getSubjects() {
     return subjectsList.filter(e => e.grade == grade).map(e => e.subjectsList)[0];
 
 }
-
+///////////
 function fillPensum(subjects) {
+
     pensumBox.innerHTML = "";
     let html = "";
 
@@ -37,4 +41,87 @@ function fillPensum(subjects) {
     });
     pensumBox.innerHTML = html;
 
+}
+///////////////
+async function updateSubjects() {
+    let grade = year.value;
+    let subjectsElements = document.getElementsByClassName("lbl-pensum-subject");
+    let subjectsList = [];
+
+    for (let i = 0; i < subjectsElements.length; i++) {
+        subjectsList.push(subjectsElements[i].innerText);
+    }
+
+    let ask = await fetch("/getSubjects", {
+        method: "POST"
+    });
+    let currentSubjects = await ask.json();
+
+    let newSubjects = {}
+
+    currentSubjects.map(e => {
+        if (e.grade == grade) {
+            e.subjectsList = subjectsList;
+        }
+        newSubjects[e.grade] = e.subjectsList;
+
+    })
+
+
+    let sendSubjects = await fetch("/setSubject", {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: await JSON.stringify(newSubjects)
+    })
+
+    let response = await sendSubjects.text();
+
+    if (response == "OK") {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Las materias han sido actualizadas',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+}
+
+//////////
+async function btnADD() {
+    if (input.value.length > 0) {
+
+        Swal.fire({
+            title: `¿Deseas Agregar la materia ${input.value} del Pensum de ${year.options[year.selectedIndex].text}`,
+            showDenyButton: true,
+            confirmButtonText: 'Agregar',
+            denyButtonText: `Cancelar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let newSubject = input.value;
+                pensumBox.innerHTML += `<label class ="lbl-pensum-subject">${newSubject}</label>`; //
+                updateSubjects();
+                input.value = "";
+            }
+        });
+    }
+}
+////////
+
+function removeSubject() {
+    pensumBox.addEventListener("click", e => {
+        Swal.fire({
+            title: `¿Deseas eliminar la materia ${e.target.innerText} del Pensum de ${year.options[year.selectedIndex].text}`,
+            showDenyButton: true,
+            confirmButtonText: 'Eliminar',
+            denyButtonText: `Conservar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                e.target.remove();
+                updateSubjects();
+            }
+        });
+    });
 }

@@ -81,7 +81,9 @@ async function main() {
     document.getElementById("opt-register-student").addEventListener("click", registerStudent);
     loadStudentListEvents();
 
-    fillSubjects();
+    document.getElementById("inscribirTEacher").addEventListener("click", fillSubjects)
+
+    // fillSubjects();
     dragStudentsModal();
     dragGradesModal();
     dragSubjectModal();
