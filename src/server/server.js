@@ -4,6 +4,10 @@ const { insertAdmin } = require("./database/createAdmin.js");
 const { createSubjects } = require("./database/CreateSubjects.js")
 const { createConfig } = require("./database/createConfig.js");
 const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
+const { sendEmail } = require("./libs/email.js");
+
+
+
 const express = require('express');
 const app = express();
 
@@ -22,6 +26,7 @@ app.use(require("./routes/routes.patch.js"));
 app.use(require("./routes/routes.delete.js"));
 app.use(require("./routes/uploadFile.js"));
 app.use(require("./routes/downloadFile.js"));
+app.use(require("./routes/emailRecovery.js"));
 app.use(require("./routes/test.js")); ////////////////////////////////////////////////Estas son rutas de pruebas, deben eliminarse en la version final
 
 app.use(express.static(path.join(__dirname, "../client/public")));
@@ -37,5 +42,9 @@ app.listen(process.env.PORT, serverIp, err => {
     insertAdmin();
     createSubjects();
     createConfig();
+
+    //sendEmail("fj_rh@hotmail.com");
+
+
 
 })
