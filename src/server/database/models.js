@@ -118,4 +118,15 @@ Subjects.init({
     modelName: "Subjects"
 });
 
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects };
+/////
+
+class emailTokens extends Model {};
+emailTokens.init({
+    idUser: DataTypes.INTEGER,
+    token: DataTypes.STRING
+}, {
+    sequelize,
+    modelName: "emailTokens"
+});
+
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens };

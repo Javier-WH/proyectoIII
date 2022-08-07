@@ -4,7 +4,7 @@ const { insertAdmin } = require("./database/createAdmin.js");
 const { createSubjects } = require("./database/CreateSubjects.js")
 const { createConfig } = require("./database/createConfig.js");
 const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
-const { sendEmail } = require("./libs/email.js");
+const { SendEmail } = require("./libs/email.js");
 
 
 
@@ -43,7 +43,7 @@ app.listen(process.env.PORT, serverIp, err => {
     createSubjects();
     createConfig();
 
-    //sendEmail("fj_rh@hotmail.com");
+    //SendEmail("fj_rh@hotmail.com");
 
 
 
