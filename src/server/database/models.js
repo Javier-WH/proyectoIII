@@ -123,7 +123,8 @@ Subjects.init({
 class emailTokens extends Model {};
 emailTokens.init({
     idUser: DataTypes.INTEGER,
-    token: DataTypes.STRING
+    token: DataTypes.STRING,
+    ci: DataTypes.STRING
 }, {
     sequelize,
     modelName: "emailTokens"

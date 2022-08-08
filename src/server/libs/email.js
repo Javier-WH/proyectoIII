@@ -5,21 +5,20 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: "bataalladelavictoria@gmail.com",
-        pass: "W8gLUFAt0qVNDKa2"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     },
 })
 
-async function SendEmail() {
+async function SendEmail(destiny, text) {
 
     try {
         const info = await transporter.sendMail({
             from: 'bataalladelavictoria@gmail.com',
-            to: "fj_rh@hotmail.com",
-            subject: 'Some One needs to talk',
-            text: "Esto es un prueba de email"
+            to: destiny,
+            subject: 'Recuperar contraseña Batalla de la Victoria',
+            text
         })
-        console.log('success', info);
     } catch (error) {
         console.log('there was an error', error);
     }

@@ -1,5 +1,6 @@
 const bcryptjs = require('bcryptjs')
 const { User } = require("../database/models.js");
+const { ciExist } = require("../controllers/emailControler.js");
 
 
 // ingresa un usuaio a la tabla users
@@ -255,10 +256,29 @@ async function updateTeacherData({ data, id }) {
         resolved(update);
         rejected({ "ERROR": "ocurrio un error al actualizar los datos del profesor" });
     })
-
-
-
 }
+
+/////////actualiza el password
+
+async function changeTeacherPassword({ CI, password }) {
+    if (await ciExist(CI)) { //revisa que existe un token asociado a esta cedula
+
+        password = await bcryptjs.hash(password, 8);
+        let update = await User.update({ password }, {
+            where: {
+                CI
+            }
+        });
+
+        return new Promise((resolved, rejected) => {
+            resolved(update);
+            rejected({ "ERROR": "ocurrio un error al actualizar la contraseña del profesor" });
+        })
+    } else {
+        return "El link ha vencido";
+    }
+}
+
 
 module.exports = {
     insertUser,
@@ -270,5 +290,6 @@ module.exports = {
     fireTeacher,
     getAllUsers,
     getTeacherInfo,
-    updateTeacherData
+    updateTeacherData,
+    changeTeacherPassword
 }
