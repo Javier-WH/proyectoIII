@@ -129,5 +129,17 @@ emailTokens.init({
     sequelize,
     modelName: "emailTokens"
 });
+/////////////////
 
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens };
+class Vitacora extends Model {};
+Vitacora.init({
+    userID: DataTypes.INTEGER,
+    userType: DataTypes.STRING,
+    action: DataTypes.STRING,
+    userIP: DataTypes.STRING,
+    status: DataTypes.STRING
+}, {
+    sequelize,
+    modelName: "vitacoras"
+});
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Vitacora };

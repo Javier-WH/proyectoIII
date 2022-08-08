@@ -32,15 +32,23 @@ bntSend.addEventListener("click", async() => {
         body: await JSON.stringify(data)
     })
     let response = await ask.text();
-    if (response == "El link ha vencido") {
+    if (response == "OK") {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'La contraseña ha sido actualizada',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        setTimeout(() => {
+            window.location.replace("/");
+        }, 1500);
+    } else {
         Swal.fire({
             icon: 'error',
             title: 'Error',
             text: response,
         })
-    } else {
-        window.location.replace("/");
+
     }
-
-
 })

@@ -1,7 +1,8 @@
 const { User } = require("../database/models.js");
 const { emailTokens } = require("../database/models.js");
 const { SendEmail } = require("../libs/email.js");
-const tokenLifeTime = 1200000;
+const { getIp } = require("../networkInterfaces.js");
+const tokenLifeTime = 600000;
 
 async function emailExist(email) {
     let response;
@@ -12,7 +13,7 @@ async function emailExist(email) {
     });
 
     if (ask.length > 0) {
-        response = { susses: ask.length > 0, id: ask[0].id, ci: ask[0].CI };
+        response = { susses: ask.length > 0, id: ask[0].id, ci: ask[0].CI, email: ask[0].email };
     } else {
         response = { susses: ask.length > 0 };
     }
@@ -64,6 +65,15 @@ function cleanToken(token) {
     }, tokenLifeTime);
 }
 
+/////////
+
+
+async function cleanTokenByCI(ci) {
+
+    await emailTokens.destroy({ where: { ci } });
+
+}
+
 //////////////////////
 
 async function tokenExist(token) {
@@ -89,15 +99,16 @@ async function sendEmail({ email }) {
     }
     if (exist.susses) {
 
+        let port = process.env.PORT
+        let serverIp = getIp();
         let id = exist.id;
         let email = exist.email;
         let ci = exist.ci;
         let token = createToken(40);
-
         insertToken(id, token, ci);
         cleanToken(token);
         //comentado para evitar enviar correos
-        //SendEmail(email, `Haga click en el siguiente enlace para reestablecer su contraseña \n\n  <a href="192.168.1.106:3000/teacherPasswordRecovery/${token}"> Click Aquí</a>`);
+        //SendEmail(email, `<h3>Haga click en el siguiente enlace para reestablecer su contraseña</h3> \n\n  <a href="${serverIp}:${port}/teacherPasswordRecovery/${token}"> Click Aquí</a>`);
 
         return "OK";
     }
@@ -117,5 +128,16 @@ async function cleanAllEmailTokens() {
     }
 }
 
+///
 
-module.exports = { sendEmail, tokenExist, cleanAllEmailTokens, ciExist }
+async function isTokenListEmpty() {
+    let ask = await emailTokens.findAll({});
+    return ask.length == 0;
+
+}
+
+///
+
+
+
+module.exports = { sendEmail, tokenExist, cleanAllEmailTokens, ciExist, cleanTokenByCI, isTokenListEmpty }

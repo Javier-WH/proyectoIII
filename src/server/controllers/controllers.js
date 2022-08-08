@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs')
 const { User } = require("../database/models.js");
-const { ciExist } = require("../controllers/emailControler.js");
+const { ciExist, cleanTokenByCI } = require("../controllers/emailControler.js");
 
 
 // ingresa un usuaio a la tabla users
@@ -262,20 +262,26 @@ async function updateTeacherData({ data, id }) {
 
 async function changeTeacherPassword({ CI, password }) {
     if (await ciExist(CI)) { //revisa que existe un token asociado a esta cedula
-
         password = await bcryptjs.hash(password, 8);
         let update = await User.update({ password }, {
             where: {
                 CI
             }
         });
-
+        cleanTokenByCI(CI);
         return new Promise((resolved, rejected) => {
-            resolved(update);
+            resolved("OK");
             rejected({ "ERROR": "ocurrio un error al actualizar la contraseña del profesor" });
         })
     } else {
-        return "El link ha vencido";
+        let ask = await getUserByCI({ ci: CI });
+
+        if (ask.Error && ask.Error == "El profesor ya está inscrito") {
+            return "El link ha vencido";
+        } else {
+            console.log("x")
+            return "La cedula suministrada no está registrada";
+        }
     }
 }
 

@@ -44,6 +44,4 @@ app.listen(process.env.PORT, serverIp, err => {
     createSubjects();
     createConfig();
     cleanAllEmailTokens();
-
-
 })

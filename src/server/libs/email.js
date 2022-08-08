@@ -20,7 +20,7 @@ async function SendEmail(destiny, text) {
             text
         })
     } catch (error) {
-        console.log('there was an error', error);
+        console.log('there was an error', error.text);
     }
 
 }

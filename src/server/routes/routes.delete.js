@@ -20,6 +20,7 @@ Router.delete("/fireTecher", async(req, res, next) => {
 
 
 Router.delete("/fireTecher", async(req, res) => {
+
     res.json(await controller.fireTeacher(req.query));
 });
 

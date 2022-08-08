@@ -39,11 +39,17 @@ Router.post("/tutor", express.json(), async(req, res) => {
 });
 
 Router.post("/tutor/validate", express.json(), async(req, res) => {
+    req.session.destroy();
+    req.session = null;
     res.json(await tutorController.validateTutor(req.body));
 });
 
 Router.post("/getConfig", express.json(), async(req, res) => {
-    res.json(await configController.getConfig());
+    if (req.session.teacherID) { ///corige el bug que crashea el server cuando no hay session iniciada
+        res.json(await configController.getConfig());
+    } else {
+        res.redirect("/");
+    }
 })
 
 Router.post("/getGradesList", express.json(), async(req, res) => {
