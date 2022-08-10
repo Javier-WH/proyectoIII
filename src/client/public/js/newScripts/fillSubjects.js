@@ -9,7 +9,7 @@ export async function fillSubjects() {
 
 }
 ///////////
-async function getSubjects() {
+export async function getSubjects() {
     let ask = await fetch("/getSubjects", {
         method: "POST"
     });

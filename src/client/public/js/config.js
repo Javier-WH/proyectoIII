@@ -47,7 +47,7 @@ async function main() {
         window.location.replace("/logout")
     });
 
-    document.getElementById("btn-register-teacher").addEventListener("click", registerTeacher);
+    document.getElementById("btn-register-teacher").addEventListener("click", registerTeacher) 
 
     document.getElementById("opt-fireTeacher").addEventListener("click", fireTeacher);
 

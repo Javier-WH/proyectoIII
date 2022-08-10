@@ -12,6 +12,7 @@ import { fixSeachBoxLocation } from "./media_querys/fixSearchBox.js"
 async function main() {
     let config = await getConfig();
     let teacher = await getTeacher(); //obtiene los datos del profesor del procesor
+    console.log(teacher)
     fillTeacherName(teacher[0]);
     let seccions = makeSeccions(teacher[0]); // obtiene las materias del profesor
     fillSeccionBox(seccions); //llena el dropbox de las materias

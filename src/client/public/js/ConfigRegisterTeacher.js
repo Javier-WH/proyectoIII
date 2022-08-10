@@ -1,19 +1,34 @@
+import { getSubjects } from "./newScripts/fillSubjects.js";
 export async function registerTeacher() {
     let teacherName = document.getElementById("teacher-names").value;
     let teacherLastName = document.getElementById("teacher-LastNames").value;
     let teacherCI = document.getElementById("teacher-ci").value;
     let isAdmin = document.getElementById("isAdmin");
     let seccionList = document.getElementsByClassName("list-subject");
+;
+    let dbSubjects = await getSubjects();
 
 
     if (teacherName.length > 0 && teacherLastName.length > 0 && teacherCI.length > 0 && seccionList.length > 0) {
 
+        
+        let dbSubjectsList = dbSubjects.map(sub => sub.subjectsList).flat(1);
+       
         let teacherSubjects = {};
         let subjects = [];
 
         for (let session of seccionList) {
             let dataSession = session.innerText;
-            let subject = dataSession.split(" ")[0];
+     
+            //let subject = dataSession.split(" ")[0];
+            let subject ='';
+            dbSubjectsList.map(e =>{
+                if(dataSession.includes(e)){
+                    subject = e
+                }
+            })
+            //
+
             if (!subjects.includes(subject)) {
                 subjects.push(subject)
             }
@@ -23,22 +38,33 @@ export async function registerTeacher() {
             teacherSubjects[subject] = [];
         }
 
-
+///////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<bug here
         for (let session of seccionList) {
             let dataSession = session.innerText;
-            let array = dataSession.split(" ");
-            let subject1 = array[0];
-            let year = array[1][0];
-            let seccion = array[1][2];
+            //let array = dataSession.split(" ");
+            let subject1 = "";
+            let year = "";
+            let seccion = "";
 
+            dbSubjectsList.map(e =>{
+                if(dataSession.includes(e)){
+                    subject1 = e
+                    year = dataSession.replace(e, "").substring(1, 2);
+                    seccion = dataSession.replace(e, "").substring(3);
+                }
+                 
+            })
+      
+                   
             for (let subject of subjects) {
                 if (subject1 == subject) {
                     teacherSubjects[subject].push(year + seccion);
+                    
                 }
             }
         }
 
-
+        console.log(teacherSubjects)
 
         let data = {
             "userName": teacherName,
