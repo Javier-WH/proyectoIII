@@ -2,7 +2,7 @@ import { fetchStudentList } from './fetch.js';
 import { fillSeccionList } from './setStudentsList.js';
 import { fillStudentData, fillTitleSeccion } from './fillStudenData.js';
 import { getPerfilTeacher } from './setPerfilTeacher.js'
-
+import { getSubjects } from "./newScripts/fillSubjects.js";
 
 
 let SELECTED = ''
@@ -45,11 +45,28 @@ export function loadEvents(StudentList, teacher, config) {
             }
 
             async function changeSeccion() {
-                let data = e.target.innerText.split(" ");
-                let subject = data[0];
-                let year = data[1][0];
-                let seccion = data[1][1];
+                let dbSubjects = await getSubjects();
+                let dbSubjectsList = dbSubjects.map(sub => sub.subjectsList).flat(1);
+              
+                /////
+
+                //let data = e.target.innerText.split(" ");
+                let data = e.target.innerText;
+                
+                let subject = "";
+                let year = "";
+                let seccion = "";
                 let schoolYear = config.schoolYear;
+                
+                dbSubjectsList.map(e=>{
+                    if(data.includes(e)){
+                        subject = e;
+                        year = data.replace(e, "").substring(1,2);
+                        seccion = data.replace(e, "").substring(2);
+                    }
+
+                })
+
                 loadingData(); //animacion de relleno antes de cargar los datos
                 let studentList = await fetchStudentList({ seccion, year, schoolYear }); //obtiene la lista de estudiantes
                 if (studentList.length > 0) {
@@ -73,7 +90,6 @@ export function loadEvents(StudentList, teacher, config) {
 
     ////esta funcion guarda los datos
     async function saveData() {
-
         if (changedList.length > 0) {
             let data = await JSON.stringify(changedList);
             let ask = await fetch("/Estudiante/registro", {
@@ -209,13 +225,9 @@ export function loadEvents(StudentList, teacher, config) {
         }
 
 
-
-
-
-
         ////////////////////////////////////////////////////
         //genera el objeto con la lista de las notas que deben actualizarce
-        function makeDataToSave() {
+        async function makeDataToSave() {
             let id = SELECTED.replace("std-", "");
             let error = ""
             let max = 20;
@@ -237,8 +249,18 @@ export function loadEvents(StudentList, teacher, config) {
 
             } else {
                 /////////////
-                let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
+               
+                let subject = document.getElementById('seccion-title').innerText;
+           
+                let dbSubjects = await getSubjects();
+                let dbSubjectsList = dbSubjects.map(sub => sub.subjectsList).flat(1);
+                dbSubjectsList.map(e=>{
+                    if(subject.includes(e)){
+                        subject = e;
+                    }
+                })
 
+        
                 let index = changedList.findIndex(x => x.id == id)
                 let def = ((Number.parseFloat(document.getElementById("lapso1").value) + Number.parseFloat(document.getElementById("lapso2").value) + Number.parseFloat(document.getElementById("lapso3").value)) / 3);
 
@@ -290,11 +312,13 @@ export function loadEvents(StudentList, teacher, config) {
         }
 
 
+     
 
         //////////////proximo estudiante
 
         function nextStudent() {
             if (!checkIsSearching()) {
+            
                 blurGrade();
                 document.getElementById("search-Box").innerHTML = "";
                 let row = document.getElementById(SELECTED);
@@ -317,7 +341,7 @@ export function loadEvents(StudentList, teacher, config) {
                     nextRow = nextRow.replace("std-", "");
                     let studentRow = StudentList.filter(data => data.id == nextRow);
                     let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
-
+                    console.log(subject)///////////////////////////////////////////////////////////////////////////////bug
 
                     let studenData = {
                         names: studentRow[0].names,

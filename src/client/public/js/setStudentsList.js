@@ -1,6 +1,6 @@
 const table = document.getElementById("studentList");
 export function fillSeccionList({ subject }, seccionList) {
-
+    //console.log(subject)
     let numero = 1;
     let html = "";
 

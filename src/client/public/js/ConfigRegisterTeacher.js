@@ -64,7 +64,7 @@ export async function registerTeacher() {
             }
         }
 
-        console.log(teacherSubjects)
+        
 
         let data = {
             "userName": teacherName,

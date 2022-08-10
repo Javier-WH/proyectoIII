@@ -1,6 +1,5 @@
 export function makeSeccions({ subject }) {
     let subjectList = Object.keys(subject);
-    console.log(subject)
     let Subjects = [];
 
     for (let i = 0; i < subjectList.length; i++) {
