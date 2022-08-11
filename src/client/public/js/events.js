@@ -165,11 +165,11 @@ export function loadEvents(StudentList, teacher, config) {
         window.addEventListener("keydown", e => {
                 if (e.key == "ArrowUp") {
                     e.preventDefault();
+                  
                     previusStudent();
                 }
                 if (e.key == "ArrowDown") {
                     e.preventDefault();
-
                     nextStudent();
                 }
             })
@@ -310,20 +310,18 @@ export function loadEvents(StudentList, teacher, config) {
             }
 
         }
+////////////////////
 
-
-     
-
+  
         //////////////proximo estudiante
 
         function nextStudent() {
             if (!checkIsSearching()) {
-            
                 blurGrade();
                 document.getElementById("search-Box").innerHTML = "";
                 let row = document.getElementById(SELECTED);
                 let nextRow;
-
+                
                 try {
                     nextRow = row.nextElementSibling.id;
 
@@ -341,7 +339,7 @@ export function loadEvents(StudentList, teacher, config) {
                     nextRow = nextRow.replace("std-", "");
                     let studentRow = StudentList.filter(data => data.id == nextRow);
                     let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
-                    console.log(subject)///////////////////////////////////////////////////////////////////////////////bug
+
 
                     let studenData = {
                         names: studentRow[0].names,

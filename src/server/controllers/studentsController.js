@@ -86,22 +86,26 @@ async function findStudent(filters) {
 
 async function updateGrades(list) {
 
-
-    //revisa que se tenga los permisos para subir las notas del laps
+    let student = await findStudent({id:list[0].id})
     let config = await configController.getConfig();
+    
 
     if (!config[0].l1 && list[0].subjects[Object.keys(list[0].subjects)[0]].l1) { //primer lapso
-
-        return "No está habilitado el ingreso de notas del primer lapso";
+        if(student[0].subjects[Object.keys(list[0].subjects)[0]].l1 != list[0].subjects[Object.keys(list[0].subjects)[0]].l1){
+            return "No está habilitado el ingreso de notas del primer lapso";
+        }
     }
 
     if (!config[0].l2 && list[0].subjects[Object.keys(list[0].subjects)[0]].l2) { //segundo lapso
-
-        return "No está habilitado el ingreso de notas del segundo lapso";
+        if(student[0].subjects[Object.keys(list[0].subjects)[0]].l2 != list[0].subjects[Object.keys(list[0].subjects)[0]].l2){
+            return "No está habilitado el ingreso de notas del segundo lapso";
+        }
     }
     if (!config[0].l3 && list[0].subjects[Object.keys(list[0].subjects)[0]].l3) { //tercer lapso
 
-        return "No está habilitado el ingreso de notas del tercer lapso";
+        if(student[0].subjects[Object.keys(list[0].subjects)[0]].l3 != list[0].subjects[Object.keys(list[0].subjects)[0]].l3){
+            return "No está habilitado el ingreso de notas del tercer lapso";
+        }
     }
 
     /////////////////////////////////////////////////////////
@@ -132,7 +136,7 @@ async function updateGrades(list) {
             }
 
         }
-
+       
         let update = await Students.update({ subjects: oldSubjects }, {
             where: {
                 id
