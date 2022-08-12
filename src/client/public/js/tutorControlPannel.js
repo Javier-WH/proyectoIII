@@ -256,7 +256,7 @@ async function getStudentData(id) {
 async function fillStudentGrades(id) {
     let ask = await getStudentData(id);
     if (ask) {
-
+    
         let subjects = ask.subjects;
         let html = "";
         if (subjects == null) {
@@ -305,6 +305,7 @@ async function fillStudentGrades(id) {
                                 <span>No se ha encontrado ningun estudiante inscrito en esta cuenta</span>
                                 <span></span>
                                 <span></span>`;
+        document.getElementById("photo-container").hidden = "true"
 
         Swal.fire({
             title: "No se ha encontrado ningun estudiante inscrito en esta cuenta",

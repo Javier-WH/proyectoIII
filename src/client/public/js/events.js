@@ -88,6 +88,12 @@ export function loadEvents(StudentList, teacher, config) {
         }
     });
 
+    function retoreGrades(){
+
+    }
+
+
+
     ////esta funcion guarda los datos
     async function saveData() {
         if (changedList.length > 0) {
@@ -112,11 +118,19 @@ export function loadEvents(StudentList, teacher, config) {
                 });
                 changedList.length = 0;
             } else {
+                               
                 Swal.fire({
-                    icon: 'error',
                     title: 'DENEGADO',
-                    text: response
-                });
+                    text: response,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        location.reload();
+                    } 
+                  })
+
             }
 
         }
