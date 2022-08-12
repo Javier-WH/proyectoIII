@@ -1,4 +1,5 @@
 const { User } = require("../database/models.js");
+const { getTutorByEmail } = require("./tutorsController.js");
 const { emailTokens } = require("../database/models.js");
 const { SendEmail } = require("../libs/email.js");
 const { getIp } = require("../networkInterfaces.js");
@@ -104,11 +105,35 @@ async function sendEmail({ email }) {
         let id = exist.id;
         let email = exist.email;
         let ci = exist.ci;
-        let token = createToken(40);
+        let token = createToken(200);
         insertToken(id, token, ci);
         cleanToken(token);
         //comentado para evitar enviar correos
         //SendEmail(email, `<h3>Haga click en el siguiente enlace para reestablecer su contraseña</h3> \n\n  <a href="${serverIp}:${port}/teacherPasswordRecovery/${token}"> Click Aquí</a>`);
+
+        return "OK";
+    }
+}
+//////
+
+async function sendEmailTutor({ email }) {
+    let exist = await getTutorByEmail({email});
+        if (exist.ERROR) {
+        console.log(exist.ERROR);
+        return exist.ERROR;
+    }
+    if (exist.susses) {
+
+        let port = process.env.PORT
+        let serverIp = getIp();
+        let id = exist.id;
+        let email = exist.email;
+        let ci = exist.ci;
+        let token = createToken(200);
+        insertToken(id, token, ci);
+        cleanToken(token);
+        //comentado para evitar enviar correos
+        //SendEmail(email, `<h3>Haga click en el siguiente enlace para reestablecer su contraseña</h3> \n\n  <a href="${serverIp}:${port}/tutorPasswordRecovery/${token}"> Click Aquí</a>`);
 
         return "OK";
     }
@@ -140,4 +165,4 @@ async function isTokenListEmpty() {
 
 
 
-module.exports = { sendEmail, tokenExist, cleanAllEmailTokens, ciExist, cleanTokenByCI, isTokenListEmpty }
+module.exports = { sendEmail, tokenExist, cleanAllEmailTokens, ciExist, cleanTokenByCI, isTokenListEmpty, sendEmailTutor }

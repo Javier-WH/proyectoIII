@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
 const Router = express.Router();
-const { sendEmail, tokenExist, isTokenListEmpty, ciExist } = require("../controllers/emailControler.js");
+const { sendEmail, tokenExist, isTokenListEmpty, sendEmailTutor } = require("../controllers/emailControler.js");
 const { changeTeacherPassword } = require("../controllers/controllers.js");
 
 
@@ -30,5 +30,24 @@ Router.get("/Recovery", async(req, res) => {
 Router.post("/Recovery", express.json(), async(req, res) => {
     res.send(await changeTeacherPassword(req.body))
 })
+
+//////////////////////////////////////////////
+
+Router.post("/tutorPasswordRecovery", express.json(), async(req, res) => {
+    res.send(await sendEmailTutor(req.body));
+});
+
+Router.get("/tutorPasswordRecovery/:token", async(req, res, next) => {
+    if ((await tokenExist(req.params.token)).status == "existe") {
+        res.redirect("/Recovery");
+    } else {
+        res.redirect("/");
+    }
+});
+Router.post("/TutorRecovery", express.json(), async(req, res) => {
+    res.send(await changeTeacherPassword(req.body))///////////////////<= continuar desde aqui
+})
+
+
 
 module.exports = Router;
