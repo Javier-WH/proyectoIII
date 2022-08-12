@@ -163,6 +163,20 @@ async function getTutorByEmail({ email }) {
     })
 }
 
+////////////////////////
+
+
+async function changeTutorPassword({CI, password}){
+   password =  await bcryptjs.hash(password, 8);
+    try {
+        await Tutors.update({password},{where:{ci:CI}});
+        return "OK";
+    } catch (error) {
+        console.log(error)
+        return "ERROR"
+    }
+}
+
 
 
 module.exports = {
@@ -170,5 +184,6 @@ module.exports = {
     updateTutor,
     getTutorByCI,
     validateTutor,
-    getTutorByEmail
+    getTutorByEmail,
+    changeTutorPassword
 }

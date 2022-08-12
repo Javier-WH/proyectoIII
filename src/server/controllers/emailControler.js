@@ -129,7 +129,7 @@ async function sendEmailTutor({ email }) {
         let id = exist.id;
         let email = exist.email;
         let ci = exist.ci;
-        let token = createToken(200);
+        let token = createToken(50);
         insertToken(id, token, ci);
         cleanToken(token);
         //comentado para evitar enviar correos

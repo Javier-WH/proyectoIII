@@ -3,7 +3,7 @@ const express = require("express");
 const Router = express.Router();
 const { sendEmail, tokenExist, isTokenListEmpty, sendEmailTutor } = require("../controllers/emailControler.js");
 const { changeTeacherPassword } = require("../controllers/controllers.js");
-
+const { changeTutorPassword } = require("../controllers/tutorsController.js");
 
 
 Router.post("/teacherPasswordRecovery", express.json(), async(req, res) => {
@@ -39,13 +39,23 @@ Router.post("/tutorPasswordRecovery", express.json(), async(req, res) => {
 
 Router.get("/tutorPasswordRecovery/:token", async(req, res, next) => {
     if ((await tokenExist(req.params.token)).status == "existe") {
-        res.redirect("/Recovery");
+        res.redirect("/TutorRecovery");
     } else {
         res.redirect("/");
     }
 });
+
+Router.get("/TutorRecovery", async(req, res) => {
+    if (await isTokenListEmpty()) {
+        res.redirect("/");
+    } else {
+        res.sendFile(path.join(__dirname, "../../client/html/tutorPasswordRecovery.html"));
+    }
+});
+
+
 Router.post("/TutorRecovery", express.json(), async(req, res) => {
-    res.send(await changeTeacherPassword(req.body))///////////////////<= continuar desde aqui
+    res.send(await changeTutorPassword(req.body))
 })
 
 
