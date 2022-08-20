@@ -10,7 +10,8 @@ const sessionStore = new mysqlSession({
     port: process.env.BD_SESSION_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.BD_SESSION
+    //database: process.env.BD_SESSION
+    database: process.env.DB_NAME
 });
 
 const session = Session({

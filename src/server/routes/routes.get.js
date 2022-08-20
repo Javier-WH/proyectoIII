@@ -1,18 +1,14 @@
 const path = require('path')
 const express = require('express');
 const Router = express.Router();
-const { addLog } = require("../controllers/vitacora.js")
+
 
 
 
 Router.get("/app", (req, res, next) => {
 
     if (req.session.teacherID) {
-        //vitacora
-        let logData = { userID: req.session.teacherID, userType: "Profesor", action: "Ingreso a la App", userIP: req.ip, status: "Logrado" };
-        addLog(logData);
-
-        next();
+          next();
     } else {
         res.redirect("/");
     }
@@ -20,10 +16,6 @@ Router.get("/app", (req, res, next) => {
 
 Router.get("/config", (req, res, next) => {
     if (req.session.teacherID && req.session.adminID && (req.session.teacherID == req.session.adminID)) {
-        //vitacora
-        let logData = { userID: req.session.teacherID, userType: "Administrador", action: "Ingreso a al panel de administracióm", userIP: req.ip, status: "Logrado" };
-        addLog(logData);
-
         next();
     } else {
         res.redirect("/");

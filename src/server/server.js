@@ -5,6 +5,7 @@ const { createSubjects } = require("./database/CreateSubjects.js")
 const { createConfig } = require("./database/createConfig.js");
 const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
 const { cleanAllEmailTokens } = require("./controllers/emailControler.js");
+const {initTrigers} = require("./database/triggers.js")
 
 
 
@@ -44,4 +45,5 @@ app.listen(process.env.PORT, serverIp, err => {
     createSubjects();
     createConfig();
     cleanAllEmailTokens();
+    initTrigers();
 })

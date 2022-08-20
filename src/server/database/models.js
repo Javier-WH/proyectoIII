@@ -131,15 +131,13 @@ emailTokens.init({
 });
 /////////////////
 
-class Vitacora extends Model {};
-Vitacora.init({
-    userID: DataTypes.INTEGER,
-    userType: DataTypes.STRING,
-    action: DataTypes.STRING,
-    userIP: DataTypes.STRING,
-    status: DataTypes.STRING
+class Bitacora extends Model {};
+Bitacora.init({
+    description: DataTypes.STRING,
+    newData: DataTypes.STRING(5000),
+    oldData: DataTypes.STRING(5000),
 }, {
     sequelize,
-    modelName: "vitacoras"
+    modelName: "Bitacora"
 });
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Vitacora };
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Bitacora };
