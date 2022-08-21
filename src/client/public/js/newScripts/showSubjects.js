@@ -62,11 +62,12 @@ async function updateSubjects() {
     currentSubjects.map(e => {
         if (e.grade == grade) {
             e.subjectsList = subjectsList;
+            newSubjects[e.grade] = e.subjectsList;
         }
-        newSubjects[e.grade] = e.subjectsList;
 
     })
 
+    
 
     let sendSubjects = await fetch("/setSubject", {
         method: "PATCH",

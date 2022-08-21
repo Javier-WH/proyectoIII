@@ -176,6 +176,19 @@ async function trigerInsertTutor() {
 }
 
 
+async function trigerUpdateSubjects() {
+    let triggerName = "updateSubjectsTrigger";
+    let description = "Cambio en el pensum"
+    await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
+    await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER UPDATE ON subjects FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
+        `VALUES('${description}',CONCAT('{"grado":"',NEW.grade,
+                            '","materias":',NEW.subjectsList,'}'
+                            ), CONCAT('{"grado":"',OLD.grade,
+                            '","materias":',OLD.subjectsList,'}'
+                            ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
+}
+
+
 async function initTrigers() {
     try {
         //triggers de usuario
@@ -193,6 +206,11 @@ async function initTrigers() {
 
         //triggers de tutor
         await trigerInsertTutor();
+
+        //trigger pensum escolar
+
+        await trigerUpdateSubjects();
+
 
         console.log("Se han iniciado correctamente los triggers".blue)
     } catch (error) {

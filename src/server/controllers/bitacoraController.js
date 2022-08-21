@@ -32,4 +32,17 @@ async function setLog(req, mensaje){
     });
 }
 
-module.exports = {setLog}
+
+async function setLogCloseSession(id, mensaje){
+     
+    
+
+    await Bitacora.create({
+        description: mensaje,
+        newData: {id},
+        oldData: {message:"No hay datos"} 
+    });
+ 
+}
+
+module.exports = {setLog, setLogCloseSession}

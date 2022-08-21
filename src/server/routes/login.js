@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express');
 const Router = express.Router();
 const controller = require("../controllers/controllers.js");
-const { setLog } = require("../controllers/bitacoraController.js");
+const { setLog, setLogCloseSession } = require("../controllers/bitacoraController.js");
 
 Router.get("/", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/loginScreen.html"));
@@ -46,6 +46,9 @@ Router.post("/autenticateAdmin", express.json(), async(req, res) => {
 
 
 Router.get("/logout", express.json(), async(req, res) => {
+    if(req.session.teacherID != undefined){
+        setLogCloseSession(req.session.teacherID, "Seccion cerrada")
+    }
     req.session.destroy();
     req.session = null;
     res.redirect("/");
