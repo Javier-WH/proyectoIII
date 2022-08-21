@@ -27,8 +27,8 @@ async function setLog(req, mensaje){
 
     await Bitacora.create({
         description: mensaje,
-        newData: await JSON.stringify(data),
-        oldData: "Ninguno" 
+        newData: data,
+        oldData: {message:"No hay datos"} 
     });
 }
 
