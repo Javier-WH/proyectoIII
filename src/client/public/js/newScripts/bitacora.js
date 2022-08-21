@@ -49,6 +49,7 @@ function checkChanges({newData, oldData}){
             if(keys[i] != "materias"){
                 html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${oldData[keys[i]]}</div></div>`
             }
+            
         }        
     }else{ //actualizacion de datos
 
@@ -58,8 +59,46 @@ function checkChanges({newData, oldData}){
         // revisar si cambió un dato
 
         keysNew.map(key=>{
+            let grado = newData.grado;
             if(newData[key] != oldData[key] && key != "materias"){
-                html += `<div class = "change-bitacora"> <div>${key}</div><div></div><div> ${oldData[key]} -> ${newData[key]}</div></div>` 
+                if(key != "pensum"){
+                    html += `<div class = "change-bitacora"> <div>${key}</div><div></div><div> ${oldData[key]} -> ${newData[key]}</div></div>` 
+                }else{
+                    let newSubjextsList = newData[key];
+                    let oldSubjextsList = oldData[key];
+              
+                    newSubjextsList.map(e=>{
+                        if(!oldSubjextsList.includes(e)){
+                            html += `<div class = "change-bitacora">
+                                        <div>
+                                            Agregada a ${grado} año
+                                        </div>
+                                        <div>
+                                            ->
+                                        </div>
+                                        <div> 
+                                            ${e}
+                                        </div>
+                                    </div>` 
+                        }
+                    });
+
+                    oldSubjextsList.map(e=>{
+                        if(!newSubjextsList.includes(e)){
+                            html += `<div class = "change-bitacora">
+                                        <div>
+                                            Eliminada de ${grado} año
+                                        </div>
+                                        <div>
+                                            ->
+                                        </div>
+                                        <div> 
+                                            ${e}
+                                        </div>
+                                    </div>` 
+                        }
+                    }); 
+                }
             }
             if(key == "materias"){
                 let subjectsKey = Object.keys(newData.materias)

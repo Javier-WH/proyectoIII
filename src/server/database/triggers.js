@@ -182,11 +182,12 @@ async function trigerUpdateSubjects() {
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER UPDATE ON subjects FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
         `VALUES('${description}',CONCAT('{"grado":"',NEW.grade,
-                            '","materias":',NEW.subjectsList,'}'
+                            '","pensum":',NEW.subjectsList,'}'
                             ), CONCAT('{"grado":"',OLD.grade,
-                            '","materias":',OLD.subjectsList,'}'
+                            '","pensum":',OLD.subjectsList,'}'
                             ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
+
 
 
 async function initTrigers() {
