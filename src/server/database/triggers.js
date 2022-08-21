@@ -4,20 +4,20 @@ const sequelize = require('./connection.js');
 
 async function trigerInsertUser() {
     let triggerName = "intertUserTrigger";
-    let description = "Inscripcion de nuevo profesor"
+    let description = "Inscripcion de profesor"
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER INSERT ON users FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',CONCAT('nombre:',NEW.name,
-                            '-apellido:',NEW.lastName,
-                            '-apodo:',NEW.nickName,
-                            '-password:',NEW.password,
-                            '-ci:',NEW.CI,
-                            '-genero:',NEW.gender,
-                            '-materias:',NEW.subject,
-                            '-telefono:',NEW.phone,
-                            '-email:',NEW.email,
-                            '-administrador:',NEW.admin                            
-                            ), 'Ninguno', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
+        `VALUES('${description}',CONCAT('{"nombre":"',NEW.name,
+                            '","apellido":"',NEW.lastName,
+                            '","apodo":"',NEW.nickName,
+                            '","password":"',NEW.password,
+                            '","ci":"',NEW.CI,
+                            '","genero":"',NEW.gender,
+                            '","materias":',NEW.subject,
+                            ',"telefono":"',NEW.phone,
+                            '","email":"',NEW.email,
+                            '","administrador":"',NEW.admin,'"}'                           
+                            ),'{"message":"No hay datos"}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
 
 async function trigerUpdateUser() {
@@ -25,26 +25,26 @@ async function trigerUpdateUser() {
     let description = "Actualización de datos del profesor"
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER UPDATE ON users FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',CONCAT('nombre:',NEW.name,
-                            '-apellido:',NEW.lastName,
-                            '-apodo:',NEW.nickName,
-                            '-password:',NEW.password,
-                            '-ci:',NEW.CI,
-                            '-genero:',NEW.gender,
-                            '-materias:',NEW.subject,
-                            '-telefono:',NEW.phone,
-                            '-email:',NEW.email,
-                            '-administrador:',NEW.admin                            
-                            ),CONCAT('nombre:',OLD.name,
-                            '-apellido:',OLD.lastName,
-                            '-apodo:',OLD.nickName,
-                            '-password:',OLD.password,
-                            '-ci:',OLD.CI,
-                            '-genero:',OLD.gender,
-                            '-materias:',OLD.subject,
-                            '-telefono:',OLD.phone,
-                            '-email:',OLD.email,
-                            '-administrador:',OLD.admin                            
+        `VALUES('${description}',CONCAT('{"nombre":"',NEW.name,
+                            '","apellido":"',NEW.lastName,
+                            '","apodo":"',NEW.nickName,
+                            '","password":"',NEW.password,
+                            '","ci":"',NEW.CI,
+                            '","genero":"',NEW.gender,
+                            '","materias":',NEW.subject,
+                            ',"telefono":"',NEW.phone,
+                            '","email":"',NEW.email,
+                            '","administrador":"',NEW.admin,'"}'                           
+                            ),CONCAT('{"nombre":"',OLD.name,
+                            '","apellido":"',OLD.lastName,
+                            '","apodo":"',OLD.nickName,
+                            '","password":"',OLD.password,
+                            '","ci":"',OLD.CI,
+                            '","genero":"',OLD.gender,
+                            '","materias":',OLD.subject,
+                            ',"telefono":"',OLD.phone,
+                            '","email":"',OLD.email,
+                            '","administrador":"',OLD.admin, '"}'                            
                             ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
 
@@ -53,19 +53,18 @@ async function trigerDeleteUser() {
     let description = "Eliminación de profesor"
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER DELETE ON users FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',"Ninguno",CONCAT('nombre:',OLD.name,
-                            '-apellido:',OLD.lastName,
-                            '-apodo:',OLD.nickName,
-                            '-password:',OLD.password,
-                            '-ci:',OLD.CI,
-                            '-genero:',OLD.gender,
-                            '-materias:',OLD.subject,
-                            '-telefono:',OLD.phone,
-                            '-email:',OLD.email,
-                            '-administrador:',OLD.admin                            
+        `VALUES('${description}','{"message":"No hay datos"}' ,CONCAT('{"nombre":"',OLD.name,
+                            '","apellido":"',OLD.lastName,
+                            '","apodo":"',OLD.nickName,
+                            '","password":"',OLD.password,
+                            '","ci":"',OLD.CI,
+                            '","genero":"',OLD.gender,
+                            '","materias":',OLD.subject,
+                            ',"telefono":"',OLD.phone,
+                            '","email":"',OLD.email,
+                            '","administrador":"',OLD.admin,'"}'                           
                             ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
-
 
 
 async function trigerUpdateStudent() {
@@ -73,68 +72,69 @@ async function trigerUpdateStudent() {
     let description = "Actualización de notas o datos del estudiante"
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER UPDATE ON students FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',CONCAT('nombre:',NEW.names,
-                            '-apellido:',NEW.lastName,
-                            '-ci:',NEW.CI,
-                            '-genero:',NEW.gender,
-                            '-seccion:',NEW.seccion,
-                            '-year:',NEW.year,
-                            '-edad:',NEW.age,
-                            '-representantes:',NEW.parentID,
-                            '-materias:',NEW.subjects,
-                            '-periodo:',NEW.schoolYear,
-                            '-foto:',NEW.photo
-                            ), CONCAT('nombre:',OLD.names,
-                            '-apellido:',OLD.lastName,
-                            '-ci:',OLD.CI,
-                            '-genero:',OLD.gender,
-                            '-seccion:',OLD.seccion,
-                            '-year:',OLD.year,
-                            '-edad:',OLD.age,
-                            '-representantes:',OLD.parentID,
-                            '-materias:',OLD.subjects,
-                            '-periodo:',OLD.schoolYear,
-                            '-foto:',OLD.photo
+        `VALUES('${description}',CONCAT('{"nombre":"',NEW.names,
+                            '","apellido":"',NEW.lastName,
+                            '","ci":"',NEW.CI,
+                            '","genero":"',NEW.gender,
+                            '","seccion":"',NEW.seccion,
+                            '","year":"',NEW.year,
+                            '","edad":"',NEW.age,
+                            '","representantes":"',NEW.parentID,
+                            '","materias":',NEW.subjects,
+                            ',"periodo":"',NEW.schoolYear,
+                            '","foto":"',NEW.photo,'"}'
+                            ), CONCAT('{"nombre":"',OLD.names,
+                            '","apellido":"',OLD.lastName,
+                            '","ci":"',OLD.CI,
+                            '","genero":"',OLD.gender,
+                            '","seccion":"',OLD.seccion,
+                            '","year":"',OLD.year,
+                            '","edad":"',OLD.age,
+                            '","representantes":"',OLD.parentID,
+                            '","materias":',OLD.subjects,
+                            ',"periodo":"',OLD.schoolYear,
+                            '","foto":"',OLD.photo, '"}'
                             ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
 
 async function trigerInsertStudent() {
     let triggerName = "insertStudentTrigger";
-    let description = "Inscripción de estudiante"
+    let description = "Inscripción de estudiante";
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER INSERT ON students FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',CONCAT('nombre:',NEW.names,
-                            '-apellido:',NEW.lastName,
-                            '-ci:',NEW.CI,
-                            '-genero:',NEW.gender,
-                            '-seccion:',NEW.seccion,
-                            '-year:',NEW.year,
-                            '-edad:',NEW.age,
-                            '-representantes:',NEW.parentID,
-                            '-materias:',NEW.subjects,
-                            '-periodo:',NEW.schoolYear,
-                            '-foto:',NEW.photo
-                            ), "ninguno", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
+        `VALUES('${description}',CONCAT('{"nombre":"',NEW.names,
+                            '","apellido":"',NEW.lastName,
+                            '","ci":"',NEW.CI,
+                            '","genero":"',NEW.gender,
+                            '","seccion":"',NEW.seccion,
+                            '","year":"',NEW.year,
+                            '","edad":"',NEW.age,
+                            '","representantes":"',NEW.parentID,
+                            '","materias":',NEW.subjects,
+                            ',"periodo":"',NEW.schoolYear,
+                            '","foto":"',NEW.photo,'"}'
+                            ),'{"message":"No hay datos"}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
 
 async function trigerDeleteStudent() {
     let triggerName = "deleteStudentTrigger";
-    let description = "Eliminación de Estudiante"
+    let description = "Eliminación de Estudiante";
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER DELETE ON students FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',"Ninguno", CONCAT('nombre:',OLD.names,
-                            '-apellido:',OLD.lastName,
-                            '-ci:',OLD.CI,
-                            '-genero:',OLD.gender,
-                            '-seccion:',OLD.seccion,
-                            '-year:',OLD.year,
-                            '-edad:',OLD.age,
-                            '-representantes:',OLD.parentID,
-                            '-materias:',OLD.subjects,
-                            '-periodo:',OLD.schoolYear,
-                            '-foto:',OLD.photo
+        `VALUES('${description}','{"message":"No hay datos"}', CONCAT('{"nombre":"',OLD.names,
+                            '","apellido":"',OLD.lastName,
+                            '","ci":"',OLD.CI,
+                            '","genero":"',OLD.gender,
+                            '","seccion":"',OLD.seccion,
+                            '","year":"',OLD.year,
+                            '","edad":"',OLD.age,
+                            '","representantes":"',OLD.parentID,
+                            '","materias":',OLD.subjects,
+                            ',"periodo":"',OLD.schoolYear,
+                            '","foto":"',OLD.photo,'"}'
                             ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
+
 
 
 
@@ -143,16 +143,16 @@ async function trigerChangeConfig() {
     let description = "Cambio en la configuración"
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER UPDATE ON configs FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',CONCAT('lapso1:',NEW.l1,
-                            '-lapso2:',NEW.l2,
-                            '-lapso3:',NEW.l3,
-                            '-editar:',NEW.edit,
-                            '-periodo:',NEW.schoolYear
-                            ), CONCAT('lapso1:',OLD.l1,
-                            '-lapso2:',OLD.l2,
-                            '-lapso3:',OLD.l3,
-                            '-editar:',OLD.edit,
-                            '-periodo:',OLD.schoolYear
+        `VALUES('${description}',CONCAT('{"lapso1":"',NEW.l1,
+                            '","lapso2":"',NEW.l2,
+                            '","lapso3":"',NEW.l3,
+                            '","editar":"',NEW.edit,
+                            '","periodo":"',NEW.schoolYear, '"}'
+                            ), CONCAT('{"lapso1":"',OLD.l1,
+                            '","lapso2":"',OLD.l2,
+                            '","lapso3":"',OLD.l3,
+                            '","editar":"',OLD.edit,
+                            '","periodo":"',OLD.schoolYear, '"}'
                             ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
 
@@ -161,18 +161,18 @@ async function trigerInsertTutor() {
     let description = "Inscripcion de nuevo tutor"
     await sequelize.query(`DROP TRIGGER IF EXISTS ${triggerName}`);
     await sequelize.query(`CREATE TRIGGER ${triggerName} AFTER INSERT ON tutors FOR EACH ROW BEGIN INSERT INTO bitacoras(description, newData, oldData, createdAt, updatedAt) ` +
-        `VALUES('${description}',CONCAT('nombre:',NEW.names,
-                            '-apellido:',NEW.lastName,
-                            '-apodo:',NEW.nickName,
-                            '-password:',NEW.password,
-                            '-ci:',NEW.CI,
-                            '-genero:',NEW.gender,
-                            '-edad:',NEW.age,
-                            '-dirección:',NEW.address,
-                            '-trabajo:',NEW.work,
-                            '-email:',NEW.email,
-                            '-instrucción:',NEW.instruction                            
-                            ), 'Ninguno', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
+        `VALUES('${description}',CONCAT('{"nombre":"',NEW.names,
+                            '","apellido":"',NEW.lastName,
+                            '","apodo":"',NEW.nickName,
+                            '","password":"',NEW.password,
+                            '","ci":"',NEW.CI,
+                            '","genero":"',NEW.gender,
+                            '","edad":"',NEW.age,
+                            '","dirección":"',NEW.address,
+                            '","trabajo":"',NEW.work,
+                            '","email":"',NEW.email,
+                            '","instrucción":"',NEW.instruction, '"}'                            
+                            ), '{"message":"No hay datos"}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }
 
 

@@ -134,8 +134,8 @@ emailTokens.init({
 class Bitacora extends Model {};
 Bitacora.init({
     description: DataTypes.STRING,
-    newData: DataTypes.STRING(5000),
-    oldData: DataTypes.STRING(5000),
+    newData: DataTypes.JSON,
+    oldData: DataTypes.JSON,
 }, {
     sequelize,
     modelName: "Bitacora"

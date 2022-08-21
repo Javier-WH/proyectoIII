@@ -1,8 +1,8 @@
 const path = require('path')
 const express = require('express');
 const Router = express.Router();
-const controller = require("../controllers/controllers.js")
-
+const controller = require("../controllers/controllers.js");
+const { setLog } = require("../controllers/bitacoraController.js");
 
 Router.get("/", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/loginScreen.html"));
@@ -28,6 +28,7 @@ Router.post("/autenticateTeacher", express.json(), async(req, res) => {
     if (response > 0) {
         req.session.teacherID = response;
         req.session.ip = req.ip;
+        setLog(req, "Inicio session de profesor");
     }
     res.send("" + response);
 });
@@ -38,6 +39,7 @@ Router.post("/autenticateAdmin", express.json(), async(req, res) => {
         req.session.adminID = response;
         req.session.teacherID = response;
         req.session.ip = req.ip;
+        setLog(req, "Ingreso al panel de administración");
     }
     res.send("" + response);
 });
