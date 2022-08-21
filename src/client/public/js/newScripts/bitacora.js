@@ -38,10 +38,18 @@ function checkChanges({newData, oldData}){
         let keys = Object.keys(newData);
 
         for(let i = 0 ; i < keys.length -1 ; i++){
-            html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${newData[keys[i]]}</div></div>`
+            if(keys[i] != "materias"){
+                html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${newData[keys[i]]}</div></div>`
+            }
         }
     }else if(newData.message == "No hay datos"){//eliminacion de datos
+        let keys = Object.keys(oldData);
 
+        for(let i = 0 ; i < keys.length -1 ; i++){
+            if(keys[i] != "materias"){
+                html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${oldData[keys[i]]}</div></div>`
+            }
+        }        
     }else{ //actualizacion de datos
 
         let keysNew = Object.keys(newData);
