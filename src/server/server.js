@@ -40,10 +40,11 @@ app.listen(process.env.PORT, serverIp, err => {
         console.log(`Ha ocurrido un error al iniciar el servidor -> ${err.code}`.red);
     } else {
         console.log(`El servidor se ha iniciado correctamente en la direccion -> ${serverIp}:${process.env.PORT}`.green);
+       
+        insertAdmin();
+        createSubjects();
+        createConfig();
+        cleanAllEmailTokens();
+        initTrigers();
     }
-    insertAdmin();
-    createSubjects();
-    createConfig();
-    cleanAllEmailTokens();
-    initTrigers();
 })

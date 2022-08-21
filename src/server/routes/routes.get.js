@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express');
 const Router = express.Router();
+const { getAllBitacoraData }  = require("../controllers/bitacoraController.js");
 
 
 
@@ -26,6 +27,14 @@ Router.get("/config", (req, res, next) => {
 Router.get("/teacherPerfil", async(req, res, next) => {
     if (req.session.teacherID) {
         next();
+    } else {
+        res.redirect("/");
+    }
+});
+
+Router.get("/bitacora", async(req, res, next) => {
+    if (req.session.adminID) {
+        res.send(await getAllBitacoraData());
     } else {
         res.redirect("/");
     }

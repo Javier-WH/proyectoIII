@@ -1,0 +1,68 @@
+#show-bitacora-modal {
+    border: 2px solid #5c6bc0;
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+}
+
+#show-bitacora-close-x {
+    width: 20px;
+    margin-left: auto;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+#show-bitacora-title {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#table-container-bitacora {
+    height: 530px;
+    overflow-y: auto;
+    position: relative;
+}
+
+#table-header-bitacora {
+    position: sticky;
+    top: 0;
+    background-color: #5c6bc0;
+}
+
+#table-header-bitacora tr th {
+    color: white;
+}
+
+/***********************************/
+
+.change-bitacora {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 3fr 1fr 4fr;
+    border-bottom: 1px solid gray;
+    align-items: center;
+
+}
+
+.change-bitacora div {
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.change-bitacora:hover {
+    background-color: #5c6bc0;
+}
+
+.change-bitacora:hover div {
+    color: white !important;
+}

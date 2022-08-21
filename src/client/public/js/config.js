@@ -11,8 +11,10 @@ import { applyConfig } from "./getConfigData.js";
 import { fillSubjects } from "./newScripts/fillSubjects.js";
 import { dragStudentsModal } from "./newScripts/dragStudentListModal.js";
 import { dragGradesModal } from "./newScripts/dragGradesModal.js";
-import { showSubjectsList } from "./newScripts/showSubjects.js"
-import { dragSubjectModal } from "./newScripts/dragShowSubjects.js"
+import { showSubjectsList } from "./newScripts/showSubjects.js";
+import { dragSubjectModal } from "./newScripts/dragShowSubjects.js";
+import { dragBitacora } from "./newScripts/dragBitacora.js"
+import { startBitacora } from "./newScripts/bitacora.js";
 
 
 
@@ -55,11 +57,13 @@ async function main() {
 
     document.getElementById("opt-student-list").addEventListener("click", findStudentList);
 
-    document.getElementById("opt-preinscription-list").addEventListener("click", findStudentList_pre)
+    document.getElementById("opt-preinscription-list").addEventListener("click", findStudentList_pre);
 
-    document.getElementById("opt-subjects-list").addEventListener("click", showSubjectsList)
+    document.getElementById("opt-subjects-list").addEventListener("click", showSubjectsList);
 
+   
     //////////////////////////////modal student list
+
 
     document.getElementById("btn-close-modal").addEventListener("click", () => {
         document.getElementById("studenList-modal").classList.add("invisible");
@@ -87,6 +91,8 @@ async function main() {
     dragStudentsModal();
     dragGradesModal();
     dragSubjectModal();
+    dragBitacora();
+    startBitacora();
 }
 
 main();

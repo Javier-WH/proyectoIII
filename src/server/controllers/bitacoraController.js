@@ -62,4 +62,13 @@ async function setLogCloseSession(id, mensaje){
  
 }
 
-module.exports = {setLog, setLogCloseSession}
+////////////////
+
+async function getAllBitacoraData(){
+    let ask =  await Bitacora.findAll({
+        order:[['id','DESC']]
+    })
+   return ask;
+}
+
+module.exports = {setLog, setLogCloseSession, getAllBitacoraData}
