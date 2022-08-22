@@ -1,5 +1,3 @@
-
-
 export async function startBitacora() {
 
     document.getElementById("show-bitacora-close-x").addEventListener("click", () => { document.getElementById("show-bitacora-modal").classList.toggle("invisible") });
@@ -24,9 +22,13 @@ export async function startBitacora() {
             </tr>
         `
         });
+        let today = new Date();
+        let dayOfWeek = traslateDayOfWeek(today.getDay());
+        let date = `${today.getUTCDate()}/${today.getMonth()}/${ today.getFullYear()}`;
+        let time = `${today.getHours()}-${today.getMinutes()}-${today.getSeconds()}`;
 
         document.getElementById("bitacora-table").innerHTML = html;
-
+        document.getElementById("show-bitacora-registerCount").innerText = `${num} Registros para el ${dayOfWeek} ${date}, hora: ${time}`;
     });
 }
 
