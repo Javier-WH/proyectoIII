@@ -67,16 +67,16 @@
 
             <div id="gender-div">
                 <span id="gendertag">
-                Genero:
-            </span>
+                    Genero:
+                </span>
                 <label>
-                <input type="radio" name="gender" id="genderM" checked/>
-                <span>Masculino</span>
-            </label>
+                    <input type="radio" name="gender" id="genderM" checked />
+                    <span>Masculino</span>
+                </label>
                 <label>
-                <input type="radio" name="gender" id="genderF"/>
-                <span>Femenino</span>
-            </label>
+                    <input type="radio" name="gender" id="genderF" />
+                    <span>Femenino</span>
+                </label>
             </div>
 
             <div class="input-field col s6">
@@ -107,13 +107,19 @@
     </div>
 
     <div id="subjects-container">
-        <h5 id="subjectlist-title">Matrias Asignadas</h5>
+        <button class="btn waves-effect waves-light" type="submit" id="btn-update-subjexts">Modificar Materias
+            <i class="material-icons right">school</i>
+        </button>
+
+        <h5 id="subjectlist-title">Matrias Asignadas <button id="btn-update-ADDsubjexts">+</button> </h5>
+
         <table>
             <thead>
                 <tr>
                     <th>Materia</th>
                     <th>Sección</th>
                     <th>Año</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -121,6 +127,38 @@
 
             </tbody>
         </table>
+
+
+    </div>
+
+    <div id="add-new-subject-modal" class="invisible">
+        <div id="subject-modal-close-x">X</div>
+        <label for="subject-modal-year" class="subject-modal-label">Selecciona un periodo escolar</label>
+        <select name="subject-modal-year" id="subject-modal-year">
+            <option value="" disabled selected>Escoge un periodo</option>
+            <option value="1">Primer año</option>
+            <option value="2">Segundo año</option>
+            <option value="3">Tercer año</option>
+            <option value="4">Cuarto año</option>
+            <option value="5">Quinto año</option>
+        </select>
+        <label for="subject-modal-seccion" class="subject-modal-label">Selecciona un periodo escolar</label>
+        <select name="subject-modal-seccion" id="subject-modal-seccion">
+            <option value="" disabled selected>Escoge una sección</option>
+            <option value="A">Sección A</option>
+            <option value="B">Sección B</option>
+            <option value="C">Sección C</option>
+            <option value="D">Sección D</option>
+            <option value="E">Sección E</option>
+        </select>
+        <label for="subject-modal-subject" class="subject-modal-label">Selecciona una materia</label>
+        <select name="subject-modal-subject" id="subject-modal-subject">
+            <option value="" disabled selected>Escoge una materia</option>
+        </select>
+
+        <button class="btn waves-effect waves-light" type="submit" id="subject-modal-add">Agregar
+            <i class="material-icons right">add</i>
+        </button>
 
     </div>
 
@@ -173,15 +211,17 @@
             for (let key of keys) {
 
                 for (seccion of teacher.subject[key]) {
-                    html += "<tr><td>" + key + "</td><td>" + seccion[1] + "</td><td>" + seccion[0] + "</td></tr>"
+                    html += "<tr><td>" + key + "</td><td>" + seccion[1] + "</td><td>" + seccion[0] + "</td> <td class='remove-Subject'>-</td></tr>"
                 }
             }
 
             document.getElementById("subjectList").innerHTML = html;
 
+
+
             ///////////////////////////////////////////////////////
 
-            document.getElementById("btn-send").addEventListener("click", async() => {
+            document.getElementById("btn-send").addEventListener("click", async () => {
 
                 let teacherData = {
                     data: {
@@ -209,19 +249,229 @@
                     'Los cambios se veran la proxima vez que inicie sessión',
                     'success'
                 );
-
-
-
-
             });
+
+
+            document.getElementById("btn-update-password").addEventListener("click", e => {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Escriba la dirección de correo electrónico asociado a su cuenta',
+                    input: 'text',
+                    inputAttributes: {
+                        autocapitalize: 'off',
+                        id: "SA-pass"
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Enviar',
+                    cancelButtonText: 'Cancelar',
+                    showLoaderOnConfirm: true,
+                    backdrop: true,
+                    preConfirm: (email) => {
+                        if (email == "") {
+                            return "vacio";
+                        }
+                        return fetch("/teacherPasswordRecovery", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "*/*"
+                            },
+                            body: JSON.stringify({ email })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(response.statusText)
+                                }
+                                return response.text();
+                            })
+                            .catch(error => {
+                                Swal.showValidationMessage(
+                                    `Ocurrió un error: ${error}`
+                                )
+                            })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let message = "La dirección de correo electronico no esta registrada";
+                        if (result.value == "OK") {
+                            message = "Se ha enviado un correo con un link para que cambie su contraseña"
+                        } else if (result.value == "vacio") {
+                            message = "No ha ingresado ninguna dirección de correo"
+                        }
+                        Swal.fire(message);
+                    }
+                })
+
+            })
+
+            ////
+
+            document.getElementById("btn-update-subjexts").addEventListener("click", async () => {
+
+                let subject = {};
+
+                let rows = document.getElementsByTagName("tr");
+                // console.log(rows[1].getElementsByTagName("td")[0].innerText)
+                for (let i = 1; i < rows.length; i++) {
+
+                    //console.log(rows[i].getElementsByTagName("td")[1].innerHTML)
+                    let sub = rows[i].getElementsByTagName("td")[0].innerHTML;
+                    let sec = rows[i].getElementsByTagName("td")[1].innerHTML;
+                    let year = rows[i].getElementsByTagName("td")[2].innerHTML;
+
+                    if (subject[sub]) {
+                        subject[sub].push(`${year}${sec}`);
+                    } else {
+                        subject[sub] = [];
+                        subject[sub].push(`${year}${sec}`);
+                    }
+
+
+                }
+
+                let id = teacher.id;
+
+                let ask = await fetch("/Profesor/updateSubjects", {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accpet": "*/*"
+                    },
+                    body: JSON.stringify({ subject, id })
+                });
+
+                let response = await ask.json();
+                if (response.ERROR) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.ERROR,
+                    })
+                    setTimeout(() => {
+                        window.close();
+                    }, 1500);
+                } else {
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Las materias del profesor fueron actualizadas',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            });
+
+            ////////////////////////////
+
+            document.getElementById("subjectList").addEventListener("click", e => {
+                if (e.target.classList == "remove-Subject") {
+                    e.target.parentElement.remove();
+
+                }
+            })
+
+            document.getElementById("btn-update-ADDsubjexts").addEventListener("click", async () => {
+
+                document.getElementById("add-new-subject-modal").classList.toggle("invisible");
+
+            })
+
+        }
+
+        async function fillSubjects() {
+            let year = document.getElementById("subject-modal-year").value;
+            let seccion = document.getElementById("subject-modal-seccion").value;
+            let selectSubject = document.getElementById("subject-modal-subject");
+            selectSubject.innerHTML = "";
+
+            html = "";
+
+            if (year != "" && seccion != "") {
+                let askSubjects = await fetch("/getSubjects", { method: "POST" });
+                let responseSubjects = await askSubjects.json();
+
+                responseSubjects.map(row => {
+                    if (row.grade == year) {
+                        row.subjectsList.map(subject => {
+                            html += `<option value="${subject}">${subject}</option>`;
+                        })
+                    }
+                })
+
+                selectSubject.innerHTML = html;
+
+            }
+
+
 
 
 
         }
 
+        document.getElementById("subject-modal-add").addEventListener("click", () => {
+            let year = document.getElementById("subject-modal-year").value;
+            let seccion = document.getElementById("subject-modal-seccion").value;
+            let selectSubject = document.getElementById("subject-modal-subject").value;
 
+            if (year != "" && seccion != "" && selectSubject != "") {
+                document.getElementById("subjectList").innerHTML += "<tr><td>" + selectSubject + "</td><td>" + seccion + "</td><td>" + year + "</td> <td class='remove-Subject'>-</td></tr>";
+            }
+
+        })
+
+
+        document.getElementById("subject-modal-year").addEventListener("change", fillSubjects);
+        document.getElementById("subject-modal-seccion").addEventListener("change", fillSubjects);
+
+        document.getElementById("subject-modal-close-x").addEventListener("click", () => {
+            document.getElementById("add-new-subject-modal").classList.toggle("invisible");
+        })
 
         fillInputs();
+        dragModal();
+
+        ///
+
+        function dragModal() {
+            const subjectModal = document.getElementById("add-new-subject-modal");
+            var mousePosition;
+            var offset = [0, 0];
+            var isDown = false;
+
+
+            subjectModal.addEventListener('mousedown', function (e) {
+
+                isDown = true;
+                offset = [
+                    subjectModal.offsetLeft - e.clientX,
+                    subjectModal.offsetTop - e.clientY
+                ];
+            }, true);
+
+            document.addEventListener('mouseup', function () {
+                isDown = false;
+            }, true);
+
+            document.addEventListener('mousemove', function (event) {
+                event.preventDefault();
+                if (isDown) {
+                    mousePosition = {
+                        x: event.clientX,
+                        y: event.clientY
+                    };
+                    subjectModal.style.left = (mousePosition.x + offset[0]) + 'px';
+                    subjectModal.style.top = (mousePosition.y + offset[1]) + 'px';
+                }
+            }, true);
+        }
+
+        
+
+
+
     </script>
 
 </body>

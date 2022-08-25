@@ -31,5 +31,12 @@ Router.patch("/setSubject", express.json(), async(req, res) => {
     res.send(await setSubjects(req.body));
 })
 
+Router.patch("/Profesor/updateSubjects", express.json(), async(req, res) => {
+    if(req.session.adminID){
+        res.send(await controller.updateTeacherSubject(req.body));
+    }else{
+        res.json({ERROR:"No tienes permisos de administrador"});
+    }
+});
 
 module.exports = Router;

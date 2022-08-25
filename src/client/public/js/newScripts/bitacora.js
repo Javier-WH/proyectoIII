@@ -28,7 +28,7 @@ export async function startBitacora() {
         let time = `${today.getHours()}-${today.getMinutes()}-${today.getSeconds()}`;
 
         document.getElementById("bitacora-table").innerHTML = html;
-        document.getElementById("show-bitacora-registerCount").innerText = `${num} Registros para el ${dayOfWeek} ${date}, hora: ${time}`;
+        document.getElementById("show-bitacora-registerCount").innerText = `${num -1} Registros para el ${dayOfWeek} ${date}, hora: ${time}`;
     });
 }
 

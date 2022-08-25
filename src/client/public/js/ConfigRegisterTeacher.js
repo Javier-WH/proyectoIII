@@ -64,7 +64,7 @@ export async function registerTeacher() {
             }
         }
 
-        
+               
 
         let data = {
             "userName": teacherName,

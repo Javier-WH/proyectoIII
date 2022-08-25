@@ -60,9 +60,23 @@
     border-left: 1px solid gray;
     border-bottom: 1px solid gray;
     padding-left: 10px;
-    pointer-events: none;
+
 }
 
+#btn-update-ADDsubjexts {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    color: darkgray;
+}
+
+.remove-Subject {
+    color: darkgray;
+    font-size: 22px;
+    cursor: pointer;
+
+}
 
 /*  */
 
@@ -106,4 +120,47 @@
     justify-content: space-around;
     align-items: stretch;
     flex-direction: column;
+}
+
+/********************/
+#subject-modal-close-x{
+    margin-top: 10px;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: -10px;
+    width: 20px;
+    cursor: pointer;
+}
+.subject-modal-label{
+    display: block;
+    width: 100%;
+}
+#add-new-subject-modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    padding: 0 20px;
+    border: 2px solid #5c6bc0;
+    height: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 100000000000;
+
+}
+#subject-modal-subject,
+#subject-modal-seccion,
+#subject-modal-year{
+    display: block;
+    width: 200px;
+}
+
+.invisible{
+    display: none !important;
+}
+
+#subject-modal-add{
+    margin-top: 20px;
 }

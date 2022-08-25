@@ -257,6 +257,26 @@ async function updateTeacherData({ data, id }) {
         rejected({ "ERROR": "ocurrio un error al actualizar los datos del profesor" });
     })
 }
+/////////////////////////////////
+
+async function updateTeacherSubject({subject, id }) {
+  
+    let update = await User.update({subject}, {
+        where: {
+            id
+        }
+    });
+
+    return new Promise((resolved, rejected) => {
+        resolved(update);
+        rejected({ "ERROR": "ocurrio un error al actualizar las notas del profesor" });
+    })
+    
+  
+}
+
+
+
 
 /////////actualiza el password
 
@@ -297,5 +317,6 @@ module.exports = {
     getAllUsers,
     getTeacherInfo,
     updateTeacherData,
-    changeTeacherPassword
+    changeTeacherPassword,
+    updateTeacherSubject
 }

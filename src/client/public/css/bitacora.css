@@ -11,7 +11,8 @@
 }
 
 #show-bitacora-text{
-    font-size: 12px;
+    margin-top: 20px;
+    font-size: 14px;
     width: 100%;
     display: flex;
     justify-content: space-between;
