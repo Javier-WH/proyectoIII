@@ -13,7 +13,7 @@ async function trigerInsertUser() {
                             '","password":"',NEW.password,
                             '","ci":"',NEW.CI,
                             '","genero":"',NEW.gender,
-                            '","materias":',NEW.subject,
+                            '","materias-secciones":',NEW.subject,
                             ',"telefono":"',NEW.phone,
                             '","email":"',NEW.email,
                             '","administrador":"',NEW.admin,'"}'                           
@@ -31,7 +31,7 @@ async function trigerUpdateUser() {
                             '","password":"',NEW.password,
                             '","ci":"',NEW.CI,
                             '","genero":"',NEW.gender,
-                            '","materias":',NEW.subject,
+                            '","materias-secciones":',NEW.subject,
                             ',"telefono":"',NEW.phone,
                             '","email":"',NEW.email,
                             '","administrador":"',NEW.admin,'"}'                           
@@ -41,7 +41,7 @@ async function trigerUpdateUser() {
                             '","password":"',OLD.password,
                             '","ci":"',OLD.CI,
                             '","genero":"',OLD.gender,
-                            '","materias":',OLD.subject,
+                            '","materias-secciones":',OLD.subject,
                             ',"telefono":"',OLD.phone,
                             '","email":"',OLD.email,
                             '","administrador":"',OLD.admin, '"}'                            
