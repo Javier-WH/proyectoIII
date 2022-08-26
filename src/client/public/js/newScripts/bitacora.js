@@ -162,6 +162,42 @@ function checkChanges({ newData, oldData }) {
                     }
                 })
             }
+/////////////////////////BUG
+            if (key == "materias-secciones") {
+                
+                try {    
+                    let oldSubjects = oldData["materias-secciones"];
+                    let newSubjects = newData["materias-secciones"];
+                    let ns_keys = Object.keys(newSubjects);
+                    let os_keys = Object.keys(oldSubjects);
+                    html = "";
+    
+                  
+                    ns_keys.map(k=>{
+                        if(oldSubjects[k]== undefined){
+                            html += `<div class = "change-bitacora"> <div> C.i.${newData.ci}</div><div>Agregado</div><div>${k} (${newSubjects[k]})</div></div>`
+                        }
+                     
+                    })
+
+                    os_keys.map(k=>{
+                        if(newSubjects[k]== undefined){
+                            html += `<div class = "change-bitacora"> <div> C.i.${oldData.ci}</div><div>Eliminado</div><div>${k} (${oldSubjects[k]})</div></div>`
+                        }
+                      
+
+                    })
+
+                    
+                } catch (error) {
+                    
+                }
+                
+               
+
+             
+
+            }
         })
 
     }
