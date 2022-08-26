@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="CSS/configStudentList.css">
     <link rel="stylesheet" href="CSS/showSubjectsModal.css">
     <link rel="stylesheet" href="CSS/bitacora.css">
+    <link rel="stylesheet" href="CSS/stdPerfilModal.css">
+    
 
     <!-- JavaScript -->
     <script src="JS/config.js" type="module" defer></script>
@@ -339,7 +341,7 @@
 
     <div id="std-menu" class="invisible">
         <span id="std-menu-grades" class="opt-std-menu">Ver boletin de calificaciones</span>
-        <span class="opt-std-menu">Ver perfil</span>
+        <span id = "std-menu-perfil" class="opt-std-menu">Ver perfil</span>
         <span id="std-menu-delete" class="opt-std-menu">Expulsar Alumno</span>
     </div>
 
@@ -376,6 +378,7 @@
             <label for="">Orden descentente, el primero en la lista es el ultimo registro</label>
 
         </div>
+       <!-- -->
         <div id="table-container-bitacora">
             <table class="table table-hover">
                 <thead id="table-header-bitacora">
@@ -394,6 +397,41 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+       
+    <!-- -->
+
+    <div id="std-perfil-container" class="invisible">
+        <div id="std-perfil-close-x">X</div>
+        <div id="std-perfil-title">Perfil del Estudiante</div>
+        <div id="std-perfil-dataContainer">
+            <div id="std-perfil-nameContainer">
+                <label for="std-pefil-name" class="lbl-std-perfil">Nombres</label>
+                <input type="text" id="std-pefil-name" class="input-std-perfil">
+                <label for="std-pefil-lastName" class="lbl-std-perfil">Apellidos</label>
+                <input type="text" id="std-pefil-lastName" class="input-std-perfil">
+                <label for="std-pefil-ci" class="lbl-std-perfil">Cédula</label>
+                <input type="text" id="std-pefil-ci" class="input-std-perfil">
+                <label for="std-pefil-age" class="lbl-std-perfil">Edad</label>
+                <input type="text" id="std-pefil-age" class="input-std-perfil">
+                <label for="std-pefil-Gender" class="lbl-std-perfil">Genero</label>
+                <input type="text" id="std-pefil-Gender" class="input-std-perfil">
+            </div>
+            <div id="std-perfil-photoContainer">
+                <img src="" alt="" id="std-perfil-photo">
+            </div>
+            
+        </div>
+        <div id="std-perfil-tutorDataContainer">
+            <label for="std-pefil-tutorName" class="lbl-std-perfil">Nombre del representante</label>
+            <input type="text" id="std-pefil-tutorName" class="input-std-perfil">
+            <label for="std-pefil-tutorCi" class="lbl-std-perfil">Cédula del representante</label>
+            <input type="text" id="std-pefil-tutorCi" class="input-std-perfil">
+            <label for="std-pefil-tutorPhone" class="lbl-std-perfil">Telefono</label>
+            <input type="text" id="std-pefil-tutorPhone" class="input-std-perfil">
+            <label for="std-pefil-tutorAddress" class="lbl-std-perfil">Dirección</label>
+            <input type="text" id="std-pefil-tutorAddress" class="input-std-perfil">
         </div>
 
     </div>

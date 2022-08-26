@@ -13,8 +13,10 @@ import { dragStudentsModal } from "./newScripts/dragStudentListModal.js";
 import { dragGradesModal } from "./newScripts/dragGradesModal.js";
 import { showSubjectsList } from "./newScripts/showSubjects.js";
 import { dragSubjectModal } from "./newScripts/dragShowSubjects.js";
-import { dragBitacora } from "./newScripts/dragBitacora.js"
+import { dragBitacora } from "./newScripts/dragBitacora.js";
+import { dragStdPerfilModal } from "./newScripts/dragStdPerfilModal.js"
 import { startBitacora } from "./newScripts/bitacora.js";
+
 
 
 
@@ -87,12 +89,15 @@ async function main() {
 
     document.getElementById("inscribirTEacher").addEventListener("click", fillSubjects)
 
-    // fillSubjects();
+
     dragStudentsModal();
     dragGradesModal();
     dragSubjectModal();
+    dragStdPerfilModal();
     dragBitacora();
     startBitacora();
+    //
+    
 }
 
 main();

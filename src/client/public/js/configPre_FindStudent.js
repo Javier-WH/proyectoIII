@@ -1,6 +1,7 @@
 import { getPerfilTeacher } from './setPerfilTeacher.js'
 const table = document.getElementById("student-table");
-import { getSudentList, setStudentList, fillTable, cleanInputs } from "./configFindStudent.js"
+import { getSudentList, setStudentList, fillTable, cleanInputs } from "./configFindStudent.js";
+import { enableStdMenuPerfil } from "./newScripts/stdMenuPerfil.js";
 setStudentList([]);
 
 
@@ -239,6 +240,8 @@ export function loadStudentListEvents() {
 
 
             });
+            //
+            enableStdMenuPerfil(id);
         }
 
     });

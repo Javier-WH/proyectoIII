@@ -113,6 +113,33 @@ async function getTutorByCI({ CI }) {
         rejected({ "ERROR": "Ha ocurrido un error al intentar obtener el tutor de la base de datos" })
     })
 }
+/////////////////
+async function getTutorById({ id }) {
+
+    let data = ""
+
+    let ask = await Tutors.findAll({
+        where: {
+            id
+        }
+    });
+    if (ask.length > 0) {
+
+        data = ask[0];
+
+    } else {
+        data = { "MESSAJE": "El tutor no existe" }
+    }
+
+    return new Promise((resolved, rejected) => {
+        resolved(data);
+        rejected({ "ERROR": "Ha ocurrido un error al intentar obtener el tutor de la base de datos" })
+    })
+}
+
+
+
+/////////////////
 
 async function validateTutor({ nickName, password }) {
     let data = { "ERROR": "El usuario no está registrado" }
@@ -185,5 +212,6 @@ module.exports = {
     getTutorByCI,
     validateTutor,
     getTutorByEmail,
-    changeTutorPassword
+    changeTutorPassword,
+    getTutorById
 }

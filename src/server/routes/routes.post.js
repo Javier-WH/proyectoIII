@@ -31,7 +31,9 @@ Router.post("/profesor/all", express.json(), async(req, res) => {
 });
 
 Router.post("/tutor", express.json(), async(req, res) => {
-    if (req.body.CI) {
+    if(req.body.id){
+        res.json(await tutorController.getTutorById(req.body));
+    }else if (req.body.CI) {
         res.json(await tutorController.getTutorByCI(req.body));
     } else {
         res.json(await tutorController.getTutorByCI({ CI: req.session.tutorCI }));
