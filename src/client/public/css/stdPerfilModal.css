@@ -24,13 +24,17 @@
 }
 #std-perfil-photoContainer{
     width: 120px;
-    height: 130px;
-    border: 1px solid #5c6bc0;
+    height: 250px;
     margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #std-perfil-photo{
-    width: 98%;
+    width: 118px;
+    height: 140px;
+    border: 1px solid #5c6bc0;
 }
 
 #std-perfil-dataContainer{
@@ -49,3 +53,9 @@
     margin: 10px;
 }
 
+#std-perfil-btnUpdateData{
+    
+    background-color: #5c6bc0;
+    color: white;
+    border: 1px solid #5c6bc0;
+}

@@ -44,9 +44,10 @@ async function fillTutorData(tutorID){
         ci.value = "Desconocido";
         phone.value = "Desconocido";
         address.value = "Desconocido";
+        blockTutorData(true);
         return;
     }
-
+    blockTutorData(false);
     name.value = `${tutorData.names} ${tutorData.lastName}`;
     ci.value = tutorData.CI;
     address.value = tutorData.address;
@@ -64,6 +65,13 @@ async function fillStudentPhoto(id){
     }
 
 
+}
+
+function blockTutorData(opt){
+    document.getElementById("std-pefil-tutorName").disabled = opt;
+    document.getElementById("std-pefil-tutorCi").disabled = opt;
+    document.getElementById("std-pefil-tutorPhone").disabled = opt;
+    document.getElementById("std-pefil-tutorAddress").disabled = opt;
 }
 
 async function getStudenPhoto(id){
