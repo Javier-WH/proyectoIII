@@ -104,24 +104,24 @@ function checkChanges({ newData, oldData }) {
 
 
         // revisar si cambió un dato
-
         keysNew.map(key => {
             let grado = newData.grado;
-            if (newData[key] != oldData[key] && key != "materias") {
+            if (newData[key] != oldData[key] && key != "materias" && key != "materias-secciones") {
                 if (key != "pensum") {
                     html += `<div class = "change-bitacora"> <div>${key}</div><div></div><div> ${oldData[key]} -> ${newData[key]}</div></div>`
+                    
                 } else {
                     let newSubjextsList = newData[key];
                     let oldSubjextsList = oldData[key];
 
                     newSubjextsList.map(e => {
                         if (!oldSubjextsList.includes(e)) {
-                            html += `<div class = "change-bitacora">
+                            html += `<div class = "change-bitacora added">
                                         <div>
                                             Agregada a ${grado} año
                                         </div>
                                         <div>
-                                            ->
+                                            ->>
                                         </div>
                                         <div> 
                                             ${e}
@@ -132,12 +132,12 @@ function checkChanges({ newData, oldData }) {
 
                     oldSubjextsList.map(e => {
                         if (!newSubjextsList.includes(e)) {
-                            html += `<div class = "change-bitacora">
+                            html += `<div class = "change-bitacora deleted">
                                         <div>
                                             Eliminada de ${grado} año
                                         </div>
                                         <div>
-                                            ->
+                                            <<-
                                         </div>
                                         <div> 
                                             ${e}
@@ -146,8 +146,7 @@ function checkChanges({ newData, oldData }) {
                         }
                     });
                 }
-            }
-            if (key == "materias") {
+            } else if (key == "materias") {
                 let subjectsKey = Object.keys(newData.materias)
 
                 subjectsKey.map(skey => {
@@ -161,25 +160,23 @@ function checkChanges({ newData, oldData }) {
                         html += `<div class = "change-bitacora"> <div>${skey}</div><div> 3er </div><div>${oldData.materias[skey].l3} -> ${newData.materias[skey].l3}</div></div>`
                     }
                 })
-            }
-
-            if (key == "materias-secciones") {
+            } else if (key == "materias-secciones") {
 
                 try {/// esto es para saltar los errores cuando llegan datos vacios
                     let oldSubjects = oldData["materias-secciones"];
                     let newSubjects = newData["materias-secciones"];
                     let ns_keys = Object.keys(newSubjects);
                     let os_keys = Object.keys(oldSubjects);
-                    html = "";
+                  
 
 
                     ns_keys.map(k => {
                         if (oldSubjects[k] == undefined) {
-                            html += `<div class = "change-bitacora"> <div> C.i.${newData.ci}</div><div>Agregado</div><div>${k} (${newSubjects[k]})</div></div>`
+                            html += `<div class = "change-bitacora added"> <div> C.i.${newData.ci}</div><div>->></div><div>${k} (${newSubjects[k]})</div></div>`
                         } else {
                             newSubjects[k].map((s, i) => {
                                 if (oldSubjects[k][i] == undefined) {
-                                    html += `<div class = "change-bitacora"> <div> C.i.${newData.ci}</div><div>Agregado</div><div>${k} (${newSubjects[k][i]})</div></div>`
+                                    html += `<div class = "change-bitacora added"> <div> C.i.${newData.ci}</div><div>->></div><div>${k} (${newSubjects[k][i]})</div></div>`
                                 }
 
                             });
@@ -188,11 +185,11 @@ function checkChanges({ newData, oldData }) {
 
                     os_keys.map(k => {
                         if (newSubjects[k] == undefined) {
-                            html += `<div class = "change-bitacora"> <div> C.i.${oldData.ci}</div><div>Eliminado</div><div>${k} (${oldSubjects[k]})</div></div>`
+                            html += `<div class = "change-bitacora deleted"> <div> C.i.${oldData.ci}</div><div><<-</div><div>${k} (${oldSubjects[k]})</div></div>`
                         } else {
                             oldSubjects[k].map((s, i) => {
                                 if (newSubjects[k][i] == undefined) {
-                                    html += `<div class = "change-bitacora"> <div> C.i.${oldData.ci}</div><div>Eliminado</div><div>${k} (${oldSubjects[k][i]})</div></div>`
+                                    html += `<div class = "change-bitacora deleted"> <div> C.i.${oldData.ci}</div><div><<-</div><div>${k} (${oldSubjects[k][i]})</div></div>`
                                 }
 
                             });
@@ -201,9 +198,12 @@ function checkChanges({ newData, oldData }) {
 
 
                 } catch (error) {
-
+                    
                 }
             }
+        
+              
+            
         })
 
     }
