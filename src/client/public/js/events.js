@@ -18,7 +18,7 @@ export function loadEvents(StudentList, teacher, config) {
 
             if (changedList.length > 0) {
                 Swal.fire({
-                    title: '¿Desea guardar los cambios',
+                    title: '¿Desea guardar los cambios?',
                     text: "Tiene cambios en las notas que no han sido guardados",
                     showDenyButton: true,
                     showCancelButton: true,
@@ -495,7 +495,38 @@ export function loadEvents(StudentList, teacher, config) {
     }
 
     document.getElementById("logout").addEventListener("click", () => {
-        window.location.replace("/logout")
+
+        if (changedList.length > 0) {
+            Swal.fire({
+                title: '¿Desea guardar los cambios?',
+                text: "Tiene cambios en las notas que no han sido guardados",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Guardar Notas',
+                denyButtonText: `Descartar Cambios`,
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    saveData();
+                    Swal.fire('Saved!', '', 'success');
+                    setTimeout(() => {
+                        window.location.replace("/logout");
+                    }, 1200);
+                } else if (result.isDenied) {
+                    changedList.length = 0;
+                    Swal.fire('Las notas NO se guardaron', '', 'info');
+                    setTimeout(() => {
+                        window.location.replace("/logout");
+                    }, 1200);
+                }
+            })
+        } else {
+            window.location.replace("/logout");
+        }
+
+
+        
     });
     document.getElementById("li-perfil").addEventListener("click", () => {
 

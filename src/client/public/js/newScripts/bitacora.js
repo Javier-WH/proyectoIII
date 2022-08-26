@@ -148,16 +148,16 @@ function checkChanges({ newData, oldData }) {
                 }
             } else if (key == "materias") {
                 let subjectsKey = Object.keys(newData.materias)
-
+            
                 subjectsKey.map(skey => {
                     if (newData.materias[skey].l1 != oldData.materias[skey].l1) {
-                        html += `<div class = "change-bitacora"> <div>${skey}</div><div> 1er </div><div>${oldData.materias[skey].l1} -> ${newData.materias[skey].l1}</div></div>`
+                        html += `<div class = "change-bitacora"> <div>${skey}</div><div> 1er </div><div> (${oldData.materias[skey].l1} -> ${newData.materias[skey].l1}) C.I. ${newData.ci} </div></div>`
                     }
                     if (newData.materias[skey].l2 != oldData.materias[skey].l2) {
-                        html += `<div class = "change-bitacora"> <div>${skey}</div><div> 2do </div><div>${oldData.materias[skey].l2} -> ${newData.materias[skey].l2}</div></div>`
+                        html += `<div class = "change-bitacora"> <div>${skey}</div><div> 2do </div><div> (${oldData.materias[skey].l2} -> ${newData.materias[skey].l2}) C.I. ${newData.ci}</div></div>`
                     }
                     if (newData.materias[skey].l3 != oldData.materias[skey].l3) {
-                        html += `<div class = "change-bitacora"> <div>${skey}</div><div> 3er </div><div>${oldData.materias[skey].l3} -> ${newData.materias[skey].l3}</div></div>`
+                        html += `<div class = "change-bitacora"> <div>${skey}</div><div> 3er </div><div> (${oldData.materias[skey].l3} -> ${newData.materias[skey].l3}) C.I. ${newData.ci}</div></div>`
                     }
                 })
             } else if (key == "materias-secciones") {
