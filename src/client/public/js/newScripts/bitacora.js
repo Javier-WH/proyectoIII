@@ -24,11 +24,11 @@ export async function startBitacora() {
         });
         let today = new Date();
         let dayOfWeek = traslateDayOfWeek(today.getDay());
-        let date = `${today.getUTCDate()}/${today.getMonth()}/${ today.getFullYear()}`;
+        let date = `${today.getUTCDate()}/${today.getMonth()}/${today.getFullYear()}`;
         let time = `${today.getHours()}-${today.getMinutes()}-${today.getSeconds()}`;
 
         document.getElementById("bitacora-table").innerHTML = html;
-        document.getElementById("show-bitacora-registerCount").innerText = `${num -1} Registros para el ${dayOfWeek} ${date}, hora: ${time}`;
+        document.getElementById("show-bitacora-registerCount").innerText = `${num - 1} Registros para el ${dayOfWeek} ${date}, hora: ${time}`;
     });
 }
 
@@ -66,7 +66,7 @@ function traslateDayOfWeek(num) {
             break;
         case 5:
             return "Viernes";
-            break;          
+            break;
         case 6:
             return "Sabado";
             break;
@@ -162,41 +162,47 @@ function checkChanges({ newData, oldData }) {
                     }
                 })
             }
-/////////////////////////BUG
+
             if (key == "materias-secciones") {
-                
-                try {    
+
+                try {/// esto es para saltar los errores cuando llegan datos vacios
                     let oldSubjects = oldData["materias-secciones"];
                     let newSubjects = newData["materias-secciones"];
                     let ns_keys = Object.keys(newSubjects);
                     let os_keys = Object.keys(oldSubjects);
                     html = "";
-    
-                  
-                    ns_keys.map(k=>{
-                        if(oldSubjects[k]== undefined){
+
+
+                    ns_keys.map(k => {
+                        if (oldSubjects[k] == undefined) {
                             html += `<div class = "change-bitacora"> <div> C.i.${newData.ci}</div><div>Agregado</div><div>${k} (${newSubjects[k]})</div></div>`
-                        }
-                     
-                    })
+                        } else {
+                            newSubjects[k].map((s, i) => {
+                                if (oldSubjects[k][i] == undefined) {
+                                    html += `<div class = "change-bitacora"> <div> C.i.${newData.ci}</div><div>Agregado</div><div>${k} (${newSubjects[k][i]})</div></div>`
+                                }
 
-                    os_keys.map(k=>{
-                        if(newSubjects[k]== undefined){
+                            });
+                        }
+                    });
+
+                    os_keys.map(k => {
+                        if (newSubjects[k] == undefined) {
                             html += `<div class = "change-bitacora"> <div> C.i.${oldData.ci}</div><div>Eliminado</div><div>${k} (${oldSubjects[k]})</div></div>`
+                        } else {
+                            oldSubjects[k].map((s, i) => {
+                                if (newSubjects[k][i] == undefined) {
+                                    html += `<div class = "change-bitacora"> <div> C.i.${oldData.ci}</div><div>Eliminado</div><div>${k} (${oldSubjects[k][i]})</div></div>`
+                                }
+
+                            });
                         }
-                      
+                    });
 
-                    })
 
-                    
                 } catch (error) {
-                    
+
                 }
-                
-               
-
-             
-
             }
         })
 
