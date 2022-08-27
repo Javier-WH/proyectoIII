@@ -350,7 +350,7 @@
                     if(response.ERROR == "No tienes permisos de administrador"){
                         message = response.ERROR;
                         setTimeout(() => {
-                            //window.close();
+                            window.close();
                         }, 1500);
                     }else{
                         message = `${response.ERROR.ERROR}, ${response.ERROR.subject}`
