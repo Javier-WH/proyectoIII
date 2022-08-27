@@ -1,11 +1,23 @@
 const bcryptjs = require('bcryptjs')
 const { User } = require("../database/models.js");
 const { ciExist, cleanTokenByCI } = require("../controllers/emailControler.js");
+const { checkSubjects } = require("../libs/checkAviableSubject.js");
 
 
 // ingresa un usuaio a la tabla users
 async function insertUser({ userName, userLastName, nickName, password, ci, gender, subject, admin, phone, email }) {
     let error = {};
+
+    //revisa que la materia no este asignada a otro profesor
+    let checkSubj = await checkSubjects(subject);
+
+    if(checkSubj.ERROR){
+        error = {
+            "ERROR": checkSubj
+        }
+        return error;
+    }
+
     let exist = await userExist(ci);
     let nickNameExist = await nickExist(nickName);
 
@@ -260,7 +272,12 @@ async function updateTeacherData({ data, id }) {
 /////////////////////////////////
 
 async function updateTeacherSubject({subject, id }) {
-  
+    let checkSubj = await checkSubjects(subject, id);
+
+    if(checkSubj.ERROR){
+        return {"ERROR": checkSubj}
+    }
+
     let update = await User.update({subject}, {
         where: {
             id
@@ -299,7 +316,7 @@ async function changeTeacherPassword({ CI, password }) {
         if (ask.Error && ask.Error == "El profesor ya está inscrito") {
             return "El link ha vencido";
         } else {
-            console.log("x")
+           
             return "La cedula suministrada no está registrada";
         }
     }

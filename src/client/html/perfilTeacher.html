@@ -343,15 +343,23 @@
                 });
 
                 let response = await ask.json();
+                
                 if (response.ERROR) {
+          
+                    let message =""
+                    if(response.ERROR == "No tienes permisos de administrador"){
+                        message = response.ERROR;
+                        setTimeout(() => {
+                            //window.close();
+                        }, 1500);
+                    }else{
+                        message = `${response.ERROR.ERROR}, ${response.ERROR.subject}`
+                    }
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: response.ERROR,
+                        text: message,
                     })
-                    setTimeout(() => {
-                        window.close();
-                    }, 1500);
                 } else {
 
                     Swal.fire({

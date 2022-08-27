@@ -91,10 +91,14 @@ export async function registerTeacher() {
         let response = await ask.json();
 
         if (response.ERROR) {
+            let message = response.ERROR;
+            if(response.ERROR.subject){
+                message = `${response.ERROR.ERROR}, ${response.ERROR.subject}`
+            }
             Swal.fire({
                 icon: 'error',
                 title: 'Ha ocurrido un error',
-                text: response.ERROR,
+                text: message,
             });
         } else {
             cleanTeacherData();

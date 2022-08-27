@@ -5,7 +5,8 @@ const { createSubjects } = require("./database/CreateSubjects.js")
 const { createConfig } = require("./database/createConfig.js");
 const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
 const { cleanAllEmailTokens } = require("./controllers/emailControler.js");
-const {initTrigers} = require("./database/triggers.js")
+const {initTrigers} = require("./database/triggers.js");
+
 
 
 
@@ -33,7 +34,7 @@ app.use(require("./routes/test.js")); //////////////////////////////////////////
 
 app.use(express.static(path.join(__dirname, "../client/public")));
 
-app.listen(process.env.PORT, serverIp, err => {
+app.listen(process.env.PORT, serverIp,  err => {
     console.clear();
 
     if (err) {
@@ -47,4 +48,5 @@ app.listen(process.env.PORT, serverIp, err => {
         cleanAllEmailTokens();
         initTrigers();
     }
+    
 })
