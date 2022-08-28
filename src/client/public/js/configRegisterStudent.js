@@ -1,3 +1,3 @@
 export async function registerStudent() {
-    window.location.replace("/preinscripcionForm");
+    window.location.replace("/InsciptionTutorForm");
 }

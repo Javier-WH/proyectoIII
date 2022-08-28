@@ -2,7 +2,7 @@ const bcryptjs = require('bcryptjs')
 const { Tutors } = require("../database/models.js");
 
 ///esta funcion inscribe a un tutor
-async function registerTutor({ names, lastName, nickName, password, CI, gender, age, address, work, instruction, studentsID, email }) {
+async function registerTutor({ names, lastName, nickName, password, CI, gender, age, address, work, instruction, studentsID, email,  whatsapp, phone, phone2 }) {
     let checkNick = await Tutors.findAll({
         where: {
             nickName
@@ -33,7 +33,10 @@ async function registerTutor({ names, lastName, nickName, password, CI, gender, 
             work,
             instruction,
             studentsID,
-            email
+            email,
+            whatsapp,
+            phone,
+            phone2
         });
         Message = ask;
     };

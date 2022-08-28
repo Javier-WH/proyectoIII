@@ -16,9 +16,9 @@ Router.get("/registro", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/registerTeacher.html"));
 });
 
-
-Router.get("/preinscripcionForm", async(req, res) => {
-    res.sendFile(path.join(__dirname, "../../client/html/preInsciptionForm.html"));
+//inscripcion del representante
+Router.get("/InsciptionTutorForm", async(req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/html/InsciptionTutorForm.html"));
 });
 
 

@@ -1,1 +1,8 @@
-completar la recuperación de contraseña del tutor...
+   let ask = await fetch("/Estudiante/pre", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        },
+        body: JSON.stringify(data)
+    });

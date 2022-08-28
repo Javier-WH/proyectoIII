@@ -52,7 +52,7 @@
             <div class="form-group row" id="ciContainer">
                 <label for="cedula" class="col-sm-2 col-form-label">Cédula:</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="cedula" placeholder="Cédula del tutor">
+                    <input type="number" class="form-control" id="cedula" placeholder="Cédula">
                 </div>
             </div>
 
@@ -75,13 +75,13 @@
             <div class="form-group row">
                 <label for="tutorName" class="col-sm-2 col-form-label">Nombres:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tutorName" placeholder="Nombres del Tutor">
+                    <input type="text" class="form-control" id="tutorName" placeholder="Nombres">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="tutorLastName" class="col-sm-2 col-form-label">Apellidos:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tutorLastName" placeholder="Apellidos del Tutor">
+                    <input type="text" class="form-control" id="tutorLastName" placeholder="Apellidos">
                 </div>
             </div>
             <div class="form-group row">
@@ -93,7 +93,7 @@
 
             <fieldset class="form-group">
                 <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Genero del tutor:</legend>
+                    <legend class="col-form-label col-sm-2 pt-0">Genero:</legend>
                     <div class="col-sm-10">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="gridRadios" id="rdb-masculino" value="M" checked>
@@ -114,14 +114,41 @@
             <div class="form-group row">
                 <label for="tutor-age" class="col-sm-2 col-form-label">Edad:</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="tutor-age" placeholder="Edad del tutor">
+                    <input type="number" class="form-control" id="tutor-age" placeholder="Edad">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="phone" class="col-sm-2 col-form-label">Teléfono:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="phone" placeholder="Teléfono">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="whatsapp1" checked>
+                        <label class="form-check-label" for=" whatsapp1">
+                            Este numero de telefono está asociado a whatsapp
+                        </label>
+                    </div>
+                </div>
+            </div>
+           
+
+            <div class="form-group row">
+                <label for="phone2" class="col-sm-2 col-form-label">Teléfono (opcional) :</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="phone2" placeholder="Teléfono alternativo (opcional)">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="whatsapp2">
+                        <label class="form-check-label" for=" whatsapp2">
+                            Este numero de telefono está asociado a whatsapp
+                        </label>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="address" class="col-sm-2 col-form-label">Dirección:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="address" placeholder="Dirección del tutor">
+                    <input type="text" class="form-control" id="address" placeholder="Dirección">
                 </div>
             </div>
 
@@ -129,7 +156,6 @@
                 <label for="address" class="col-sm-2 col-form-label">Trabajo:</label>
                 <div class="col-sm-10">
                     <select class="custom-select mr-sm-2" id="work">
-                    <option selected value="0">Seleccione uno...</option>
                     <option value="Comerciante">Comerciante</option>
                     <option value="Profesor">Profesor</option>
                     <option value="Maestro">Maestro</option>
@@ -182,10 +208,9 @@
 
 
             <div class="form-group row">
-                <label for="address" class="col-sm-2 col-form-label">Nivel de instrucción del Tutor:</label>
+                <label for="address" class="col-sm-2 col-form-label">Nivel de instrucción:</label>
                 <div class="col-sm-10">
                     <select class="custom-select mr-sm-2" id="education-level">
-                    <option selected>Seleccione uno...</option>
                     <option value="Ninguno">Ninguno</option>
                     <option value="Educación Básica">Educación Básica</option>
                     <option value="Bachiller">Bachiller</option>
@@ -218,9 +243,7 @@
             <div class="form-group row">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary" id="btn-next">
-                    Aceptar &nbsp;
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px" fill="#FFFFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.59 7.41L15.17 11H1v2h14.17l-3.59 3.59L13 18l6-6-6-6-1.41 1.41zM20 6v12h2V6h-2z"/></svg> 
-
+                    Aceptar
                 </button>
                 </div>
             </div>

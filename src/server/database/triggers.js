@@ -170,7 +170,10 @@ async function trigerInsertTutor() {
                             '","edad":"',NEW.age,
                             '","dirección":"',NEW.address,
                             '","trabajo":"',NEW.work,
-                            '","email":"',NEW.email,
+                            '","teléfono":"',NEW.phone,
+                            '","teléfono2":"',NEW.phone2,
+                            '","whatsapp":',NEW.whatsapp,
+                            ',"email":"',NEW.email,
                             '","instrucción":"',NEW.instruction, '"}'                            
                             ), '{"message":"No hay datos"}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); END`)
 }

@@ -6,12 +6,8 @@ const tabs = document.getElementsByClassName("nav-link");
 
 let tutorID = "";
 let tutorCI = "";
-renderSelectedTab();
 
-// window.addEventListener("beforeunload", () => {
-//     fetch("/logout")
 
-// });
 document.getElementById("year").addEventListener("change", e => {
     let label = document.getElementById("lbl-year");
     let value = e.target.value;
@@ -40,48 +36,6 @@ document.getElementById("year").addEventListener("change", e => {
 })
 
 
-function cleanSelectedTabs() {
-    for (let tab of tabs) {
-        tab.classList.remove("active");
-    }
-}
-
-document.getElementById("nav-tabs").addEventListener("click", e => {
-    if (e.target.classList.contains("nav-link")) {
-        cleanSelectedTabs();
-        e.target.classList.add("active");
-        renderSelectedTab();
-    }
-
-});
-
-function renderSelectedTab() {
-
-    document.getElementById("grades-pannel").classList.add("invisible");
-    document.getElementById("inscription-pannel").classList.add("invisible");
-    document.getElementById("option-pannel").classList.add("invisible");
-
-    if (document.getElementById("tab-grades").classList.contains("active")) {
-
-        document.getElementById("grades-pannel").classList.remove("invisible")
-
-    } else if (document.getElementById("tab-inscription").classList.contains("active")) {
-
-        document.getElementById("inscription-pannel").classList.remove("invisible");
-
-    } else if (document.getElementById("tab-options").classList.contains("active")) {
-
-        document.getElementById("option-pannel").classList.remove("invisible")
-
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "Ha ocurrido un error inesperado",
-
-        });
-    }
-}
 
 async function fillTutorName() {
 
@@ -117,66 +71,9 @@ async function fillTutorName() {
     fillStudentDropBox();
 }
 
-function cleanStudentData() {
-    document.getElementById("student-name").value = "";
-    document.getElementById("student-lastName").value = "";
-    document.getElementById("student-ci").value = "";
-    document.getElementById("genderM").checked = true;
-    document.getElementById("year").value = "";
-    document.getElementById("student-age").value = "";
-}
-async function getSchoolYear() {
-    let data = await fetch("/getConfig", {
-        method: "POST"
-    });
-    let response = await data.json();
 
-    return response[0].schoolYear;
 
-}
 
-document.getElementById("btn-preinscribir").addEventListener("click", async e => {
-    e.preventDefault();
-    let data = {
-        names: document.getElementById("student-name").value,
-        lastName: document.getElementById("student-lastName").value,
-        ci: document.getElementById("student-ci").value,
-        gender: document.getElementById("genderM").checked ? "M" : "F",
-        year: document.getElementById("year").value,
-        age: document.getElementById("student-age").value,
-        parentID: tutorID,
-        schoolYear: await getSchoolYear() ///////////////////////////////////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    }
-
-    let ask = await fetch("/Estudiante/pre", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "*/*"
-        },
-        body: JSON.stringify(data)
-    });
-
-    let response = await ask.json();
-
-    if (response.ERROR) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Denegado',
-            text: response.ERROR
-        })
-
-    } else {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'La pre-inscripción se realizó con exito',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    }
-
-});
 
 
 async function fillStudentDropBox() {
@@ -213,7 +110,7 @@ document.getElementById("students-dropbox").addEventListener("change", async e =
     await fillStudentGrades(e.target.value)
     loadPhoto();
 });
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<CONTINUAR DESDE AQUI
+
 async function loadPhoto() {
 
     let photo = document.getElementById("file-image");
@@ -231,8 +128,6 @@ async function loadPhoto() {
         photo.src = imgData;
     }
 }
-
-
 
 async function getStudentData(id) {
 
@@ -306,21 +201,6 @@ async function fillStudentGrades(id) {
                                 <span></span>
                                 <span></span>`;
         document.getElementById("photo-container").hidden = "true"
-
-        Swal.fire({
-            title: "No se ha encontrado ningun estudiante inscrito en esta cuenta",
-            text: "¿Desea pre-inscribir un estudiante",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si',
-            cancelButtonText: "No"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("tab-inscription").click();
-            }
-        })
     }
 };
 

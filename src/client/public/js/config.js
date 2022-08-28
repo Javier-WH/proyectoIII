@@ -84,7 +84,7 @@ async function main() {
     document.getElementById("filter-modal-schoolYear").addEventListener("keyup", filterList);
 
 
-    document.getElementById("opt-register-student").addEventListener("click", registerStudent);
+    document.getElementById("opt-register-tutor").addEventListener("click", registerStudent);
     loadStudentListEvents();
 
     document.getElementById("inscribirTEacher").addEventListener("click", fillSubjects)

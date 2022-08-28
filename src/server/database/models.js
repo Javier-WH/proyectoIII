@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('./connection.js');
 
 
@@ -30,7 +30,7 @@ Students.init({
     seccion: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
-    parentID: DataTypes.INTEGER,
+    parentID: DataTypes.INTEGER,///corregir el nombre
     subjects: DataTypes.JSON,
     schoolYear: DataTypes.STRING,
     photo: DataTypes.STRING
@@ -66,6 +66,12 @@ Tutors.init({
     gender: DataTypes.CHAR,
     age: DataTypes.INTEGER,
     address: DataTypes.TEXT,
+    phone: DataTypes.STRING,
+    phone2:{
+        type: Sequelize.STRING,
+        defaultValue:"No suministrado"
+    },
+    whatsapp: DataTypes.JSON,
     work: DataTypes.STRING,
     email: DataTypes.STRING,
     instruction: DataTypes.STRING

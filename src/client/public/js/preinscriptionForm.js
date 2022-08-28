@@ -21,20 +21,6 @@ async function getTutorData(CI) {
 
 function disableInputs(valor) {
     document.getElementById("data-container").disabled = valor;
-    document.getElementById("tutorName").disabled = valor;
-    document.getElementById("tutorLastName").disabled = valor;
-    document.getElementById("tutorNickName").disabled = valor;
-    document.getElementById("rdb-masculino").disabled = valor;
-    document.getElementById("rdb-femenino").disabled = valor;
-    document.getElementById("tutor-age").disabled = valor;
-    document.getElementById("address").disabled = valor;
-    document.getElementById("work").disabled = valor;
-    document.getElementById("education-level").disabled = valor;
-    document.getElementById("inputEmail").disabled = valor;
-    document.getElementById("inputPassword").disabled = valor;
-    document.getElementById("inputPassword2").disabled = valor;
-
-
 }
 
 async function fillTutorData(ci) {
@@ -69,6 +55,10 @@ function cleanAllData() {
     document.getElementById("inputEmail").value = "";
     document.getElementById("inputPassword").value = "";
     document.getElementById("inputPassword2").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("phone2").value = "";
+    document.getElementById("whatsapp1").checked = true;
+    document.getElementById("whatsapp2").checked = false;
 }
 
 
@@ -101,6 +91,18 @@ document.getElementById("btn-next").addEventListener("click", async e => {
         error = "Las contraseñas son diferentes"
     } else {
         if (!IS_TUTOR) {
+            whatsapp = {};
+            if(document.getElementById("whatsapp1").checked){
+                whatsapp.phone1 = true;
+            }else{
+                whatsapp.phone1 = false;
+            }
+            if(document.getElementById("whatsapp2").checked){
+                whatsapp.phone2 = true;
+            }else{
+                whatsapp.phone2 = false;
+            }
+
             let data = {
                 names: document.getElementById("tutorName").value,
                 lastName: document.getElementById("tutorLastName").value,
@@ -113,7 +115,9 @@ document.getElementById("btn-next").addEventListener("click", async e => {
                 work: document.getElementById("work").value,
                 email: document.getElementById("inputEmail").value,
                 instruction: document.getElementById("education-level").value,
-
+                phone: document.getElementById("phone").value,
+                phone2: document.getElementById("phone2").value,
+                whatsapp
             }
 
             let ask = await fetch("/tutor/registro", {
