@@ -141,12 +141,16 @@ document.getElementById("btn-next").addEventListener("click", async e => {
             text: error,
         })
     } else {
-        // console.log({ TUTOR_ID })
-        // console.log({ TUTOR_CI })
-
-        window.location.replace(`/controlPannel?id=${TUTOR_ID}&CI=${TUTOR_CI}`);
-
-
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Se ha inscito el representante',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          setTimeout(() => {
+              window.history.back();
+          }, 1500);
     }
 
 

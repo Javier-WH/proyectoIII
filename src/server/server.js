@@ -8,7 +8,7 @@ const { cleanAllEmailTokens } = require("./controllers/emailControler.js");
 const {initTrigers} = require("./database/triggers.js");
 
 
-
+///development
 
 
 const express = require('express');
