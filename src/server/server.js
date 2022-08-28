@@ -48,5 +48,5 @@ app.listen(process.env.PORT, serverIp,  err => {
         cleanAllEmailTokens();
         initTrigers();
     }
-    
+    ///dev
 })
