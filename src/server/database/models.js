@@ -30,7 +30,7 @@ Students.init({
     seccion: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
-    tutorID: DataTypes.INTEGER,///corregir el nombre
+    tutorID: DataTypes.INTEGER,
     subjects: DataTypes.JSON,
     schoolYear: DataTypes.STRING,
     photo: DataTypes.STRING
@@ -90,11 +90,26 @@ Tutors.init({
 class AuxiliarInfo extends Model {}
 AuxiliarInfo.init({
     studentID: DataTypes.INTEGER,
-    allergies: DataTypes.TEXT,
-    bloodType: DataTypes.STRING,
-    medical_problems: DataTypes.TEXT,
-    observatios: DataTypes.TEXT,
-    talents: DataTypes.TEXT
+    allergies: {
+        type: Sequelize.STRING,
+        defaultValue: "No Suministrado"
+    },
+    bloodType: {
+        type: Sequelize.STRING,
+        defaultValue: "No Suministrado"
+    },
+    medical_problems: {
+        type: Sequelize.TEXT,
+        defaultValue: "No Suministrado"
+    },
+    observatios:  {
+        type: Sequelize.TEXT,
+        defaultValue: "No Suministrado"
+    },
+    talents:  {
+        type: Sequelize.TEXT,
+        defaultValue: "No Suministrado"
+    }
 }, {
     sequelize,
     modelName: "Auxiliar_Information"
