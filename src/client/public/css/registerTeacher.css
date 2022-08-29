@@ -74,8 +74,8 @@
 /* ------------------------------------------------------------ */
 
 .disable {
-    pointer-events: none;
-    filter: grayscale(1);
+    pointer-events: none !important;
+    filter: grayscale(1) !important;
 }
 
 #btn-regresar {

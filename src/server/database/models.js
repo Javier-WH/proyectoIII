@@ -166,4 +166,25 @@ Bitacora.init({
     sequelize,
     modelName: "Bitacora"
 });
+
+/////////////////
+
+class Payments extends Model {};
+Payments.init({
+    studentCI: DataTypes.INTEGER,
+    description: DataTypes.STRING,
+    currency: DataTypes.STRING,
+    cash: DataTypes.BOOLEAN,
+    bankDepositNumber:{
+        type: Sequelize.STRING,
+        defaultValue: "No suministrado"
+    },
+    backName:{
+        type: Sequelize.STRING,
+        defaultValue:"No suministrado"
+    }
+},{
+    sequelize,
+    motherName: "Payments"
+})
 module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Bitacora };

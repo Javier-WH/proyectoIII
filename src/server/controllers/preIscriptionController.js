@@ -1,12 +1,15 @@
 const { PreIscription } = require("../database/models.js");
 const studentsController = require("../controllers/studentsController.js");
+const { getConfig } = require("./configControler.js");
 
 
-async function registerStudent({ names, lastName, ci, gender, year, age, tutorID, schoolYear }) {
+async function registerStudent({ names, lastName, ci, motherName, motherCI, fatherName, fatherCI, gender, year, age, address, tutorID }) {
     let data = ""
     let checkExist = await findStudent({ CI: ci });
     let isIncripted = await studentsController.findStudent({ CI: ci });
-
+    let configData = await getConfig();
+    let schoolYear = configData[0].schoolYear;
+    
     if (checkExist.length > 0 || isIncripted.length > 0) {
         data = { "ERROR": "La cédula suministrada ya esta inscrita en el sistema" }
     } else {
@@ -14,9 +17,14 @@ async function registerStudent({ names, lastName, ci, gender, year, age, tutorID
             names,
             lastName,
             CI: ci,
+            motherName,
+            motherCI,
+            fatherName,
+            fatherCI,
             gender,
             year,
             age,
+            address,
             tutorID,
             schoolYear
         });

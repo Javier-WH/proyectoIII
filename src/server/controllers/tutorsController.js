@@ -108,7 +108,7 @@ async function getTutorByCI({ CI }) {
         data = ask[0];
 
     } else {
-        data = { "MESSAJE": "El tutor no existe" }
+        data = { "MESSAJE": "El tutor no está registrado" }
     }
 
     return new Promise((resolved, rejected) => {
