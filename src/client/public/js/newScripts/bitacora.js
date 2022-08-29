@@ -86,7 +86,25 @@ function checkChanges({ newData, oldData }) {
 
         for (let i = 0; i < keys.length - 1; i++) {
             if (keys[i] != "materias") {
-                html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${newData[keys[i]]}</div></div>`
+
+                if(keys[i] == "whatsapp"){
+                    let whatsapp = "";
+                    if(newData[keys[i]].phone1){
+                        whatsapp += `${newData["teléfono"]}`;
+                    }
+                    if(newData[keys[i]].phone2){
+                        if(newData[keys[i]].phone1){
+                            whatsapp += `<br>`;
+                        }
+                        whatsapp += `${newData["teléfono2"]}`;
+                    }
+                    html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${whatsapp} </div></div>`
+                }else if(keys[i] == "password"){
+                    html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div>Contenido cifrado</div></div>`
+                }else{
+                    html += `<div class = "change-bitacora"> <div>${keys[i]}</div><div>-></div><div> ${newData[keys[i]]}</div></div>`
+                }
+
             }
         }
     } else if (newData.message == "No hay datos") {//eliminacion de datos
@@ -106,6 +124,7 @@ function checkChanges({ newData, oldData }) {
         // revisar si cambió un dato
         keysNew.map(key => {
             let grado = newData.grado;
+           
             if (newData[key] != oldData[key] && key != "materias" && key != "materias-secciones") {
                 if (key != "pensum") {
                     html += `<div class = "change-bitacora"> <div>${key}</div><div></div><div> ${oldData[key]} -> ${newData[key]}</div></div>`
@@ -201,7 +220,6 @@ function checkChanges({ newData, oldData }) {
                     
                 }
             }
-        
               
             
         })
