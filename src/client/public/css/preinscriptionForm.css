@@ -36,7 +36,7 @@
 .form-group {
     margin-bottom: 10px;
 }
-
+#title-schoolYear,
 #title-preinscripciones {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -61,6 +61,9 @@
     flex-direction: column;
 }
 
+#ci-label {
+    width: 260px;
+}
 
 /* /////////////////////////////////// */
 
@@ -98,3 +101,39 @@
 
 /*new styles*/
 
+.paid {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 40px;
+ 
+}
+
+#currency {
+    margin-bottom: -5px;
+    margin-left: 5px;
+}
+
+#paidType {
+    margin-bottom: -5px;
+    margin-left: 15px;
+    margin-right: 120px;
+}
+
+#paidinfo {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 2fr 4fr 3fr;
+    column-gap: 10px;
+}
+/*#bloodType{
+    width: 200px;
+}*/
+.marginTop{
+    margin-top: 20px;
+}
+#booldType-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 400px;
+    column-gap: 10px;
+}

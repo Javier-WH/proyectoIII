@@ -27,7 +27,7 @@ async function fillperfilStudentData(id){
     gender.value = studentData.gender == "M" ? "Masculino" : "Femenino";
     age.value = `${studentData.age} años`;
     
-    fillTutorData(studentData.parentID);
+    fillTutorData(studentData.tutorID);
     fillStudentPhoto(id);
 }
 

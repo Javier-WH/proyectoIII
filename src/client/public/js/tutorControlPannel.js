@@ -83,7 +83,7 @@ async function fillStudentDropBox() {
             "Content-Type": "application/json",
             "Accept": "*/*"
         },
-        body: JSON.stringify({ parentID: tutorID })
+        body: JSON.stringify({ tutorID })
     });
 
     let response = await ask.json();

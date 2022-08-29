@@ -4,7 +4,7 @@ const { Students } = require("../database/models.js");
 const configController = require("../controllers/configControler.js");
 const { getSubjects } = require("../controllers/subjectsController.js");
 
-async function registerStudent({ names, lastName, ci, gender, seccion, year, age, parentID, schoolYear }) {
+async function registerStudent({ names, lastName, ci, gender, seccion, year, age, tutorID, schoolYear }) {
     let message = ""
     let checkCI = await findStudent({ CI: ci })
 
@@ -31,7 +31,7 @@ async function registerStudent({ names, lastName, ci, gender, seccion, year, age
             seccion,
             year,
             age,
-            parentID,
+            tutorID,
             subjects,
             schoolYear,
             photo: "default"

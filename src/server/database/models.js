@@ -30,7 +30,7 @@ Students.init({
     seccion: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
-    parentID: DataTypes.INTEGER,///corregir el nombre
+    tutorID: DataTypes.INTEGER,///corregir el nombre
     subjects: DataTypes.JSON,
     schoolYear: DataTypes.STRING,
     photo: DataTypes.STRING
@@ -44,10 +44,15 @@ PreIscription.init({
     names: DataTypes.STRING,
     lastName: DataTypes.STRING,
     CI: DataTypes.INTEGER,
+    motherName: DataTypes.STRING,
+    motherCI: DataTypes.INTEGER,
+    fatherName: DataTypes.STRING,
+    fatherCI: DataTypes.INTEGER,
     gender: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
-    parentID: DataTypes.INTEGER,
+    address: DataTypes.STRING,
+    tutorID: DataTypes.INTEGER,
     schoolYear: DataTypes.STRING
 }, {
     sequelize,

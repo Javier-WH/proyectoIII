@@ -79,7 +79,7 @@ async function trigerUpdateStudent() {
                             '","seccion":"',NEW.seccion,
                             '","year":"',NEW.year,
                             '","edad":"',NEW.age,
-                            '","representantes":"',NEW.parentID,
+                            '","representantes":"',NEW.tutorID,
                             '","materias":',NEW.subjects,
                             ',"periodo":"',NEW.schoolYear,
                             '","foto":"',NEW.photo,'"}'
@@ -90,7 +90,7 @@ async function trigerUpdateStudent() {
                             '","seccion":"',OLD.seccion,
                             '","year":"',OLD.year,
                             '","edad":"',OLD.age,
-                            '","representantes":"',OLD.parentID,
+                            '","representantes":"',OLD.tutorID,
                             '","materias":',OLD.subjects,
                             ',"periodo":"',OLD.schoolYear,
                             '","foto":"',OLD.photo, '"}'
@@ -109,7 +109,7 @@ async function trigerInsertStudent() {
                             '","seccion":"',NEW.seccion,
                             '","year":"',NEW.year,
                             '","edad":"',NEW.age,
-                            '","representantes":"',NEW.parentID,
+                            '","representantes":"',NEW.tutorID,
                             '","materias":',NEW.subjects,
                             ',"periodo":"',NEW.schoolYear,
                             '","foto":"',NEW.photo,'"}'
@@ -128,7 +128,7 @@ async function trigerDeleteStudent() {
                             '","seccion":"',OLD.seccion,
                             '","year":"',OLD.year,
                             '","edad":"',OLD.age,
-                            '","representantes":"',OLD.parentID,
+                            '","representantes":"',OLD.tutorID,
                             '","materias":',OLD.subjects,
                             ',"periodo":"',OLD.schoolYear,
                             '","foto":"',OLD.photo,'"}'

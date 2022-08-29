@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-inscripción - U.E.C. Batalla de la Victoria</title>
+    <link rel="icon" href="../SVG/icon.svg" />
+    <!-- SweetAlert2 -->
+    <script src="../sweetalert2/dist/sweetalert2.min.js" defer></script>
+    <link rel="stylesheet" href="../sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../CSS/bootstrap.css">
+    <script src="../JS/bootstrap.js" defer></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/preinscriptionForm.css">
+    <!-- JavaScript -->
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="../SVG/icon.svg" alt="" class="navbar-brand" id="navBar-icon">
+            <span id="title"> U.E. Colegio Batalla de la Victoria</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+                <a class="d-flex" href="" id="d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px"
+                        fill="#FFFFFF" id="logo-svg">
+                        <path d="M24 0v24H0V0h24z" fill="none" opacity=".87" />
+                        <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41zM6 6h2v12H6V6z" />
+                    </svg>
+                    <div id="user-container">
+                        <div id="btn-regresar">
+                            Regresar
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <h4 id="title-preinscripciones">Formulario de pre-inscripción</h4>
+    <h6 id="title-schoolYear">Periodo escolar 2022-2023</h6>
+
+    <form id="main-container">
+        <div id="ci-container">
+            <div class="form-group row" id="ciContainer">
+                <label for="cedula" class="col-sm-2 col-form-label" id="ci-label">Cédula del representante:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="tutorCI" placeholder="Cédula del representante">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="btn-ci-next">
+                        Siguiente &nbsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px"
+                            fill="#FFFFFFFF">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M11.59 7.41L15.17 11H1v2h14.17l-3.59 3.59L13 18l6-6-6-6-1.41 1.41zM20 6v12h2V6h-2z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress invisible" id="loadin-bar">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+                aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+        </div>
+        <div id="data-container">
+
+
+            <div class="form-group row">
+                <label for="studentName" class="col-sm-2 col-form-label">Nombres:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="studentName" placeholder="Nombres">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentLastName" class="col-sm-2 col-form-label">Apellidos:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="studentLastName" placeholder="Apellidos">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentCI" class="col-sm-2 col-form-label">Cédula:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="studentCI" placeholder="Cédula de usuario">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="studentMotherName" class="col-sm-2 col-form-label">Nombre completo de la madre:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="studentMotherName" placeholder="Nombre de la madre">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="motherCI" class="col-sm-2 col-form-label">Cédula de la madre:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="motherCI" placeholder="Cédula de la madre">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="studentFatherName" class="col-sm-2 col-form-label">Nombre completo de el padre:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="studentFatherName" placeholder="Nombre de el padre">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fatherCI" class="col-sm-2 col-form-label">Cédula de el padre:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="fatherCI" placeholder="Cédula de el padre">
+                </div>
+            </div>
+
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Genero:</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="rdb-masculino" value="M"
+                                checked>
+                            <label class="form-check-label" for="rdb-masculino">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="rdb-femenino" value="F">
+                            <label class="form-check-label" for="rdb-femenino">
+                                Femenino
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group row">
+                <label for="tutor-age" class="col-sm-2 col-form-label">Edad:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="tutor-age" placeholder="Edad">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="address" class="col-sm-2 col-form-label">Dirección:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" placeholder="Dirección">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="grade" class="col-sm-2 col-form-label">Grado a cursar:</label>
+                <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" id="grade">
+                        <option selected disabled>Escoge un grado escolar</option>
+                        <option value="1">Primer año</option>
+                        <option value="2">Segundo año</option>
+                        <option value="3">Tercer año</option>
+                        <option value="4">Cuarto año</option>
+                        <option value="5">Quinto año</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Pago:</label>
+                <div id="paidinfo">
+                    <div class="paid">
+                        <div class="col-sm-10">
+                            <label for="amount" class="col-sm-2 col-form-label">Monto:</label>
+                            <input type="number" class="form-control" id="mount" placeholder="Monto">
+                        </div>
+                        <fieldset class="form-group" id="currency">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="currency" id="rdb-bs" value="B"
+                                    checked>
+                                <label class="form-check-label" for="rdb-bs">BS</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="currency" id="rdb-usd" value="D">
+                                <label class="form-check-label" for="rdb-usd">USD</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="paid">
+                        <fieldset class="form-group" id="paidType">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paidType" id="rdb-deposito" value="D"
+                                    checked>
+                                <label class="form-check-label" for="rdb-deposito">Deposito</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paidType" id="rdb-efectivo"
+                                    value="E">
+                                <label class="form-check-label" for="rdb-efectivo">Efectivo</label>
+                            </div>
+                        </fieldset>
+                        <div class="col-sm-9">
+                            <label for="amount" class="col-sm-4 col-form-label">Nro deposito:</label>
+                            <input type="text" class="form-control" id="mount" placeholder="Nro deposito">
+                        </div>
+                    </div>
+
+                    <div class="paid">
+                     <div class="col-sm-7">
+                            <label for="amount" class="col-sm-4 col-form-label">Banco:</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected disabled>Escoge un banco</option>
+                                <option value="VZLA">Banco de Venezuela</option>
+                                <option value="BNSC">Banesco</option>
+                                <option value="PORV">Provincial</option>
+                                <option value="MERC">Mercantil</option>
+                                <option value="BIC">Bicentenario</option>
+                            </select>
+                        </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row marginTop">
+                <label for="bloodType" class="col-sm-2 col-form-label">Tipo de Sangre (opcional):</label>
+                <div class="col-sm-10" id="booldType-container">
+                    <select class="form-select" aria-label="Default select example" id="bloodType">
+                        <option selected disabled>Selecciona un tipo</option>
+                        <option value="A">Tipo A</option>
+                        <option value="B">Tipo B</option>
+                        <option value="AB">Tipo AB</option>
+                        <option value="O">Tipo O</option>                 
+                    </select>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox"  id="rh" checked>
+                        <label class="form-check-label" for="rh">Factor RH</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="allergies" class="col-sm-2 col-form-label">Alergias (opcional):</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="allergies" placeholder="Alergias (opcional)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="medicalProblems" class="col-sm-2 col-form-label">Problemas Medicos (opcional):</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="medicalProblems" placeholder="Problemas Medicos (opcional)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="observations" class="col-sm-2 col-form-label">Observaciones (opcional):</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="observations" placeholder="Observaciones (opcional)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="talents" class="col-sm-2 col-form-label">Talentos (opcional):</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="talents" placeholder="Talentos (opcional)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="btn-next">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+</body>
+
+</html>

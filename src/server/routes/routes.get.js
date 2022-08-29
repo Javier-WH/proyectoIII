@@ -39,6 +39,11 @@ Router.get("/bitacora", async(req, res, next) => {
         res.redirect("/");
     }
 });
+////
+
+Router.get("/Estudiante/registro", (req, res)=>{
+    res.sendFile(path.join(__dirname, "../../client/html/PreInscriptionForm.html"));
+})
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
