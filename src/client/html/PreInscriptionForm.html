@@ -75,7 +75,7 @@
                     </button>
                 </div>
             </div>
-            
+
             <div id="tutorName-container" class="invisible">
                 <label for="" class="col-sm-2 col-form-label" id="name-label">Representante:</label>
                 <div id="tutorName">Simon Jose antonio de la santisima trinidad bolivar y palacios ponte y blanco</div>
@@ -83,13 +83,15 @@
 
         </div>
 
+
         <div class="progress invisible" id="loadin-bar">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
-                aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                aria-valuemin="0" aria-valuemax="100" style="width: 1%" id="progressBar">
+            </div>
         </div>
-        <div id="data-container" class="disabled">
 
 
+        <div id="data-container" class="disabled invisible">
             <div class="form-group row">
                 <label for="studentName" class="col-sm-2 col-form-label">Nombres:</label>
                 <div class="col-sm-10">
@@ -123,6 +125,64 @@
             </div>
 
             <div class="form-group row">
+                <label for="address" class="col-sm-2 col-form-label">Ocupación de la madre:</label>
+                <div class="col-sm-10">
+                    <select class="custom-select mr-sm-2" id="motherWork">
+                        <option selected disabled>Escoge una Ocupación</option>
+                        <option value="Comerciante">Comerciante</option>
+                        <option value="Profesor">Profesor</option>
+                        <option value="Maestro">Maestro</option>
+                        <option value="Profesional de la Salud">Profesional de la Salud</option>
+                        <option value="Ingenierio Civil">Ingenierio Civil</option>
+                        <option value="Ingeniero en Sistemas">Ingeniero en Sistemas</option>
+                        <option value="Licenciado en Lenguas">Licenciado en Lenguas</option>
+                        <option value="Licenciado en Agronomia">Licenciado en Agronomia</option>
+                        <option value="Agricultor">Agricultor</option>
+                        <option value="Mecanico">Mecánico</option>
+                        <option value="Artesano">Artesano</option>
+                        <option value="Artista">Artista</option>
+                        <option value="Ganadero">Ganadero</option>
+                        <option value="Escritor">Escritor</option>
+                        <option value="Tecnico Electricista">Tecnico Electricista</option>
+                        <option value="Cargo Gubernamental">Cargo Gubernamental</option>
+                        <option value="Amo / Ama de Casa">Amo / Ama de Casa</option>
+                        <option value="Bombero">Bombero</option>
+                        <option value="Chofer">Chofer</option>
+                        <option value="Cheft">Cheft</option>
+                        <option value="Policia">Policia</option>
+                        <option value="Turismo">Turismo</option>
+                        <option value="Seguridad Privada">Seguridad Privada</option>
+                        <option value="Constructor">Constructor</option>
+                        <option value="Albañil">Albañil</option>
+                        <option value="Abogado">Abogado</option>
+                        <option value="Juez">Juez</option>
+                        <option value="Vendedor de seguros">Vendedor de seguros</option>
+                        <option value="Economista">Economista</option>
+                        <option value="Contador">Contador</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Veterinario">Veterinario</option>
+                        <option value="Ingeniero Quimico">Ingeniero Quimico</option>
+                        <option value="Obrero">Obrero</option>
+                        <option value="Politico">Politico</option>
+                        <option value="Deportista / Artista Marcial">Deportista / Artista Marcial</option>
+                        <option value="Ingeniero / licenciado en telecominicaciones">Ingeniero / licenciado en telecominicaciones</option>
+                        <option value="Comunicador Social">Comunicador Social</option>
+                        <option value="Trabajador Social">Trabajador Social</option>
+                        <option value="Sacerdote / Pastor / Rabino / Predicador / Similar">Sacerdote / Pastor / Rabino / Predicador / Similar</option>
+                        <option value="Diseñador Grafico">Diseñador Grafico</option>
+                        <option value="Diseñador de Interiores">Diseñador de Interiores</option>
+                        <option value="Analista de Riesgos">Analista de Riesgos</option>
+                        <option value="Jubilado">Jubilado</option>
+                        <option value="Peluquero / Manicurista">Peluquero / Manicurista</option>
+                        <option value="0">Otro:</option>
+                    </select>
+                    <input type="text" class="form-control disabled invisible" id="motherWork2" placeholder="Si escogió la opción otro, ingrese aqui">
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
                 <label for="studentFatherName" class="col-sm-2 col-form-label">Nombre completo de el padre:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="studentFatherName" placeholder="Nombre de el padre">
@@ -132,6 +192,62 @@
                 <label for="fatherCI" class="col-sm-2 col-form-label">Cédula de el padre:</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" id="fatherCI" placeholder="Cédula de el padre">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="address" class="col-sm-2 col-form-label">Ocupación del padre:</label>
+                <div class="col-sm-10">
+                    <select class="custom-select mr-sm-2" id="fatherWork">
+                        <option selected disabled>Escoge una Ocupación</option>
+                        <option value="Comerciante">Comerciante</option>
+                        <option value="Profesor">Profesor</option>
+                        <option value="Maestro">Maestro</option>
+                        <option value="Profesional de la Salud">Profesional de la Salud</option>
+                        <option value="Ingenierio Civil">Ingenierio Civil</option>
+                        <option value="Ingeniero en Sistemas">Ingeniero en Sistemas</option>
+                        <option value="Licenciado en Lenguas">Licenciado en Lenguas</option>
+                        <option value="Licenciado en Agronomia">Licenciado en Agronomia</option>
+                        <option value="Agricultor">Agricultor</option>
+                        <option value="Mecanico">Mecánico</option>
+                        <option value="Artesano">Artesano</option>
+                        <option value="Artista">Artista</option>
+                        <option value="Ganadero">Ganadero</option>
+                        <option value="Escritor">Escritor</option>
+                        <option value="Tecnico Electricista">Tecnico Electricista</option>
+                        <option value="Cargo Gubernamental">Cargo Gubernamental</option>
+                        <option value="Amo / Ama de Casa">Amo / Ama de Casa</option>
+                        <option value="Bombero">Bombero</option>
+                        <option value="Chofer">Chofer</option>
+                        <option value="Cheft">Cheft</option>
+                        <option value="Policia">Policia</option>
+                        <option value="Turismo">Turismo</option>
+                        <option value="Seguridad Privada">Seguridad Privada</option>
+                        <option value="Constructor">Constructor</option>
+                        <option value="Albañil">Albañil</option>
+                        <option value="Abogado">Abogado</option>
+                        <option value="Juez">Juez</option>
+                        <option value="Vendedor de seguros">Vendedor de seguros</option>
+                        <option value="Economista">Economista</option>
+                        <option value="Contador">Contador</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Veterinario">Veterinario</option>
+                        <option value="Ingeniero Quimico">Ingeniero Quimico</option>
+                        <option value="Obrero">Obrero</option>
+                        <option value="Politico">Politico</option>
+                        <option value="Deportista / Artista Marcial">Deportista / Artista Marcial</option>
+                        <option value="Ingeniero / licenciado en telecominicaciones">Ingeniero / licenciado en telecominicaciones</option>
+                        <option value="Comunicador Social">Comunicador Social</option>
+                        <option value="Trabajador Social">Trabajador Social</option>
+                        <option value="Sacerdote / Pastor / Rabino / Predicador / Similar">Sacerdote / Pastor / Rabino / Predicador / Similar</option>
+                        <option value="Diseñador Grafico">Diseñador Grafico</option>
+                        <option value="Diseñador de Interiores">Diseñador de Interiores</option>
+                        <option value="Analista de Riesgos">Analista de Riesgos</option>
+                        <option value="Jubilado">Jubilado</option>
+                        <option value="Peluquero / Manicurista">Peluquero / Manicurista</option>
+                        <option value="0">Otro:</option>
+                    </select>
+                    <input type="text" class="form-control disabled invisible" id="fatherWork2" placeholder="Si escogió la opción otro, ingrese aqui">
                 </div>
             </div>
 
@@ -156,10 +272,18 @@
                     </div>
                 </div>
             </fieldset>
+
             <div class="form-group row">
                 <label for="age" class="col-sm-2 col-form-label">Edad:</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="age" placeholder="Edad">
+                    <input type="number" class="form-control ageTopic" id="age" placeholder="Edad">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="studentBirthDay" class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control ageTopic" id="studentBirthDay">
                 </div>
             </div>
 
@@ -182,6 +306,32 @@
                         <option value="4">Cuarto año</option>
                         <option value="5">Quinto año</option>
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="procedence" class="col-sm-2 col-form-label">Institución anterior:</label>
+                <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" id="procedence">
+                        <option selected disabled>Escoge una institución</option>
+                        <option value="E.B. José Ramón Camejo">E.B. José Ramón Camejo</option>
+                        <option value="E.B. Abelardo Méndez">E.B. Abelardo Méndez</option>
+                        <option value="U.E.C. Padre Juan de Barnuevo">U.E.C. Padre Juan de Barnuevo</option>
+                        <option value="Escuela Básica José Tadeo Monagas">Escuela Básica José Tadeo Monagas</option>
+                        <option value="U.E.C Nuestra Señora De Altagracia">U.E.C Nuestra Señora De Altagracia</option>
+                        <option value="U. E. Colegio San Pablo Apostol">U. E. Colegio San Pablo Apostol</option>
+                        <option value="Escuela Básica Bolivariana Orituco">Escuela Básica Bolivariana Orituco</option>
+                        <option value="Escuela Básica Próspero Infante">Escuela Básica Próspero Infante</option>
+                        <option value="Escuela Básica La Cumaná">Escuela Básica La Cumaná</option>
+                        <option value="U.E. Colegio Batalla de La Victoria">U.E. Colegio Batalla de La Victoria</option>
+                        <option value="Liceo José Francisco Torrealba">Liceo José Francisco Torrealba</option>
+                        <option value="Escuela Básica Los Guaiqueríes">Escuela Básica Los Guaiqueríes</option>
+                        <option value="Colegio Madre Calendaria">Colegio Madre Calendaria</option>
+                        <option value="0">Otra:</option>
+                    </select>
+                    <div class="col-sm-15">
+                        <input type="text" class="form-control disabled invisible" id="procedenceName" placeholder="Si seleccinó otra, ingrese cual es aqui">
+                    </div>
                 </div>
             </div>
 
@@ -225,7 +375,7 @@
                     </div>
 
                     <div class="paid">
-                     <div class="col-sm-7">
+                        <div class="col-sm-7">
                             <label for="amount" class="col-sm-4 col-form-label">Banco:</label>
                             <select class="form-select" aria-label="Default select example" id="bank">
                                 <option selected disabled>Escoge un banco</option>
@@ -236,63 +386,63 @@
                                 <option value="BIC">Bicentenario</option>
                             </select>
                         </div>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="form-group row marginTop">
-                <label for="bloodType" class="col-sm-2 col-form-label">Tipo de Sangre (opcional):</label>
-                <div class="col-sm-10" id="booldType-container">
-                    <select class="form-select" aria-label="Default select example" id="bloodType">
-                        <option selected disabled>Selecciona un tipo</option>
-                        <option value="A">Tipo A</option>
-                        <option value="B">Tipo B</option>
-                        <option value="AB">Tipo AB</option>
-                        <option value="O">Tipo O</option>                 
-                    </select>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox"  id="rh" checked>
-                        <label class="form-check-label" for="rh">Factor RH</label>
+                <div class="form-group row marginTop">
+                    <label for="bloodType" class="col-sm-2 col-form-label">Tipo de Sangre:</label>
+                    <div class="col-sm-10" id="booldType-container">
+                        <select class="form-select" aria-label="Default select example" id="bloodType">
+                            <option selected disabled>Selecciona un tipo</option>
+                            <option value="A">Tipo A</option>
+                            <option value="B">Tipo B</option>
+                            <option value="AB">Tipo AB</option>
+                            <option value="O">Tipo O</option>
+                        </select>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rh" checked>
+                            <label class="form-check-label" for="rh">Factor RH</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="allergies" class="col-sm-2 col-form-label">Alergias:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="allergies" placeholder="Alergias">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="medicalProblems" class="col-sm-2 col-form-label">Problemas Medicos:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="medicalProblems" placeholder="Problemas Medicos">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="observations" class="col-sm-2 col-form-label">Observaciones:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="observations" placeholder="Observaciones">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="talents" class="col-sm-2 col-form-label">Talentos:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="talents" placeholder="Talentos">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary" id="btn-accept">
+                            Aceptar
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <label for="allergies" class="col-sm-2 col-form-label">Alergias (opcional):</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="allergies" placeholder="Alergias (opcional)">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="medicalProblems" class="col-sm-2 col-form-label">Problemas Medicos (opcional):</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="medicalProblems" placeholder="Problemas Medicos (opcional)">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="observations" class="col-sm-2 col-form-label">Observaciones (opcional):</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="observations" placeholder="Observaciones (opcional)">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="talents" class="col-sm-2 col-form-label">Talentos (opcional):</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="talents" placeholder="Talentos (opcional)">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary" id="btn-accept">
-                        Aceptar
-                    </button>
-                </div>
-            </div>
-        </div>
     </form>
 
 

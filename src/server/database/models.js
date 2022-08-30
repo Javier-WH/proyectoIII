@@ -46,13 +46,17 @@ PreIscription.init({
     CI: DataTypes.INTEGER,
     motherName: DataTypes.STRING,
     motherCI: DataTypes.INTEGER,
+    motherWork: DataTypes.STRING,
     fatherName: DataTypes.STRING,
     fatherCI: DataTypes.INTEGER,
+    fatherWork: DataTypes.STRING,
     gender: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
+    birthDay:DataTypes.STRING,
     address: DataTypes.STRING,
     tutorID: DataTypes.INTEGER,
+    procedence: DataTypes.STRING,
     schoolYear: DataTypes.STRING
 }, {
     sequelize,

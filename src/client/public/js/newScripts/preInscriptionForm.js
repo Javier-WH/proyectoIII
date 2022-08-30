@@ -23,6 +23,15 @@ const medicalProblems = document.getElementById("medicalProblems");
 const observations = document.getElementById("observations");
 const talents = document.getElementById("talents");
 const container = document.getElementById("data-container");
+const procedende = document.getElementById("procedence");
+const procedenceName = document.getElementById("procedenceName");
+const motherWork = document.getElementById("motherWork");
+const motherWork2 = document.getElementById("motherWork2");
+const fatherWork = document.getElementById("fatherWork");
+const fatherWork2 = document.getElementById("fatherWork2");
+const studentBirthDay = document.getElementById("studentBirthDay");
+const loadingBar = document.getElementById("loadin-bar");
+let bar = document.getElementById("progressBar");
 let tutorID = "";
 
 //boton regresar
@@ -47,9 +56,74 @@ rdbEfectivo.addEventListener("change", ()=>{
 })
 //
 
+procedende.addEventListener("change", e=>{
+    if(e.target.value == 0){
+        procedenceName.classList.remove("disabled");
+        procedenceName.classList.remove("invisible");
+   
+    }else{
+        procedenceName.classList.add("disabled");
+        procedenceName.classList.add("invisible");
+        procedenceName.value = "";
+    }
+})
+///
+
+motherWork.addEventListener("change", e=>{
+    if(e.target.value == 0){
+        motherWork2.classList.remove("disabled");
+        motherWork2.classList.remove("invisible");
+   
+    }else{
+        motherWork2.classList.add("disabled");
+        motherWork2.classList.add("invisible");
+        motherWork2.value = "";
+    }
+})
+///
+fatherWork.addEventListener("change", e=>{
+    if(e.target.value == 0){
+        fatherWork2.classList.remove("disabled");
+        fatherWork2.classList.remove("invisible");
+   
+    }else{
+        fatherWork2.classList.add("disabled");
+        fatherWork2.classList.add("invisible");
+        fatherWork2.value = "";
+    }
+})
+
+//
+age.addEventListener("keyup", e=>{
+
+   
+    let currentYear = new Date().getFullYear();   
+    let currentAge = e.target.value;
+    let bornYear = currentYear - currentAge;
+    
+    if(bornYear <= 0 || e.target.value > 120){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La edad suministrada es imposible',
+        })
+        e.target.value = "";
+        setTimeout(() => {///esto corrige un bug
+            studentBirthDay.value = "";
+        }, 100);
+    }
+    
+    studentBirthDay.value = `${bornYear}-01-01`;
+})
+
+
+//
+
 tutorCI.addEventListener("keyup", ()=>{
+    cleanAllData();
     displayTutorName();
     container.classList.add("disabled");
+    container.classList.add("invisible");
 })
 
 //
@@ -76,6 +150,15 @@ function cleanAllData(){
     medicalProblems.value = "";
     observations.value = "";
     talents.value = "";
+    motherWork.selectedIndex = 0;
+    motherWork2.classList.add("disabled");
+    motherWork2.classList.add("invisible");
+    motherWork2.value = "";
+    fatherWork.selectedIndex = 0;
+    fatherWork2.classList.add("disabled");
+    fatherWork2.classList.add("invisible");
+    fatherWork2.value = "";
+    studentBirthDay.value = "";
 }
 
 ///
@@ -105,7 +188,7 @@ function displayTutorName(name = ""){
     }
 
     nameContainer.classList.remove("invisible");
-    tutorName.value = name;
+    tutorName.innerText = name;
 }
 
 //
@@ -128,7 +211,14 @@ async function preinscribeStudent(data){
 
 document.getElementById("btn-ci-next").addEventListener("click", async e=>{
     e.preventDefault();
+
+    if(tutorCI.value == ""){
+        return;
+    }
+    loadingBar.classList.remove("invisible");
+    bar.style.width = `100%`;
     let tutorData = await getTutor(tutorCI.value);
+    bar.style.width = `0%`;
     if(tutorData.MESSAJE){
         Swal.fire({
             icon: 'error',
@@ -138,15 +228,40 @@ document.getElementById("btn-ci-next").addEventListener("click", async e=>{
         displayTutorName();
         cleanAllData();
         container.classList.add("disabled");
+        container.classList.add("invisible");
+        loadingBar.classList.add("invisible");
         return;
     }
+    loadingBar.classList.add("invisible");
     displayTutorName(`${tutorData.lastName} ${tutorData.names}`)
     container.classList.remove("disabled");
+    container.classList.remove("invisible");
     tutorID = tutorData.id;
 });
 
 ////
 
+
+/*
+    names: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    CI: DataTypes.INTEGER,
+    motherName: DataTypes.STRING,
+    motherCI: DataTypes.INTEGER,
+    motherWork: DataTypes.STRING,
+    fatherName: DataTypes.STRING,
+    fatherCI: DataTypes.INTEGER,
+    fatherWork: DataTypes.STRING,
+    gender: DataTypes.CHAR,
+    year: DataTypes.INTEGER,
+    age: DataTypes.INTEGER,
+    birthDay:DataTypes.STRING,
+    address: DataTypes.STRING,
+    tutorID: DataTypes.INTEGER,
+    procedence: DataTypes.STRING,
+    schoolYear: DataTypes.STRING
+
+*/
 
 document.getElementById("btn-accept").addEventListener("click", async e =>{
     e.preventDefault();
@@ -157,16 +272,21 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
         ci: ci.value,
         motherName: motherName.value,
         motherCI: motherCI.value,
+        motherWork: motherWork.value != 0 ? motherWork.value : motherWork2.value,
         fatherName: fatherName.value,
         fatherCI: fatherCI.value,
+        fatherWork: fatherWork.value != 0 ? fatherWork.value : fatherWork2.value,
         gender: maleGender.checked ? "M" : "F",
         year: grade.value,
         age: age.value,
+        birthDay: studentBirthDay.value,
         address: address.value,
-        tutorID
+        tutorID,
+        procedence: procedende.value !=0 ? procedende.value : procedenceName.value
     }
+    console.log(data);
   ///////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<----------------- falta registrar el pago
-    let response = await preinscribeStudent(data);
+   /* let response = await preinscribeStudent(data);
     if(response.Error){
         Swal.fire({
             icon: 'error',
@@ -184,5 +304,5 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
         displayTutorName();
         cleanAllData();
         container.classList.add("disabled");
-    }
+    }*/
 })

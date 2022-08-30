@@ -151,3 +151,7 @@
 #tutorName-container{
     margin-left: 20px;
 }
+
+.ageTopic{
+    max-width: 200px;
+}
