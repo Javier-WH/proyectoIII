@@ -176,6 +176,7 @@ Bitacora.init({
 class Payments extends Model {};
 Payments.init({
     studentCI: DataTypes.INTEGER,
+    mount: DataTypes.INTEGER,
     description: DataTypes.STRING,
     currency: DataTypes.STRING,
     cash: DataTypes.BOOLEAN,
@@ -183,7 +184,7 @@ Payments.init({
         type: Sequelize.STRING,
         defaultValue: "No suministrado"
     },
-    backName:{
+    banckName:{
         type: Sequelize.STRING,
         defaultValue:"No suministrado"
     }
@@ -191,4 +192,4 @@ Payments.init({
     sequelize,
     motherName: "Payments"
 })
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Bitacora };
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Bitacora, Payments};

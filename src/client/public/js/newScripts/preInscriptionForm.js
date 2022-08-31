@@ -34,6 +34,7 @@ const loadingBar = document.getElementById("loadin-bar");
 let bar = document.getElementById("progressBar");
 let tutorID = "";
 
+window.scrollTo(1,1);
 //boton regresar
 document.getElementById("user-container").addEventListener("click", e=>{
     e.preventDefault();
@@ -52,6 +53,8 @@ rdbEfectivo.addEventListener("change", ()=>{
     if(rdbEfectivo.checked){
         deposito.classList.add("disabled");
         bank.classList.add("disabled");
+        deposito.value = "";
+        bank.selectedIndex = 0;
     }
 })
 //
@@ -241,30 +244,27 @@ document.getElementById("btn-ci-next").addEventListener("click", async e=>{
 
 ////
 
-
-/*
-    names: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    CI: DataTypes.INTEGER,
-    motherName: DataTypes.STRING,
-    motherCI: DataTypes.INTEGER,
-    motherWork: DataTypes.STRING,
-    fatherName: DataTypes.STRING,
-    fatherCI: DataTypes.INTEGER,
-    fatherWork: DataTypes.STRING,
-    gender: DataTypes.CHAR,
-    year: DataTypes.INTEGER,
-    age: DataTypes.INTEGER,
-    birthDay:DataTypes.STRING,
-    address: DataTypes.STRING,
-    tutorID: DataTypes.INTEGER,
-    procedence: DataTypes.STRING,
-    schoolYear: DataTypes.STRING
-
-*/
-
 document.getElementById("btn-accept").addEventListener("click", async e =>{
     e.preventDefault();
+
+    let paymentData ={
+        studentCI: ci.value,
+        mount: mount.value,
+        description: "Pago preinscripción",
+        currency: rdbBs.checked ? "BS" : "USD",
+        cash: rdbEfectivo.checked ? true : false,
+        bankDepositNumber: rdbEfectivo.checked ? "No suministrado" : deposito.value,
+        banckName:  rdbEfectivo.checked ? "No suministrado" : bank.value
+    }
+
+    let auxiliarData ={
+        allergies: allergies.value,
+        bloodType: `${bloodType.value}, ${rh.checked ? "RH-Posirivo" : "RH-negativo"}`,
+        medical_problems: medicalProblems.value,
+        observatios: observations.value,
+        talents: talents.value
+    }
+
 
     let data = {
         names: name.value,
@@ -282,11 +282,13 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
         birthDay: studentBirthDay.value,
         address: address.value,
         tutorID,
-        procedence: procedende.value !=0 ? procedende.value : procedenceName.value
+        procedence: procedende.value !=0 ? procedende.value : procedenceName.value,
+        paymentData,
+        auxiliarData
     }
-    console.log(data);
+
   ///////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<----------------- falta registrar el pago
-   /* let response = await preinscribeStudent(data);
+   let response = await preinscribeStudent(data);
     if(response.Error){
         Swal.fire({
             icon: 'error',
@@ -304,5 +306,5 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
         displayTutorName();
         cleanAllData();
         container.classList.add("disabled");
-    }*/
+    }
 })

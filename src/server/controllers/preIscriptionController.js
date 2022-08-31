@@ -1,9 +1,11 @@
 const { PreIscription } = require("../database/models.js");
 const studentsController = require("../controllers/studentsController.js");
 const { getConfig } = require("./configControler.js");
+const { registerPayment } = require("./paymentController.js");
 
 
-async function registerStudent({ names, lastName, ci, motherName, motherCI, fatherName, fatherCI, gender, year, age, address, tutorID }) {
+
+async function registerStudent({ names, lastName, ci, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, gender, year, age, birthDay, address, tutorID, procedence, paymentData, auxiliarData }) {
     let data = ""
     let checkExist = await findStudent({ CI: ci });
     let isIncripted = await studentsController.findStudent({ CI: ci });
@@ -19,18 +21,26 @@ async function registerStudent({ names, lastName, ci, motherName, motherCI, fath
             CI: ci,
             motherName,
             motherCI,
+            motherWork,
             fatherName,
             fatherCI,
+            fatherWork,
             gender,
             year,
             age,
+            birthDay,
             address,
             tutorID,
+            procedence,
             schoolYear
         });
         data = ask
     }
+//////
+    let payment = await registerPayment(paymentData);
+    console.log(payment);
 
+////
     return new Promise((resolved, rejected) => {
         resolved(data);
         rejected({ "Error": "Ha ocurrido un error al inscribir el estudiante" });
