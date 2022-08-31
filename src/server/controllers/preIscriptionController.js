@@ -2,6 +2,7 @@ const { PreIscription } = require("../database/models.js");
 const studentsController = require("../controllers/studentsController.js");
 const { getConfig } = require("./configControler.js");
 const { registerPayment } = require("./paymentController.js");
+const { insertAuxInfo } = require("./auxiliarInformationController.js");
 
 
 
@@ -34,11 +35,12 @@ async function registerStudent({ names, lastName, ci, motherName, motherCI, moth
             procedence,
             schoolYear
         });
-        data = ask
+        data = ask;
+        let payment = await registerPayment(paymentData);
+        let auxInfo = await insertAuxInfo(auxiliarData);
     }
 //////
-    let payment = await registerPayment(paymentData);
-    console.log(payment);
+ 
 
 ////
     return new Promise((resolved, rejected) => {

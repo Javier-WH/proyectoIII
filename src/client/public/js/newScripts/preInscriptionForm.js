@@ -258,6 +258,7 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
     }
 
     let auxiliarData ={
+        studentCI:ci.value,
         allergies: allergies.value,
         bloodType: `${bloodType.value}, ${rh.checked ? "RH-Posirivo" : "RH-negativo"}`,
         medical_problems: medicalProblems.value,

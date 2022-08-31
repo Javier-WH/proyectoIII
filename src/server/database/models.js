@@ -93,7 +93,7 @@ Tutors.init({
 
 class AuxiliarInfo extends Model {}
 AuxiliarInfo.init({
-    studentID: DataTypes.INTEGER,
+    studentCI: DataTypes.INTEGER,
     allergies: {
         type: Sequelize.STRING,
         defaultValue: "No Suministrado"
