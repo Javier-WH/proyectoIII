@@ -20,19 +20,27 @@ User.init({
 });
 
 ////////////////modelo de los estudiantes
-
 class Students extends Model {}
 Students.init({
     names: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    CI: DataTypes.INTEGER,
+    CI: DataTypes.STRING,
+    motherName: DataTypes.STRING,
+    motherCI: DataTypes.INTEGER,
+    motherWork: DataTypes.STRING,
+    fatherName: DataTypes.STRING,
+    fatherCI: DataTypes.INTEGER,
+    fatherWork: DataTypes.STRING,
     gender: DataTypes.CHAR,
-    seccion: DataTypes.CHAR,
     year: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
+    birthDay:DataTypes.STRING,
+    address: DataTypes.STRING,
     tutorID: DataTypes.INTEGER,
-    subjects: DataTypes.JSON,
+    procedence: DataTypes.STRING,
     schoolYear: DataTypes.STRING,
+    seccion: DataTypes.CHAR,
+    subjects: DataTypes.JSON,
     photo: DataTypes.STRING
 }, {
     sequelize,
@@ -43,7 +51,7 @@ class PreIscription extends Model {}
 PreIscription.init({
     names: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    CI: DataTypes.INTEGER,
+    CI: DataTypes.STRING,
     motherName: DataTypes.STRING,
     motherCI: DataTypes.INTEGER,
     motherWork: DataTypes.STRING,
@@ -93,7 +101,7 @@ Tutors.init({
 
 class AuxiliarInfo extends Model {}
 AuxiliarInfo.init({
-    studentCI: DataTypes.INTEGER,
+    studentCI: DataTypes.STRING,
     allergies: {
         type: Sequelize.STRING,
         defaultValue: "No Suministrado"
@@ -175,7 +183,7 @@ Bitacora.init({
 
 class Payments extends Model {};
 Payments.init({
-    studentCI: DataTypes.INTEGER,
+    studentCI: DataTypes.STRING,
     mount: DataTypes.INTEGER,
     description: DataTypes.STRING,
     currency: DataTypes.STRING,

@@ -1,10 +1,10 @@
 const { Payments } = require("../database/models.js");
 
 
-async function registerPayment({studentCI, mount, description, currency, cash, bankDepositNumber, banckName}){
+async function registerPayment({mount, description, currency, cash, bankDepositNumber, banckName}, ci){
 
     let response = await Payments.create({
-        studentCI,
+        studentCI : ci,
         mount,
         description,
         currency,

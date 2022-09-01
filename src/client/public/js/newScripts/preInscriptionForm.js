@@ -32,16 +32,27 @@ const fatherWork2 = document.getElementById("fatherWork2");
 const studentBirthDay = document.getElementById("studentBirthDay");
 const loadingBar = document.getElementById("loadin-bar");
 let bar = document.getElementById("progressBar");
+let hadCI = document.getElementById("hadCI");
 let tutorID = "";
 
 window.scrollTo(1,1);
 //boton regresar
-document.getElementById("user-container").addEventListener("click", e=>{
+document.getElementById("d-flex").addEventListener("click", e=>{
     e.preventDefault();
     location.href = "/config";
 });
 
 ////
+hadCI.addEventListener("change", e=>{
+    if(e.target.checked){
+        ci.value = "";
+        ci.classList.add("disabled");
+    }else{
+        ci.classList.remove("disabled");
+    }
+})
+
+/////
 rdbDeposito.addEventListener("change", ()=>{
     if(rdbDeposito.checked){
         deposito.classList.remove("disabled");
@@ -162,7 +173,12 @@ function cleanAllData(){
     fatherWork2.classList.add("invisible");
     fatherWork2.value = "";
     studentBirthDay.value = "";
+    hadCI.checked = false;
 }
+
+/////
+
+
 
 ///
 async function getTutor(CI){
@@ -244,9 +260,108 @@ document.getElementById("btn-ci-next").addEventListener("click", async e=>{
 
 ////
 
+function checkData(){
+    let data = {
+        missing: false,
+        missingData:"Ninguno"
+    }
+    if(name.value == ""){
+        data.missing = true;
+        data.missingData = "el nombre del alumno";
+        return data;
+    }
+    if(lastName.value == ""){
+        data.missing = true;
+        data.missingData = "el apellido del alumno";
+        return data;
+    }
+    if(!hadCI.checked && ci.value == ""){
+        data.missing = true;
+        data.missingData = "la cédula del alumno";
+        return data;
+    }
+    if(motherName.value == ""){
+        data.missing = true;
+        data.missingData = "el nombre de la madre";
+        return data;
+    }
+    if(motherCI.value == ""){
+        data.missing = true;
+        data.missingData = "la cédula de la madre";
+        return data;
+    }
+    if(motherWork.selectedIndex == 0 || (motherWork.value == 0 && motherWork2.value == "")){
+        data.missing = true;
+        data.missingData = "la ocupación de la madre";
+        return data;
+    }
+    if(fatherName.value == ""){
+        data.missing = true;
+        data.missingData = "el nombre de el padre";
+        return data;
+    }
+    if(fatherCI.value == ""){
+        data.missing = true;
+        data.missingData = "la cédula de el padre";
+        return data;
+    }
+
+    if(fatherWork.selectedIndex == 0 || (fatherWork.value == 0 && fatherWork2.value == "") ){
+        data.missing = true;
+        data.missingData = "la ocupación de el padre";
+        return data;
+    }
+    if(age.value == ""){
+        data.missing = true;
+        data.missingData = "la edad del alumno";
+        return data;
+    }
+    if(address.value == ""){
+        data.missing = true;
+        data.missingData = "una dirección";
+        return data;
+    }
+    if(grade.selectedIndex == 0){
+        data.missing = true;
+        data.missingData = "un grado escolar para el alumno";
+        return data;
+    }
+    if(procedende.selectedIndex == 0 || (procedende.value == 0 && procedenceName.value =="")){
+        data.missing = true;
+        data.missingData = "una institución anterior";
+        return data;
+    }
+    if(mount.value == ""){
+        data.missing = true;
+        data.missingData = "un pago";
+        return data;
+    }
+    if(rdbDeposito.checked && deposito.value == 0){
+        data.missing = true;
+        data.missingData = "un numero de deposito bancario";
+        return data;
+    }
+    if(rdbDeposito.checked &&  bank.selectedIndex == 0){
+        data.missing = true;
+        data.missingData = "un banco valido";
+        return data;
+    }
+    return data;
+}
+
+////
 document.getElementById("btn-accept").addEventListener("click", async e =>{
     e.preventDefault();
 
+    let studentData = checkData();
+    if(studentData.missing){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `No ha suministrado ${studentData.missingData}`
+        });
+        return;
+    }
     let paymentData ={
         studentCI: ci.value,
         mount: mount.value,
@@ -258,19 +373,19 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
     }
 
     let auxiliarData ={
-        studentCI:ci.value,
-        allergies: allergies.value,
-        bloodType: `${bloodType.value}, ${rh.checked ? "RH-Posirivo" : "RH-negativo"}`,
-        medical_problems: medicalProblems.value,
-        observatios: observations.value,
-        talents: talents.value
+        studentCI: ci.value == "" ? "No suministrado" : ci.value,
+        allergies: allergies.value == "" ? "No suministrado" : allergies.value,
+        bloodType: bloodType.selectedIndex == 0 ? "No suministrado" : (`${bloodType.value}, ${rh.checked ? "RH-Posirivo" : "RH-negativo"}`),
+        medical_problems: medicalProblems.value == "" ? "No suministrado" : medicalProblems.value,
+        observatios: observations.value == "" ? "No suministrado" : observations.value,
+        talents: talents.value == "" ? "No suministrado" : talents.value
     }
 
 
     let data = {
         names: name.value,
         lastName: lastName.value,
-        ci: ci.value,
+        ci: hadCI.checked ? tutorID : ci.value,
         motherName: motherName.value,
         motherCI: motherCI.value,
         motherWork: motherWork.value != 0 ? motherWork.value : motherWork2.value,
@@ -288,8 +403,8 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
         auxiliarData
     }
 
-  ///////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<----------------- falta registrar el pago
    let response = await preinscribeStudent(data);
+
     if(response.Error){
         Swal.fire({
             icon: 'error',
@@ -307,5 +422,8 @@ document.getElementById("btn-accept").addEventListener("click", async e =>{
         displayTutorName();
         cleanAllData();
         container.classList.add("disabled");
+        container.classList.add("invisible");
+        tutorCI.value = "";
+        window.scrollTo(1,1);
     }
 })

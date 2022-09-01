@@ -4,7 +4,8 @@ const { Students } = require("../database/models.js");
 const configController = require("../controllers/configControler.js");
 const { getSubjects } = require("../controllers/subjectsController.js");
 
-async function registerStudent({ names, lastName, ci, gender, seccion, year, age, tutorID, schoolYear }) {
+
+async function registerStudent({ names, lastName, ci, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, gender, seccion, year, age, birthDay, address, tutorID, procedence, schoolYear }) {
     let message = ""
     let checkCI = await findStudent({ CI: ci })
 
@@ -21,17 +22,25 @@ async function registerStudent({ names, lastName, ci, gender, seccion, year, age
         filteredSubject.map(e => {
             subjects[e] = { "l1": 0, "l2": 0, "l3": 0, "def": 0 }
         })
-        //console.log(subjects)
-
+       
         let ask = await Students.create({
             names,
             lastName,
             CI: ci,
+            motherName,
+            motherCI,
+            motherWork,
+            fatherName,
+            fatherCI,
+            fatherWork,
             gender,
             seccion,
             year,
             age,
+            birthDay,
+            address,
             tutorID,
+            procedence,
             subjects,
             schoolYear,
             photo: "default"

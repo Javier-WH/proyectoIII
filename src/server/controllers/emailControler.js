@@ -165,4 +165,4 @@ async function isTokenListEmpty() {
 
 
 
-module.exports = { sendEmail, tokenExist, cleanAllEmailTokens, ciExist, cleanTokenByCI, isTokenListEmpty, sendEmailTutor }
+module.exports = { sendEmail, tokenExist, cleanAllEmailTokens, ciExist, cleanTokenByCI, isTokenListEmpty, sendEmailTutor, createToken }

@@ -41,7 +41,7 @@ Router.post("/getFake", express.json(), async(req, res) => {
         let seccion = seccions[getRandomInt(0, 1)];
         let year = getRandomInt(1, 5);
         let age = getRandomInt(11, 16);
-        let parentID = getRandomInt(0, (cant / 4));
+        let tutorID = getRandomInt(0, (cant / 4));
         let name;
 
         if (gender == "M") {
@@ -54,96 +54,29 @@ Router.post("/getFake", express.json(), async(req, res) => {
         let lastName = lastNames[getRandomInt(0, lastNames.length - 1)];
         lastName += " " + lastNames[getRandomInt(0, lastNames.length - 1)];
 
-        let subjectListA = {
-            "ingles": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "matematica": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "historia": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "deporte": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "geogrfia": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            }
-        };
-
-        let subjectListB = {
-            "informatica": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "fisica": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "biologia": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "historia": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "deporte": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            },
-            "geogrfia": {
-                "l1": getRandomInt(0, 20),
-                "l2": getRandomInt(0, 20),
-                "l3": getRandomInt(0, 20),
-                "def": "0"
-            }
-
-        }
-
-
-        let subjects = seccion == "a" ? subjectListA : subjectListB;
-
-
+        
         return {
             "names": name,
             "lastName": lastName,
             "ci": CI,
+            "motherName": "nombre de prueba",
+            "motherCI" : "5555",
+            "motherWork" : "trabajo de prueba",
+            "fatherName" : "nombre de prueba",
+            "fatherCI" : "5555",
+            "fatherWork" : "trbajo de prueba",
             "gender": gender,
-            "seccion": seccion,
             "year": year,
             "age": age,
-            "parentID": parentID,
-            "subjects": subjects,
-            "schoolYear": schoolYear
+            "birthDay": "cumpleaños de prueba",
+            "address" : "dirección de prueba",
+            "tutorID": tutorID,
+            "procedence": "escuela de prueba",
+            "schoolYear": schoolYear,
+            "seccion": seccion
         }
     }
+    
 
     function registerStudenList(cant, schoolYear) {
 

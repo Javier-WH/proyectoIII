@@ -96,15 +96,10 @@ export function loadStudentListEvents() {
                                 timer: 1500
                             });
                             findStudentList_pre();
-
                         }
-
-
                     }
-
                 }
             })
-
         }
         ///////////////////////////
 
