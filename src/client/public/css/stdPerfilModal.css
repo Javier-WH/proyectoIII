@@ -62,9 +62,25 @@
     margin: 10px;
 }
 
-#std-perfil-btnUpdateData{
-    
+.btn-perfil{
+    font-size: 12px;
+    margin-top: 5px;
     background-color: #5c6bc0;
     color: white;
     border: 1px solid #5c6bc0;
+}
+.lbl-std-perfil{
+    border-top: 1px solid gainsboro;
+    margin-top: 10px;
+    font-size: 14px !important;
+    font-weight: 900px !important;
+}
+.input-std-perfil{
+   font-size: 18px !important;
+   
+ }
+
+.input-std-perfil:disabled{
+   background-color: transparent;
+   border: 2px solid transparent;
 }

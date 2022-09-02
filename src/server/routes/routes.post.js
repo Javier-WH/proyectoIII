@@ -8,7 +8,7 @@ const controller = require("../controllers/controllers.js");
 const tutorController = require("../controllers/tutorsController.js");
 const configController = require("../controllers/configControler.js");
 const { getGradesList, getSubjects } = require("../controllers/subjectsController.js")
-
+const { getAuxInfo } = require("../controllers/auxiliarInformationController.js")
 
 
 Router.post("/getSeccionList", express.json(), async(req, res) => {
@@ -62,4 +62,7 @@ Router.post("/getSubjects", express.json(), async(req, res) => {
     res.json(await getSubjects());
 })
 
+Router.post("/getAux", express.json(), async(req, res)=>{
+    res.json(await getAuxInfo(req.body.ci));
+})
 module.exports = Router;
