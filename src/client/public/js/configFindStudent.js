@@ -58,7 +58,7 @@ export function fillTable(list, id = "std-") {
         html += `
             <tr id="${id}${student.id}">
                 <th scope="row">${num++}</th>
-                <td>${student.CI}</td>
+                <td class="findStudentCI"><div>${student.CI}</div></td>
                 <td>${student.lastName}</td>
                 <td>${student.names}</td>
                 <td class="year">${student.year}</td>

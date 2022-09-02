@@ -19,8 +19,16 @@
     left: 0;
     border: 2px solid #5c6bc0;
     background-color: white;
+    width: 600px;
     max-width: 600px;
     max-height: 600px;
+    
+}
+#std-perfil-overflow{
+    width: 590px;
+    max-width: 590px;
+    max-height: 500px;
+    overflow-y: auto;
 }
 #std-perfil-photoContainer{
     width: 120px;
@@ -42,6 +50,7 @@
     display: flex;
 }
 #std-perfil-nameContainer{
+    width: 100%;
     display: flex;
     flex-direction: column;
 

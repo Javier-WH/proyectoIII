@@ -267,7 +267,7 @@
                 <thead id="table-header-student-list">
                     <tr>
                         <th scope="col">N°</th>
-                        <th scope="col">Cédula</th>
+                        <th scope="col" class="findStudentCI">Cédula</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Nombres</th>
                         <th scope="col" class="year" id="testyear">Año</th>
@@ -383,34 +383,64 @@
     <div id="std-perfil-container" class="invisible">
         <div id="std-perfil-close-x">X</div>
         <div id="std-perfil-title">Perfil del Estudiante</div>
-        <div id="std-perfil-dataContainer">
-            <div id="std-perfil-nameContainer">
-                <label for="std-pefil-name" class="lbl-std-perfil">Nombres</label>
-                <input type="text" id="std-pefil-name" class="input-std-perfil">
-                <label for="std-pefil-lastName" class="lbl-std-perfil">Apellidos</label>
-                <input type="text" id="std-pefil-lastName" class="input-std-perfil">
-                <label for="std-pefil-ci" class="lbl-std-perfil">Cédula</label>
-                <input type="text" id="std-pefil-ci" class="input-std-perfil">
-                <label for="std-pefil-age" class="lbl-std-perfil">Edad</label>
-                <input type="text" id="std-pefil-age" class="input-std-perfil">
-                <label for="std-pefil-Gender" class="lbl-std-perfil">Genero</label>
-                <input type="text" id="std-pefil-Gender" class="input-std-perfil">
+        <div id="std-perfil-overflow">
+            <div id="std-perfil-dataContainer">
+                <div id="std-perfil-nameContainer">
+                    <label for="std-pefil-name" class="lbl-std-perfil">Nombres</label>
+                    <input type="text" id="std-pefil-name" class="input-std-perfil">
+                    <label for="std-pefil-lastName" class="lbl-std-perfil">Apellidos</label>
+                    <input type="text" id="std-pefil-lastName" class="input-std-perfil">
+                    <label for="std-pefil-ci" class="lbl-std-perfil">Cédula</label>
+                    <input type="text" id="std-pefil-ci" class="input-std-perfil">
+                    <label for="std-pefil-age" class="lbl-std-perfil">Edad</label>
+                    <input type="text" id="std-pefil-age" class="input-std-perfil">
+                    <label for="std-pefil-Gender" class="lbl-std-perfil">Genero</label>
+                    <input type="text" id="std-pefil-Gender" class="input-std-perfil">
+                </div>
+                <div id="std-perfil-photoContainer">
+                    <img src="" alt="" id="std-perfil-photo">
+                    <button id="std-perfil-btnUpdateData">Actualizar datos</button>
+                </div>
+                
             </div>
-            <div id="std-perfil-photoContainer">
-                <img src="" alt="" id="std-perfil-photo">
-                <button id="std-perfil-btnUpdateData">Actualizar datos</button>
+            <div id="std-perfil-tutorDataContainer">
+                <label for="std-pefil-motherName" class="lbl-std-perfil">Nombre de la madre</label>
+                <input type="text" id="std-pefil-motherName" class="input-std-perfil">
+                <label for="std-pefil-motherCI" class="lbl-std-perfil">Cédula de la madre</label>
+                <input type="number" id="std-pefil-motherCI" class="input-std-perfil">
+                <label for="std-pefil-motherWork" class="lbl-std-perfil">Oficio de la madre</label>
+                <input type="text" id="std-pefil-motherWork" class="input-std-perfil">
+                <label for="std-pefil-fatherName" class="lbl-std-perfil">Nombre del padre</label>
+                <input type="text" id="std-pefil-fatherName" class="input-std-perfil">
+                <label for="std-pefil-fatherCI" class="lbl-std-perfil">Cédula del padre</label>
+                <input type="number" id="std-pefil-fatherCI" class="input-std-perfil">
+                <label for="std-pefil-fatherWork" class="lbl-std-perfil">Oficio del padre</label>
+                <input type="text" id="std-pefil-fatherWork" class="input-std-perfil">
+                <label for="std-pefil-tutorName" class="lbl-std-perfil">Nombre del representante</label>
+                <input type="text" id="std-pefil-tutorName" class="input-std-perfil">
+                <label for="std-pefil-tutorCi" class="lbl-std-perfil">Cédula del representante</label>
+                <input type="text" id="std-pefil-tutorCi" class="input-std-perfil">
+                <label for="std-pefil-tutorPhone" class="lbl-std-perfil">Telefono</label>
+                <input type="text" id="std-pefil-tutorPhone" class="input-std-perfil">
+                <label for="std-pefil-tutorPhone2" class="lbl-std-perfil">Telefono alternativo</label>
+                <input type="text" id="std-pefil-tutorPhone2" class="input-std-perfil">
+                <label for="std-pefil-tutorAddress" class="lbl-std-perfil">Dirección</label>
+                <input type="text" id="std-pefil-tutorAddress" class="input-std-perfil">
+                <label for="std-pefil-procedence" class="lbl-std-perfil">Institución anterior</label>
+                <input type="text" id="std-pefil-procedence" class="input-std-perfil">
+                <label for="std-pefil-schoolYear" class="lbl-std-perfil">Periodo escolar</label>
+                <input type="text" id="std-pefil-schoolYear" class="input-std-perfil">
+                <label for="std-pefil-allergies" class="lbl-std-perfil">Alergias</label>
+                <input type="text" id="std-pefil-allergies" class="input-std-perfil">
+                <label for="std-pefil-bloodType" class="lbl-std-perfil">Tipo de sangre</label>
+                <input type="text" id="std-pefil-bloodType" class="input-std-perfil">
+                <label for="std-pefil-medicalProblems" class="lbl-std-perfil">Problemas médicos</label>
+                <input type="text" id="std-pefil-medicalProblems" class="input-std-perfil">
+                <label for="std-pefil-observations" class="lbl-std-perfil">Observaciones</label>
+                <input type="text" id="std-pefil-observations" class="input-std-perfil">
+                <label for="std-pefil-talents" class="lbl-std-perfil">Talentos</label>
+                <input type="text" id="std-pefil-talents" class="input-std-perfil">
             </div>
-            
-        </div>
-        <div id="std-perfil-tutorDataContainer">
-            <label for="std-pefil-tutorName" class="lbl-std-perfil">Nombre del representante</label>
-            <input type="text" id="std-pefil-tutorName" class="input-std-perfil">
-            <label for="std-pefil-tutorCi" class="lbl-std-perfil">Cédula del representante</label>
-            <input type="text" id="std-pefil-tutorCi" class="input-std-perfil">
-            <label for="std-pefil-tutorPhone" class="lbl-std-perfil">Telefono</label>
-            <input type="text" id="std-pefil-tutorPhone" class="input-std-perfil">
-            <label for="std-pefil-tutorAddress" class="lbl-std-perfil">Dirección</label>
-            <input type="text" id="std-pefil-tutorAddress" class="input-std-perfil">
         </div>
 
     </div>

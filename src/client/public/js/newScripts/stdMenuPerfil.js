@@ -18,15 +18,31 @@ async function fillperfilStudentData(id){
     const ci = document.getElementById("std-pefil-ci");
     const age = document.getElementById("std-pefil-age");
     const gender = document.getElementById("std-pefil-Gender");
+    const motherName = document.getElementById("std-pefil-motherName");
+    const motherCI = document.getElementById("std-pefil-motherCI");
+    const motherWork = document.getElementById("std-pefil-motherWork");
+    const fatherName = document.getElementById("std-pefil-fatherName");
+    const fatherCI = document.getElementById("std-pefil-fatherCI");
+    const fatherWork = document.getElementById("std-pefil-fatherWork");
+    const procedence = document.getElementById("std-pefil-procedence");
+    const schoolYear = document.getElementById("std-pefil-schoolYear");
 
     let studentData = await getStudentData(id);
-
+    
     name.value = studentData.names;
     lastName.value = studentData.lastName;
     ci.value = studentData.CI;
     gender.value = studentData.gender == "M" ? "Masculino" : "Femenino";
     age.value = `${studentData.age} años`;
-    
+    motherName.value = studentData.motherName;
+    motherCI.value = studentData.motherCI;
+    motherWork.value = studentData.motherWork;
+    fatherName.value = studentData.fatherName;
+    fatherCI.value = studentData.fatherCI;
+    fatherWork.value = studentData.fatherWork;
+    procedence.value = studentData.procedence;
+    schoolYear.value = `${studentData.schoolYear}-${Number.parseInt(studentData.schoolYear) + 1}`;
+
     fillTutorData(studentData.tutorID);
     fillStudentPhoto(id);
 }
@@ -36,22 +52,26 @@ async function fillTutorData(tutorID){
     let name = document.getElementById("std-pefil-tutorName");
     let ci = document.getElementById("std-pefil-tutorCi");
     let phone = document.getElementById("std-pefil-tutorPhone");
+    let phone2 = document.getElementById("std-pefil-tutorPhone2");
     let address =  document.getElementById("std-pefil-tutorAddress");
 
     let tutorData = await getTutorData(tutorID);
+
+
     if(tutorData.MESSAJE){
         name.value = "Desconocido";
         ci.value = "Desconocido";
         phone.value = "Desconocido";
+        phone2.value = "Desconocido";
         address.value = "Desconocido";
-        blockTutorData(true);
         return;
     }
-    blockTutorData(false);
+
     name.value = `${tutorData.names} ${tutorData.lastName}`;
     ci.value = tutorData.CI;
     address.value = tutorData.address;
-    phone.value = "pendiente";
+    phone.value = tutorData.phone;
+    phone2.value = tutorData.phone2;
 }
 
 async function fillStudentPhoto(id){
@@ -67,12 +87,6 @@ async function fillStudentPhoto(id){
 
 }
 
-function blockTutorData(opt){
-    document.getElementById("std-pefil-tutorName").disabled = opt;
-    document.getElementById("std-pefil-tutorCi").disabled = opt;
-    document.getElementById("std-pefil-tutorPhone").disabled = opt;
-    document.getElementById("std-pefil-tutorAddress").disabled = opt;
-}
 
 async function getStudenPhoto(id){
     let headersList = {
