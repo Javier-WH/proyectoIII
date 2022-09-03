@@ -10,6 +10,7 @@ export async function enableStdMenuPerfil(studentID) {
     menu.addEventListener("click", e => {
         fillperfilStudentData(studentID);
         document.getElementById("std-perfil-container").classList.remove("invisible");
+        document.getElementById("std-perfil-overflow").scrollTo(1,1);
     })
     document.getElementById("std-perfil-close-x").addEventListener("click", () => {
         document.getElementById("std-perfil-container").classList.add("invisible");
@@ -36,7 +37,7 @@ async function fillperfilStudentData(id) {
     name.value = studentData.names;
     lastName.value = studentData.lastName;
     ci.value = studentData.CI;
-    gender.value = studentData.gender == "M" ? "Masculino" : "Femenino";
+    gender.selectedIndex = studentData.gender == "M" ? 0 : 1;
     age.value = `${studentData.age} años`;
     motherName.value = studentData.motherName;
     motherCI.value = studentData.motherCI;
@@ -190,29 +191,69 @@ async function fillAuxInfo(ci) {
         return;
     }
 
+
+
     allegies.value = auxInfo.allergies;
-    bloodType.value = auxInfo.bloodType;
+    bloodType.selectedIndex = getBloodType(auxInfo.bloodType);
     problems.value = auxInfo.medical_problems;
     observations.value = auxInfo.observatios;
     talents.value = auxInfo.talents;
 }
+/*
+<option value="A, RH-Positivo">A, RH-Positivo</option>
+<option value="B, RH-Positivo">B, RH-Positivo</option>
+<option value="AB, RH-Positivo">AB, RH-Positivo</option>
+<option value="O, RH-Positivo">O, RH-Positivo</option>
+<option value="A, RH-Negativo">A, RH-Negativo</option>
+<option value="B, RH-Negativo">B, RH-Negativo</option>
+<option value="AB, RH-Negativo">AB, RH-Negativo</option>
+<option value="O, RH-Negativo">O, RH-Negativo</option>*/
+function getBloodType(option) {
+    switch (option) {
+        case "A, RH-Positivo":
+            return 0;
+            break;
+        case "B, RH-Positivo":
+            return 1;
+            break;
+        case "AB, RH-Positivo":
+            return 2;
+            break;
+        case "O, RH-Positivo":
+            return 3;
+            break;
+        case "A, RH-Negativo":
+            return 4;
+            break;
+        case "B, RH-Negativo":
+            return 5;
+            break;
+        case "AB, RH-Negativo":
+            return 6;
+            break;
+        case "O, RH-Negativo":
+            return 7;
+            break;
+        default:
+            return 0;
+            break;
+    }
 
-
-
+}
 
 document.getElementById("std-perfil-btnBlockEdit").addEventListener("click", () => {
     if (EDITABLE) {
         blockInputs(true);
     } else {
         blockInputs(false);
-       
+
     }
 });
 
 function blockInputs(bool) {
     EDITABLE = !bool;
 
-    EDITABLE ? document.getElementById("std-perfil-btnUpdateData").classList.remove("invisible") :  document.getElementById("std-perfil-btnUpdateData").classList.add("invisible");
+    EDITABLE ? document.getElementById("std-perfil-btnUpdateData").classList.remove("invisible") : document.getElementById("std-perfil-btnUpdateData").classList.add("invisible");
 
     document.getElementById("std-perfil-btnBlockEdit").innerText = EDITABLE ? "Bloquear edición" : "Habilitar edición";
     document.getElementById("std-pefil-name").disabled = bool;
@@ -238,10 +279,18 @@ function blockInputs(bool) {
     document.getElementById("std-pefil-medicalProblems").disabled = bool;
     document.getElementById("std-pefil-observations").disabled = bool;
     document.getElementById("std-pefil-talents").disabled = bool;
+
+    if(EDITABLE){
+        document.getElementById("std-pefil-age").value = document.getElementById("std-pefil-age").value.replaceAll(" años", "");
+        document.getElementById("std-pefil-age").type = "number";
+    }else{
+        document.getElementById("std-pefil-age").type = "text";
+        document.getElementById("std-pefil-age").value = document.getElementById("std-pefil-age").value + " años";
+    }
 }
 
-document.getElementById("std-perfil-btnUpdateData").addEventListener("click", ()=>{
-    if(EDITABLE){
+document.getElementById("std-perfil-btnUpdateData").addEventListener("click", () => {
+    if (EDITABLE) {
         let names = document.getElementById("std-pefil-name").value;
         let lastName = document.getElementById("std-pefil-lastName").value;
         let CI = document.getElementById("std-pefil-ci").value;
@@ -253,13 +302,13 @@ document.getElementById("std-perfil-btnUpdateData").addEventListener("click", ()
         let fatherName = document.getElementById("std-pefil-fatherName").value;
         let fatherCI = document.getElementById("std-pefil-fatherCI").value;
         let fatherWork = document.getElementById("std-pefil-fatherWork").value;
-        
-        let allergies =  document.getElementById("std-pefil-allergies").value;
+
+        let allergies = document.getElementById("std-pefil-allergies").value;
         let bloodType = document.getElementById("std-pefil-bloodType").value;
         let medical_problems = document.getElementById("std-pefil-medicalProblems").value;
         let observatios = document.getElementById("std-pefil-observations").value;
         let talents = document.getElementById("std-pefil-talents").value;
-        
+
         let auxData = {
             allergies,
             bloodType,
@@ -273,7 +322,7 @@ document.getElementById("std-perfil-btnUpdateData").addEventListener("click", ()
             lastName,
             CI,
             age: age.replaceAll(' años', ''),
-            gender: gender == "Femenino" ? "F":"M",
+            gender,
             motherName,
             motherCI,
             motherWork,
@@ -292,20 +341,20 @@ document.getElementById("std-perfil-btnUpdateData").addEventListener("click", ()
 });
 
 
-async function sendStudentData(data){
+async function sendStudentData(data) {
 
     let send = await fetch("/updateStudentData", {
-        method:"PATCH",
-        headers:{
-            "Content-Type":"application/json",
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
             "Accept": "*/*"
         },
         body: JSON.stringify(data)
     })
-   
+
     let response = await send.json();
 
-    if(response.ERROR){
+    if (response.ERROR) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -319,7 +368,7 @@ async function sendStudentData(data){
         icon: 'success',
         title: "Los datos fueron actualizados",
         timer: 1500
-      })
-      CURRCI = document.getElementById("std-pefil-ci").value;
-      document.getElementById("opt-student-list").click();
+    })
+    CURRCI = document.getElementById("std-pefil-ci").value;
+    document.getElementById("opt-student-list").click();
 }

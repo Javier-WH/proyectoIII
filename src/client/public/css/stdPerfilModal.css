@@ -83,6 +83,7 @@
 .input-std-perfil:disabled{
    background-color: transparent;
    border: 2px solid transparent;
+   appearance: none;
 }
 
 #std-perfil-buttons-container{
