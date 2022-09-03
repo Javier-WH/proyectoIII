@@ -1,4 +1,6 @@
+
 let EDITABLE = false;
+let CURRCI = "";
 
 export async function enableStdMenuPerfil(studentID) {
     const menu = document.getElementById("std-menu-perfil");
@@ -30,7 +32,7 @@ async function fillperfilStudentData(id) {
     const schoolYear = document.getElementById("std-pefil-schoolYear");
 
     let studentData = await getStudentData(id);
-
+    CURRCI = studentData.CI;
     name.value = studentData.names;
     lastName.value = studentData.lastName;
     ci.value = studentData.CI;
@@ -196,18 +198,22 @@ async function fillAuxInfo(ci) {
 }
 
 
-////////////////////////////////////continuar desde aca
+
 
 document.getElementById("std-perfil-btnBlockEdit").addEventListener("click", () => {
     if (EDITABLE) {
         blockInputs(true);
     } else {
         blockInputs(false);
+       
     }
 });
 
 function blockInputs(bool) {
     EDITABLE = !bool;
+
+    EDITABLE ? document.getElementById("std-perfil-btnUpdateData").classList.remove("invisible") :  document.getElementById("std-perfil-btnUpdateData").classList.add("invisible");
+
     document.getElementById("std-perfil-btnBlockEdit").innerText = EDITABLE ? "Bloquear edición" : "Habilitar edición";
     document.getElementById("std-pefil-name").disabled = bool;
     document.getElementById("std-pefil-lastName").disabled = bool;
@@ -220,13 +226,13 @@ function blockInputs(bool) {
     document.getElementById("std-pefil-fatherName").disabled = bool;
     document.getElementById("std-pefil-fatherCI").disabled = bool;
     document.getElementById("std-pefil-fatherWork").disabled = bool;
-    document.getElementById("std-pefil-procedence").disabled = bool;
-    document.getElementById("std-pefil-schoolYear").disabled = bool;
-    document.getElementById("std-pefil-tutorName").disabled = bool;
-    document.getElementById("std-pefil-tutorCi").disabled = bool;
-    document.getElementById("std-pefil-tutorPhone").disabled = bool;
-    document.getElementById("std-pefil-tutorPhone2").disabled = bool;
-    document.getElementById("std-pefil-tutorAddress").disabled = bool;
+    //document.getElementById("std-pefil-procedence").disabled = bool;
+    //document.getElementById("std-pefil-schoolYear").disabled = bool;
+    //document.getElementById("std-pefil-tutorName").disabled = bool;
+    //document.getElementById("std-pefil-tutorCi").disabled = bool;
+    //document.getElementById("std-pefil-tutorPhone").disabled = bool;
+    //document.getElementById("std-pefil-tutorPhone2").disabled = bool;
+    //document.getElementById("std-pefil-tutorAddress").disabled = bool;
     document.getElementById("std-pefil-allergies").disabled = bool;
     document.getElementById("std-pefil-bloodType").disabled = bool;
     document.getElementById("std-pefil-medicalProblems").disabled = bool;
@@ -236,11 +242,84 @@ function blockInputs(bool) {
 
 document.getElementById("std-perfil-btnUpdateData").addEventListener("click", ()=>{
     if(EDITABLE){
-        alert("Editar datos");
-       
-
-
+        let names = document.getElementById("std-pefil-name").value;
+        let lastName = document.getElementById("std-pefil-lastName").value;
+        let CI = document.getElementById("std-pefil-ci").value;
+        let age = document.getElementById("std-pefil-age").value;
+        let gender = document.getElementById("std-pefil-Gender").value;
+        let motherName = document.getElementById("std-pefil-motherName").value;
+        let motherCI = document.getElementById("std-pefil-motherCI").value;
+        let motherWork = document.getElementById("std-pefil-motherWork").value;
+        let fatherName = document.getElementById("std-pefil-fatherName").value;
+        let fatherCI = document.getElementById("std-pefil-fatherCI").value;
+        let fatherWork = document.getElementById("std-pefil-fatherWork").value;
         
+        let allergies =  document.getElementById("std-pefil-allergies").value;
+        let bloodType = document.getElementById("std-pefil-bloodType").value;
+        let medical_problems = document.getElementById("std-pefil-medicalProblems").value;
+        let observatios = document.getElementById("std-pefil-observations").value;
+        let talents = document.getElementById("std-pefil-talents").value;
+        
+        let auxData = {
+            allergies,
+            bloodType,
+            medical_problems,
+            observatios,
+            talents
+        }
+
+        let studentData = {
+            names,
+            lastName,
+            CI,
+            age: age.replaceAll(' años', ''),
+            gender: gender == "Femenino" ? "F":"M",
+            motherName,
+            motherCI,
+            motherWork,
+            fatherName,
+            fatherCI,
+            fatherWork,
+            auxData: auxData,
+            oldCI: CURRCI
+        }
+
+
+        sendStudentData(studentData);
+
         blockInputs(true)
     }
-})
+});
+
+
+async function sendStudentData(data){
+
+    let send = await fetch("/updateStudentData", {
+        method:"PATCH",
+        headers:{
+            "Content-Type":"application/json",
+            "Accept": "*/*"
+        },
+        body: JSON.stringify(data)
+    })
+   
+    let response = await send.json();
+
+    if(response.ERROR){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: response.ERROR
+        });
+        return;
+    }
+
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: "Los datos fueron actualizados",
+        timer: 1500
+      })
+      CURRCI = document.getElementById("std-pefil-ci").value;
+      document.getElementById("opt-student-list").click();
+}

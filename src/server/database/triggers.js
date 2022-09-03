@@ -195,6 +195,7 @@ async function trigerUpdateSubjects() {
 
 async function initTrigers() {
     try {
+
         //triggers de usuario
         await trigerInsertUser();
         await trigerUpdateUser();

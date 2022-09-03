@@ -39,4 +39,8 @@ Router.patch("/Profesor/updateSubjects", express.json(), async(req, res) => {
     }
 });
 
+Router.patch("/updateStudentData", express.json(), async(req, res)=>{
+    res.send(await studentsController.updateStudent(req.body));
+})
+
 module.exports = Router;

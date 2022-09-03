@@ -399,9 +399,11 @@
                 </div>
                 <div id="std-perfil-photoContainer">
                     <img src="" alt="" id="std-perfil-photo">
-                    <button id="std-perfil-btnBlockEdit" class="btn-perfil">Habilitar edición</button>
-                    <button id="std-perfil-btnUpdateData" class="btn-perfil">Actualizar datos</button>
-                    <button id="std-perfil-btnShowPaymentInfo" class="btn-perfil">Ver lista de pagos</button>
+                    <div id="std-perfil-buttons-container">
+                        <button id="std-perfil-btnBlockEdit" class="btn-perfil">Habilitar edición</button>
+                        <button id="std-perfil-btnShowPaymentInfo" class="btn-perfil">Ver lista de pagos</button>
+                        <button id="std-perfil-btnUpdateData" class="btn-perfil invisible">Actualizar datos</button>
+                    </div>
                 </div>
                 
             </div>
@@ -419,19 +421,19 @@
                 <label for="std-pefil-fatherWork" class="lbl-std-perfil">Oficio del padre</label>
                 <input type="text" id="std-pefil-fatherWork" class="input-std-perfil">
                 <label for="std-pefil-tutorName" class="lbl-std-perfil">Nombre del representante</label>
-                <input type="text" id="std-pefil-tutorName" class="input-std-perfil">
-                <label for="std-pefil-tutorCi" class="lbl-std-perfil">Cédula del representante</label>
-                <input type="text" id="std-pefil-tutorCi" class="input-std-perfil">
+                <input type="text" id="std-pefil-tutorName" class="input-std-perfil" disabled>
+                <label for="std-pefil-tutorCi" class="lbl-std-perfil" disabled>Cédula del representante</label>
+                <input type="text" id="std-pefil-tutorCi" class="input-std-perfil" disabled>
                 <label for="std-pefil-tutorPhone" class="lbl-std-perfil">Telefono</label>
-                <input type="text" id="std-pefil-tutorPhone" class="input-std-perfil">
+                <input type="text" id="std-pefil-tutorPhone" class="input-std-perfil" disabled>
                 <label for="std-pefil-tutorPhone2" class="lbl-std-perfil">Telefono alternativo</label>
-                <input type="text" id="std-pefil-tutorPhone2" class="input-std-perfil">
+                <input type="text" id="std-pefil-tutorPhone2" class="input-std-perfil" disabled>
                 <label for="std-pefil-tutorAddress" class="lbl-std-perfil">Dirección</label>
-                <input type="text" id="std-pefil-tutorAddress" class="input-std-perfil">
+                <input type="text" id="std-pefil-tutorAddress" class="input-std-perfil" disabled>
                 <label for="std-pefil-procedence" class="lbl-std-perfil">Institución anterior</label>
-                <input type="text" id="std-pefil-procedence" class="input-std-perfil">
+                <input type="text" id="std-pefil-procedence" class="input-std-perfil" disabled>
                 <label for="std-pefil-schoolYear" class="lbl-std-perfil">Periodo escolar</label>
-                <input type="text" id="std-pefil-schoolYear" class="input-std-perfil">
+                <input type="text" id="std-pefil-schoolYear" class="input-std-perfil" disabled>
                 <label for="std-pefil-allergies" class="lbl-std-perfil">Alergias</label>
                 <input type="text" id="std-pefil-allergies" class="input-std-perfil">
                 <label for="std-pefil-bloodType" class="lbl-std-perfil">Tipo de sangre</label>

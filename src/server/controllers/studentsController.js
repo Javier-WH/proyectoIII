@@ -3,9 +3,9 @@ const { Op } = require("sequelize");
 const { Students } = require("../database/models.js");
 const configController = require("../controllers/configControler.js");
 const { getSubjects } = require("../controllers/subjectsController.js");
+const { updateAuxInfo } =require("./auxiliarInformationController.js")
 
-
-async function registerStudent({ names, lastName, ci, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, gender, seccion, year, age, birthDay, address, tutorID, procedence, schoolYear }) {
+async function registerStudent({ names, lastName, ci, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, gender, seccion, year, age, birthDay, address, tutorID, procedence, schoolYear}) {
     let message = ""
     let checkCI = await findStudent({ CI: ci })
 
@@ -22,7 +22,7 @@ async function registerStudent({ names, lastName, ci, motherName, motherCI, moth
         filteredSubject.map(e => {
             subjects[e] = { "l1": 0, "l2": 0, "l3": 0, "def": 0 }
         })
-       
+
         let ask = await Students.create({
             names,
             lastName,
@@ -45,13 +45,45 @@ async function registerStudent({ names, lastName, ci, motherName, motherCI, moth
             schoolYear,
             photo: "default"
         });
-
+    
         message = ask;
     }
     return new Promise((resolved, rejected) => {
         resolved(message);
         rejected({ "ERROR": "Ha ocurrido un error al inscribir el estudiante" });
     })
+
+}
+////////////////////////////////////////////
+
+async function updateStudent({ names, lastName, CI, age, gender, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, oldCI, auxData }) {
+
+    try {
+        let ask = await Students.update({
+            names,
+            lastName,
+            CI,
+            age,
+            gender,
+            motherName,
+            motherCI,
+            motherWork,
+            fatherName,
+            fatherCI,
+            fatherWork
+        },{
+            where:{CI:oldCI}
+        });
+        
+       updateAuxInfo(auxData, CI, oldCI);
+
+        return new Promise((resolved, rejected) => {
+            resolved(ask);
+            rejected({ "ERROR": "Ha ocurrido un error al inscribir el estudiante" });
+        })
+    } catch (error) {
+        console.log(error)
+    }
 
 }
 
@@ -141,29 +173,29 @@ async function updateGrades(list) {
             if (!config[0].edit) {
                 let message = "La edición de notas no está permitida en este momento";
                 for (let j = 0; j < keys.length; j++) {
-                    
-                    if (oldSubjects[keys[j]].l1 != list[i].subjects[keys[j]].l1  && oldSubjects[keys[j]].l1 != 0 ) {
-                        
-                            return message;
-                        
+
+                    if (oldSubjects[keys[j]].l1 != list[i].subjects[keys[j]].l1 && oldSubjects[keys[j]].l1 != 0) {
+
+                        return message;
+
                     }
-                    if ((oldSubjects[keys[j]].l2 != list[i].subjects[keys[j]].l2) && oldSubjects[keys[j]].l2 != 0 ) {
-                        
-                            return message;
-                        
+                    if ((oldSubjects[keys[j]].l2 != list[i].subjects[keys[j]].l2) && oldSubjects[keys[j]].l2 != 0) {
+
+                        return message;
+
                     }
-                    if (oldSubjects[keys[j]].l3 != list[i].subjects[keys[j]].l3  && oldSubjects[keys[j]].l3 != 0 ) {
-                            return message;
-                        
+                    if (oldSubjects[keys[j]].l3 != list[i].subjects[keys[j]].l3 && oldSubjects[keys[j]].l3 != 0) {
+                        return message;
+
                     }
 
                 }
 
-            } 
+            }
             for (let j = 0; j < keys.length; j++) {
                 oldSubjects[keys[j]] = list[i].subjects[keys[j]];
             }
-            
+
 
         }
 
@@ -215,5 +247,6 @@ module.exports = {
     findStudent,
     updateGrades,
     deleteStudent,
-    updatePhoto
+    updatePhoto,
+    updateStudent
 }

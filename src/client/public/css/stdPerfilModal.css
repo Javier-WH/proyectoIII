@@ -84,3 +84,14 @@
    background-color: transparent;
    border: 2px solid transparent;
 }
+
+#std-perfil-buttons-container{
+    margin-top: 20px;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    row-gap: 10px;
+}
