@@ -21,7 +21,10 @@ tr {
 #showList {
     display: none;
 }
-
+.col-ci {
+    max-width: 110px;
+    word-wrap: break-word;
+}
 
 /* 
 #table-notas-thead,
@@ -40,10 +43,7 @@ tr {
 }
 
 
-.col-ci {
-    max-width: 100px;
-    width: 13%;
-}
+
 
 .col-lastName,
 .col-name {

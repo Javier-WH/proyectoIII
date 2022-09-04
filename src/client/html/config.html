@@ -383,6 +383,7 @@
     <div id="std-perfil-container" class="invisible">
         <div id="std-perfil-close-x">X</div>
         <div id="std-perfil-title">Perfil del Estudiante</div>
+        
         <div id="std-perfil-overflow">
             <div id="std-perfil-dataContainer">
                 <div id="std-perfil-nameContainer">
@@ -401,7 +402,10 @@
                     </select>
                 </div>
                 <div id="std-perfil-photoContainer">
-                    <img src="" alt="" id="std-perfil-photo">
+                    <label for="std-perfil-photo-input">
+                        <img src="" alt="" id="std-perfil-photo">
+                    </label>
+                    <input type="file" id="std-perfil-photo-input" class="invisible" disabled>
                     <div id="std-perfil-buttons-container">
                         <button id="std-perfil-btnBlockEdit" class="btn-perfil">Habilitar edición</button>
                         <button id="std-perfil-btnShowPaymentInfo" class="btn-perfil">Ver lista de pagos</button>

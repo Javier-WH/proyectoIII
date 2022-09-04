@@ -1,6 +1,5 @@
 let fileSelect = document.getElementById('file-upload'),
-    fileDrag = document.getElementById('file-drag'),
-    submitButton = document.getElementById('submit-button');
+    fileDrag = document.getElementById('file-drag')
 
 function ekUpload() {
     function Init() {

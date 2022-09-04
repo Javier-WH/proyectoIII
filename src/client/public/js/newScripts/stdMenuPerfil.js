@@ -1,10 +1,12 @@
 
 let EDITABLE = false;
 let CURRCI = "";
+let CURRID = "";
+let NEWPIC = false;
 
 export async function enableStdMenuPerfil(studentID) {
     const menu = document.getElementById("std-menu-perfil");
-
+    CURRID = studentID;
     blockInputs(true);
 
     menu.addEventListener("click", e => {
@@ -199,15 +201,7 @@ async function fillAuxInfo(ci) {
     observations.value = auxInfo.observatios;
     talents.value = auxInfo.talents;
 }
-/*
-<option value="A, RH-Positivo">A, RH-Positivo</option>
-<option value="B, RH-Positivo">B, RH-Positivo</option>
-<option value="AB, RH-Positivo">AB, RH-Positivo</option>
-<option value="O, RH-Positivo">O, RH-Positivo</option>
-<option value="A, RH-Negativo">A, RH-Negativo</option>
-<option value="B, RH-Negativo">B, RH-Negativo</option>
-<option value="AB, RH-Negativo">AB, RH-Negativo</option>
-<option value="O, RH-Negativo">O, RH-Negativo</option>*/
+
 function getBloodType(option) {
     switch (option) {
         case "A, RH-Positivo":
@@ -244,8 +238,10 @@ function getBloodType(option) {
 document.getElementById("std-perfil-btnBlockEdit").addEventListener("click", () => {
     if (EDITABLE) {
         blockInputs(true);
+      
     } else {
         blockInputs(false);
+       
 
     }
 });
@@ -283,9 +279,11 @@ function blockInputs(bool) {
     if(EDITABLE){
         document.getElementById("std-pefil-age").value = document.getElementById("std-pefil-age").value.replaceAll(" años", "");
         document.getElementById("std-pefil-age").type = "number";
+        document.getElementById("std-perfil-photo-input").disabled = false;
     }else{
         document.getElementById("std-pefil-age").type = "text";
         document.getElementById("std-pefil-age").value = document.getElementById("std-pefil-age").value + " años";
+        document.getElementById("std-perfil-photo-input").disabled = true;
     }
 }
 
@@ -333,10 +331,11 @@ document.getElementById("std-perfil-btnUpdateData").addEventListener("click", ()
             oldCI: CURRCI
         }
 
-
         sendStudentData(studentData);
-
-        blockInputs(true)
+        blockInputs(true);
+        if(NEWPIC){
+            uploadImage(CURRID);
+        }   
     }
 });
 
@@ -372,3 +371,98 @@ async function sendStudentData(data) {
     CURRCI = document.getElementById("std-pefil-ci").value;
     document.getElementById("opt-student-list").click();
 }
+
+
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+/////eventos de la imagen del estudiante//////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+
+let fileSelect = document.getElementById('std-perfil-photo-input');
+
+function ekUpload() {
+    function Init() {
+        fileSelect.addEventListener('change', fileSelectHandler, false);
+    }
+
+
+    function fileSelectHandler(e) {
+        // Fetch FileList object
+        let files = e.target.files || e.dataTransfer.files;
+
+        // Process all File objects
+        for (let i = 0, f; f = files[i]; i++) {
+            parseFile(f);
+        }
+    }
+
+    // Output
+    function parseFile(file) {
+
+        let imageName = file.name;
+
+        let isGood = (/\.(?=jpg)/gi).test(imageName);
+        if (isGood) { 
+            NEWPIC = true;
+            document.getElementById('std-perfil-photo').src = URL.createObjectURL(file);
+        } else {
+            NEWPIC = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'Solo se admiten imagenes .JPG'
+            })
+        }
+    }
+
+    if (window.File && window.FileList && window.FileReader) {
+        Init();
+    } else {
+        document.getElementById('file-drag').style.display = 'none';
+    }
+}
+ekUpload();
+
+export async function uploadImage(id) {
+    if (fileSelect.files.length > 0) {
+        let data = new FormData();
+        data.append("file", fileSelect.files[0]);
+        data.append("name", fileSelect.files[0].name);
+        data.append("id", id);
+        data.append("ext", fileSelect.files[0].name.split('.').pop());
+
+        let rs = await fetch("/uploadPhoto", {
+            method: "POST",
+            body: data,
+            headers: {
+                'Accept': 'multipart/form-data'
+            },
+        })
+
+        let response = await rs.text();
+
+        if (response == "OK") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'La foto ha sido actualizada',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    }
+}
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////

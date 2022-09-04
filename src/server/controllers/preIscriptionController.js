@@ -8,7 +8,7 @@ const { createToken } = require("./emailControler.js");
 
 async function registerStudent({ names, lastName, ci, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, gender, year, age, birthDay, address, tutorID, procedence, paymentData, auxiliarData }) {
     if(ci == tutorID){
-        ci = `${tutorID}-${createToken(100)}`;
+        ci = `${tutorID}-${createToken(6)}`;
     }
     let data = ""
     let checkExist = await findStudent({ CI: ci });

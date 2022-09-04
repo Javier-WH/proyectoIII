@@ -25,6 +25,8 @@
     
 }
 #std-perfil-overflow{
+    border-top: 1px solid gainsboro;
+    padding-top: 15px;
     width: 590px;
     max-width: 590px;
     max-height: 500px;
