@@ -198,7 +198,7 @@ async function getTutor(CI){
 ///
 function displayTutorName(name = ""){
     let nameContainer = document.getElementById("tutorName-container");
-    let tutorName = document.getElementById("tutorName");
+    let tutorName = document.getElementById("tutorNamex");
 
     if(name == ""){
         nameContainer.classList.add("invisible");

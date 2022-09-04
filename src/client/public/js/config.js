@@ -15,7 +15,9 @@ import { showSubjectsList } from "./newScripts/showSubjects.js";
 import { dragSubjectModal } from "./newScripts/dragShowSubjects.js";
 import { dragBitacora } from "./newScripts/dragBitacora.js";
 import { dragStdPerfilModal } from "./newScripts/dragStdPerfilModal.js"
+import { dragTutorListModal } from "./newScripts/dragTutorListModal.js"
 import { startBitacora } from "./newScripts/bitacora.js";
+import { startTutorListModal } from "./newScripts/tutorListModal.js";
 
 
 
@@ -95,6 +97,8 @@ async function main() {
     dragSubjectModal();
     dragStdPerfilModal();
     dragBitacora();
+    dragTutorListModal();
+    startTutorListModal();
     startBitacora();
     //
     

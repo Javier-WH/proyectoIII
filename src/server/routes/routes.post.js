@@ -65,4 +65,8 @@ Router.post("/getSubjects", express.json(), async(req, res) => {
 Router.post("/getAux", express.json(), async(req, res)=>{
     res.json(await getAuxInfo(req.body.ci));
 })
+
+Router.post("/getTeacherList", async (req, res)=>{
+    res.json(await tutorController.getTutorList());
+})
 module.exports = Router;

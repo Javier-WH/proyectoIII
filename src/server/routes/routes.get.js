@@ -39,6 +39,16 @@ Router.get("/bitacora", async(req, res, next) => {
         res.redirect("/");
     }
 });
+
+Router.get("/payment", async(req, res, next) => {
+    if (req.session.adminID) {
+        res.sendFile(path.join(__dirname, "../../client/html/payment.html"));
+    } else {
+        res.redirect("/");
+    }
+});
+
+
 ////
 
 Router.get("/Estudiante/registro", (req, res)=>{

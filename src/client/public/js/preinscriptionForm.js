@@ -27,7 +27,8 @@ async function fillTutorData(ci) {
     loading(true)
     let data = await getTutorData(ci);
     TUTOR_CI = ci;
-    if (data.MESSAJE == 'El tutor no existe') {
+
+    if (data.MESSAJE == 'El tutor no está registrado') {
         IS_TUTOR = false;
         document.getElementById("data-container").classList.remove("disabled");
         disableInputs(false);

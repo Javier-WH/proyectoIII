@@ -140,6 +140,11 @@ async function getTutorById({ id }) {
     })
 }
 
+//////////
+async function getTutorList() {
+    let ask = await Tutors.findAll();
+    return ask;
+}
 
 
 /////////////////
@@ -216,5 +221,6 @@ module.exports = {
     validateTutor,
     getTutorByEmail,
     changeTutorPassword,
-    getTutorById
+    getTutorById,
+    getTutorList
 }

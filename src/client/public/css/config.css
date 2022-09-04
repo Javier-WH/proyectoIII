@@ -51,11 +51,14 @@
     }
     
     #students-container::before {
-        content: "Alumnos";
+        content: "Estudiantes";
     }
     
     #configuration-container::before {
         content: "Configuración";
+    }
+    #tutor-container::before {
+        content: "Representantes";
     }
     /* ////////////////////////////////////////////// */
     

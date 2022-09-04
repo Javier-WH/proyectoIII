@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="CSS/showSubjectsModal.css">
     <link rel="stylesheet" href="CSS/bitacora.css">
     <link rel="stylesheet" href="CSS/stdPerfilModal.css">
-    
+    <link rel="stylesheet" href="CSS/tutorListModal.css">
 
     <!-- JavaScript -->
     <script src="JS/config.js" type="module" defer></script>
@@ -184,21 +184,34 @@
         </p>
 
         <p>
-            <a class="option" href="#" role="button" aria-expanded="false" id="opt-student-list">
-               Lista de estudiantes inscritos
-            </a>
-        </p>
-
-        <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-preinscription-list">
                Lista de estudiantes pre-inscritos
             </a>
         </p>
-        
+
+        <p>
+            <a class="option" href="#" role="button" aria-expanded="false" id="opt-student-list">
+               Lista de estudiantes inscritos
+            </a>
+        </p>
+    </div>
+
+    <div id="tutor-container" class="container">
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-register-tutor">
                Inscribir representante
+            </a>
+        </p>
+        <p>
+            <a class="option" href="#" role="button" aria-expanded="false" id="opt-register-tutor-list">
+               Lista de representantes
+            </a>
+        </p>
+
+        <p>
+            <a class="option" href="/payment" role="button" aria-expanded="false" id="opt-register-payment">
+               Registro de pagos
             </a>
         </p>
 
@@ -467,8 +480,32 @@
 
     <!---->
 
-    
+    <div id="tutorList-modal" class="invisible">
+        <div id="tutorList-modal-close-x">X</div>
+        <div id="tutorList-modal-title">Lista de Representantes</div>
 
+        <div id="tutorList-modal-table-container">
+            <div id="tutorList-modal-ciInput-container">
+                <label for="tutorList-modal-lblCI"> Filtrar por CI</label>
+                <input type="text" id="tutorList-modal-inputCI">
+            </div>
+            <table class="table table-hover">
+                <thead id="tutorList-modal-table-header">
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">CI</th>
+                    </tr>
+                </thead>
+                <tbody id="tutorList-modal-table">
+                    <tr>
+                        <td class="spinner-border text-secondary" role="status" colspan="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

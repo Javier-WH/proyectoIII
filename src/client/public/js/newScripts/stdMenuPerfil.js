@@ -17,6 +17,10 @@ export async function enableStdMenuPerfil(studentID) {
     document.getElementById("std-perfil-close-x").addEventListener("click", () => {
         document.getElementById("std-perfil-container").classList.add("invisible");
     })
+
+    document.getElementById("std-perfil-btnShowPaymentInfo").addEventListener("click", ()=>{
+        location.href = "/payment";
+    })
 }
 
 async function fillperfilStudentData(id) {
