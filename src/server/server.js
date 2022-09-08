@@ -12,6 +12,7 @@ const {initTrigers} = require("./database/triggers.js");
 
 
 const express = require('express');
+const { checkPrices } = require('./libs/checkPrices.js');
 const app = express();
 
 //settings
@@ -47,6 +48,6 @@ app.listen(process.env.PORT, serverIp,  err => {
         createConfig();
         cleanAllEmailTokens();
         initTrigers();
+        checkPrices();
     }
-    ///dev
 })

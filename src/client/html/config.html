@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="CSS/bitacora.css">
     <link rel="stylesheet" href="CSS/stdPerfilModal.css">
     <link rel="stylesheet" href="CSS/tutorListModal.css">
+    <link rel="stylesheet" href="CSS/pricesModal.css">
 
     <!-- JavaScript -->
     <script src="JS/config.js" type="module" defer></script>
@@ -233,6 +234,11 @@
             </a>
         </p>
 
+        <p>
+            <a class="option" href="#" role="button" aria-expanded="false" id="opt-prices">
+               Precios
+            </a>
+        </p>
     </div>
 
 
@@ -506,6 +512,29 @@
             </table>
         </div>
     </div>
+
+    <!---->
+    <div id="prices-modal" class="invisible">
+        <div id="prices-modal-close-x">X</div>
+        <div id="prices-modal-title">Precios</div>
+        <div id="prices-modal-message">Los precios estan reflejados en dolares</div>
+
+        <div id="price-modal-price-container">
+            <label for="price-modal-inputMonth">Mensualidad</label>
+            <input type="number" id="price-modal-inputMonth">
+            <label for="price-modal-base">Base</label>
+            <input type="number" id="price-modal-base">
+            <label for="price-modal-uniform">Uniforme</label>
+            <input type="number" id="price-modal-uniform">
+            <label for="price-modal-emblem">Distintivo</label>
+            <input type="number" id="price-modal-emblem">
+            <label for="price-modal-administravie">Gastos Administrativos</label>
+            <input type="number" id="price-modal-administravie">
+            <label id="price-modal-inscription-total-price">Costo de la inscripción: 100 USD</label>
+            <button id="btn-update-prices">Actualizar precios</button>
+        </div>
+    </div>
+
 </body>
 
 </html>

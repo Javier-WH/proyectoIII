@@ -1,0 +1,46 @@
+#prices-modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    border: 2px solid #5c6bc0;
+    width: 400px;
+    height: 500px;
+}
+#prices-modal-close-x{
+    width: 30px;
+    margin-left: auto;
+    margin-right: 1px;
+    font-weight: 700;
+    cursor: pointer;
+}
+#prices-modal-title{
+    width: 400px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+#prices-modal-message{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+#price-modal-price-container{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#price-modal-price-container label{
+   margin-top: 10px;
+}
+
+#price-modal-inscription-total-price{
+    font-size: 16px;
+    font-weight: 600;
+}
+#btn-update-prices{
+    margin-top: 20px;
+}

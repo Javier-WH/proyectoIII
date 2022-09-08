@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express');
 const Router = express.Router();
 const { getAllBitacoraData }  = require("../controllers/bitacoraController.js");
-
+const { getPrices } = require("../controllers/pricesController.js")
 
 
 
@@ -74,5 +74,8 @@ Router.get("/controlPannel", async(req, res) => {
     res.sendFile(path.join(__dirname, "../../client/html/tutorControlPannel.html"));
 });
 
+Router.get("/getPrices", async (req, res)=>{
+    res.json(await getPrices());
+})
 
 module.exports = Router;

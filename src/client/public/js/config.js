@@ -14,10 +14,12 @@ import { dragGradesModal } from "./newScripts/dragGradesModal.js";
 import { showSubjectsList } from "./newScripts/showSubjects.js";
 import { dragSubjectModal } from "./newScripts/dragShowSubjects.js";
 import { dragBitacora } from "./newScripts/dragBitacora.js";
-import { dragStdPerfilModal } from "./newScripts/dragStdPerfilModal.js"
-import { dragTutorListModal } from "./newScripts/dragTutorListModal.js"
+import { dragStdPerfilModal } from "./newScripts/dragStdPerfilModal.js";
+import { dragTutorListModal } from "./newScripts/dragTutorListModal.js";
+import { dragPricesModal } from "./newScripts/dragPricesModal.js"
 import { startBitacora } from "./newScripts/bitacora.js";
 import { startTutorListModal } from "./newScripts/tutorListModal.js";
+import { initPrices } from "./newScripts/pricesModal.js";
 
 
 
@@ -98,8 +100,10 @@ async function main() {
     dragStdPerfilModal();
     dragBitacora();
     dragTutorListModal();
+    dragPricesModal();
     startTutorListModal();
     startBitacora();
+    initPrices();
     //
     
 }

@@ -184,7 +184,7 @@ Bitacora.init({
 class Payments extends Model {};
 Payments.init({
     studentCI: DataTypes.STRING,
-    mount: DataTypes.INTEGER,
+    mount: DataTypes.DOUBLE,
     description: DataTypes.STRING,
     currency: DataTypes.STRING,
     cash: DataTypes.BOOLEAN,
@@ -200,4 +200,16 @@ Payments.init({
     sequelize,
     motherName: "Payments"
 })
-module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Bitacora, Payments};
+
+class Prices extends Model{};
+Prices.init({
+    month : DataTypes.DOUBLE,
+    base: DataTypes.DOUBLE,
+    uniform: DataTypes.DOUBLE,
+    emblem: DataTypes.DOUBLE,
+    administratives_costs: DataTypes.DOUBLE
+},{
+    sequelize,
+    modelName: "Prices"
+})
+module.exports = { User, Students, Tutors, PreIscription, AuxiliarInfo, Config, Subjects, emailTokens, Bitacora, Payments, Prices};
