@@ -6,15 +6,18 @@ const emblem = document.getElementById("price-modal-emblem");
 const administrative = document.getElementById("price-modal-administravie");
 const modal = document.getElementById("prices-modal");
 const btnUpdate = document.getElementById("btn-update-prices");
+let dataChange = false;
 
 export async function initPrices() {
     optPrice.addEventListener("click", async e => {
-       // e.preventDefault();
+        const dataChange = false;
         initCloseWindowEvents();
         modal.classList.remove("invisible")
         let prices = await getPrices();
         setPrices(prices);
         updateEvents();
+
+        checkDataChange();
     })
 }
 
@@ -58,7 +61,12 @@ function updateEvents() {
             emblem: emblem.value, 
             administratives_costs:administrative.value
         }
-        updateData(data);
+        if(dataChange){
+            updateData(data);
+        }
+        else{
+            console.log("No hay cambios que guardar")
+        }
     })
 }
 
@@ -92,6 +100,7 @@ async function updateData({ month, base, uniform, emblem, administratives_costs 
             text: data.message
         })
     }else{
+        dataChange = false;
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -99,11 +108,30 @@ async function updateData({ month, base, uniform, emblem, administratives_costs 
             showConfirmButton: false,
             timer: 1500
           })
-
+        
     }
-
-
 }
 
+function checkDataChange(){
+    month.addEventListener("change", ()=>{
+        dataChange = true;
+    });
+    
+    base.addEventListener("change", ()=>{
+        dataChange = true;
+    })
+
+    uniform.addEventListener("change", ()=>{
+        dataChange = true;
+    })
+    
+    emblem.addEventListener("change", ()=>{
+        dataChange = true;
+    })
+    
+    administrative.addEventListener("change", ()=>{
+        dataChange = true;
+    })
+}
 
 
