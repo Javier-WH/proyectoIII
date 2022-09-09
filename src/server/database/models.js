@@ -186,7 +186,6 @@ Payments.init({
     studentCI: DataTypes.STRING,
     mount: DataTypes.DOUBLE,
     description: DataTypes.STRING,
-    currency: DataTypes.STRING,
     cash: DataTypes.BOOLEAN,
     bankDepositNumber:{
         type: Sequelize.STRING,
@@ -195,7 +194,10 @@ Payments.init({
     banckName:{
         type: Sequelize.STRING,
         defaultValue:"No suministrado"
-    }
+    },
+    fullpaid: DataTypes.BOOLEAN,
+    emblem: DataTypes.BOOLEAN,
+    uniform: DataTypes.BOOLEAN
 },{
     sequelize,
     motherName: "Payments"

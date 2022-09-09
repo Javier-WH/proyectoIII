@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro se Representantes - U.E.C. Batalla de la Victoria</title>
-        <link rel="icon" href="SVG/icon.svg" />
-        <!-- SweetAlert2 -->
-        <script src="sweetalert2/dist/sweetalert2.min.js" defer></script>
-        <link rel="stylesheet" href="sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="CSS/bootstrap.css">
-        <script src="JS/bootstrap.js" defer></script>
-        <!-- CSS -->
-        <link rel="stylesheet" href="CSS/payment.css">
-        <!-- JavaScript -->
-        <script src="JS/newScripts/payment.js" type="module" defer></script>
-    
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro se Representantes - U.E.C. Batalla de la Victoria</title>
+    <link rel="icon" href="SVG/icon.svg" />
+    <!-- SweetAlert2 -->
+    <script src="sweetalert2/dist/sweetalert2.min.js" defer></script>
+    <link rel="stylesheet" href="sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <script src="JS/bootstrap.js" defer></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="CSS/payment.css">
+    <!-- JavaScript -->
+    <script src="JS/newScripts/payment.js" type="module" defer></script>
+
+</head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <img src="SVG/icon.svg" alt="" class="navbar-brand" id="navBar-icon">
             <span id="title"> U.E. Colegio Batalla de la Victoria</span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 </ul>
                 <a class="d-flex" href="" id="d-flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px" fill="#FFFFFF" id="logo-svg"><path d="M24 0v24H0V0h24z" fill="none" opacity=".87"/><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41zM6 6h2v12H6V6z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px"
+                        fill="#FFFFFF" id="logo-svg">
+                        <path d="M24 0v24H0V0h24z" fill="none" opacity=".87" />
+                        <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41zM6 6h2v12H6V6z" />
+                    </svg>
                     <div id="user-container">
                         <div id="btn-regresar">
                             Regresar
@@ -41,6 +49,110 @@
         </div>
     </nav>
 
+    <ul class="nav justify-content-center" id="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Imprimir Recibo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Registrar Pago</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Generar balance</a>
+        </li>
+      </ul>
+
     <h4 id="title-payment">Registro de Pagos</h4>
+
+    <div id="main-container">
+        <div id="tutor-ci-container" class="form-group">
+            <div>
+                <label for="exampleInputEmail1">Cédula del representante</label>
+                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Cédula del representante">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div id="tutor-data-container" class="form-group">
+            <div>
+                <label for="tutor-name">Nombres del Representante</label>
+                <div class="tutor-data" id="tutor-name">Simón José Antonio</div>
+            </div>
+
+            <div>
+                <label for="tutor-lastName">Apellidos del Representante</label>
+                <div class="tutor-data" id="tutor-lastName">De la Santisima Trinidad Bolivar y Palacios, Ponte y Blanco
+                </div>
+            </div>
+
+            <div id="tutor-contact-container">
+                <div>
+                    <label for="tutor-phone1">Télefono</label>
+                    <div class="tutor-data" id="tutor-phone1">04172365847</div>
+                </div>
+                <div>
+                    <label for="tutor-phone2">Télefono Auxiliar</label>
+                    <div class="tutor-data" id="tutor-phone2">04172365847</div>
+                </div>
+                <div>
+                    <label for="tutor-email">Email</label>
+                    <div class="tutor-data" id="tutor-email">Simon@gmail.com</div>
+                </div>
+            </div>
+            <div id="tutor-info-container">
+                <div>
+                    <label for="tutor-age">Edad</label>
+                    <div class="tutor-data" id="tutor-age">47</div>
+                </div>
+                <div>
+                    <label for="tutor-gender">Género</label>
+                    <div class="tutor-data" id="tutor-gender">Masculino</div>
+                </div>
+                <div>
+                    <label for="tutor-instructionLevel">Nivel de instrucción</label>
+                    <div class="tutor-data" id="tutor-instructionLevel">Doctorado</div>
+                </div>
+            </div>
+            <div id="tutor-work-container">
+                <div>
+                    <label for="tutor-work">Oficio</label>
+                    <div class="tutor-data" id="tutor-age">Profesor Universitario</div>
+                </div>
+                <div>
+                    <label for="tutor-address">Dirección</label>
+                    <div class="tutor-data" id="tutor-address">Calle libertador, Nro 11</div>
+                </div>
+            </div>
+        </div>
+        <div id="table-container">
+            <div id="table-title">
+                Alumnos vinculados a esta cuenta
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">CI</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Grado</th>
+                        <th scope="col">Sección</th>
+                        <th scope="col">Estatus</th>
+                    </tr>
+                </thead>
+                <tbody id="table">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>al dia</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
+
 </html>

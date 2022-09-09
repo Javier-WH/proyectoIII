@@ -2,16 +2,18 @@ const { Payments } = require("../database/models.js");
 const { getTutorByCI } = require("./tutorsController.js");
 const { findStudent } = require("./studentsController.js");
 
-async function registerPayment({mount, description, currency, cash, bankDepositNumber, banckName}, ci){
+async function registerPayment({mount, description, cash, bankDepositNumber, banckName, fullpaid, emblem, uniform}, ci){
 
     let response = await Payments.create({
         studentCI : ci,
         mount,
         description,
-        currency,
         cash,
         bankDepositNumber,
-        banckName
+        banckName,
+        fullpaid,
+        emblem,
+        uniform
     });
 
     return response;

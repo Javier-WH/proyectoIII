@@ -28,7 +28,7 @@
 }
 
 #title-payment {
-    margin-top: 10px;
+    margin-top: -10px;
     margin-bottom: 10px;
     margin-left: 20px;
 }
@@ -37,5 +37,48 @@
 .invisible {
     visibility: hidden;
 }
+/**/
 
+#tutor-ci-container{
+    width: 350px;
+    display: flex;
+    align-items: flex-end;
+    column-gap: 20px;
 
+}
+
+#main-container{
+    margin-top: 20px;
+    padding-left: 20px;
+}
+#main-container label{
+    margin-top: 10px;
+    color: var(--bs-secondary);
+    font-size: 14px;
+}
+#tutor-data-container{
+    margin-top: 20px;
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+}
+.tutor-data{
+    color: var(--bs-primary);
+    font-size: 17px;
+    font-weight: 500;
+}
+#tutor-work-container,
+#tutor-info-container,
+#tutor-contact-container{
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 50px;
+}
+#table-container{
+    width: 700px;
+    margin-top: 30px;
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+}
+#table-title{
+    color: var(--bs-secondary);
+}

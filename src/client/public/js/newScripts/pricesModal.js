@@ -18,6 +18,7 @@ export async function initPrices() {
         updateEvents();
 
         checkDataChange();
+        getTotalPrice();
     })
 }
 
@@ -132,6 +133,38 @@ function checkDataChange(){
     administrative.addEventListener("change", ()=>{
         dataChange = true;
     })
+
+    base.addEventListener("keyup", ()=>{
+        getTotalPrice();
+    })
+
+    uniform.addEventListener("keyup", ()=>{
+        getTotalPrice();
+    })
+    
+    emblem.addEventListener("keyup", ()=>{
+        getTotalPrice();
+    })
+    
+    administrative.addEventListener("keyup", ()=>{
+        getTotalPrice();
+    })
+
+}
+
+function getTotalPrice(){
+    let basePrice = Number.parseFloat(base.value);
+    let uniformPrice = Number.parseFloat(uniform.value);
+    let emblemPrice = Number.parseFloat(emblem.value);
+    let administrativePrice = Number.parseFloat(administrative.value);
+
+    basePrice = isNaN(basePrice) ? 0 : basePrice;
+    uniformPrice = isNaN(uniformPrice) ? 0 : uniformPrice;
+    emblemPrice = isNaN(emblemPrice) ? 0 : emblemPrice;
+    administrativePrice = isNaN(administrativePrice) ? 0 : administrativePrice;
+
+    let total = basePrice + uniformPrice + emblemPrice + administrativePrice;
+    document.getElementById("price-modal-inscription-total-price").innerText = `Costo de la inscripción: ${total} USD`;
 }
 
 
