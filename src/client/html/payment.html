@@ -51,13 +51,13 @@
 
     <ul class="nav justify-content-center" id="nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Imprimir Recibo</a>
+          <a class="nav-link" href="#" id="nav-print-recipe">Imprimir Recibo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Registrar Pago</a>
+          <a class="nav-link" href="#" id="nav-register-paid">Registrar Pago</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Generar balance</a>
+          <a class="nav-link" href="#" id="nav-generate-balance">Generar Balance</a>
         </li>
       </ul>
 
@@ -66,14 +66,17 @@
     <div id="main-container">
         <div id="tutor-ci-container" class="form-group">
             <div>
-                <label for="exampleInputEmail1">Cédula del representante</label>
-                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Cédula del representante">
+                <label for="tutor-ci">Cédula del representante</label>
+                <input type="number" class="form-control" id="tutor-ci" aria-describedby="emailHelp" placeholder="Cédula del representante">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="btn-search">Buscar</button>
         </div>
 
-        <div id="tutor-data-container" class="form-group">
+        <div class="progress invisible" id="loadingBar">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 1%" id="load"></div>
+        </div>
+
+        <div id="tutor-data-container" class="form-group invisible">
             <div>
                 <label for="tutor-name">Nombres del Representante</label>
                 <div class="tutor-data" id="tutor-name">Simón José Antonio</div>
@@ -116,7 +119,7 @@
             <div id="tutor-work-container">
                 <div>
                     <label for="tutor-work">Oficio</label>
-                    <div class="tutor-data" id="tutor-age">Profesor Universitario</div>
+                    <div class="tutor-data" id="tutor-work">Profesor Universitario</div>
                 </div>
                 <div>
                     <label for="tutor-address">Dirección</label>
@@ -124,7 +127,7 @@
                 </div>
             </div>
         </div>
-        <div id="table-container">
+        <div id="table-container" class="invisible">
             <div id="table-title">
                 Alumnos vinculados a esta cuenta
             </div>

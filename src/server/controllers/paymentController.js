@@ -37,7 +37,7 @@ async function getTutorPaymentData (tutorCI){
     //revisa si el tutor existe
     let tutor = await getTutorByCI({CI:tutorCI});
     if(tutor.MESSAJE){
-        return tutor.MESSAJE;
+        return {error:tutor.MESSAJE};
     }
     //revisa cuantos alumnos tiene el tutor
     let students = await findStudent({tutorID: tutor.id})
@@ -51,7 +51,10 @@ async function getTutorPaymentData (tutorCI){
         let payment = await getAllStudentPayment(student.CI);
         payments.push({student, payment});
     }
-
-    return payments;
+    let data = {
+        tutor,
+        payments
+    }
+    return data;
 }
 module.exports = { registerPayment, getAllStudentPayment, getTutorPaymentData };

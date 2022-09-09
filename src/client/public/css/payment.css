@@ -82,3 +82,11 @@
 #table-title{
     color: var(--bs-secondary);
 }
+#loadingBar{
+    margin-top: 10px;
+    width: 90%;
+    margin-left: 10px;
+}
+.student{
+    cursor: pointer;
+}
