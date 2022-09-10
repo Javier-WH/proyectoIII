@@ -378,7 +378,7 @@ document.getElementById("btn-accept").addEventListener("click", async e => {
         fullpaid: true,
         emblem: emblem.checked ? true : false,
         uniform: uniform.checked ? true : false,
-        month: false
+        month: 0
     }
 
     let auxiliarData = {

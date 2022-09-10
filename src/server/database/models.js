@@ -198,7 +198,7 @@ Payments.init({
     fullpaid: DataTypes.BOOLEAN,
     emblem: DataTypes.BOOLEAN,
     uniform: DataTypes.BOOLEAN,
-    month: DataTypes.BOOLEAN
+    month: DataTypes.INTEGER
 },{
     sequelize,
     motherName: "Payments"
