@@ -2,7 +2,7 @@ const { Payments } = require("../database/models.js");
 const { getTutorByCI } = require("./tutorsController.js");
 const { findStudent } = require("./studentsController.js");
 
-async function registerPayment({mount, description, cash, bankDepositNumber, banckName, fullpaid, emblem, uniform}, ci){
+async function registerPayment({mount, description, cash, bankDepositNumber, banckName, fullpaid, emblem, uniform, month}, ci){
 
     let response = await Payments.create({
         studentCI : ci,
@@ -13,7 +13,8 @@ async function registerPayment({mount, description, cash, bankDepositNumber, ban
         banckName,
         fullpaid,
         emblem,
-        uniform
+        uniform,
+        month
     });
 
     return response;

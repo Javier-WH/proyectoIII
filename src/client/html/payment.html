@@ -49,31 +49,36 @@
         </div>
     </nav>
 
-    <ul class="nav justify-content-center" id="nav">
+    <ul class="nav nav nav-tabs justify-content-center" id="nav">
         <li class="nav-item">
-          <a class="nav-link" href="#" id="nav-print-recipe">Imprimir Recibo</a>
+            <a class="nav-link active" href="/payment" id="nav-print-recipe">Pagos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="nav-register-paid">Registrar Pago</a>
+            <a class="nav-link" href="/addPayment" id="nav-register-paid">Registrar Pago</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="nav-generate-balance">Generar Balance</a>
+            <a class="nav-link" href="#" id="nav-print-recipe">Imprimir Recibo</a>
         </li>
-      </ul>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="nav-generate-balance">Generar Balance</a>
+        </li>
+    </ul>
 
-    <h4 id="title-payment">Registro de Pagos</h4>
+    <h4 id="title-payment">Pagos</h4>
 
     <div id="main-container">
         <div id="tutor-ci-container" class="form-group">
             <div>
                 <label for="tutor-ci">Cédula del representante</label>
-                <input type="number" class="form-control" id="tutor-ci" aria-describedby="emailHelp" placeholder="Cédula del representante">
+                <input type="number" class="form-control" id="tutor-ci" aria-describedby="emailHelp"
+                    placeholder="Cédula del representante">
             </div>
             <button type="submit" class="btn btn-primary" id="btn-search">Buscar</button>
         </div>
 
         <div class="progress invisible" id="loadingBar">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 1%" id="load"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 1%" id="load"></div>
         </div>
 
         <div id="tutor-data-container" class="form-group invisible">
@@ -151,7 +156,7 @@
                         <td>@mdo</td>
                         <td>al dia</td>
                     </tr>
-                    
+
                 </tbody>
             </table>
         </div>

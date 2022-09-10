@@ -48,6 +48,13 @@ Router.get("/payment", async(req, res, next) => {
     }
 });
 
+Router.get("/addPayment", async(req, res, next) => {
+    if (req.session.adminID) {
+        res.sendFile(path.join(__dirname, "../../client/html/registerPaytment.html"));
+    } else {
+        res.redirect("/");
+    }
+});
 
 ////
 

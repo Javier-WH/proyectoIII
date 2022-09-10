@@ -377,7 +377,8 @@ document.getElementById("btn-accept").addEventListener("click", async e => {
         banckName: rdbEfectivo.checked ? "No suministrado" : bank.value,
         fullpaid: true,
         emblem: emblem.checked ? true : false,
-        uniform: uniform.checked ? true : false
+        uniform: uniform.checked ? true : false,
+        month: false
     }
 
     let auxiliarData = {

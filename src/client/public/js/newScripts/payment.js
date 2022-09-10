@@ -123,28 +123,61 @@ function fillData({ tutor, payments }) {
     hideData(false);
 }
 
+/////
+function checkUpDatePayment(payments){
+    if(!Array.isArray(payments)){
+        return false;
+    }
+    let response = false;
+    let currentMont = new Date().getMonth() + 1;
+
+    payments.map(payment=>{
+       let monthPaidment = payment.month;
+       let creatredAt = payment.createdAt;
+
+       if(monthPaidment != undefined && monthPaidment == true){
+            let month = new Date(creatredAt).getMonth() + 1;
+            if(month == currentMont){
+                response =  true;
+            }
+       }
+    })
+
+    return response;
+}
+
 
 function fillTable(registers){
     let html ="";
     registers.map(register=>{
         let student = register.student;
-        let payment = register.payment;
         let ci = student.CI;
         let name = student.names;
         let lastName = student.lastName;
         let grade = student.year;
         let seccion = student.seccion;
+        
+        let payment = register.payment;
+        let isUpDate = checkUpDatePayment(payment);
+        let htmlclass = "deb";
+        let message = "pago pendiente";
+        if(isUpDate){
+            htmlclass = "update";
+            message = "al dia";
+        }
 
         html += `
-        <tr id="student${student.id}" class="student">
+        <tr id="student${student.id}" class="student ${htmlclass}">
             <td>${ci}</td>
             <td>${name}</td>
             <td>${lastName}</td>
             <td>${grade}</td>
             <td>${seccion}</td>
-            <td>al dia</td>
+            <td>${message}</td>
         </tr>`
     })
 
     table.innerHTML = html;
 }
+
+
