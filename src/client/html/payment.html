@@ -80,85 +80,151 @@
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 1%" id="load"></div>
         </div>
+        <div id="flexContainer">
 
-        <div id="tutor-data-container" class="form-group invisible">
-            <div>
-                <label for="tutor-name">Nombres del Representante</label>
-                <div class="tutor-data" id="tutor-name">Simón José Antonio</div>
-            </div>
 
-            <div>
-                <label for="tutor-lastName">Apellidos del Representante</label>
-                <div class="tutor-data" id="tutor-lastName">De la Santisima Trinidad Bolivar y Palacios, Ponte y Blanco
-                </div>
-            </div>
+            <div id="tableAndData-container">
+                <div id="tutor-data-container" class="form-group invisible">
+                    <div>
+                        <label for="tutor-name">Nombres del Representante</label>
+                        <div class="tutor-data" id="tutor-name">Simón José Antonio</div>
+                    </div>
 
-            <div id="tutor-contact-container">
-                <div>
-                    <label for="tutor-phone1">Télefono</label>
-                    <div class="tutor-data" id="tutor-phone1">04172365847</div>
-                </div>
-                <div>
-                    <label for="tutor-phone2">Télefono Auxiliar</label>
-                    <div class="tutor-data" id="tutor-phone2">04172365847</div>
-                </div>
-                <div>
-                    <label for="tutor-email">Email</label>
-                    <div class="tutor-data" id="tutor-email">Simon@gmail.com</div>
-                </div>
-            </div>
-            <div id="tutor-info-container">
-                <div>
-                    <label for="tutor-age">Edad</label>
-                    <div class="tutor-data" id="tutor-age">47</div>
-                </div>
-                <div>
-                    <label for="tutor-gender">Género</label>
-                    <div class="tutor-data" id="tutor-gender">Masculino</div>
-                </div>
-                <div>
-                    <label for="tutor-instructionLevel">Nivel de instrucción</label>
-                    <div class="tutor-data" id="tutor-instructionLevel">Doctorado</div>
-                </div>
-            </div>
-            <div id="tutor-work-container">
-                <div>
-                    <label for="tutor-work">Oficio</label>
-                    <div class="tutor-data" id="tutor-work">Profesor Universitario</div>
-                </div>
-                <div>
-                    <label for="tutor-address">Dirección</label>
-                    <div class="tutor-data" id="tutor-address">Calle libertador, Nro 11</div>
-                </div>
-            </div>
-        </div>
-        <div id="table-container" class="invisible">
-            <div id="table-title">
-                Alumnos vinculados a esta cuenta
-            </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">CI</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Grado</th>
-                        <th scope="col">Sección</th>
-                        <th scope="col">Estatus</th>
-                    </tr>
-                </thead>
-                <tbody id="table">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>al dia</td>
-                    </tr>
+                    <div>
+                        <label for="tutor-lastName">Apellidos del Representante</label>
+                        <div class="tutor-data" id="tutor-lastName">De la Santisima Trinidad Bolivar y Palacios, Ponte y
+                            Blanco
+                        </div>
+                    </div>
 
-                </tbody>
-            </table>
+                    <div id="tutor-contact-container">
+                        <div>
+                            <label for="tutor-phone1">Télefono</label>
+                            <div class="tutor-data" id="tutor-phone1">04172365847</div>
+                        </div>
+                        <div>
+                            <label for="tutor-phone2">Télefono Auxiliar</label>
+                            <div class="tutor-data" id="tutor-phone2">04172365847</div>
+                        </div>
+                        <div>
+                            <label for="tutor-email">Email</label>
+                            <div class="tutor-data" id="tutor-email">Simon@gmail.com</div>
+                        </div>
+                    </div>
+                    <div id="tutor-info-container">
+                        <div>
+                            <label for="tutor-age">Edad</label>
+                            <div class="tutor-data" id="tutor-age">47</div>
+                        </div>
+                        <div>
+                            <label for="tutor-gender">Género</label>
+                            <div class="tutor-data" id="tutor-gender">Masculino</div>
+                        </div>
+                        <div>
+                            <label for="tutor-instructionLevel">Nivel de instrucción</label>
+                            <div class="tutor-data" id="tutor-instructionLevel">Doctorado</div>
+                        </div>
+                    </div>
+                    <div id="tutor-work-container">
+                        <div>
+                            <label for="tutor-work">Oficio</label>
+                            <div class="tutor-data" id="tutor-work">Profesor Universitario</div>
+                        </div>
+                        <div>
+                            <label for="tutor-address">Dirección</label>
+                            <div class="tutor-data" id="tutor-address">Calle libertador, Nro 11</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="table-container" class="invisible">
+                    <div id="table-title">
+                        Alumnos vinculados a esta cuenta
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">CI</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Grado</th>
+                                <th scope="col">Sección</th>
+                                <th scope="col">Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>al dia</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="student-payment-data-container" class="invisible">
+                <div id="student-payment-data">
+                    <div id="student-data-container" class="form-group">
+                        <div id="photo-Container">
+                            <img src="" alt="" id="student-photo">
+                        </div>
+                        <div>
+                            <label for="student-name">Nombres del Estudiante</label>
+                            <div class="tutor-data" id="student-name">Sony Playstation</div>
+                        </div>
+                        <div>
+                            <label for="student-lastName">Apellido del Estudiante</label>
+                            <div class="tutor-data" id="student-lastName">Bonaparte Montesqueu</div>
+                        </div>
+                        <div>
+                            <label for="student-ci">Cédula del estudiante</label>
+                            <div class="tutor-data" id="student-ci">55545660</div>
+                        </div>
+                        <div id="studen-auxData-container">
+                            <div>
+                                <label for="student-gender">Genero</label>
+                                <div class="tutor-data" id="student-gender">Masculino</div>
+                            </div>
+                            <div>
+                                <label for="student-secction">Sección</label>
+                                <div class="tutor-data" id="student-secction">E</div>
+                            </div>
+                            <div>
+                                <label for="student-grade">Grado</label>
+                                <div class="tutor-data" id="student-grade">5</div>
+                            </div>
+                        </div>
+                        <div id="student-payments-table-container">
+                            <div id="title-table-student-payments-container">
+                                Pagos registrados para este alumno
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Forma de pago / Nro deposito</th>
+                                        <th scope="col">Banco</th>
+                                        <th scope="col">Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="student-payments-table">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -101,7 +101,55 @@
     color: white;
 }
 
-.deb:hover,
+.deb:hover{
+    background-color: rgb(173, 61, 61);
+    color: white;
+}
 .update:hover{
-    background-color: white;
+    background-color: rgb(59, 146, 59);
+    color: white;
+}
+#student-payment-data{
+    width: 49vw;
+}
+
+#flexContainer{
+    width: 100vw;
+    display: flex;
+}
+#student-payment-data-container{
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+
+}
+#photo-Container{
+    position: relative;
+    margin-top: 10px;
+    margin-right: 15px;
+    width: 130px;
+    height: 150px;
+    border: 1px solid lightgray;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#student-photo{
+    max-width: 130px;
+    max-height: 150px;
+}
+
+#studen-auxData-container{
+    display: flex;
+    column-gap: 40px;
+}
+#student-payments-table-container{
+    margin-top: 20px;
+}
+.description{
+   width: 150px;
+   display: flex;
+   flex-direction: column;
 }

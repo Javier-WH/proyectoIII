@@ -378,7 +378,8 @@ document.getElementById("btn-accept").addEventListener("click", async e => {
         fullpaid: true,
         emblem: emblem.checked ? true : false,
         uniform: uniform.checked ? true : false,
-        month: 0
+        month: 0,
+        schoolYear: 2022   /////////////////////////////<= Modificar esta variable
     }
 
     let auxiliarData = {
