@@ -38,4 +38,38 @@
     visibility: hidden;
 }
 /**/
+#main-container{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+#aux-container{
+    margin-top: 10px;
+}
+#studen-data-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
+}
 
+#studen-data-container label{
+   font-size: 14px;
+   color: var(--bs-secondary);
+}
+.student-data{
+    font-size: 18px;
+    color: var(--bs-primary);
+    font-weight: 500;
+}
+#photo-Container{
+    width: 100px;
+    height: 120px;
+    border: 1px solid var(--bs-secondary);
+    margin-right: 20px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#paymentData-container{
+    margin-top: 10px;
+}

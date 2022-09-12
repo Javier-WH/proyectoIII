@@ -153,3 +153,9 @@
    display: flex;
    flex-direction: column;
 }
+#btn-student-register-payment{
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 5px;
+    float: right;
+}

@@ -337,3 +337,12 @@ function paymentTableEvents(payments) {
     })
 
 }
+
+/////////
+
+document.getElementById("btn-student-register-payment").addEventListener("click", ()=>{
+    
+    let ci = document.getElementById("student-ci").innerText;
+    location.href = `/addPayment?CI=${ci}`;
+
+})

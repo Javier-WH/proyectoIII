@@ -9,14 +9,18 @@ const tutorController = require("../controllers/tutorsController.js");
 const configController = require("../controllers/configControler.js");
 const { getGradesList, getSubjects } = require("../controllers/subjectsController.js")
 const { getAuxInfo } = require("../controllers/auxiliarInformationController.js")
-const { getTutorPaymentData , getAllStudentPayment } = require("../controllers/paymentController.js");
+const { getTutorPaymentData , getAllStudentPayment, registerPayment } = require("../controllers/paymentController.js");
 
 Router.post("/getSeccionList", express.json(), async(req, res) => {
     res.json(await studentsController.getStudents(req.body));
 });
 
 Router.post("/Estudiante", express.json(), async(req, res) => {
-    res.json(await studentsController.findStudent(req.body));
+    if(req.session.studentCI){
+        res.json(await studentsController.findStudent({CI: req.session.studentCI}));
+    }else{
+        res.json(await studentsController.findStudent(req.body));
+    }
 });
 Router.post("/pre", express.json(), async(req, res) => {
     res.json(await preIscriptionController.findStudent(req.body));
@@ -74,5 +78,16 @@ Router.post("/getTutorPaymentInfo", express.json(), async(req, res)=>{
 })
 Router.post("/getAllStudentPayment", express.json(), async (req, res)=>{
     res.json(await getAllStudentPayment(req.body.ci));
+})
+
+Router.post("/registerPayment", express.json(), async (req, res)=>{
+    if(!req.session.adminID){
+        res.redirect("/");
+    }
+
+    if(req.session.studentCI){
+      
+    }
+
 })
 module.exports = Router;
