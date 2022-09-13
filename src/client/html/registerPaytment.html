@@ -89,7 +89,7 @@
                     <label for="student-lastName">Apellido del Estudiante</label>
                     <div class="student-data" id="student-lastName">Bonaparte Montesqueu</div>
                 </div>
-               
+
                 <div>
                     <label for="student-gender">Genero</label>
                     <div class="student-data" id="student-gender">Masculino</div>
@@ -103,16 +103,84 @@
                     <div class="student-data" id="student-grade">5</div>
                 </div>
             </div>
-            
+
             <div id="paymentData-container">
+               <!-- 
                 <div class="form-group row">
                     <label for="studentFatherName" class="col-sm-2 col-form-label">imput</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="studentFatherName" placeholder="input">
                     </div>
                 </div>
+               
+                <div class="form-group row">
+                    <label for="payment-description" class="col-sm-2 col-form-label">Descripción</label>
+                    <div class="col-sm-6">
+                        <select class="form-select" aria-label="Default select example" id="payment-description">
+                            <option selected disabled>Escoge uno</option>
+                            <option value="Pago mensualidad">Pago de mensualidad</option>
+                            <option value="Pago distintivo">Pago de distintivo</option>
+                            <option value="Pago uniforme">Pago de uniforme</option>
+                            <option value="0">Otro</option>
+                        </select>
+                        <div class="col-sm-12 invisible">
+                            <input type="text" class="form-control" id="payment-description-other" placeholder="input">
+                        </div>
+                    </div>
+
+                </div>
+                     -->
+                <div class="form-group row">
+                    <label for="studentFatherName" class="col-sm-2 col-form-label">Tipo de item a pagar</label>
+                    <div class="col-sm-6" id="paidments-options">
+                    
+                        <div>
+                            <input class="form-check-input" type="checkbox" name="paidType" id="rdb-deposito" value="1" checked>
+                            <label class="form-check-label" for="rdb-deposito">Mensualidad</label>
+                        </div>
+                        <div>
+                            <input class="form-check-input" type="checkbox" name="paidType" id="rdb-deposito" value="1" >
+                            <label class="form-check-label" for="rdb-deposito">Distintivo</label>
+                        </div>
+                        <div>
+                            <input class="form-check-input" type="checkbox" name="paidType" id="rdb-deposito" value="1">
+                            <label class="form-check-label" for="rdb-deposito">Uniforme</label>
+                        </div>
+                        <div>
+                            <input class="form-check-input" type="checkbox" name="paidType" id="rdb-deposito" value="1">
+                            <label class="form-check-label" for="rdb-deposito">Otro</label>
+                        </div>
+                        
+                        <div class="price-cant-container">
+                            <label class="items-price">20$ x</label>
+                            <input type="number" class="form-control intems-cant" id="checkNumber" value="1">
+                        </div>
+                        <div class="price-cant-container">
+                            <label class="items-price">20$ x</label>
+                            <input type="number" class="form-control intems-cant" id="checkNumber" value="1">
+                        </div>
+                        <div class="price-cant-container">
+                            <label class="items-price">20$ x</label>
+                            <input type="number" class="form-control intems-cant" id="checkNumber" value="1">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Total a pagar</label>
+                    <div class="col-sm-10 totalPayment">
+                        <label id="total">500 USD</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Descripción</label>
+                    <div class="col-sm-10 totalPayment">
+                        <label id="total">Pago de mensualidad + Carnet + Uniforme</label>
+                    </div>
+                </div>
             </div>
 
+            <button type="button" class="btn btn-outline-primary" id="btn-register-payment">Registrar Pago</button>
 
 
         </div>

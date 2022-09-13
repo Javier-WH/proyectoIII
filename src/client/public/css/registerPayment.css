@@ -71,5 +71,41 @@
     justify-content: center;
 }
 #paymentData-container{
-    margin-top: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid lightgray;
+}
+
+/*******************************/
+
+#paidments-options{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: flex-end;
+
+}
+.intems-cant{
+    width: 70px;
+}
+.items-price{
+    font-size: 14px;
+   
+}
+.price-cant-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.totalPayment {
+  display: flex;
+  align-items: flex-end;
+}
+#total{
+    font-size: 18px;
+    color: var(--bs-primary);
+}
+#btn-register-payment{
+    margin-top: 30px;
 }
