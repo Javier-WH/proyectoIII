@@ -16,7 +16,7 @@ Router.post("/getSeccionList", express.json(), async(req, res) => {
 });
 
 Router.post("/Estudiante", express.json(), async(req, res) => {
-    if(req.session.studentCI){
+    if(req.session.studentCI != undefined){
         res.json(await studentsController.findStudent({CI: req.session.studentCI}));
     }else{
         res.json(await studentsController.findStudent(req.body));
