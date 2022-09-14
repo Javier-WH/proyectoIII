@@ -84,10 +84,7 @@ Router.post("/registerPayment", express.json(), async (req, res)=>{
     if(!req.session.adminID){
         res.redirect("/");
     }
-
-    if(req.session.studentCI){
-      
-    }
+    
 
 })
 module.exports = Router;

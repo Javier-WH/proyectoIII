@@ -109,15 +109,17 @@ function checkBoxWatcher(prices) {
     let containerMonth = document.getElementById("month-price-container");
     let containerEmblem = document.getElementById("emblem-price-container");
     let containerUniform = document.getElementById("uniform-price-container");
+   
 
     let chkMonth = document.getElementById("chk-month");
     let chkEmblem = document.getElementById("chk-emblem");
     let chkUniform = document.getElementById("chk-uniform");
+    let chkOther = document.getElementById("chk-other");
 
     let monthCant = document.getElementById("month-cant");
     let emblemCant = document.getElementById("emblem-cant");
     let uniformCant = document.getElementById("uniform-cant");
-
+ 
 
 
 
@@ -154,6 +156,30 @@ function checkBoxWatcher(prices) {
         }
     })
 
+    chkOther.addEventListener("change", e => {
+        if (e.target.checked) {
+          
+            chkMonth.checked = false;
+            chkUniform.checked = false;
+            chkEmblem.checked = false;
+            containerUniform.classList.add("invisible");
+            containerEmblem.classList.add("invisible");
+            containerMonth.classList.add("invisible");
+            chkMonth.disabled = true;
+            chkUniform.disabled = true;
+            chkEmblem.disabled = true;
+
+
+     
+            setTotal(prices);
+        } else {
+            chkMonth.disabled = false;
+            chkUniform.disabled = false;
+            chkEmblem.disabled = false;
+            setTotal(prices);
+        }
+    })
+
     monthCant.addEventListener("change", () => {
         setTotal(prices);
     })
@@ -174,10 +200,14 @@ function setTotal(prices) {
     let chkMonth = document.getElementById("chk-month");
     let chkEmblem = document.getElementById("chk-emblem");
     let chkUniform = document.getElementById("chk-uniform");
-
+    let chkOther = document.getElementById("chk-other");
+    
     let monthCant = document.getElementById("month-cant");
     let emblemCant = document.getElementById("emblem-cant");
     let uniformCant = document.getElementById("uniform-cant");
+
+    let totalimp = document.getElementById("total");
+
 
     if (chkMonth.checked) {
         total += Number.parseFloat(prices.month) * monthCant.value;
@@ -190,7 +220,14 @@ function setTotal(prices) {
     if (chkUniform.checked) {
         total += Number.parseFloat(prices.uniform) * uniformCant.value;
     }
-    document.getElementById("total").innerText = `${total} USD`;
+    if(chkOther.checked){
+        totalimp.disabled = false;
+    }else{
+        totalimp.disabled = true;
+    }
+  
+    
+    totalimp.value = `${total}`;
     setDescription();
 }
 
@@ -202,6 +239,7 @@ function setDescription() {
     let emblemCant = document.getElementById("emblem-cant");
     let uniformCant = document.getElementById("uniform-cant");
     let Description = document.getElementById("Description");
+    let chkOther = document.getElementById("chk-other");
     let text = "";
 
     if (chkMonth.checked) {
@@ -223,5 +261,39 @@ function setDescription() {
         }
         text += `Pago uniforme(x${uniformCant.value})`
     }
-    Description.innerText = text;
+    if(chkOther.checked){
+        text = ""
+        Description.disabled = false;
+    }else{
+        
+        Description.disabled = true; 
+    }
+    Description.value = text;
 }
+
+document.getElementById("btn-register-payment").addEventListener("click", ()=>{
+    let total = document.getElementById("total");
+    let description = document.getElementById("Description");
+
+    if(total.value == "" || description.value == ""){
+        return;
+    }
+    let ci = document.getElementById("student-ci");
+
+/*
+    let paymentData = {
+        payment:{
+            mount: total.value, 
+            description: description.value, 
+            cash, 
+            bankDepositNumber, 
+            banckName, 
+            fullpaid, 
+            emblem, 
+            uniform, 
+            month}, 
+            ci
+        }
+
+*/
+})

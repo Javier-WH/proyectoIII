@@ -140,23 +140,25 @@
                             <label class="items-price" id="uniform-price"></label>
                             <input type="number" class="form-control intems-cant" id="uniform-cant" value="1" min="1">
                         </div>
+                     
                     </div>
                 </div>
                 <br>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Total a pagar</label>
                     <div class="col-sm-10 totalPayment">
-                        <label id="total">0 USD</label>
+                        <input type="number" id="total" value="0 USD" disabled> <div id="currency">USD</div>
+                        
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Descripción</label>
                     <div class="col-sm-10 totalPayment">
-                        <label id="Description"></label>
+                        <input type="text" id="Description" disabled>
                     </div>
                 </div>
             </div>
-
+           
             <button type="button" class="btn btn-outline-primary" id="btn-register-payment">Registrar Pago</button>
 
 
