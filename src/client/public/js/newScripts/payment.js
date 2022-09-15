@@ -295,8 +295,9 @@ function paymentTableEvents(payments) {
                         html += "No hay pagos registrados para este estudiante"
 
                     } else {
+                        let crtDescription = "";
+                        let ctrCratedAt = ""
                         studentPayments.map(register => {
-
                             let description = register.description;
                             let mount = register.mount;
                             let cash = register.cash;
@@ -310,24 +311,31 @@ function paymentTableEvents(payments) {
                             let month = date.getUTCMonth() + 1;
                             let year = date.getFullYear();
 
-                            if (description == "Pago preinscripción") {
-                                if (emblem) {
-                                    description += "<div> + distintivo </div>";
+                            if(description != crtDescription && ctrCratedAt != createdAt){
+                                crtDescription = description;
+                                ctrCratedAt = createdAt;
+
+                                if (description == "Pago preinscripción") {
+                                    if (emblem) {
+                                        description += "<div> + distintivo </div>";
+                                    }
+                                    if (uniform) {
+                                        description += "<div> + uniforme</div>";
+                                    }
+                                    description = `<div class="description">${description}</div>`
                                 }
-                                if (uniform) {
-                                    description += "<div> + uniforme</div>";
-                                }
-                                description = `<div class="description">${description}</div>`
+    
+                                html += `
+                                    <tr id="register-${register.id}">
+                                        <td class="description-student-payment">${description}</td>
+                                        <td class="mount-student-payment">${mount}</td>
+                                        <td class="deposit-student-payment">${cash ? "Efectivo" : bankDepositNumber}</td>
+                                        <td class="banck-student-payment">${cash ? "Efectivo" : banckName}</td>
+                                        <td class="date-student-payment">${day}-${month}-${year}</td>
+                                    </tr>`
+
                             }
 
-                            html += `
-                        <tr id="register-${register.id}">
-                            <td class="description-student-payment">${description}</td>
-                            <td class="mount-student-payment">${mount}</td>
-                            <td class="deposit-student-payment">${cash ? "Efectivo" : bankDepositNumber}</td>
-                            <td class="banck-student-payment">${cash ? "Efectivo" : banckName}</td>
-                            <td class="date-student-payment">${day}-${month}-${year}</td>
-                        </tr>`
                         })
                     }
 

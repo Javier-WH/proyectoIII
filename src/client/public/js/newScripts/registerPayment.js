@@ -20,8 +20,8 @@ async function init() {
     setSchoolYear();
 }
 
-async function setSchoolYear(){
-    let ask = await fetch("/getConfig", {method:"POST"});
+async function setSchoolYear() {
+    let ask = await fetch("/getConfig", { method: "POST" });
     let response = await ask.json();
     document.getElementById("school-year").value = response[0].schoolYear;
 }
@@ -255,7 +255,41 @@ function setTotal(prices) {
     setDescription();
 }
 
+document.getElementById("month").addEventListener("change", setDescription)
+
+function traslateMonth(number) {
+    switch (number) {
+        case 1:
+            return "Enero";
+        case 2:
+            return "Febrero";
+        case 3:
+            return "Marzo";
+        case 4:
+            return "Abril";
+        case 5:
+            return "Mayo";
+        case 6:
+            return "Junio";
+        case 7:
+            return "Julio";
+        case 8:
+            return "Agosto";
+        case 9:
+            return "Septiembre";
+        case 10:
+            return "Octubre";
+        case 11:
+            return "Noviembre";
+        case 12:
+            return "Diciembre";
+        default:
+            return "Desconocido";
+    }
+}
+
 function setDescription() {
+    let month = document.getElementById("month");
     let chkMonth = document.getElementById("chk-month");
     let chkEmblem = document.getElementById("chk-emblem");
     let chkUniform = document.getElementById("chk-uniform");
@@ -267,11 +301,18 @@ function setDescription() {
     let text = "";
 
     if (chkMonth.checked) {
-
         text = `Pago mensualidad(x${monthCant.value})`;
-
+        let m = Number.parseFloat(month.value);
+        text += "(";
+        for (let i = 1; i <= monthCant.value; i++) {
+            text += traslateMonth(m);
+            m = Number.parseInt(m) + 1;
+            if (i < monthCant.value) {
+                text += ", ";
+            }
+        }
+        text += ")";
     }
-
     if (chkEmblem.checked) {
         if (text != "") {
             text += " + ";
@@ -360,14 +401,14 @@ document.getElementById("btn-register-payment").addEventListener("click", async 
                 text: response.error,
             })
             return;
-        }else{
+        } else {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
                 title: 'Pago registrado con exito',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         }
         monthControl++;
         if (monthControl > 12) {
