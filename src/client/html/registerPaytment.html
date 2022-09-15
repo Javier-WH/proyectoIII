@@ -76,7 +76,7 @@
                 Buscar
             </button>
         </div>
-     
+
         <div id="aux-container">
             <div id="photo-Container">
                 <img src="" alt="" id="student-photo">
@@ -106,17 +106,17 @@
             </div>
 
             <div id="paymentData-container">
-   
+
                 <div class="form-group row">
                     <label for="studentFatherName" class="col-sm-2 col-form-label">Tipo de item a pagar</label>
                     <div class="col-sm-6" id="paidments-options">
-                    
+
                         <div>
                             <input class="form-check-input" type="checkbox" name="paidType" id="chk-month" value="1">
                             <label class="form-check-label" for="chk-month">Mensualidad</label>
                         </div>
                         <div>
-                            <input class="form-check-input" type="checkbox" name="paidType" id="chk-emblem" value="1" >
+                            <input class="form-check-input" type="checkbox" name="paidType" id="chk-emblem" value="1">
                             <label class="form-check-label" for="chk-emblem">Distintivo</label>
                         </div>
                         <div>
@@ -127,28 +127,86 @@
                             <input class="form-check-input" type="checkbox" name="paidType" id="chk-other" value="1">
                             <label class="form-check-label" for="chk-other">Otro</label>
                         </div>
-                        
+
                         <div class="price-cant-container invisible" id="month-price-container">
                             <label class="items-price" id="month-price"></label>
                             <input type="number" class="form-control intems-cant" id="month-cant" value="1" min="1">
                         </div>
-                        <div class="price-cant-container invisible" id="emblem-price-container" >
+                        <div class="price-cant-container invisible" id="emblem-price-container">
                             <label class="items-price" id="emblem-price"></label>
-                            <input type="number" class="form-control intems-cant" id="emblem-cant"value="1" min="1" >
+                            <input type="number" class="form-control intems-cant" id="emblem-cant" value="1" min="1">
                         </div>
                         <div class="price-cant-container invisible" id="uniform-price-container">
                             <label class="items-price" id="uniform-price"></label>
                             <input type="number" class="form-control intems-cant" id="uniform-cant" value="1" min="1">
                         </div>
-                     
+
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row" id="mont-to-paid">
+                    <label for="month" class="col-sm-2 col-form-label">Mes a pagar</label>
+                    <div id="mont-data-container" class="col-sm-6">
+                        <div>
+                            <label class="month" for="bank">Mes</label>
+                            <select class="form-select" aria-label="Default select example" id="month">
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+
+
+                        <div class="price-cant-container" id="schollYear-paidment">
+                            <label for="school-year">Año escolar</label>
+                            <input type="number" class="form-control" id="school-year" value="2022">
+                        </div>
+
+
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="studentFatherName" class="col-sm-2 col-form-label">Forma de pago</label>
+                    <div class="col-sm-6" id="cash-group">
+                        <div>
+                            <input class="form-check-input" type="checkbox" id="chk-cash" value="1" checked>
+                            <label class="form-check-label" for="chk-chash">Efectivo</label>
+                        </div>
+                        <div id="back-container" class="invisible">
+                            <label class="form-check-label" for="bank">Banco</label>
+                            <select class="form-select" aria-label="Default select example" id="bank">
+                                <option selected disabled>Escoge un banco</option>
+                                <option value="Banco de Venezuela">Banco de Venezuela</option>
+                                <option value="Banesco">Banesco</option>
+                                <option value="Mercantil">Mercantil</option>
+                                <option value="Provincial">Provincial</option>
+                                <option value="Bicentenario">Bicentenario</option>
+                            </select>
+                        </div>
+                        <div id="deposit-container" class="invisible">
+                            <label class="form-check-label" for="depositNumber">Nro de deposito</label>
+                            <input type="text" class="form-control" id="depositNumber"
+                                placeholder="Numero del deposito">
+                        </div>
                     </div>
                 </div>
                 <br>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Total a pagar</label>
                     <div class="col-sm-10 totalPayment">
-                        <input type="number" id="total" value="0 USD" disabled> <div id="currency">USD</div>
-                        
+                        <input type="number" id="total" value="0 USD" disabled>
+                        <div id="currency">USD</div>
+
                     </div>
                 </div>
                 <div class="form-group row">
@@ -158,7 +216,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <button type="button" class="btn btn-outline-primary" id="btn-register-payment">Registrar Pago</button>
 
 

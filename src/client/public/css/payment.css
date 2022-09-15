@@ -145,9 +145,20 @@
     display: flex;
     column-gap: 40px;
 }
-#student-payments-table-container{
+#title-table-student-payments-container{
     margin-top: 20px;
 }
+#student-payments-table-container{
+    overflow-y: auto;
+    height: 350px;
+}
+
+#student-payments-table-thead{
+    top:0;
+    position: sticky;
+    background-color: white !important;
+}
+
 .description{
    width: 150px;
    display: flex;
@@ -158,4 +169,22 @@
     margin-right: 10px;
     margin-top: 5px;
     float: right;
+}
+
+/**/
+
+.description-student-payment{
+    max-width: 200px;
+}
+.mount-student-payment{
+    max-width: 90px;
+}
+.deposit-student-payment{
+    max-width: 300px;
+}
+.banck-student-payment{
+    max-width: 200px;
+}
+.date-student-payment{
+    max-width: 100px;
 }

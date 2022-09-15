@@ -13,7 +13,7 @@ const tutorWork = document.getElementById("tutor-work");
 const tutorAddress = document.getElementById("tutor-address");
 const table = document.getElementById("table");
 const studentContainer = document.getElementById("student-payment-data-container");
-import {getStudentPhoto} from "./downloadStudentPhoto.js";
+import { getStudentPhoto } from "./downloadStudentPhoto.js";
 
 //evento boton regresar
 document.getElementById("d-flex").addEventListener("click", e => { e.preventDefault(); location.href = "/config"; });
@@ -277,10 +277,10 @@ function paymentTableEvents(payments) {
         studentContainer.classList.remove("invisible");
         if (e.target.parentElement.classList.contains("student")) {
             let studentID = e.target.parentElement.id.replace("student", "");
-            payments.map(async payemt=>{
+            payments.map(async payemt => {
                 let student = payemt.student;
-                if(student.id == studentID){
-                    let imgData = URL.createObjectURL( await(getStudentPhoto(student.id)));
+                if (student.id == studentID) {
+                    let imgData = URL.createObjectURL(await (getStudentPhoto(student.id)));
                     document.getElementById("student-photo").src = imgData;
                     document.getElementById("student-name").innerText = student.names;
                     document.getElementById("student-lastName").innerText = student.lastName;
@@ -291,47 +291,52 @@ function paymentTableEvents(payments) {
 
                     let studentPayments = payemt.payment;
                     let html = "";
-                    studentPayments.map(register=>{
+                    if (studentPayments.error) {
+                        html += "No hay pagos registrados para este estudiante"
 
-                        let description = register.description;
-                        let mount = register.mount;
-                        let cash = register.cash;
-                        let bankDepositNumber = register.bankDepositNumber;
-                        let banckName = register.banckName;
-                        let emblem = register.emblem
-                        let uniform = register.uniform;
-                        let createdAt = register.createdAt;
-                        let date = new Date(createdAt);
-                        let day = date.getUTCDate();
-                        let month = date.getUTCMonth()+1;
-                        let year = date.getFullYear();
+                    } else {
+                        studentPayments.map(register => {
 
-                        if(description == "Pago preinscripción"){
-                            if(emblem){
-                                description += "<div> + distintivo </div>";
+                            let description = register.description;
+                            let mount = register.mount;
+                            let cash = register.cash;
+                            let bankDepositNumber = register.bankDepositNumber;
+                            let banckName = register.banckName;
+                            let emblem = register.emblem
+                            let uniform = register.uniform;
+                            let createdAt = register.createdAt;
+                            let date = new Date(createdAt);
+                            let day = date.getUTCDate();
+                            let month = date.getUTCMonth() + 1;
+                            let year = date.getFullYear();
+
+                            if (description == "Pago preinscripción") {
+                                if (emblem) {
+                                    description += "<div> + distintivo </div>";
+                                }
+                                if (uniform) {
+                                    description += "<div> + uniforme</div>";
+                                }
+                                description = `<div class="description">${description}</div>`
                             }
-                            if(uniform){
-                                description += "<div> + uniforme</div>";
-                            }
-                            description = `<div class="description">${description}</div>`
-                        }
 
-                        html += `
+                            html += `
                         <tr id="register-${register.id}">
-                            <td>${description}</td>
-                            <td>${mount}</td>
-                            <td>${cash ? "Efectivo" : bankDepositNumber}</td>
-                            <td>${cash ? "Efectivo" : banckName}</td>
-                            <td>${day}-${month}-${year}</td>
+                            <td class="description-student-payment">${description}</td>
+                            <td class="mount-student-payment">${mount}</td>
+                            <td class="deposit-student-payment">${cash ? "Efectivo" : bankDepositNumber}</td>
+                            <td class="banck-student-payment">${cash ? "Efectivo" : banckName}</td>
+                            <td class="date-student-payment">${day}-${month}-${year}</td>
                         </tr>`
-                    })
+                        })
+                    }
 
                     document.getElementById("student-payments-table").innerHTML = html;
 
                 }
             })
 
-            
+
 
         }
     })
@@ -340,8 +345,8 @@ function paymentTableEvents(payments) {
 
 /////////
 
-document.getElementById("btn-student-register-payment").addEventListener("click", ()=>{
-    
+document.getElementById("btn-student-register-payment").addEventListener("click", () => {
+
     let ci = document.getElementById("student-ci").innerText;
     location.href = `/addPayment?CI=${ci}`;
 

@@ -2,7 +2,12 @@ const { Payments } = require("../database/models.js");
 const { getTutorByCI } = require("./tutorsController.js");
 const { findStudent } = require("./studentsController.js");
 
-async function registerPayment({mount, description, cash, bankDepositNumber, banckName, fullpaid, emblem, uniform, month}, ci){
+async function registerPayment({mount, description, cash, bankDepositNumber, banckName, fullpaid, emblem, uniform, month, schoolYear}, ci){
+
+    let checkPaimen = await checkIsPaidmentExist({month, schoolYear},ci);
+    if(checkPaimen.error){
+        return checkPaimen.error;
+    }
 
     let response = await Payments.create({
         studentCI : ci,
@@ -14,11 +19,28 @@ async function registerPayment({mount, description, cash, bankDepositNumber, ban
         fullpaid,
         emblem,
         uniform,
-        month
+        month, 
+        schoolYear
     });
 
     return response;
 }
+//
+
+async function checkIsPaidmentExist({month, schoolYear}, ci){
+    
+    let ask = await Payments.findAll({where:{studentCI:ci}});
+
+    for(register of ask){
+        if(register.month != 0 && register.month == month && register.schoolYear == schoolYear){
+            return {error: `Ya existe un pago para el mes ${register.month} del año ${register.schoolYear}`}
+        }
+    }
+
+    return {message: "OK"}
+
+}
+
 //
 
 async function getAllStudentPayment(ci){
@@ -58,4 +80,4 @@ async function getTutorPaymentData (tutorCI){
     }
     return data;
 }
-module.exports = { registerPayment, getAllStudentPayment, getTutorPaymentData };
+module.exports = { registerPayment, getAllStudentPayment, getTutorPaymentData, checkIsPaidmentExist };

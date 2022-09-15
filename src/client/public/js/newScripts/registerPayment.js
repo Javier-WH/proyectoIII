@@ -17,6 +17,13 @@ async function init() {
     prices = await getPrices();
     setPrices(prices);
     checkBoxWatcher(prices);
+    setSchoolYear();
+}
+
+async function setSchoolYear(){
+    let ask = await fetch("/getConfig", {method:"POST"});
+    let response = await ask.json();
+    document.getElementById("school-year").value = response[0].schoolYear;
 }
 
 btnSearch.addEventListener("click", () => {
@@ -80,7 +87,7 @@ async function fillStudentData(ci) {
     studentSecction.innerText = `Sección - ${studentData.seccion.toUpperCase()}`;
     studentGrade.innerText = `${studentData.year}° Grado`;
 
-   document.getElementById("chk-month").click();
+    document.getElementById("chk-month").click();
 }
 ////
 
@@ -109,7 +116,7 @@ function checkBoxWatcher(prices) {
     let containerMonth = document.getElementById("month-price-container");
     let containerEmblem = document.getElementById("emblem-price-container");
     let containerUniform = document.getElementById("uniform-price-container");
-   
+
 
     let chkMonth = document.getElementById("chk-month");
     let chkEmblem = document.getElementById("chk-emblem");
@@ -119,18 +126,21 @@ function checkBoxWatcher(prices) {
     let monthCant = document.getElementById("month-cant");
     let emblemCant = document.getElementById("emblem-cant");
     let uniformCant = document.getElementById("uniform-cant");
- 
 
+    let montToPaid = document.getElementById("mont-to-paid");
 
 
     chkMonth.addEventListener("change", e => {
         if (e.target.checked) {
             containerMonth.classList.remove("invisible");
+            montToPaid.classList.remove("invisible");
             monthCant.value = 1;
             setTotal(prices);
 
         } else {
+            monthCant.value = 1;
             containerMonth.classList.add("invisible");
+            montToPaid.classList.add("invisible");
             setTotal(prices);
         }
     })
@@ -141,6 +151,7 @@ function checkBoxWatcher(prices) {
             emblemCant.value = 1;
             setTotal(prices);
         } else {
+            emblemCant.value = 1;
             containerEmblem.classList.add("invisible");
             setTotal(prices);
         }
@@ -151,6 +162,7 @@ function checkBoxWatcher(prices) {
             uniformCant.value = 1;
             setTotal(prices);
         } else {
+            uniformCant.value = 1;
             containerUniform.classList.add("invisible");
             setTotal(prices);
         }
@@ -158,24 +170,26 @@ function checkBoxWatcher(prices) {
 
     chkOther.addEventListener("change", e => {
         if (e.target.checked) {
-          
+
             chkMonth.checked = false;
             chkUniform.checked = false;
             chkEmblem.checked = false;
             containerUniform.classList.add("invisible");
             containerEmblem.classList.add("invisible");
             containerMonth.classList.add("invisible");
+            montToPaid.classList.add("invisible");
             chkMonth.disabled = true;
             chkUniform.disabled = true;
             chkEmblem.disabled = true;
 
 
-     
+
             setTotal(prices);
         } else {
             chkMonth.disabled = false;
             chkUniform.disabled = false;
             chkEmblem.disabled = false;
+            chkMonth.click();
             setTotal(prices);
         }
     })
@@ -190,6 +204,16 @@ function checkBoxWatcher(prices) {
     uniformCant.addEventListener("change", () => {
         setTotal(prices);
     })
+    monthCant.addEventListener("keyup", () => {
+        setTotal(prices);
+    })
+
+    emblemCant.addEventListener("keyup", () => {
+        setTotal(prices);
+    })
+    uniformCant.addEventListener("keyup", () => {
+        setTotal(prices);
+    })
 
 }
 
@@ -201,7 +225,7 @@ function setTotal(prices) {
     let chkEmblem = document.getElementById("chk-emblem");
     let chkUniform = document.getElementById("chk-uniform");
     let chkOther = document.getElementById("chk-other");
-    
+
     let monthCant = document.getElementById("month-cant");
     let emblemCant = document.getElementById("emblem-cant");
     let uniformCant = document.getElementById("uniform-cant");
@@ -220,13 +244,13 @@ function setTotal(prices) {
     if (chkUniform.checked) {
         total += Number.parseFloat(prices.uniform) * uniformCant.value;
     }
-    if(chkOther.checked){
+    if (chkOther.checked) {
         totalimp.disabled = false;
-    }else{
+    } else {
         totalimp.disabled = true;
     }
-  
-    
+
+
     totalimp.value = `${total}`;
     setDescription();
 }
@@ -261,39 +285,121 @@ function setDescription() {
         }
         text += `Pago uniforme(x${uniformCant.value})`
     }
-    if(chkOther.checked){
+    if (chkOther.checked) {
         text = ""
         Description.disabled = false;
-    }else{
-        
-        Description.disabled = true; 
+    } else {
+
+        Description.disabled = true;
     }
     Description.value = text;
 }
 
-document.getElementById("btn-register-payment").addEventListener("click", ()=>{
+document.getElementById("chk-cash").addEventListener("change", e => {
+    if (e.target.checked) {
+        document.getElementById("back-container").classList.add("invisible");
+        document.getElementById("deposit-container").classList.add("invisible");
+    } else {
+        document.getElementById("back-container").classList.remove("invisible");
+        document.getElementById("deposit-container").classList.remove("invisible");
+    }
+})
+
+
+
+document.getElementById("btn-register-payment").addEventListener("click", async () => {
     let total = document.getElementById("total");
     let description = document.getElementById("Description");
+    let cash = document.getElementById("chk-cash");
+    let ci = document.getElementById("student-ci");
+    let chkMonth = document.getElementById("chk-month");
+    let chkEmblem = document.getElementById("chk-emblem");
+    let chkUniform = document.getElementById("chk-uniform");
+    let month = document.getElementById("month");
+    let monthCant = document.getElementById("month-cant");
+    let schoolYear = document.getElementById("school-year");
 
-    if(total.value == "" || description.value == ""){
+    let bank = document.getElementById("bank");
+    let depositNumber = document.getElementById("depositNumber");
+    if (total.value == "" || description.value == "" || monthCant.value < 1 || monthCant.value == "") {
         return;
     }
-    let ci = document.getElementById("student-ci");
-
-/*
-    let paymentData = {
-        payment:{
-            mount: total.value, 
-            description: description.value, 
-            cash, 
-            bankDepositNumber, 
-            banckName, 
-            fullpaid, 
-            emblem, 
-            uniform, 
-            month}, 
-            ci
+    let monthControl = Number.parseInt(month.value);
+    let schoolYearControl = Number.parseInt(schoolYear.value);
+    for (let i = 1; i <= monthCant.value; i++) {
+        let paymentData = {
+            payment: {
+                mount: total.value,
+                description: description.value,
+                cash: cash.checked,
+                bankDepositNumber: cash.checked ? "No suministrado" : depositNumber.value,
+                banckName: cash.checked ? "No suministrado" : bank.value,
+                fullpaid: true,
+                emblem: chkEmblem.checked,
+                uniform: chkUniform.checked,
+                month: chkMonth.checked ? monthControl : 0,
+                schoolYear: schoolYearControl
+            },
+            ci: ci.value
         }
 
-*/
-})
+        let paidmenExist = await checkIsPaidmentExist(paymentData);
+        if (paidmenExist.error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: paidmenExist.error,
+            })
+            return;
+        }
+        let response = await registerPaiment(paymentData);
+        if (response.error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: response.error,
+            })
+            return;
+        }else{
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Pago registrado con exito',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+        monthControl++;
+        if (monthControl > 12) {
+            monthControl = 1;
+            schoolYearControl++;
+        }
+    }
+});
+
+async function registerPaiment(paymentData) {
+
+    let response = await fetch("/registerPayment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        },
+        body: JSON.stringify(paymentData)
+    });
+    let data = await response.json();
+    return data;
+}
+async function checkIsPaidmentExist(paymentData) {
+
+    let response = await fetch("/checkIsPaidmentExist", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        },
+        body: JSON.stringify(paymentData)
+    });
+    let data = await response.json();
+    return data;
+}
