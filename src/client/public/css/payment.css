@@ -157,6 +157,7 @@
     top:0;
     position: sticky;
     background-color: white !important;
+    z-index: 9999;
 }
 
 .description{
@@ -170,6 +171,9 @@
     margin-top: 5px;
     float: right;
 }
+td {
+    vertical-align: middle;
+  }
 
 /**/
 
@@ -178,6 +182,7 @@
 }
 .mount-student-payment{
     max-width: 90px;
+    min-width: 90px;
 }
 .deposit-student-payment{
     max-width: 300px;
@@ -187,4 +192,9 @@
 }
 .date-student-payment{
     max-width: 100px;
+    min-width: 100px
+}
+.list-group-item:hover{
+    color: white;
+    background-color: var(--bs-primary);
 }

@@ -280,8 +280,18 @@ function paymentTableEvents(payments) {
             payments.map(async payemt => {
                 let student = payemt.student;
                 if (student.id == studentID) {
-                    let imgData = URL.createObjectURL(await (getStudentPhoto(student.id)));
+
+                    let imgBlob = await getStudentPhoto(student.id);
+                    let imgData =""
+                    if(imgBlob.type == "image/jpeg"){
+                        imgData = URL.createObjectURL(imgBlob);
+                    }else{
+                        imgData = "svg/placeholder.svg"
+                    }
+                
                     document.getElementById("student-photo").src = imgData;
+
+                 
                     document.getElementById("student-name").innerText = student.names;
                     document.getElementById("student-lastName").innerText = student.lastName;
                     document.getElementById("student-ci").innerText = student.CI;
@@ -311,7 +321,7 @@ function paymentTableEvents(payments) {
                             let month = date.getUTCMonth() + 1;
                             let year = date.getFullYear();
 
-                            if(description != crtDescription && ctrCratedAt != createdAt){
+                            if(description != crtDescription && ctrCratedAt != createdAt){//evita que se muestre información repetida
                                 crtDescription = description;
                                 ctrCratedAt = createdAt;
 
@@ -324,11 +334,20 @@ function paymentTableEvents(payments) {
                                     }
                                     description = `<div class="description">${description}</div>`
                                 }
-    
+
+
+                                let descriptionArray = description.split("+");
+                                let descHTML = `<ul class="list-group">`;
+                                descriptionArray.map(desc=>{
+                                    descHTML += `<li class="list-group-item">${desc}</li>`;
+                                })
+                                descHTML += `</ul>`;
+
+
                                 html += `
                                     <tr id="register-${register.id}">
-                                        <td class="description-student-payment">${description}</td>
-                                        <td class="mount-student-payment">${mount}</td>
+                                        <td class="description-student-payment">${descHTML}</td>
+                                        <td class="mount-student-payment">${mount} USD</td>
                                         <td class="deposit-student-payment">${cash ? "Efectivo" : bankDepositNumber}</td>
                                         <td class="banck-student-payment">${cash ? "Efectivo" : banckName}</td>
                                         <td class="date-student-payment">${day}-${month}-${year}</td>

@@ -16,11 +16,17 @@ Router.post("/getSeccionList", express.json(), async(req, res) => {
 });
 
 Router.post("/Estudiante", express.json(), async(req, res) => {
+     res.json(await studentsController.findStudent(req.body));
+});
+
+
+Router.post("/Estudiantex", express.json(), async(req, res) => { //esta ruta cxorrige un bug
     if(req.session.studentCI != undefined){
         res.json(await studentsController.findStudent({CI: req.session.studentCI}));
     }else{
         res.json(await studentsController.findStudent(req.body));
     }
+   
 });
 Router.post("/pre", express.json(), async(req, res) => {
     res.json(await preIscriptionController.findStudent(req.body));

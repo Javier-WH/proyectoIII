@@ -31,7 +31,7 @@ btnSearch.addEventListener("click", () => {
 })
 
 async function getStudent(ci) {
-    let ask = await fetch("/Estudiante", {
+    let ask = await fetch("/Estudiantex", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -78,7 +78,14 @@ async function fillStudentData(ci) {
     }
 
     showData(true);
-    let imgData = URL.createObjectURL(await (getStudentPhoto(studentData.id)));
+    let imgBlob = await getStudentPhoto(studentData.id);
+    let imgData =""
+    if(imgBlob.type == "image/jpeg"){
+        imgData = URL.createObjectURL(imgBlob);
+    }else{
+        imgData = "svg/placeholder.svg"
+    }
+
     document.getElementById("student-photo").src = imgData;
     studentCIinput.value = studentData.CI;
     studentName.innerText = studentData.names;

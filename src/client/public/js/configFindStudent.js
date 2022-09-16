@@ -42,6 +42,7 @@ export async function findStudentList() {
     })
     let response = await ask.json();
     StudentList = response;
+   
     fillTable(StudentList);
 }
 
@@ -53,8 +54,8 @@ export function fillTable(list, id = "std-") {
 
     let num = 1;
     let html = "";
+    
     list.map(student => {
-
         html += `
             <tr id="${id}${student.id}">
                 <th scope="row">${num++}</th>

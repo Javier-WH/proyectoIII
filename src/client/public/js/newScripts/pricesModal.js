@@ -163,8 +163,8 @@ function getTotalPrice(){
     emblemPrice = isNaN(emblemPrice) ? 0 : emblemPrice;
     administrativePrice = isNaN(administrativePrice) ? 0 : administrativePrice;
 
-    let total = basePrice + uniformPrice + emblemPrice + administrativePrice;
-    document.getElementById("price-modal-inscription-total-price").innerText = `Costo de la inscripción: ${total} USD`;
+    let total = basePrice + administrativePrice;
+    document.getElementById("price-modal-inscription-total-price").innerText = `Costo mínimo de la inscripción: ${total} USD`;
 }
 
 
