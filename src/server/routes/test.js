@@ -2,7 +2,9 @@ const path = require('path');
 const colors = require('colors');
 const express = require('express');
 const Router = express.Router();
-const studentsController = require("../controllers/studentsController.js")
+const { registerPayment } = require("../controllers/paymentController");
+const { insertAuxInfo } = require("../controllers/auxiliarInformationController.js");
+const studentsController = require("../controllers/studentsController.js");
 
 
 //////////////////////////faker////////////////
@@ -56,32 +58,58 @@ Router.post("/getFake", express.json(), async(req, res) => {
 
         
         return {
-            "names": name,
-            "lastName": lastName,
-            "ci": CI,
-            "motherName": "nombre de prueba",
-            "motherCI" : "5555",
-            "motherWork" : "trabajo de prueba",
-            "fatherName" : "nombre de prueba",
-            "fatherCI" : "5555",
-            "fatherWork" : "trbajo de prueba",
-            "gender": gender,
-            "year": year,
-            "age": age,
-            "birthDay": "cumpleaños de prueba",
-            "address" : "dirección de prueba",
-            "tutorID": tutorID,
-            "procedence": "escuela de prueba",
-            "schoolYear": schoolYear,
-            "seccion": seccion
+            names: name,
+            lastName: lastName,
+            ci: CI,
+            motherName: "nombre de prueba",
+            motherCI : "5555",
+            motherWork : "trabajo de prueba",
+            fatherName : "nombre de prueba",
+            fatherCI : "5555",
+            fatherWork : "trbajo de prueba",
+            gender: gender,
+            year: year,
+            age: age,
+            birthDay: "cumpleaños de prueba",
+            address : "dirección de prueba",
+            tutorID: tutorID,
+            procedence: "escuela de prueba",
+            schoolYear: schoolYear,
+            seccion: seccion
         }
     }
+
     
+//{ names, lastName, ci, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, gender, seccion, year, age, birthDay, address, tutorID, procedence, schoolYear} datos
+//{ mount, description, cash, bankDepositNumber, banckName, fullpaid, emblem, uniform, month, schoolYear }, ci pago
+//({ allergies, bloodType, medical_problems, observatios, talents }, ci auxiliar
 
     function registerStudenList(cant, schoolYear) {
+        let paydment = {
+            mount: 100,
+            description: "Pago Preinscripcion",
+            cash: true,
+            bankDepositNumber: "No suministrado",
+            banckName: "No suministrado",
+            fullpaid: true,
+            emblem: true,
+            uniform: true,
+            month: 0,
+            schoolYear
+        }
+        let aux = {
+            allergies: "A los pelos de gato",
+            bloodType: "AB RH-positivo",
+            medical_problems: "Ninguno",
+            observatios: "Ninguna",
+            talents: "Ninguno"
+        }
 
         for (let i = 0; i < cant; i++) {
-            studentsController.registerStudent(getStuden(cant, schoolYear));
+            let student = getStuden(cant, schoolYear)
+            studentsController.registerStudent(student);
+            registerPayment(paydment, student.ci);
+            insertAuxInfo(aux, student.ci)
         }
     }
 

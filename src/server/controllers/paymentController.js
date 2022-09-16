@@ -95,7 +95,11 @@ function isPaymentAlowed(paymentList, month, schoolYear) {
         let lastMont = registeredMonths.reduce( (p, v)=>( p > v ? p : v ));
                 
         if( (month - lastMont) != 1){
-            return {error:`No puede pagar ${traslateMonth(month)} si primero no ha pagado ${traslateMonth(month - 1)}, el ultimo mes pagado fue ${traslateMonth(lastMont)}`};
+            console.log(lastMont)
+           /* let last = traslateMonth(lastMont);
+            let lastMonthMessage = last == "Desconocido" ? "No se ha encontrado pago de mensualidades asociados este alumno" : `el ultimo mes pagado fue ${last}`
+            return {error:`No puede pagar ${traslateMonth(month)} si primero no ha pagado ${traslateMonth(month - 1)}, ${lastMonthMessage}`};*/
+            return {error:`No puede pagar ${traslateMonth(month)} si primero no ha pagado ${traslateMonth(lastMont + 1)}`};
         }
     }
     return {message:"OK"};
