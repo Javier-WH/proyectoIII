@@ -1,7 +1,7 @@
 #show-subjects-modal {
     border: 2px solid #5c6bc0;
     width: 500px;
-    height: 660px;
+    height: 700px;
     position: absolute;
     left: 0;
     right: 0;
@@ -42,4 +42,11 @@
     border: 1px solid #8891c0;
     font-size: 18px;
     padding: 8px 0;
+}
+#minAprovalContainer{
+    display:flex;
+}
+#show-subject-btnChangeMinAproval,
+#show-subject-addSubjectButton{
+    margin-top: 10px;
 }

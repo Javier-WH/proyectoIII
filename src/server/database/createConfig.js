@@ -20,7 +20,8 @@ function createConfig() {
                     l2: false,
                     l3: false,
                     edit: false,
-                    schoolYear: year
+                    schoolYear: year,
+                    minAproval: 10
                 }
 
                 let ask = await setConfig(conf);

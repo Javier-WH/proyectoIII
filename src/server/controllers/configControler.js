@@ -9,7 +9,7 @@ async function getConfig() {
 };
 
 async function setConfig(data) {
-
+  
     let isConfig = await getConfig();
     let config;
 

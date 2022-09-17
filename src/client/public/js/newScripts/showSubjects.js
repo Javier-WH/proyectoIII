@@ -14,8 +14,57 @@ export async function showSubjectsList() {
 
     fillPensum(await getSubjects());
     removeSubject();
+    minAprovalEvents();
 }
 //////
+
+document.getElementById("show-subjects-setMinAproval").addEventListener("change", e=>{
+    if(e.target.value > 20 || e.target.value < 1){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La nota ingresada no puede ser menor a 1 ni mayor a 20',
+          })
+          e.target.value = 10;
+    }
+})
+
+
+async function minAprovalEvents(){
+    let minAproval = document.getElementById("show-subjects-setMinAproval");
+    document.getElementById("show-subject-btnChangeMinAproval").addEventListener("click", async ()=>{
+        if(minAproval.value == "" || minAproval == 0){
+            return;
+        }
+        
+        let data = {
+            minAproval: minAproval.value
+        }
+     
+        let ask = await fetch("/setConfig",{
+            method: "PATCH",
+            headers:{
+                "Content-Type":"application/json",
+                "Accpet":"*/*"
+            },
+            body: JSON.stringify(data)
+        });
+        let response = await ask.json();
+
+        if(response[0]==1){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: "La nota minima aprobatoria se ha cambiado correctamente",
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+    })
+}
+
+
+////
 
 async function getSubjects() {
     let grade = year.value;

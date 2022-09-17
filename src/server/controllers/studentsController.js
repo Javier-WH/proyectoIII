@@ -238,8 +238,49 @@ async function deleteStudent({ id }) {
 
 }
 
+///////
 
 
+async function getDeferredStudents ({schoolYear}){
+    
+    let config = await configController.getConfig();
+    let minAproval = config[0].minAproval; //minimo aprovatorio
+
+
+    let studentsList = await findStudent({schoolYear});
+
+    let deferredStudents ={};
+
+    studentsList.map(studen=>{
+        let studentSubjects = studen.subjects;
+        let subjectsNames = Object.keys(studentSubjects);
+   
+        
+        let data = {};
+        for(subjec of subjectsNames){
+            let def = studentSubjects[subjec].def;
+            if(def < minAproval){
+                data = {
+                    deferredSubjects:{
+                        ...data.deferredSubjects,
+                        [subjec]:def
+                    }
+                }
+                deferredStudents[studen.id] ={
+                    deferredSubjects: data.deferredSubjects,
+                    studenData: studen
+                };
+            }
+        }
+    });
+
+   
+    return deferredStudents;
+
+
+   
+
+}
 
 module.exports = {
     getStudents,
@@ -248,5 +289,6 @@ module.exports = {
     updateGrades,
     deleteStudent,
     updatePhoto,
-    updateStudent
+    updateStudent,
+    getDeferredStudents
 }

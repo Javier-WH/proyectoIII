@@ -107,7 +107,7 @@ Router.post("/getFake", express.json(), async(req, res) => {
 
         for (let i = 0; i < cant; i++) {
             let student = getStuden(cant, schoolYear)
-            studentsController.registerStudent(student);
+            studentsController.registerStudent( student);
             registerPayment(paydment, student.ci);
             insertAuxInfo(aux, student.ci)
         }

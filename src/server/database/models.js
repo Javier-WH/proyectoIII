@@ -138,7 +138,8 @@ Config.init({
     l2: DataTypes.BOOLEAN,
     l3: DataTypes.BOOLEAN,
     edit: DataTypes.BOOLEAN,
-    schoolYear: DataTypes.STRING
+    schoolYear: DataTypes.STRING,
+    minAproval: DataTypes.INTEGER
 }, {
     sequelize,
     modelName: "Config"

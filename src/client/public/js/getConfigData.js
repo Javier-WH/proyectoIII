@@ -8,6 +8,7 @@ export async function applyConfig() {
         let l2 = document.getElementById("enable-2l");
         let l3 = document.getElementById("enable-3l");
         let editGrade = document.getElementById("enable-edit-grade");
+        let minAproval = document.getElementById("show-subjects-setMinAproval");
 
         let btnSchoolarYear = document.getElementById("btn-school-year");
 
@@ -18,7 +19,7 @@ export async function applyConfig() {
         l3.checked = config.l3;
         editGrade.checked = config.edit;
         btnSchoolarYear.value = `${config.schoolYear}`;
-
+        minAproval.value = config.minAproval;
         btnSchoolarYearFucntions(config.schoolYear);
     } catch (error) {
         alert(error.ERROR);

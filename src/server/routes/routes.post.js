@@ -98,4 +98,7 @@ Router.post("/checkIsPaidmentExist", express.json(), async (req, res)=>{
     }
     res.json( await checkIsPaidmentExist(req.body.payment, req.body.ci));
 })
+Router.post("/deferred", express.json(), async (req, res)=>{
+    res.json(await studentsController.getDeferredStudents(req.body));
+})
 module.exports = Router;
