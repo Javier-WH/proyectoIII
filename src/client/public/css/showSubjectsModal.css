@@ -1,5 +1,5 @@
 #show-subjects-modal {
-    border: 2px solid #5c6bc0;
+    border: 2px solid#04A340;
     width: 500px;
     height: 700px;
     position: absolute;
@@ -26,7 +26,7 @@
 }
 
 #show-subjects-pensum {
-    border: 1px solid #5c6bc0;
+    border: 1px solid#04A340;
     height: 400px;
     overflow-y: auto;
 }

@@ -8,7 +8,7 @@
     top: 0px;
     margin-top: 150px;
     background-color: white;
-    border: 3px solid #5c6bc0;
+    border: 3px solid#04A340;
     padding: 10px;
     box-shadow: 2px 2px 4px black;
 }
@@ -16,7 +16,7 @@
 #btn-close-modal {
     margin-left: 97%;
     border: none;
-    color: #5c6bc0;
+    color:#04A340;
     background-color: transparent;
     font-weight: 700;
 }
@@ -46,7 +46,7 @@
 #table-header-student-list {
     position: sticky;
     top: 0;
-    background-color: #5c6bc0;
+    background-color:#04A340;
 }
 
 #table-header-student-list tr th {

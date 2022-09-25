@@ -28,17 +28,18 @@
  }
  
  #logo {
-     background-color: white;
-     border-radius: 50%;
-     height: 150px;
-     border: 1px solid var(--azulBatalla);
+    padding-right: 20px;
+    height: 150px;
+    filter: drop-shadow(0 0  3px white)drop-shadow(0 0 3px white)drop-shadow(0 0 3px white);
+
  }
  
  .header {
      position: absolute;
      top: calc(50% - 75px);
-     left: calc(50% - 200px);
+     left: calc(49% - 200px);
      z-index: 2;
+   
  }
  
  .login {

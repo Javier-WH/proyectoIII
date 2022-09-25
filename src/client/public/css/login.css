@@ -20,12 +20,12 @@
 }
 
 .teahcer-input input:focus+label {
-    color: #5c6bc0 !important;
+    color:#04A340 !important;
 }
 
 .teahcer-input input:focus {
-    border-bottom: 1px solid #5c6bc0 !important;
-    box-shadow: 0 1px 0 0 #5c6bc0 !important
+    border-bottom: 1px solid#04A340 !important;
+    box-shadow: 0 1px 0 0#04A340 !important
 }
 
 #student-user,
@@ -38,7 +38,7 @@
 .title {
     margin-bottom: 50px;
     font-size: 26px;
-    color: #5c6bc0;
+    color:#04A340;
 }
 
 .btn-large {
@@ -77,7 +77,7 @@
 /************************************************************/
 
 #teacher-container:hover {
-    border: 2px solid #5c6bc0;
+    border: 2px solid#04A340;
 }
 
 #student-container:hover {
@@ -97,7 +97,7 @@
 }
 
 .teacherBorder {
-    border: 2px solid #5c6bc0;
+    border: 2px solid#04A340;
     filter: grayscale(0);
 }
 
@@ -112,8 +112,7 @@
 #svg-logo {
     z-index: 1001;
     width: 15vw;
-    border: 2px solid rgb(100, 100, 202);
-    border-radius: 50%;
+
     background-color: white;
 }
 
@@ -137,7 +136,7 @@
 }
 
 .progress .indeterminate {
-    background-color: #5c6bc0;
+    background-color:#04A340;
 }
 
 .btn-small {

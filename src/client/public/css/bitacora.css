@@ -1,5 +1,5 @@
 #show-bitacora-modal {
-    border: 2px solid #5c6bc0;
+    border: 2px solid#04A340;
     width: 900px;
     height: 620px;
     position: absolute;
@@ -42,7 +42,7 @@
 #table-header-bitacora {
     position: sticky;
     top: 0;
-    background-color: #5c6bc0;
+    background-color:#04A340;
 }
 
 #table-header-bitacora tr th {
@@ -68,7 +68,7 @@
 }
 
 .change-bitacora:hover {
-    background-color: #5c6bc0;
+    background-color:#04A340;
 }
 
 .change-bitacora:hover div {

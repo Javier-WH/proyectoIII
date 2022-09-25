@@ -102,7 +102,7 @@
 }
 
 #nav-bar {
-    background-color: #5c6bc0;
+    background-color:#04A340;
 }
 
 .brand-logo {
@@ -141,7 +141,7 @@
     left: 0;
     background-color: white;
     padding: 0 20px;
-    border: 2px solid #5c6bc0;
+    border: 2px solid#04A340;
     height: 300px;
     width: 400px;
     display: flex;
