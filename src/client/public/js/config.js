@@ -20,7 +20,7 @@ import { dragPricesModal } from "./newScripts/dragPricesModal.js"
 import { startBitacora } from "./newScripts/bitacora.js";
 import { startTutorListModal } from "./newScripts/tutorListModal.js";
 import { initPrices } from "./newScripts/pricesModal.js";
-
+import {initPrintSubject} from "./newScripts/printSubjectsModal.js";
 
 
 
@@ -104,6 +104,8 @@ async function main() {
     startTutorListModal();
     startBitacora();
     initPrices();
+    initPrintSubject();
+ 
     //
     
 }

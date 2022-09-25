@@ -218,10 +218,23 @@ export function loadStudentListEvents() {
                         }
                     }
                     document.getElementById("grades-modal-table").innerHTML = html;
+
                     document.getElementById("grades-modal-name").innerHTML = `
                                 <span>Nombre: ${ask.lastName} ${ask.names}</span>
                                 <span>C.I.: ${ask.CI}</span>
                                 <span>Seccion: ${ask.year}${ask.seccion}</span>`;
+
+                    ////llena la tabla de impresion
+
+                    let schoolYear = document.getElementById("filter-modal-schoolYear").value;
+                    document.getElementById("print-subjects-modal-table").innerHTML = html;
+                    document.getElementById("print-subject-name").innerText = `${ask.lastName} ${ask.names}`;
+                    document.getElementById("print-subject-ci").innerText = ` C.I. ${ask.CI}`;
+                    document.getElementById("print-subject-grade").innerText = `Año: ${ask.year}`;
+                    document.getElementById("print-subject-seccion").innerText = `Sección: ${ask.seccion}`;
+                    document.getElementById("print-subject-schoolYear").innerText = `Perriodo escolar ${schoolYear}-${Number.parseInt(schoolYear) + 1}`;
+                    //
+
 
                 } else {
                     document.getElementById("grades-modal-name").innerHTML = `

@@ -1,7 +1,7 @@
     * {
         color: #5c6bc0;
     }
-    
+
     .container {
         border: 1px solid #5c6bc0;
         width: 500px;
@@ -17,22 +17,22 @@
         border-radius: 10px;
         row-gap: 10px;
     }
-    
+
     .option {
         text-decoration: none;
         margin-left: 10px;
         color: #5c6bc0;
     }
-    
+
     .collapsed {
         font-weight: 500 !important;
     }
-    
+
     .card-body {
         width: 450px;
         border-color: #98a0cc;
     }
-    
+
     .container::before {
         position: absolute;
         content: "";
@@ -41,27 +41,29 @@
         background-color: white;
         font-size: 18px;
     }
-    
+
     #grade-container::before {
         content: "Configuracion de las notas";
     }
-    
+
     #teacher-container::before {
         content: "Profesores";
     }
-    
+
     #students-container::before {
         content: "Estudiantes";
     }
-    
+
     #configuration-container::before {
         content: "Configuración";
     }
+
     #tutor-container::before {
         content: "Representantes";
     }
+
     /* ////////////////////////////////////////////// */
-    
+
     #add-grade {
         position: relative;
         border: 1px solid #98a0cc;
@@ -69,38 +71,38 @@
         padding: 10px;
         padding-top: 25px;
     }
-    
+
     #add-grade::before {
         position: absolute;
         content: "Materias";
         background-color: white;
         top: -15px;
     }
-    
+
     #btn-add-grade {
         width: 40px;
         font-size: 20px;
         line-height: 20px;
     }
-    
+
     #btn-register-teacher {
         margin-top: 15px;
         width: 100%;
     }
-    
+
     #select-teacher-grade-container {
         display: flex;
         justify-content: space-between;
         align-items: stretch;
     }
-    
+
     #teacher-grade-list {
         position: relative;
         margin-top: 30px;
         overflow-y: auto;
         height: 200px;
     }
-    
+
     #addgrade-title {
         position: sticky !important;
         top: 0;
@@ -109,15 +111,15 @@
         background-color: white;
         border-bottom: 1px solid #98a0cc;
     }
-    
+
     #enable-admin-container {
         margin-top: 10px;
     }
-    
+
     .invisible {
         display: none;
     }
-    
+
     #std-menu {
         border: 2px solid #5c6bc0;
         padding: 5px;
@@ -128,7 +130,7 @@
         display: flex;
         flex-direction: column;
     }
-    
+
     #std-menu span {
         color: white;
         border: 2px solid transparent;
@@ -138,11 +140,11 @@
         font-size: 14px;
         border-left: 2px solid lightgray;
     }
-    
+
     #std-menu span:hover {
         border: 2px solid white;
     }
-    
+
     #grades-modal {
         border: 2px solid #5c6bc0;
         width: 510px;
@@ -150,13 +152,27 @@
         position: absolute;
         left: 0;
         right: 0;
-      
+
         top: 0;
-      
+
         background-color: white;
         padding: 10px;
     }
-    
+
+    #grandes-modal-nameContainer {
+        position: relative;
+
+    }
+
+    #grades-modal-printIcon-container {
+        position: absolute;
+        right: 40px;
+        top: 20px;
+    }
+    #grades-modal-printIcon{
+        cursor: pointer;
+    }
+
     #grades-modal-name {
         display: flex;
         flex-direction: column;
@@ -165,51 +181,52 @@
         width: 100%;
         word-wrap: break-word;
     }
-    
+
     #grades-modal-Xbutton {
         background-color: transparent;
         border: none;
         margin-left: 95%;
     }
-    
+
     #grades-modal-table-container {
         overflow-y: visible;
         height: 470px;
         border: 1px solid black;
     }
+
     /* ////////////////////////////////////// */
-    
+
     #grade {
         max-width: 140px;
         min-width: 140px;
         width: 100%;
     }
-    
+
     #grades-modal-thead,
     #grades-modal-table {
         display: block;
     }
-    
+
     #grades-modal-table {
         max-height: 400px;
         overflow-y: auto;
     }
 
-    .deleted{
+    .deleted {
         background-color: rgb(153, 4, 4);
         color: white !important;
     }
-    
-    .deleted div{
+
+    .deleted div {
         color: white !important;
     }
 
- 
-    .added{
+
+    .added {
         background-color: rgb(11, 87, 36);
         color: white !important;
     }
-    
-    .added div{
+
+    .added div {
         color: white !important;
     }

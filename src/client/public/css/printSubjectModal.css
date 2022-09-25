@@ -1,0 +1,26 @@
+#print-subjects-modal{
+    border: 2px solid #5c6bc0;
+}
+#print-subjct-modal-logo{
+    width: 100px;
+}
+#pritn-subject-modal-headerContainer{
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#print-subject-nameContainer{
+    display: flex;
+    flex-direction: column;
+}
+#print-subjects-modal-title{
+    margin: 20px 0;
+    margin-left: 20px;
+    font-weight: 600;
+}
+#print-subjects-modal-gradesContainer{
+    margin-left: 20px;
+    margin-right: 20px;
+}
