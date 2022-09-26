@@ -28,10 +28,62 @@ export async function findStudentList_pre() {
     fillTable(getSudentList(), "pre-");
 }
 
+//
+
+async function printInscriptionRecipe(student){
+    let printName = document.getElementById("print-recipe-nombre");
+    let printCI = document.getElementById("print-recipe-ci");
+    let printGrande = document.getElementById("print-recipe-grade");
+    let printSeccion = document.getElementById("print-recipe-seccion");
+    let printSchoolYear = document.getElementById("print-recipe-schoolYear");
+    let printSubjects = document.getElementById("print-recipe-subjects");
+
+    printName.innerText = `Alumno: ${student.lastName} ${student.names}`;
+    printCI.innerText = `C.I. ${student.CI}`;
+    printGrande.innerText = `Grado: ${student.year}° año`;
+    printSeccion.innerText = `Sección: ${student.seccion}`;
+    printSchoolYear = `Período escolar ${student.schoolYear} - ${Number.parseInt(student.schoolYear)+1}`
+
+    let ask = await fetch("/getSubjects", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        }
+    })
+    let subjectsList = await ask.json();
+    
+    let html = ""; 
+    subjectsList.map(register=>{
+        if(register.grade == student.year){
+            register.subjectsList.map(subject=>{
+                html += `<div> ${subject} </div>`
+            })
+        }
+    })
+    printSubjects.innerHTML = html;
+    
+    let elementToPrint = document.getElementById("print-Inscription-Recipe");
+    let ventimp = window.open(' ', 'popimpr');
+    ventimp.document.write(`<link rel="stylesheet" href="CSS/bootstrap.css"> <link rel="stylesheet" href="CSS/printInsciptionRecipe.css"> <script src="JS/bootstrap.js" defer></script>`)
+    ventimp.document.write(elementToPrint.innerHTML);
+    ventimp.document.close();
+    setTimeout(() => {
+        ventimp.print();
+        ventimp.close();
+    }, 100);
+
+
+
+}
+
+
+//
+
 
 export function loadStudentListEvents() {
 
-    document.getElementById("student-table").addEventListener("click", e => {
+    document.getElementById("student-table").addEventListener("dblclick", e => {
         if (e.target.parentElement.id.includes("pre-")) {
             let id = e.target.parentElement.id.replace("pre-", "");
             let student = getSudentList().filter(std => std.id == id)[0];
@@ -96,6 +148,7 @@ export function loadStudentListEvents() {
                                 timer: 1500
                             });
                             findStudentList_pre();
+                            await printInscriptionRecipe(student);
                         }
                     }
                 }

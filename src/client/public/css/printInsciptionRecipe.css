@@ -1,0 +1,15 @@
+#print-recipe-logo{
+    width: 100px;
+    float: left;
+    margin-right: 20px;
+}
+#print-recipe-subjects{
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #04A340;
+}
+#print-Inscription-Recipe{
+    border: 1px solid #04A340;
+    width: 500px;
+    padding: 10px;
+}

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="CSS/tutorListModal.css">
     <link rel="stylesheet" href="CSS/pricesModal.css">
     <link rel="stylesheet" href="CSS/printSubjectModal.css">
+    <link rel="stylesheet" href="CSS/printInsciptionRecipe.css">
 
     <!-- JavaScript -->
     <script src="JS/config.js" type="module" defer></script>
@@ -38,18 +39,22 @@
         <div class="container-fluid">
             <img src="SVG/icon.svg" alt="" class="navbar-brand" id="navBar-icon">
             <span id="title"> Escuela Técnica Luis Razetti</span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 </ul>
                 <div class="d-flex">
                     <div id="user-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 0 25 25" width="40px" fill="#ffffff" id="user-logo">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 0 25 25" width="40px"
+                            fill="#ffffff" id="user-logo">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                        </svg>
                         <div id="user-name">
                             <div class="spinner-border text-secondary" role="status"></div>
                         </div>
@@ -65,15 +70,18 @@
 
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="enable-1l">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del primer lapso</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del primer
+                lapso</label>
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="enable-2l">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del segundo lapso</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del segundo
+                lapso</label>
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="enable-3l">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del tercer lapso</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Habilitar carga de notas del tercer
+                lapso</label>
         </div>
 
         <div class="form-check form-switch">
@@ -93,8 +101,9 @@
     <div id="teacher-container" class="container">
 
         <p>
-            <a class="option" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" id="inscribirTEacher">
-               Inscribir profesor
+            <a class="option" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                aria-controls="collapseExample" id="inscribirTEacher">
+                Inscribir profesor
             </a>
 
         </p>
@@ -146,7 +155,7 @@
                         </select>
 
                         <button type="button" class="btn btn-success" id="btn-add-grade">
-                           +
+                            +
                         </button>
                     </div>
                     <div id="teacher-grade-list">
@@ -164,14 +173,16 @@
 
 
         <p>
-            <a class="option" href="#fireTeacher" role="button" aria-expanded="false" aria-controls="collapseExample" id="opt-fireTeacher">
-               Despedir profesor
+            <a class="option" href="#fireTeacher" role="button" aria-expanded="false" aria-controls="collapseExample"
+                id="opt-fireTeacher">
+                Despedir profesor
             </a>
         </p>
 
         <p>
-            <a class="option" href="#fireTeacher" role="button" aria-expanded="false" aria-controls="collapseExample" id="opt-show-teacher-list">
-               Ver lista de profesores
+            <a class="option" href="#fireTeacher" role="button" aria-expanded="false" aria-controls="collapseExample"
+                id="opt-show-teacher-list">
+                Ver lista de profesores
             </a>
         </p>
 
@@ -181,19 +192,19 @@
 
         <p>
             <a class="option" href="/Estudiante/registro" role="button" aria-expanded="false" id="opt-register-student">
-               Preinscribir estudiante
+                Preinscribir estudiante
             </a>
         </p>
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-preinscription-list">
-               Lista de estudiantes pre-inscritos
+                Lista de estudiantes pre-inscritos
             </a>
         </p>
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-student-list">
-               Lista de estudiantes inscritos
+                Lista de estudiantes inscritos
             </a>
         </p>
     </div>
@@ -202,18 +213,18 @@
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-register-tutor">
-               Inscribir representante
+                Inscribir representante
             </a>
         </p>
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-register-tutor-list">
-               Lista de representantes
+                Lista de representantes
             </a>
         </p>
 
         <p>
             <a class="option" href="/payment" role="button" aria-expanded="false" id="opt-register-payment">
-               Registro de pagos
+                Registro de pagos
             </a>
         </p>
 
@@ -225,25 +236,25 @@
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-subjects-list">
-               Listas de Materias
+                Listas de Materias
             </a>
         </p>
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-bitacora">
-               Ver Bitacora
+                Ver Bitacora
             </a>
         </p>
 
         <p>
             <a class="option" href="#" role="button" aria-expanded="false" id="opt-prices">
-               Precios
+                Precios
             </a>
         </p>
     </div>
 
 
-<!--luisRazetti-->
+    <!--luisRazetti-->
     <!-- /////////////////modals/////////////////////// -->
 
     <div id="studenList-modal" class="invisible" draggable="true">
@@ -252,18 +263,21 @@
             <h4 id="studentList-modal-title">Lista de estudiantes inscritos</h4>
             <div class="form-group seccion">
                 <label for="filter-modal-schoolYear">Periodo Escolar</label>
-                <input type="text" class="form-control" id="filter-modal-schoolYear" placeholder="Filtrar por periodo escolar">
+                <input type="text" class="form-control" id="filter-modal-schoolYear"
+                    placeholder="Filtrar por periodo escolar">
             </div>
         </div>
 
         <div id="fintros-modal-container">
             <div class="form-group">
                 <label for="filter-modal-ci">Cédula</label>
-                <input type="text" class="form-control" id="filter-modal-ci" placeholder="filtrar por el numero de cedula">
+                <input type="text" class="form-control" id="filter-modal-ci"
+                    placeholder="filtrar por el numero de cedula">
             </div>
             <div class="form-group">
                 <label for="filter-modal-lastName">Apellidos</label>
-                <input type="text" class="form-control" id="filter-modal-lastName" placeholder="Filtrar por el apellido">
+                <input type="text" class="form-control" id="filter-modal-lastName"
+                    placeholder="Filtrar por el apellido">
             </div>
             <div class="form-group">
                 <label for="filter-modal-name">Nombres</label>
@@ -342,7 +356,8 @@
         <div id="pritn-subject-modal-headerContainer">
             <img src="SVG/BatallaLogo.svg" alt="" id="print-subjct-modal-logo">
             <div id="print-subject-nameContainer">
-                <label class="print-subject-name" id="print-subject-name">Simon Jose Antonio de la Trinidad Bolivar y Palacios, Ponte y Blanco</label>
+                <label class="print-subject-name" id="print-subject-name">Simon Jose Antonio de la Trinidad Bolivar y
+                    Palacios, Ponte y Blanco</label>
                 <label class="print-subject-name" id="print-subject-ci">161933547</label>
                 <label class="print-subject-name" id="print-subject-grade">Quinto año</label>
                 <label class="print-subject-name" id="print-subject-seccion">Sección A</label>
@@ -377,7 +392,7 @@
 
     <div id="std-menu" class="invisible">
         <span id="std-menu-grades" class="opt-std-menu">Ver boletin de calificaciones</span>
-        <span id = "std-menu-perfil" class="opt-std-menu">Ver perfil</span>
+        <span id="std-menu-perfil" class="opt-std-menu">Ver perfil</span>
         <span id="std-menu-delete" class="opt-std-menu">Expulsar Alumno</span>
     </div>
 
@@ -424,7 +439,7 @@
             <label for="">Orden descentente, el primero en la lista es el ultimo registro</label>
 
         </div>
-       <!-- -->
+        <!-- -->
         <div id="table-container-bitacora">
             <table class="table table-hover">
                 <thead id="table-header-bitacora">
@@ -445,13 +460,13 @@
             </table>
         </div>
     </div>
-       
+
     <!-- -->
 
     <div id="std-perfil-container" class="invisible">
         <div id="std-perfil-close-x">X</div>
         <div id="std-perfil-title">Perfil del Estudiante</div>
-        
+
         <div id="std-perfil-overflow">
             <div id="std-perfil-dataContainer">
                 <div id="std-perfil-nameContainer">
@@ -480,7 +495,7 @@
                         <button id="std-perfil-btnUpdateData" class="btn-perfil invisible">Actualizar datos</button>
                     </div>
                 </div>
-                
+
             </div>
             <div id="std-perfil-tutorDataContainer">
                 <label for="std-pefil-motherName" class="lbl-std-perfil">Nombre de la madre</label>
@@ -581,6 +596,40 @@
             <input type="number" id="price-modal-administravie">
             <label id="price-modal-inscription-total-price"></label>
             <button id="btn-update-prices">Actualizar precios</button>
+        </div>
+    </div>
+
+    <!---->
+
+    <div id="print-Inscription-Recipe" class="invisible">
+        <img src="svg/BatallaLogo.svg" id="print-recipe-logo" />
+        <div id="print-recipe-nombre"> Simon Jose antonio de la trinidad</div>
+        <div id="print-recipe-ci"> C.I. 123222112</div>
+        <div id="print-recipe-grade"> grado: 2 año</div>
+        <div id="print-recipe-seccion"> sección: A</div>
+        <div id="print-recipe-schoolYear">Periodo Escolar: 2022-2023</div>
+        <div id="print-recipe-subjects">
+            <div>
+                Matetmaticas
+            </div>
+            <div>
+                Matetmaticas
+            </div>
+            <div>
+                Matetmaticas
+            </div>
+            <div>
+                Matetmaticas
+            </div>
+            <div>
+                Matetmaticas
+            </div>
+            <div>
+                Matetmaticas
+            </div>
+            <div>
+                Matetmaticas
+            </div>
         </div>
     </div>
 
