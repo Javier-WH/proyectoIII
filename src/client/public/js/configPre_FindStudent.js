@@ -30,7 +30,7 @@ export async function findStudentList_pre() {
 
 //
 
-async function printInscriptionRecipe(student){
+export async function printInscriptionRecipe(student) {
     let printName = document.getElementById("print-recipe-nombre");
     let printCI = document.getElementById("print-recipe-ci");
     let printGrande = document.getElementById("print-recipe-grade");
@@ -42,7 +42,7 @@ async function printInscriptionRecipe(student){
     printCI.innerText = `C.I. ${student.CI}`;
     printGrande.innerText = `Grado: ${student.year}° año`;
     printSeccion.innerText = `Sección: ${student.seccion}`;
-    printSchoolYear = `Período escolar ${student.schoolYear} - ${Number.parseInt(student.schoolYear)+1}`
+    printSchoolYear = `Período escolar ${student.schoolYear} - ${Number.parseInt(student.schoolYear) + 1}`
 
     let ask = await fetch("/getSubjects", {
         method: "POST",
@@ -52,26 +52,30 @@ async function printInscriptionRecipe(student){
         }
     })
     let subjectsList = await ask.json();
-    
-    let html = ""; 
-    subjectsList.map(register=>{
-        if(register.grade == student.year){
-            register.subjectsList.map(subject=>{
+
+    let html = "";
+    subjectsList.map(register => {
+        if (register.grade == student.year) {
+            register.subjectsList.map(subject => {
                 html += `<div> ${subject} </div>`
             })
         }
     })
     printSubjects.innerHTML = html;
 
-    let elementToPrint = document.getElementById("print-Inscription-Recipe");
-    let ventimp = window.open(' ', 'popimpr');
-    ventimp.document.write(`<link rel="stylesheet" href="CSS/bootstrap.css"> <link rel="stylesheet" href="CSS/printInsciptionRecipe.css"> <script src="JS/bootstrap.js" defer></script>`)
-    ventimp.document.write(elementToPrint.innerHTML);
-    ventimp.document.close();
-    setTimeout(() => {
-        ventimp.print();
-        ventimp.close();
-    }, 100);
+    try {
+        let elementToPrint = document.getElementById("print-Inscription-Recipe");
+        let ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(`<link rel="stylesheet" href="CSS/bootstrap.css"> <link rel="stylesheet" href="CSS/printInsciptionRecipe.css"> <script src="JS/bootstrap.js" defer></script>`)
+        ventimp.document.write(elementToPrint.innerHTML);
+        ventimp.document.close();
+        setTimeout(() => {
+            ventimp.print();
+            ventimp.close();
+        }, 100);
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
@@ -101,7 +105,7 @@ export function loadStudentListEvents() {
                 showConfirmButton: true,
                 confirmButtonText: "Inscribir",
                 cancelButtonText: "Cancelar",
-                inputValidator: async function(seccion) {
+                inputValidator: async function (seccion) {
 
                     student.seccion = seccion;
                     student.ci = student.CI
@@ -189,8 +193,12 @@ export function loadStudentListEvents() {
 
             let studentID = e.target.parentElement.id.replace("std-", "");
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+       
 
-            document.getElementById("std-menu-delete").addEventListener("click", async() => {
+
+            document.getElementById("std-menu-delete").addEventListener("click", async () => {
 
                 Swal.fire({
                     title: '¿Desea expulsar a este estudiante?',
@@ -201,7 +209,7 @@ export function loadStudentListEvents() {
                     cancelButtonColor: '#9b9292',
                     confirmButtonText: 'SI, expulsa al estudiante',
                     cancelButtonText: 'NO expulses al estudiante'
-                }).then(async(result) => {
+                }).then(async (result) => {
                     if (result.isConfirmed) {
                         let deleteSTD = await fetch("/delete/student", {
                             method: "DELETE",
@@ -226,7 +234,7 @@ export function loadStudentListEvents() {
 
             //
 
-            document.getElementById("std-menu-grades").addEventListener("click", async e => {
+            document.getElementById("std-menu-grades").addEventListener("click", async () => {
                 document.getElementById("grades-modal").classList.remove("invisible");
                 let ask = await getStudentData(id);
                 if (ask) {

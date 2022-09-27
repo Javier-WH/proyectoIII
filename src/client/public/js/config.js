@@ -21,7 +21,7 @@ import { startBitacora } from "./newScripts/bitacora.js";
 import { startTutorListModal } from "./newScripts/tutorListModal.js";
 import { initPrices } from "./newScripts/pricesModal.js";
 import {initPrintSubject} from "./newScripts/printSubjectsModal.js";
-
+import {initPreisciptionRecipe} from "./newScripts/printInsciptionRecipe.js"
 
 
 
@@ -105,6 +105,7 @@ async function main() {
     startBitacora();
     initPrices();
     initPrintSubject();
+    initPreisciptionRecipe();
  
     //
     

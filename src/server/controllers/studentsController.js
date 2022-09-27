@@ -1,6 +1,6 @@
 const colors = require('colors')
 const { Op } = require("sequelize");
-const { Students } = require("../database/models.js");
+const { Students, Subjects } = require("../database/models.js");
 const configController = require("../controllers/configControler.js");
 const { getSubjects } = require("../controllers/subjectsController.js");
 const { updateAuxInfo } =require("./auxiliarInformationController.js")
@@ -13,7 +13,7 @@ async function registerStudent({ names, lastName, ci, motherName, motherCI, moth
         message = { ERROR: "El estudiante ya está inscrito" };
     } else {
 
-        let askSubj = await getSubjects();
+        let askSubj =  await Subjects.findAll();
         let filteredSubject = askSubj.filter(subj => subj.grade == year)[0].subjectsList;
 
 

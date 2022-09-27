@@ -143,7 +143,6 @@ async function destroyGrade({ grade }) {
 ///////////////////
 
 async function getSubjects() {
-
     let subjects = await Subjects.findAll();
     return subjects;
 
