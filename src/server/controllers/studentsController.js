@@ -55,6 +55,13 @@ async function registerStudent({ names, lastName, ci, motherName, motherCI, moth
 
 }
 ////////////////////////////////////////////
+async function updateStudentPensum(id, subjects){
+    let ask = await Students.update({subjects}, {where:{id}});
+
+}
+
+
+///
 
 async function updateStudent({ names, lastName, CI, age, gender, motherName, motherCI, motherWork, fatherName, fatherCI, fatherWork, oldCI, auxData }) {
 
@@ -173,7 +180,7 @@ async function updateGrades(list) {
             if (!config[0].edit) {
                 let message = "La edición de notas no está permitida en este momento";
                 for (let j = 0; j < keys.length; j++) {
-
+                   
                     if (oldSubjects[keys[j]].l1 != list[i].subjects[keys[j]].l1 && oldSubjects[keys[j]].l1 != 0) {
 
                         return message;
@@ -290,5 +297,6 @@ module.exports = {
     deleteStudent,
     updatePhoto,
     updateStudent,
-    getDeferredStudents
+    getDeferredStudents,
+    updateStudentPensum
 }

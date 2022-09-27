@@ -264,7 +264,7 @@ export function loadEvents(StudentList, teacher, config) {
             } else {
                 /////////////
                
-                let subject = document.getElementById('seccion-title').innerText;
+                let subject = document.getElementById('seccion-title').innerText.split(" ")[0];
            
                 let dbSubjects = await getSubjects();
                 let dbSubjectsList = dbSubjects.map(sub => sub.subjectsList).flat(1);

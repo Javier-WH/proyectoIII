@@ -140,6 +140,10 @@ async function updateSubjects() {
 }
 
 //////////
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+//
 async function btnADD() {
     if (input.value.length > 0) {
 
@@ -150,7 +154,7 @@ async function btnADD() {
             denyButtonText: `Cancelar`
         }).then((result) => {
             if (result.isConfirmed) {
-                let newSubject = input.value;
+                let newSubject = capitalizeFirstLetter(input.value);
                 pensumBox.innerHTML += `<label class ="lbl-pensum-subject">${newSubject}</label>`; //
                 updateSubjects();
                 input.value = "";

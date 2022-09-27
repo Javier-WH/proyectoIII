@@ -6,9 +6,10 @@ const { createConfig } = require("./database/createConfig.js");
 const { getIp } = require(path.join(__dirname, "networkInterfaces.js"));
 const { cleanAllEmailTokens } = require("./controllers/emailControler.js");
 const {initTrigers} = require("./database/triggers.js");
+///
+const {chkTeachersPensum} = require("./controllers/subjectsController.js")
 
 
-///development
 
 
 const express = require('express');
@@ -49,5 +50,7 @@ app.listen(process.env.PORT, serverIp,  err => {
         cleanAllEmailTokens();
         initTrigers();
         checkPrices();
+        //
+        chkTeachersPensum();
     }
 })
