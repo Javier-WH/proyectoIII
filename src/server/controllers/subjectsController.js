@@ -1,6 +1,8 @@
 const { Subjects } = require("../database/models.js");
 const {getConfig} = require("./configControler.js");
 const {findStudent, updateStudentPensum} = require("./studentsController.js");
+const {getAllUsers} = require("./controllers.js");
+const {updateTeacherSubject} = require("./controllers.js")
 
 ///inserta o actualiza las materias
 async function setSubjects(subjects) {
@@ -29,15 +31,44 @@ async function setSubjects(subjects) {
 
         }
         await chkStudensPensum();
+        await chkTeachersPensum();
     });
-
 
     return "OK";
 }
 /////
 async function chkTeachersPensum(){
-    console.log("hola")
- 
+    let teachersList = await getAllUsers();
+    let currentPesum = await getSubjects();
+  
+    currentPesum.map(data=>{
+        let grade = data.grade;
+        let pensumSubjects = data.subjectsList; //array de materias pensum
+  
+        teachersList.map(teacher=>{
+            let teacherSubjects = teacher.subject;
+            Object.keys(teacherSubjects).map(teacherSubject=>{
+                if(!(pensumSubjects.includes(teacherSubject))){
+                    let seccions = teacherSubjects[teacherSubject];
+                    seccions.map(seccion=>{
+                        if(seccion.includes(grade)){
+                            let newSeccions = teacherSubjects[teacherSubject].filter(e=> e != seccion);
+                            teacherSubjects[teacherSubject] = newSeccions
+                            if( teacherSubjects[teacherSubject].length == 0){
+                                delete  teacherSubjects[teacherSubject];
+                            }
+                            let sendingData = {
+                                subject: teacherSubjects, 
+                                id: teacher.id
+                            }
+                            updateTeacherSubject(sendingData);
+                        }
+                    })
+                }
+            })
+        })
+
+    })
 
 }
 
