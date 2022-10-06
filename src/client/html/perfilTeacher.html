@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
 
-    <link rel="shortcut icon" href="SVG/icon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon">
 
     <!-- SweetAlert2 -->
     <script src="sweetalert2/dist/sweetalert2.min.js" defer></script>
     <link rel="stylesheet" href="sweetalert2/themes/wordpress-admin/wordpress-admin.min.css">
 
     <!-- materialize -->
-    <link rel="stylesheet" href="CSS/materialize.css">
-    <script src="JS/materialize.js"></script>
-    <link rel="stylesheet" href="CSS/root.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <script src="js/materialize.js"></script>
+    <link rel="stylesheet" href="css/root.css">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="CSS/perfilTeacher.css">
+    <!-- css -->
+    <link rel="stylesheet" href="css/perfilTeacher.css">
 
 </head>
 
@@ -33,7 +33,7 @@
 <body>
     <nav>
         <div class="nav-wrapper" id="nav-bar">
-            <img src="SVG/icon.svg" alt="" id="logo">
+            <img src="svg/icon.svg" alt="" id="logo">
             <a href="" class="brand-logo">Perfil del Profesor</a>
         </div>
     </nav>
@@ -240,7 +240,7 @@
                         "Content-Type": "application/json",
                         "Accept": "*/*"
                     },
-                    body: JSON.stringify(teacherData)
+                    body: jsON.stringify(teacherData)
                 });
                 let response = await ask.json();
 
@@ -277,7 +277,7 @@
                                 "Content-Type": "application/json",
                                 "Accept": "*/*"
                             },
-                            body: JSON.stringify({ email })
+                            body: jsON.stringify({ email })
                         })
                             .then(response => {
                                 if (!response.ok) {
@@ -339,7 +339,7 @@
                         "Content-Type": "application/json",
                         "Accpet": "*/*"
                     },
-                    body: JSON.stringify({ subject, id })
+                    body: jsON.stringify({ subject, id })
                 });
 
                 let response = await ask.json();
