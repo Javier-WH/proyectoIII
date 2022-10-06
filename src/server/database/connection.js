@@ -9,6 +9,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     host: process.env.DB_ADDRESS,
     dialect: 'mysql',
     //dialect: 'mariadb',
+    port: process.env.BD_SESSION_PORT,
     logging: false
 });
 
