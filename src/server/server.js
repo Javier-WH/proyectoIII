@@ -35,7 +35,7 @@ app.use(require("./routes/test.js")); //////////////////////////////////////////
 
 app.use(express.static(path.join(__dirname, "../client/public")));
 
-app.listen(process.env.PORT, serverIp,  err => {
+app.listen(process.env.PORT, "0.0.0.0",  err => {
     console.clear();
 
     if (err) {
