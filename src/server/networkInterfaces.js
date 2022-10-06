@@ -6,7 +6,7 @@ function getIp() {
         let networkData = Object.keys(osInterfaces).filter(key => key != "Loopback Pseudo-Interface 1")[0];
         return osInterfaces[networkData].filter(key => key.family == 'IPv4')[0].address;
     } catch (error) {
-        return "localhost";
+        return "0.0.0.0";
     }
 }
 
