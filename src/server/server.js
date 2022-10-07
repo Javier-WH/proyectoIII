@@ -47,7 +47,7 @@ app.listen(process.env.PORT, "0.0.0.0",  err => {
         createSubjects();
         createConfig();
         cleanAllEmailTokens();
-        initTrigers();
+        //initTrigers();
         checkPrices();
     }
 })

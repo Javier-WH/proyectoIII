@@ -41,7 +41,7 @@ function insertAdmin() {
             clearInterval(checkConection);
         } catch (error) {
 
-            console.log("Error al intentar crear administrador".bgRed)
+            console.log(error)
         }
 
     }, 5000);
