@@ -9,6 +9,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     host: process.env.DB_ADDRESS,
     dialect: 'mysql',
     //dialect: 'mariadb',
+    //dialect: 'postgres',
     port: process.env.BD_SESSION_PORT,
     logging: false
 });
@@ -20,7 +21,7 @@ async function getConnection() {
         console.log('La conexión a la base de datos ha sido existosa'.green);
 
     } catch (error) {
-        console.error(`Ha ocurrido un error al conectarse con la base de datos: ${error.code}`.red);
+        console.error(`Ha ocurrido un error al conectarse con la base de datos: ${error}`.red);
     }
 }
 

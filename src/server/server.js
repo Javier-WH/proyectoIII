@@ -15,6 +15,9 @@ const express = require('express');
 const { checkPrices } = require('./libs/checkPrices.js');
 const app = express();
 
+
+////
+
 //settings
 const serverIp = getIp();
 
